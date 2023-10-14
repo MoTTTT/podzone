@@ -11,42 +11,49 @@
 - The static email archive is not accessable from the Internet.
 - The hostname "qsolutions.endoftheinternet.org" is resolved to the WAN address using ```DynDns```.
 - ```Let's Encrypt``` is used as CA for the SSL certificate.
-- Backups are stored on premise, distributed across hosts, with ad-hoc manual copy onto off-premmise media
-- Assets (various ownership and type, including images, videos, and documents) are stored on premise, distributed across hosts, with ad-hoc manual copy onto off-premmise media
+- Backups are stored on premise, distributed across hosts, with ad-hoc manual copy onto off-premise media
+- Assets (various ownership and type, including images, videos, and documents) are stored on premise, distributed across hosts, with ad-hoc manual copy onto off-premise media
 
 ## Business Brief: To-be
 
 - Consolidation of web apps and content
-- Zope and Postgresql forklift (only config)
-- Consumer Cloud case study
-- Migration of primary premmise (SA to UK)
-- Multipremise (SA, UK, EU)
+- Build Zope and Postgresql platform for legacy applications
+- Build automated load of apps and data
+- Consolidation of hardware and network solution, with secure external access, on current SA site.
+- Local relocation of site to shared accommodation in SA
+- On arrival in UK, build redundant site in temporary accommodation
+- Local relocation of site to permanent accommodation in UK
 - Distributed Storage for assets
 - Backup storage to iCloud
 - GitHub for config, docs and code
 - Backup GitHub to Storage
-- IoT Edge presence on each premmise
-- Factor out failed tl-wr845n access point
-- Refactor wired network
+- IoT Edge presence on each premise
 
-### Consumer cloud
+### Consumer cloud definition
 
 - No public cloud runtime (d1, d2) dependencies
-- Consumer computing resources
-- Consumer networking
-- Consumer internet access
-- Off grid viability for on prem services
-- On-premmise services set {full storage, all services}
-- Off-premmise (internet facing) services set {storage set, web}
+- Use of Consumer (comodity) components:
+  - Computing resources
+  - Networking
+  - Internet access
+- On-premise access:
+    - full storage
+    - all services
+- Off grid (Internet disconnected) viability for services
+- Off-premise (internet facing) access:
+    - storage sub-set
+    - web
+    - mail archive
+    - solution administration
 
 ## Workload success criteria
 
 - [X] https access from on site browser
 - [X] https access from off site browser
+- [X] Web: Browse static sites
+- [X] Web: Download ebooks
 - [ ] QApps application server: Generate and View accounting report, Add and view transaction.
 - [ ] Mail: Access Medico-Legal mail archive from 3rd party mac client
-- [ ] Web: Browse static sites
-- [ ] Web: Download ebooks 
 
 ## MVP deliverables
 
@@ -60,9 +67,6 @@ Containerised Services:
 Operationalisation:
 
 - Combine Zope and Apache traffic onto one listener
-- Offload qsolutions.endoftheinternet SSL at Apache
-- Reverse-proxy Zope
 - Send DB backups to iCloud
 - Remote admin: Secure external access
 - Access cluster from tools on laptop client from internet
-

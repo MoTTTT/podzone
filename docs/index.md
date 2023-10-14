@@ -1,184 +1,37 @@
-# southern.podzone.net 
+# southern.podzone.net
 
-## Architecture: southern.podzone.net
+## Site relocation and high availability
 
-```mermaid
----
-title: southern.podzone.net Network Topology, Original
----
-graph LR
+Over the last 27 years, a number of websites, applications and services have been implemented on a local site, some exposed to the Internet, and some for network internal access only.
 
-ISP --- ont
-ont --- router
-router --- switch2
-router ---switch3
-router --- ap1
-router --- other2
-router --- workstation
-ap1 --- other1
-ap1 --- other2
-switch2 --- other1
-switch3 --- switch1
-switch3 --- other1
-switch1 <-->|1GB| k8s1
-switch1 <-->|1GB| k8s2
-switch1 <-->|1GB| k8s3
-switch1 <-->|1GB| k8s4
+This infrastructures has served the requirements of a few entities, some of which still have dependencies on these services.
 
-ont[[Daisan H665 GPON ONT]]
-router[[TP-LINK EC120-F5 Wireless Dual Band Router]]
-switch1[[D-Link DGS-1005D]]
-switch2[[TP-Link TL-SG1005D]]
-switch3[[TP-Link TL-SG1008D]]
-ap1[[TP-Link TL-WR845N]]
-other1(ethernet devices)
-other2(wifi devices)
-k8s1{{levant}}
-k8s2{{james}}
-k8s3{{bukit}}
-k8s4{{sigiriya}}
-workstation(dolmen)
-```
+Faced with the shutdown of the site, and the absence of a sutable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.
 
-```mermaid
----
-title: southern.podzone.net Network Topology, Downsized
----
-graph LR
+Although there are many possible solutions, most of them more efficient in terms of hardware utilisation, and effort, the following approach will be taken:
 
-ISP --- ont
-ont --- router
-router ---|100MB| switch1
+- Migrate the services to a redundant highly available configuration, on site, using a set of servers, and related network configuration.
+- Arrange rented / shared accommodation, and set the servers and networking up to be remotely accessed and administered.
+- When relocated, set up an equivalent new site, providing site redundancy.
 
-router --- workstation
-router --- ap1
-router --- other2
+## Technology decisions
 
-switch1 <-->|1GB| k8s1
-switch1 <-->|1GB| k8s2
-switch1 <-->|1GB| k8s3
-switch1 <-->|1GB| k8s4
+As mentioned, there are various alternative solutions that would achieve the business goal. Lifecycle cost considerations would typically guide the selection of solution. However, I have the unusual privilidge to re-architect the solution in a way that supports maximum exposure to current technologies, with little regard for the timelines and effort. Selecting this route provides a learning opportunity. This in turn has resulted in a mentoring oportunity.
 
-ap1 --- other1
-ap1 --- other2
+Technology decisions are further guided by the following learning imperatives:
 
-ont[[Daisan H665 GPON ONT]]
-router[[TP-LINK EC120-F5 Wireless Dual Band Router]]
-switch1[[TP-Link TL-SG1008D]]
-ap1[[TP-Link TL-WR845N]]
-other1(ethernet devices)
-other2(wifi devices)
-k8s1{{levant}}
-k8s2{{james}}
-k8s3{{bukit}}
-k8s4{{sigiriya}}
-workstation(dolmen)
-```
+- Build confidence in deploying, troubleshooting and consuming Kubernetes
+- Apply declarative processes for the platform and service provisioning (IoC)
+- Consumer Cloud case study
 
-```mermaid
----
-title: southern.podzone.net Request Routing
----
-graph LR
+Additional technology strategy:
 
-clientExt1 --> routerPort1
-routerPort1 --> ovoo
-lbr --> ingress
+- No additional public service consumption, reduction where possible.
+- Continue to utilise open source software
 
-ingress -->|musings.thruhere.net| app1
-ingress -->|qsolutions.endoftheinternet.org| app4
-ingress -->|control.southern.podzone.net| app2
-ingress -->|dashboard.southern.podzone.net| app3
+### Existing public service consumption of note
 
-  subgraph Internet
-    clientExt1([Internet Client])
-  end
-  subgraph Router
-    routerPort1[[port forward :443-> oovo:443]]
-  end
-  subgraph southern.podzone.net
-    subgraph certificateManager
-      qsolutions
-      control
-      musings
-      dashboard
-    end
-    subgraph ovoo
-      lbr{{lbr}}
-    end
-    ingress
-    app1(apache)
-    app4(zope)
-    app2(k8s control plane)
-    app3(k8s dashboard)
-
-  end
-```
-
-```mermaid
----
-title: southern.podzone.net On-premise workstation connectivity
----
-graph TD
- 
-kubectl --- microk8sW2
-calicoctl --- kubectl
-
-k9s --- kubectl
-ssh --- james
-ssh --- sigiriya
-ssh --- bukit
-ssh --- anasazi
-ssh --- levant
-
-ansible --- ssh
-
-      subgraph dolmen workstation
-        kubectl
-        calicoctl
-        ssh
-        k9s
-        ansible
-      end
-
-      subgraph microk8s Cluster
-        subgraph Control Plane
-          subgraph james
-            microk8sW2{{microk8s}}
-          end
-        end
-        subgraph sigiriya
-          microk8sW1{{microk8s}}
-        end
-        subgraph bukit
-          microk8sC2{{microk8s}}
-        end
-      end
-      
-      subgraph k3s Cluster
-        subgraph levant
-          k3s1{{k3s}}
-        end
-        subgraph anasazi
-          k3s2{{k3s}}
-        end
-      end
-```
-
-```mermaid
----
-title: southern.podzone.net Cluser External services
----
-graph TD
-subgraph  sigiriya
-  subgraph NFS for 
-    nfs-service1[(k8s Storage: /srv/nfs/k8s/)]
-    nfs-service[(/srv/nfs/)]
-  end
-  subgraph DynDns Updater
-    *.southern.podzone.net
-    *.musings.thruhere.net
-    *.qsolutions.endoftheinternet.org
-  end
-end
-```
+- DynDns for domain hosting
+- iCloud for offsite storage
+- LetsEncrypt for https certificates
+- GitHub for source code repository

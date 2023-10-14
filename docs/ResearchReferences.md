@@ -504,3 +504,28 @@
 - <https://joshua-robinson.medium.com/elasticsearch-kubernetes-and-persistent-volumes-f763d9054e54>
 - <https://medium.com/01001101/enhance-your-docker-image-build-pipeline-with-kaniko-567afb6cf97c>
 - <https://www.adminer.org/>
+
+### New
+
+- <https://kroki.io/>
+- <https://wkrzywiec.medium.com/deployment-of-multiple-apps-on-kubernetes-cluster-walkthrough-e05d37ed63d1>
+- <https://wkrzywiec.medium.com/how-to-deploy-application-on-kubernetes-with-helm-39f545ad33b8>
+- <https://medium.com/swlh/how-to-declaratively-run-helm-charts-using-helmfile-ac78572e6088>
+- <https://www.adminer.org/>
+- <https://hub.docker.com/_/adminer/>
+- <https://github.com/wodby/adminer>
+- <https://dev.to/codewithml/setup-adminer-with-docker-for-database-management-4dd2>
+- <https://developer.hashicorp.com/vagrant/tutorials/getting-started/getting-started-index>
+- <https://app.vagrantup.com/boxes/search>
+- <https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings>
+- <https://developer.hashicorp.com/vagrant/docs/networking>
+- <https://developer.hashicorp.com/vagrant/docs/providers>
+- <https://developer.hashicorp.com/vagrant/docs/networking/public_network>
+- <https://developer.hashicorp.com/vagrant/docs/networking/private_network>
+- <https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/boxes>
+- <https://www.virtualbox.org/manual/ch04.html>
+- <https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/common-issues>
+- <https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings#config-vm-base_mac>
+- <https://www.theurbanpenguin.com/an-ansible-microk8s-install-of-kubernetes/>
+- <https://developer.hashicorp.com/vagrant/docs/networking/public_network>
+- <https://developer.hashicorp.com/vagrant/docs/multi-machine>

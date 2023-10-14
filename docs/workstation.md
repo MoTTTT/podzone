@@ -1,5 +1,18 @@
 # Workstation config
 
+Tools installed on Dolmen for cluster build and management:
+
+- ansible
+- kubectl
+- calicoctl
+- k8s
+- helm
+- helmfile
+- jq
+- octant
+- openssl
+- vagrant
+
 ```mermaid
 ---
 title: southern.podzone.net On-premise workstation connectivity

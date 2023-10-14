@@ -57,3 +57,11 @@
 - <https://github.com/elastic/helm-charts/issues/137>
 - <https://github.com/hashicorp/vagrant/issues/9200>
 - <https://github.com/pires/kubernetes-elasticsearch-cluster/issues/205>
+- <https://stackoverflow.com/questions/23396679/vagrant-setting-a-vms-mac-address-in-a-private-network-hostonly>
+- <https://stackoverflow.com/questions/12538162/setting-a-vms-mac-address-in-vagrant>
+- <https://stackoverflow.com/questions/26246840/how-to-set-eth0-mac-address-in-vagrant-with-the-vmware-provisioner>
+- <https://stackoverflow.com/questions/39655478/update-vms-bridged-mac-address-with-vagrant>
+- <https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings#config-vm-base_mac>
+- <https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443>
+- <https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner>
+- <https://stackoverflow.com/questions/33250304/how-to-automatically-select-bridged-network-interfaces-in-vagrant>

@@ -11,7 +11,7 @@ plugins:
 theme: readthedocs
 
 nav:
-  - Home: index.md
+  - Podzone Introduction: index.md
   - Business Requirements: QApps.md
   - Hardware: inventory.md
   - Network Topology: network.md
@@ -19,6 +19,8 @@ nav:
   - Workstation Config: workstation.md
   - Service Dependencies: externalServices.md
   - Implementation Notes: technical.md
+  - Task List: Tasklist.md
+  - Application Build: applicationBuild.md
   - References: ResearchReferences.md
   - Issues: Issues.md
   - Troubleshooting: TroubleshootingReferences.md

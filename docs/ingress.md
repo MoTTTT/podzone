@@ -4,7 +4,7 @@
 ---
 title: southern.podzone.net Request Routing
 ---
-graph LR
+graph TD
 
 clientExt1 --> routerPort1
 routerPort1 --> ovoo
@@ -22,12 +22,7 @@ ingress -->|dashboard.southern.podzone.net| app3
     routerPort1[[port forward :443-> oovo:443]]
   end
   subgraph southern.podzone.net
-    subgraph certificateManager
-      qsolutions
-      control
-      musings
-      dashboard
-    end
+ 
     subgraph ovoo
       lbr{{lbr}}
     end

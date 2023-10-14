@@ -43,6 +43,30 @@
 - Ubuntu Core 22
 - IP: 192.168.0.28
 
+## k8s dev nodes:
+
+Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
+
+### denisova
+
+- MAC: 08-00-27-19-87-6B
+- IP: 192.168.0.5
+
+### rudolfensis
+
+- MAC: 08-00-27-1C-B8-7E
+- IP: 192.168.0.16
+
+### ergaster
+
+- MAC: 08-00-27-5D-14-DB
+- IP: 192.168.0.17
+
+### floresiensis
+
+- MAC: 08-00-27-8A-AA-C5
+- IP: 192.168.0.19
+
 ## Other devices
 
 ### k8s lbr: oovo
@@ -94,6 +118,10 @@
 192.168.0.131 ovoo
 192.168.0.132 inuksuk
 192.168.0.3   ularu
+192.168.0.5   denisova
+192.168.0.16  rudolfensis
+192.168.0.17  ergaster
+192.168.0.19  floresiensis
 ```
 
 ### Ingress hosts

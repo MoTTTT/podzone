@@ -592,6 +592,16 @@
 - <https://linux.die.net/man/8/useradd>
 - <https://developer.hashicorp.com/vagrant/docs/cli/box>
 - <https://developer.hashicorp.com/vagrant/tutorials/getting-started/getting-started-up>
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pause_module.html>
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html#ansible-collections-ansible-builtin-template-module>
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/known_hosts_module.html>
+- <https://docs.ansible.com/ansible/latest/collections_guide/collections_using_playbooks.html>
+- <https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_intro.html>
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html>
+- <https://developer.hashicorp.com/vagrant/docs/provisioning/file>
+- <https://spacelift.io/blog/ansible-shell-module>
+
+
 
 
 

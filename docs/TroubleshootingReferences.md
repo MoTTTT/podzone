@@ -111,6 +111,19 @@
 - <https://superuser.com/questions/1306167/how-is-passwordless-sudo-achieved-for-the-vagrant-user>
 - <https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user>
 - <https://superuser.com/questions/1623376/how-can-i-make-my-own-account-a-sudoers-on-virtualbox>
+- <https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user>
+- <https://stackoverflow.com/questions/44315842/execute-a-command-by-switching-to-root-user-in-ansible>
+- <https://stackoverflow.com/questions/39522326/how-do-i-append-a-large-amount-of-text-to-a-file-using-ansible>
+- <https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/>
+- <https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html>
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html>
+- <https://www.lakshminp.com/installing-microk8s-using-ansible/>
+- <https://fabianlee.org/2021/07/25/kubernetes-microk8s-cluster-on-ubuntu-using-ansible/>
+- <https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/>
+- <https://stackoverflow.com/questions/30226113/ansible-ssh-prompt-known-hosts-issue>
+- <https://www.freekb.net/Article?id=2986>
+- <https://serverfault.com/questions/537060/how-to-see-stdout-of-ansible-commands>
+- <https://serverfault.com/questions/1108319/checking-missing-nodes-in-microk8s-cluster-with-ansible>
 
 
 

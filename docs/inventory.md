@@ -43,9 +43,14 @@
 - Ubuntu Core 22
 - IP: 192.168.0.28
 
-## k8s dev nodes:
+## k8s dev nodes
 
 Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
+
+### floresiensis
+
+- MAC: 08-00-27-8A-AA-C5
+- IP: 192.168.0.19
 
 ### denisova
 
@@ -62,10 +67,6 @@ Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/b
 - MAC: 08-00-27-5D-14-DB
 - IP: 192.168.0.17
 
-### floresiensis
-
-- MAC: 08-00-27-8A-AA-C5
-- IP: 192.168.0.19
 
 ## Other devices
 

@@ -529,3 +529,86 @@
 - <https://www.theurbanpenguin.com/an-ansible-microk8s-install-of-kubernetes/>
 - <https://developer.hashicorp.com/vagrant/docs/networking/public_network>
 - <https://developer.hashicorp.com/vagrant/docs/multi-machine>
+- <https://developer.hashicorp.com/vagrant/docs/vagrantfile/ssh_settings>
+- <https://developer.hashicorp.com/vagrant/docs/vagrantfile/tips>
+- <https://www.linkedin.com/pulse/ansible-k8s-raspberry-pi-jens-fuchs/?trk=public_profile_article_view>
+- <https://docs.ansible.com/ansible/latest/inventory_guide/connection_details.html>
+- <https://dev.to/shandesai/provision-your-raspberry-pi-4-cluster-with-ansible-2j8m>
+- <https://github.com/mrlesmithjr/ansible-rpi-k8s-cluster>
+- <https://docs.ansible.com/ansible/latest/tips_tricks/ansible_tips_tricks.html>
+- <https://docs.ansible.com/ansible/latest/inventory_guide/intro_inventory.html>
+- <https://docs.ansible.com/ansible/latest/getting_started/basic_concepts.html>
+- <https://docs.ansible.com/ansible/2.9_ja/modules/snap_module.html>
+- <https://medium.com/programmers-journey/dead-simple-include-env-variables-in-kubernetes-deployment-yaml-1c0e8f859fde>
+- <https://www.crunchydata.com/blog/stateful-postgres-storage-using-kubernetes>
+- <https://github.com/CrunchyData/postgres-operator>
+- <https://mayastor.gitbook.io/introduction/>
+- <https://ceph.io/en/users/getting-started/>
+- <https://docs.ceph.com/en/latest/start/intro/>
+- <https://microk8s.io/docs/how-to-ceph>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/remove-disk/>
+- <https://git.yourcmc.ru/vitalif/vitastor/src/branch/master/README.md>
+- <https://linbit.com/linstor/>
+- <https://news.ycombinator.com/item?id=31605302>
+- <https://blog.palark.com/kubernetes-storage-performance-linstor-ceph-mayastor-vitastor/>
+- <https://openebs.io/>
+- <https://www.virtono.com/community/tutorial-how-to/how-to-install-mayastor-add-on-on-microk8s/>
+- <https://rook.io/>
+- <https://jonathangazeley.com/2023/03/14/kubernetes-homelab-part-4-hyperconverged-storage/>
+- <https://mayastor.gitbook.io/introduction/basic-architecture>
+- <https://github.com/openebs/mayastor>
+- <https://microk8s.io/docs/addon-mayastor>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/service-placement/>
+- <https://wiki.ubuntu.com/Lvm>
+- <https://microk8s.io/docs/upgrading>
+- <https://gopaddle.io/>
+- <https://medium.com/jaegertracing/a-guide-to-deploying-jaeger-on-kubernetes-in-production-69afb9a7c8e5>
+- <https://discourse.ubuntu.com/t/deploying-ceph-with-rook/32565>
+- <https://github.com/rook/rook>
+- <https://www.virtualizationhowto.com/2023/08/kubernetes-persistent-volume-setup-with-microk8s-rook-and-ceph/>
+- <https://jonathangazeley.com/2020/09/10/building-a-hyperconverged-kubernetes-cluster-with-microk8s-and-ceph/>
+- <https://developer.hashicorp.com/vagrant/docs/provisioning/file>
+- <https://docs.ceph.com/en/reef/rbd/rados-rbd-cmds/>
+- <https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool>
+- <https://docs.ceph.com/en/quincy/start/quick-rbd/>
+- <https://microk8s.io/docs/addon-rook-ceph>
+- <https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/>
+- <https://cloudopsofficial.medium.com/the-ultimate-rook-and-ceph-survival-guide-eff198a5764a>
+- <https://www.virtualizationhowto.com/2023/08/kubernetes-persistent-volume-setup-with-microk8s-rook-and-ceph/>
+- <https://microk8s.io/docs/how-to-ceph>
+- <https://github.com/rook/rook>
+- <https://discourse.ubuntu.com/t/deploying-ceph-with-rook/32565>
+- <https://github.com/balchua/do-microk8s/blob/master/docs/rook.md>
+- <https://docs.ceph.com/en/latest/install/>
+- <https://docs.ceph.com/en/latest/start/intro/>
+- <https://ceph.io/en/>
+- <https://microk8s.io/docs/addons>
+- <https://docs.ansible.com/ansible/2.9_ja/modules/snap_module.html>
+- <https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible>
+- <https://docs.ansible.com/ansible/latest/tips_tricks/sample_setup.html#sample-directory-layout>
+- <https://www.theurbanpenguin.com/an-ansible-microk8s-install-of-kubernetes/>
+- <https://docs.ansible.com/ansible/latest/getting_started/basic_concepts.html>
+- <https://linux.die.net/man/8/useradd>
+- <https://developer.hashicorp.com/vagrant/docs/cli/box>
+- <https://developer.hashicorp.com/vagrant/tutorials/getting-started/getting-started-up>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

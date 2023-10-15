@@ -65,3 +65,61 @@
 - <https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443>
 - <https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner>
 - <https://stackoverflow.com/questions/33250304/how-to-automatically-select-bridged-network-interfaces-in-vagrant>
+- <https://linux.die.net/man/8/useradd>
+- <https://stackoverflow.com/questions/30075461/how-do-i-add-my-own-public-key-to-vagrant-vm>
+- <https://stackoverflow.com/questions/29450404/is-there-a-default-password-to-connect-to-vagrant-when-using-homestead-ssh-for>
+- <https://github.com/MicrosoftEdge/dev.microsoftedge.com-vms/issues/21>
+- <https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner>
+- <https://github.com/hashicorp/vagrant/issues/7015>
+- <https://unix.stackexchange.com/questions/52313/how-to-get-execution-time-of-a-script-effectively>
+- <https://serverfault.com/questions/628989/how-to-set-default-ansible-username-password-for-ssh-connection>
+- <https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443>
+- <https://stackoverflow.com/questions/37434598/ansible-sudo-without-password>
+- <https://medium.com/programmers-journey/dead-simple-include-env-variables-in-kubernetes-deployment-yaml-1c0e8f859fde>
+- <https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg>
+- <https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/>
+- <https://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker>
+- <https://stackoverflow.com/questions/51000791/how-to-mount-hostpath-volume-in-kubernetes-with-selinux/51026623#51026623>
+- <https://www.thegeekstuff.com/2017/07/chcon-command-examples/>
+- <https://github.com/docker-library/postgres/issues/116>
+- <https://forums.rancher.com/t/statefulset-postgres-chmod-changing-permissions-of-var-run-postgresql-operation-not-permitted-chown-changing-ownership-of-var-lib-postgresql-data-pgdata-operation-not-permitted/21080>
+- <https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/>
+- <https://gist.github.com/FarooqKhan/7a81b1aa8167f1a927b82731ec435872>
+- <https://www.crunchydata.com/blog/stateful-postgres-storage-using-kubernetes>
+- <https://stackoverflow.com/questions/65046709/what-is-the-correct-way-to-manage-kubernetes-nfs-pv-permissions-for-postgres>
+- <https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg>
+- <https://medium.com/@panda1100/solutions-for-operation-not-permitted-error-when-postgresql-is-running-on-docker-using-vagrants-3db360ca2c03>
+- <https://github.com/docker-library/postgres/issues/361>
+- <https://stackoverflow.com/questions/63602827/rookio-ceph-cluster-mon-c-is-low-on-available-space-message>
+- <https://superuser.com/questions/131519/what-is-this-dm-0-device/131520>
+- <https://askubuntu.com/questions/1406697/extend-lvm-size>
+- <https://packetpushers.net/ubuntu-extend-your-default-lvm-space/>
+- <https://www.baeldung.com/linux/apfs-partition-mount>
+- <https://packages.fedoraproject.org/pkgs/apfs-fuse/apfs-fuse/>
+- <https://linuxconfig.org/how-to-install-g-the-c-compiler-on-ubuntu-22-04-lts-jammy-jellyfish-linux>
+- <https://linuxnewbieguide.org/how-to-mount-macos-apfs-disk-volumes-in-linux/>
+- <https://github.com/libyal/libfvde/wiki/Mounting>
+- <https://askubuntu.com/questions/1148390/mount-macbook-partition-on-ubuntu-unknown-filesystem-hfs-apfs>
+- <https://packetpushers.net/ubuntu-extend-your-default-lvm-space/>
+- <https://github.com/canonical/microk8s/issues/885>
+- <https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user>
+- <https://stackoverflow.com/questions/57570423/net-http-request-canceled-while-waiting-for-connection-client-timeout-exceeded>
+- <https://stackoverflow.com/questions/51963258/unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon>
+- <https://github.com/rook/rook/issues/3595>
+- <https://github.com/rook/rook/issues/11521>
+- <https://forum.proxmox.com/threads/ceph-mirroring-unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon.128066/>
+- <https://superuser.com/questions/1306167/how-is-passwordless-sudo-achieved-for-the-vagrant-user>
+- <https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user>
+- <https://superuser.com/questions/1623376/how-can-i-make-my-own-account-a-sudoers-on-virtualbox>
+
+
+
+
+
+
+
+
+
+
+
+

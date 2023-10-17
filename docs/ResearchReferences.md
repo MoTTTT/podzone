@@ -600,25 +600,10 @@
 - <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html>
 - <https://developer.hashicorp.com/vagrant/docs/provisioning/file>
 - <https://spacelift.io/blog/ansible-shell-module>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/expect_module.html>
+- <https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration>
+- <https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/>
+- <https://microk8s.io/docs/ref-launch-config>
+- <https://daegonk.medium.com/kubernetes-provisioner-setup-for-ceph-rbd-and-cephfs-ce286fbbd1e3>
+- <https://betterprogramming.pub/how-to-use-kubernetes-secrets-for-storing-sensitive-config-data-f3c5e7d11c15>
+- <https://ubuntu.com/blog/451-research-benchmarks-public-and-private-infrastructure-cost>

@@ -124,7 +124,11 @@
 - <https://www.freekb.net/Article?id=2986>
 - <https://serverfault.com/questions/537060/how-to-see-stdout-of-ansible-commands>
 - <https://serverfault.com/questions/1108319/checking-missing-nodes-in-microk8s-cluster-with-ansible>
-
+- <https://stackoverflow.com/questions/39769560/cant-change-base-memory-in-virtualbox>
+- <https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration>
+- <https://stackoverflow.com/questions/12308149/how-do-i-increase-the-ram-and-set-up-host-only-networking-in-vagrant>
+- <https://www.thisprogrammingthing.com/2021/Vagrant-Development-Environment-Customizing-The-Amount-of-RAM/>
+- 
 
 
 

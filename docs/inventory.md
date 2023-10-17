@@ -151,3 +151,10 @@ Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/b
 - southern.podzone.net
 - west.podzone.net
 - western.podzone.net
+
+### IP Addresses
+
+- Static IPs for all bare-metal hosts
+- DHCP assigned addresses: 192.168.0.2 - 192.168.0.99
+- MetalLB production: 192.168.0.131 - 192.168.0.140
+- MetalLB dev: 192.168.0.141 - 192.168.0.150

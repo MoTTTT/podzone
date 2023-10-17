@@ -29,15 +29,13 @@
 
 ## Cluster configuration
 
-Enable dashboard and rbac microk8s add-ons.
-
-
-
 ### Ingress configuration
 
 MetalLB is used to implement an L2 load balancer. The metallb micrik8s add-on is required:
 
-`sudo microk8s enable metallb ; Set 192.168.0.131-192.168.0.132`
+- `sudo microk8s enable metallb`
+- Production: Assign range: 192.168.0.131-192.168.0.132
+- Dev: Assign range: 192.168.0.141-192.168.0.142
 
 An ingress controller is required. De-facto standard seems to be ingress-nginx.
 
@@ -45,7 +43,8 @@ NOTE: Enabling the micrik8s add-on failed to produce a working ingress for me, I
 
 Load ingress-nginx using helm:
   
-`helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
+- `sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
+- `sudo microk8s kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller`
 
 Per-host ingress configuration is applied via the kubernetes API. Configuration is per internet host in the inventory. For implementation details see the following files in config/ directory:
 
@@ -105,7 +104,12 @@ eyJuYW1lIjoiYnVraXQiLCJzZWNyZXQiOiJhNmJiZGU2N2Q1ZmVlYWQ3NGM4N2QxM2JjMjA2NzQyMDM5
 
 Configure microk8s cluster:
 
+- "Before enabling the rook-ceph addon on a strictly confined MicroK8s, make sure the rbd kernel module is loaded with sudo modprobe rbd."
+
 - sudo microk8s enable rook-ceph
+
+
+
 
 - Configs in `/var/snap/microceph/current/conf`
 - We need ceph.conf, and ceph.keyring to attach
@@ -132,9 +136,11 @@ ms bind ipv6 = false
     key = AQDwEitlF3HlExAAwoDaTsqvTw6opWst4Ckq+g==
 ```
 
+- Note: For some reason, using the conf file in /vagrant_data/ gave: `rados.InvalidArgumentError: [errno 22] RADOS invalid argument (error calling conf_read_file)`
 
 ```bash
- sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool rbd
+ cat /vagrant_data/ceph.conf > ceph.conf
+ sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring /vagrant_data/ceph.keyring --rbd-pool dev_rbd
 ```
 
 - test: `sudo microk8s kubectl --namespace rook-ceph-external get cephcluster`

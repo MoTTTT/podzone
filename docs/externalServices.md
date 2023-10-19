@@ -18,6 +18,11 @@ These are currently provisioned as follows
 1. Updating of the DynDns host to IP mappings is managed by the fibre router
 1. The https certificate is managed using certbot on bukit
 
+There are a number of these services that are implemented in such a way that they represent a single point of failure. This is not avoidable in the case of functionality provided by the fibre router. So in order to get the most 
+
+
+acceptable for the fibre router, but all other services need to be highly available.
+
 The following changes are required:
 
 1. Migrate from NFS to distributed storage. Ceph has been selected
@@ -26,7 +31,6 @@ The following changes are required:
 4. Postgres packaging for k8s
 5. Since multiple hosts IP mappings are required, and the fibre router being limited to one host update, this function moves out of the router. Ideally packaged for k8s.
 6. Kubernetes Certificate Manager to be used to update https certificates
-
 
 ```mermaid
 ---

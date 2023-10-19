@@ -179,7 +179,7 @@
 - <https://www.ianlewis.org/en/what-are-kubernetes-pods-anyway>
 - <https://www.ibm.com/docs/en/fcifi/3.0.1?topic=administering-changing-kubernetes-master-node-ip-address>
 - <https://www.linkedin.com/pulse/9-steps-enable-kubernetes-dashboard-microk8s-hendri-t/>
-- <https://www.youtube.com/watch?v=sK5i-N34im8> {Jérôme Petazzoni: Cgroups, namespaces, and beyond}
+- <https://www.youtube.com/watch?v=sK5i-N34im8> {Jérôme Petazzoni: cgroups, namespaces, and beyond}
 - <https://www.wiz.io/blog/from-pod-security-policies-to-pod-security-standards-a-migration-guide>
 - <https://www.civo.com/academy/kubernetes-volumes/introduction-kubernetes-remote-storage>
 - <https://www.adaltas.com/en/2022/09/08/kubernetes-metallb-nginx/>
@@ -607,3 +607,27 @@
 - <https://daegonk.medium.com/kubernetes-provisioner-setup-for-ceph-rbd-and-cephfs-ce286fbbd1e3>
 - <https://betterprogramming.pub/how-to-use-kubernetes-secrets-for-storing-sensitive-config-data-f3c5e7d11c15>
 - <https://ubuntu.com/blog/451-research-benchmarks-public-and-private-infrastructure-cost>
+- <https://luppeng.wordpress.com/2020/03/29/vagrant-up-with-the-lxc-provider/>
+
+- <https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm>
+- <https://juju.is/docs/sdk>
+- <https://juju.is/>
+
+- <https://linux-kvm.org/page/Main_Page>
+- <https://linux-kvm.org/page/RunningKVM>
+- <https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/>
+- <https://netplan.io/>
+- <https://netplan.readthedocs.io/en/stable/examples/>
+- <https://wiki.linuxfoundation.org/networking/bonding>
+- <https://libvirt.org/manpages/libvirtd.html>
+- <https://netplan.readthedocs.io/en/stable/examples/>
+- <https://libvirt.org/manpages/libvirtd.html>
+- <https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/>
+- <https://linux-kvm.org/page/HOWTO>
+- <https://linux-kvm.org/page/RunningKVM>
+- <https://ubuntu.com/blog/bootstack-managed-cloud-factsheet-2>
+- <https://ubuntu.com/openstack/managed>
+- <https://ubuntu.com/blog/451-research-benchmarks-public-and-private-infrastructure-cost>
+
+- <https://hub.datree.io/built-in-rules>
+- <https://www.datree.io/helm-chart/ddns-updater-truecharts>

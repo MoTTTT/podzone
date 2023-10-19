@@ -5,14 +5,15 @@
 - Microk8s Kubernetes distribution
 - Build tools (kubectl, calicoctl, ansible etc) on dolmen workstation
 - k8s IOT Edge on anasazi RPi
-- Use nfs on sigiriya for persistent storage
+- Implement ceph distributed storage - Migrate from nfs on sigiriya
 - Secure ingress host based routing
+- Migrate off all spinning disk
 
 ## Network
 
 - Fibre router: Static IPs for control plane and worker nodes
 - Fibre router: (As-is) Dynamic DNS for ```qsolutions.endoftheinternet.org```
-- Fibre router: Port forwarding: 443 to k8s L2 loadbalancer (As-is goes to dolmen)
+- Fibre router: Port forwarding: 443 to k8s L2 load-balancer (As-is goes to dolmen)
 - Fibre router: Restrict DHCP IP allocation range for clients to `192.168.0.2 - 192.168.0.120`
 - MetalLB: IP address range: `192.168.0.131-192.168.0.140`
 - DynDns: Add wildcard routes for all internet hosts in inventory, e.g. ```*.southern.podzone.net```
@@ -22,7 +23,7 @@
 ## Node installations
 
 - For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
-- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1 `
+- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
 - Ubuntu Server and Desktop: `sudo snap install microk8s --classic`
 - Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
 - If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
@@ -31,7 +32,7 @@
 
 ### Ingress configuration
 
-MetalLB is used to implement an L2 load balancer. The metallb micrik8s add-on is required:
+MetalLB is used to implement an L2 load balancer. The metallb microk8s add-on is required:
 
 - `sudo microk8s enable metallb`
 - Production: Assign range: 192.168.0.131-192.168.0.132
@@ -39,7 +40,7 @@ MetalLB is used to implement an L2 load balancer. The metallb micrik8s add-on is
 
 An ingress controller is required. De-facto standard seems to be ingress-nginx.
 
-NOTE: Enabling the micrik8s add-on failed to produce a working ingress for me, I believe because of namespace issues.
+NOTE: Enabling the microk8s add-on failed to produce a working ingress for me, I believe because of namespace issues.
 
 Load ingress-nginx using helm:
   
@@ -145,12 +146,11 @@ ms bind ipv6 = false
 
 - test: `sudo microk8s kubectl --namespace rook-ceph-external get cephcluster`
 
-
 ### Upgrade: NOTE: did not result in rook-ceph add-on being available
 
-sudo microk8s disable dashboard
-microk8s disable metrics-server
-microk8s kubectl drain sigiriya --ignore-daemonsets
+- sudo microk8s disable dashboard
+- microk8s disable metrics-server
+- microk8s kubectl drain sigiriya --ignore-daemonsets
 - sudo snap refresh microk8s --channel=1.28/stable
 - microk8s kubectl uncordon sigiriya
 

@@ -631,3 +631,125 @@
 
 - <https://hub.datree.io/built-in-rules>
 - <https://www.datree.io/helm-chart/ddns-updater-truecharts>
+
+- <https://maas.io/docs/overview-of-maas>
+- <https://maas.io/docs/explanation>
+- <https://maas.io/docs/cloud-networking-essentials-for-maas>
+- <https://maas.io/docs/installation-requirements>
+- <https://maas.io/docs/bootstrap-maas>
+- <https://maas.io/docs/how-to-guides>
+- <https://maas.io/docs/reference>
+
+
+
+
+- <https://docs.ceph.com/en/quincy/start/intro/>
+- <https://spdk.io/>
+- <https://docs.ceph.com/en/latest/rados/operations/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/tutorial/multi-node/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/configure-network-keys/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/explanation/cluster-configurations/>
+- <https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/reference/commands/cluster/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/explanation/snap-content-interface/>
+- <https://docs.ceph.com/en/quincy/cephfs/fs-volumes/>
+
+- <https://docs.ceph.com/en/quincy/rados/api/librados-intro/>
+- <https://docs.ceph.com/en/quincy/rados/troubleshooting/troubleshooting-osd/>
+- <https://docs.ceph.com/en/quincy/start/hardware-recommendations/>
+- <https://docs.ceph.com/en/quincy/glossary/>
+- <https://docs.ceph.com/en/latest/rados/operations/>
+- <https://docs.ceph.com/en/latest/rados/operations/operating/>
+
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/tutorial/multi-node/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/explanation/full-disk-encryption/>
+- <https://docs.ceph.com/en/latest/rados/configuration/network-config-ref/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/explanation/>
+
+- <https://docs.ceph.com/en/latest/man/8/mount.ceph/>
+- <https://confluence.cc.lehigh.edu/pages/viewpage.action?pageId=108364140>
+
+- <https://docs.ceph.com/en/latest/man/8/ceph-volume/>
+
+- <https://ubuntu.com/blog/canonical%EF%BB%BF-kubernetes-1-28-is-now-generally-available>
+- <https://microk8s.io/docs/cis-compliance>
+- <https://microk8s.io/docs/how-to-cis-harden>
+
+- <https://charmhub.io/microk8s/docs/how-to-cluster>
+
+- <https://github.com/opencontainers/runtime-spec>
+- <https://github.com/opencontainers/runtime-spec/blob/main/spec.md>
+- <https://github.com/opencontainers/runtime-spec/blob/main/bundle.md>
+- <https://github.com/opencontainers/runtime-spec/blob/main/config.md>
+- <https://github.com/opencontainers/image-spec>
+
+- <https://github.com/Fred78290/vagrant-multipass>
+
+- <https://github.com/ahcbb6/meta-raspberrypi-baremetal>
+- <https://layers.openembedded.org/layerindex/branch/master/layers/>
+- <https://github.com/MontaVista-OpenSourceTechnology/meta-raspberrypi-xen>
+- <https://en.wikipedia.org/wiki/Rust_(programming_language)>
+- <https://en.wikipedia.org/wiki/TypeScript>
+
+- <https://www.zdnet.com/article/raspberry-pi-banana-pi-maker-touts-this-new-rival-board-with-amlogic-chip-and-4gb-ram/>
+- <https://www.zdnet.com/article/programming-languages-developers-reveal-what-they-love-and-loathe-and-what-pays-best/>
+- <https://en.wikipedia.org/wiki/Scala_(programming_language)>
+
+- <https://www.openembedded.org/wiki/Main_Page>
+- <https://en.wikipedia.org/wiki/1-Wire>
+- <https://sheepdogguides.com/arduino/asw1onew1.htm>
+
+- <https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html>
+- <https://docs.yoctoproject.org/dev-manual/layers.html#creating-a-general-layer-using-the-bitbake-layers-script>
+- <https://docs.yoctoproject.org/what-i-wish-id-known.html>
+- <https://github.com/axians/meta-microservicebus>
+- <https://www.balena.io/os>
+- <https://blog.balena.io/resin-io-changes-name-to-balena-releases-open-source-edition/>
+- <https://github.com/balena-os/balena-raspberrypi>
+- <https://github.com/UpdateHub/meta-updatehub-raspberrypi>
+- <https://lwn.net/Articles/682540/>
+- <https://medium.com/@souhaylsellami/buildroot-or-yocto-choosing-your-build-system-f061f56ac11f>
+- <https://promwad.com/news/bsp-linux-buildroot-comparison-peta-linux>
+- <https://epteck.com/yocto-vs-buildroot-comparison/>
+
+- <https://www.padok.fr/en/blog/raspberry-kubernetes>
+- <https://community.element14.com/products/raspberry-pi/w/polls/20656/raspberry-pi-2-which-os-is-best>
+- <https://ubuntu.com/engage/embedded-linux-make-or-buy>
+
+- <https://linuxhit.com/raspberry-pi-pxe-boot-netbooting-a-pi-4-without-an-sd-card/>
+- <https://www.raspberrypi.com/documentation/computers/raspberry-pi.html>
+
+- <https://developer.ibm.com/articles/how-cloud-fog-and-mist-computing-can-work-together/>
+- <https://hackernoon.com/what-is-fluid-computing-its-applications-and-the-future-ahead-nnh30ea>
+- <https://www.raspberrypi.com/documentation/computers/config_txt.html>
+- <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842279/Build+Device+Tree+Blob>
+- <https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841738/Getting+Started>
+- <https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/753-sidecar-containers>
+- <https://nextcloud.com/install/>
+- <https://github.com/nextcloud/all-in-one>
+- <https://nextcloud.com/athome/>
+- <https://multipass.run/docs/create-an-instance>
+- <https://ubuntu.com/blog/the-ubuntu-appliance-portfolio>
+- <https://linuxhit.com/raspberry-pi-pxe-boot-netbooting-a-pi-4-without-an-sd-card/>
+- <https://github.com/raspberrypi/rpi-eeprom/>
+- <https://www.padok.fr/en/blog/raspberry-kubernetes>
+- <https://www.padok.fr/en/blog/kubernetes-architecture-clusters>
+- <https://www.padok.fr/en/blog/multi-architectures-docker-iot>
+- <https://en.wikipedia.org/wiki/Fog_computing>
+- <https://thinnect.com/mist-computing-2/mist-computing-edge-computing-efficient-sensing-smart-device-management/>
+- <https://developer.ibm.com/articles/how-cloud-fog-and-mist-computing-can-work-together/>
+- <https://www.openhab.org/docs/installation/openhabian.html>
+- <https://nodered.org/>
+- <https://nodered.org/docs/getting-started/raspberrypi>
+- <https://www.openhab.org/addons/bindings/mqtt/>
+- <https://www.openhab.org/addons/bindings/icloud/>
+- <https://hacks.mozilla.org/2019/04/introducing-mozilla-webthings/>
+- <https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/753-sidecar-containers>
+
+- <https://kafka.apache.org/>
+- <https://kafka.apache.org/intro>
+- <https://kafka.apache.org/quickstart>
+- <https://kafka.apache.org/uses>

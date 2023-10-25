@@ -43,30 +43,43 @@
 - Ubuntu Core 22
 - IP: 192.168.0.28
 
-## k8s dev nodes
+## k8s multipass dev nodes
 
-Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
+### multipass instance: ardipithecus
 
-### floresiensis
+### multipass instance: australopithecus
+
+### multipass instance: tugenensis
+
+### multipass instance: tchadensis
+
+## k8s virtualbox dev nodes
+
+These instances are managed as follows:
+
+- Vagrant to spin up the virtualbox machines, and prepare ssh access
+- Vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
+- Ansible for microk8s installation and configuration
+
+### virtualbox on james: floresiensis
 
 - MAC: 08-00-27-8A-AA-C5
 - IP: 192.168.0.19
 
-### denisova
+### virtualbox on james: denisova
 
 - MAC: 08-00-27-19-87-6B
 - IP: 192.168.0.5
 
-### rudolfensis
+### virtualbox on james: rudolfensis
 
 - MAC: 08-00-27-1C-B8-7E
 - IP: 192.168.0.16
 
-### ergaster
+### virtualbox on james: ergaster
 
 - MAC: 08-00-27-5D-14-DB
 - IP: 192.168.0.17
-
 
 ## Other devices
 
@@ -75,13 +88,41 @@ Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/b
 - MetalLBR L2 (ARP) Load balancer
 - IP: 192.168.0.131
 
-### IOT device anasazi
+### Raspberry Pi: balin
 
-- Raspberry Pi 3
-- Quad Core 1.2GHz Broadcom BCM2837 64bit CPU
+- Model: Raspberry Pi Model B Rev 2
+- ARMv6-compatible processor rev 7 (v6l)
+- MAC: B8-27-EB-AB-1A-F3
+- IP: 192.168.0.13
+
+### Raspberry Pi: thorin
+
+- Model: Raspberry Pi Model B Rev 2
+- ARMv6-compatible processor rev 7 (v6l)
+- MAC: B8-27-EB-05-94-A7
+- IP: 192.168.0.20
+
+### Raspberry Pi: dwalin
+
+- Model: Zero W
+- MAC: B8-27-EB-7C-FE-CA
+- IP: 192.168.0.26
+
+### Raspberry Pi: anasazi
+
+- Model: Raspberry Pi 2 Model B Rev 1.1
+- Quad Core 1.2GHz Broadcom BCM2837 64bit CPU {4 X ARMv7 Processor rev 5 (v7l)}
 - 1GB RAM
 - IP: 192.168.0.11
 - MAC: B8-27-EB-BE-0D-EB
+
+### Raspberry Pi: levant
+
+- Model: 4 B
+- 1.8GHz Broadcom BCM2711, Quad Core Cortex-A72
+- 4GB RAM
+- Ubuntu Core 22
+- IP: 192.168.0.28
 
 ### Admin Client: dolmen
 
@@ -123,6 +164,9 @@ Using the following vagrant box image: <https://app.vagrantup.com/techchad2022/b
 192.168.0.16  rudolfensis
 192.168.0.17  ergaster
 192.168.0.19  floresiensis
+192.168.0.13  balin
+192.168.0.20  thorin
+192.168.0.26  dwalin
 ```
 
 ### Ingress hosts

@@ -128,9 +128,9 @@
 - <https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration>
 - <https://stackoverflow.com/questions/12308149/how-do-i-increase-the-ram-and-set-up-host-only-networking-in-vagrant>
 - <https://www.thisprogrammingthing.com/2021/Vagrant-Development-Environment-Customizing-The-Amount-of-RAM/>
-- 
-
-
+- <https://www.virtualbox.org/manual/ch12.html>
+- <https://documentation.suse.com/ses/7.1/html/ses-all/bp-troubleshooting-dashboard.html>
+- <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/42>
 
 
 

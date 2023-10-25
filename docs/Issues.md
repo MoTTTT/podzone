@@ -78,6 +78,21 @@ error: snap "microk8s" requires classic confinement which is only available on c
 
 - [ ] Opensearch deploy fails to RPi arch: `kubectl taint nodes levant key1=value1:NoSchedule`
 
+- [ ] Installing k3s on model 2B boards with ``
+
+```text
+[INFO]  systemd: Starting k3s
+Job for k3s.service failed because a fatal signal was delivered causing the control process to dump core.
+See "systemctl status k3s.service" and "journalctl -xeu k3s.service" for details.
+colleymj@balin:~ $ curl -sfL https://get.k3s.io | sh -
+```
+
+colleymj@balin:~ $ uname -a
+Linux balin 6.1.0-rpi4-rpi-v6 #1 Raspbian 1:6.1.54-1+rpt2 (2023-10-05) armv6l GNU/Linux
+
+- <https://github.com/k3s-io/k3s/issues/4643>
+
+
 ## Dolmen
 
 - [ ] Networking issues, probably caused by Cisco Anyconnect, see refs

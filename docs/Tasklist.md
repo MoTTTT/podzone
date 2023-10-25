@@ -11,8 +11,12 @@ Each of these are further decomposed below:
 - [X] Ingress Build
 - [X] Persistent storage
 - [ ] Security
-- [ ] Expose k8s API
+- [X] Expose k8s API
 - [ ] Applications and Services
+
+## Security
+
+- [X] TLS certificate solution
 
 ## Task-list: k8s cluster build
 
@@ -51,8 +55,8 @@ Each of these are further decomposed below:
 
 ## Task-list: Storage Applications and Services
 
-- [ ] Consolidate assets into iCloud
-- [ ] Extract source into GitHub
+- [X] Consolidate assets into iCloud
+- [X] Extract source into GitHub
 - [ ] Extract Zope zexp files and check in
 - [ ] Containerise Zope, including application code and config
 - [X] Consolidate Web sites
@@ -63,14 +67,36 @@ Each of these are further decomposed below:
 - [X] Plone ingress for qsolutions.endoftheinternet.org
 - [X] Ingress rewrite rules for Zope Virtual Host Monster
 - [ ] Plone ZPsycopgDA installation (containerInit?)
+- [ ] Persistent storage volume for postgres
 - [ ] Postgress Service and Deployment
-- [ ] Postgress ingress?
+- [ ] Postgress ingress
 
 ## Task-list: Extract source into GitHub
 
 - [X] Book: Telling; BA Colley
 - [X] Book: Cannon Becket; AH Colley
 - [X] Book: All the Saints; AH Colley
-- [ ] Code: MicroNode assets
-- [ ] Code: BHC assets
-- [ ] Code: Archive/Backup search
+- [X] Code: MicroNode assets
+- [X] Code: BHC assets
+- [X] Code: Archive/Backup search
+
+## Task-list: Consolidate data
+
+All media to be examined and processed:
+
+- All information of interest on all media to go into iCloud
+- All projects, including legacy and completed ones, into GitHub
+- Sensitive data audit, and secure wipe where required
+- Visible logical status labelling
+
+- [ ] /home/${USER} directories on bare metal X 3
+- [X] /media on james
+- [X] thumb drives X 12
+- [X] external hard drives X 1
+- [X] 2.5" replaced hard drives X 3
+- [X] 3.5" replaced hard drives X 2
+
+### Media repurposing
+
+- [X] 2.5" replaced hard drives X 3 - Install in james
+- [X] 3.5" replaced hard drives X 2 - Install in external enclosures

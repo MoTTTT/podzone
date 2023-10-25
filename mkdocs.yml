@@ -19,6 +19,7 @@ nav:
   - Workstation Config: workstation.md
   - Service Dependencies: externalServices.md
   - Implementation Notes: technical.md
+  - Storage Cluster: technicalCeph.md
   - Task List: Tasklist.md
   - Application Build: applicationBuild.md
   - References: ResearchReferences.md

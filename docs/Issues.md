@@ -30,6 +30,28 @@ On EC2 this is Graviton 2 or later.
 ### Persistent Storage permissions
 
 ```text
+ Waiting for a volume to be created either by the external provisioner 'rook-ceph.rbd.csi.ceph.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.                                                 
+```
+
+```text
+Warning  FailedScheduling  20s (x2 over 5m20s)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..
+```
+
+- test: `sudo microk8s kubectl --namespace rook-ceph-external get cephcluster`
+
+NOTE: This gave an error for so long that I thought it was not working. Also, csi-cephfsplugin-provisioner and csi-rbdplugin-provisioner deployments (still) show 0/2 ready...
+
+While attempting to try to remove rook-ceph a few days later to retry from scratch, I got an error indicating that it was in use.
+
+```text
+colleymj@floresiensis:~$ sudo microk8s kubectl --namespace rook-ceph-external get cephcluster
+NAME                 DATADIRHOSTPATH   MONCOUNT   AGE     PHASE       MESSAGE                          HEALTH        EXTERNAL   FSID
+rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster connected successfully   HEALTH_WARN   true       717715ab-d64d-42fe-9219-486015d2c166
+```
+
+NFS:
+
+```text
 [2023-10-07T08:47:23,800][INFO ][o.o.s.OpenSearchSecurityPlugin] [opensearch-cluster-master-0] Disabled https compression by default to mitigate BREACH attacks. You can enable it by setting 'http.compression: true' in opensearch.yml
 [2023-10-07T08:47:23,803][INFO ][o.o.e.ExtensionsManager  ] [opensearch-cluster-master-0] ExtensionsManager initialized 
 [2023-10-07T08:47:23,825][ERROR][o.o.b.OpenSearchUncaughtExceptionHandler] [opensearch-cluster-master-0] uncaught exception in thread [main]
@@ -39,7 +61,7 @@ On EC2 this is Graviton 2 or later.
 - PersistentVolumeCLaim error: `no persistent volumes available for this claim and no storage class is set`
 - chown failure: `enableInitChown: false`
 
-- Reproduce on direct nfs mount on domlen, fine tuned /etc/exports with `all_squash`
+- Reproduce on direct nfs mount on dolmen, fine tuned /etc/exports with `all_squash`
 
 ### vm.max_map_count
 

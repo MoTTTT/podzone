@@ -753,3 +753,21 @@
 - <https://kafka.apache.org/intro>
 - <https://kafka.apache.org/quickstart>
 - <https://kafka.apache.org/uses>
+
+- <https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack>
+- <https://www.openstack.org/use-cases/bare-metal/>
+- <https://ubuntu.com/tutorials/navigate-through-the-openstack-dashboard-menu#1-overview>
+- <https://docs.openstack.org/openstack-ansible-os_ironic/latest/>
+- <https://www.openstack.org/>
+
+- <https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/753-sidecar-containers>
+
+- <https://stackoverflow.com/questions/73421967/how-to-use-git-sync-image-as-a-sidecar-in-kubernetes-that-git-pulls-periodically>
+- <https://thanhtungvo.medium.com/build-git-sync-for-side-car-container-in-kubernetes-4ee51bda84f0>
+- <https://github.com/kubernetes/git-sync>
+
+- <https://www.virtualizationhowto.com/2023/08/kubernetes-persistent-volume-setup-with-microk8s-rook-and-ceph/>
+- <https://docs.ceph.com/en/quincy/cephfs/fs-volumes/>
+- <https://computingforgeeks.com/persistent-storage-for-kubernetes-with-ceph-rbd/>
+- <https://rook.github.io/docs/rook/v1.7/ceph-teardown.html>
+- <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-csi-common-issues/>

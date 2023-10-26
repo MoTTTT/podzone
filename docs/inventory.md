@@ -195,6 +195,7 @@ These instances are managed as follows:
 - southern.podzone.net
 - west.podzone.net
 - western.podzone.net
+- dev.podzone.net
 
 ### IP Addresses
 

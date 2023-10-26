@@ -4,25 +4,26 @@ Original cluster external storage used an nfs server, which represents a single 
 
 We use the Canonical MicroSeph distribution of Ceph, and build a cluster using the hosts `sigiriya`, `james`, and `bukit`.
 
-On all hosts in the cluster, install MicroCeph: `sudo snap install microceph`
+Before starting, check that the ubuntu installations have allocate sufficient space for the root filesystem. I found that only 100G of a 2TB drive was assigned to the root logical volume, which caused ceph cluster failure because the OS disk was above 80%.
 
-On Sigiriya (the master), bootstrap: `sudo microceph cluster bootstrap`, and then prep to add james: `sudo microceph cluster add james`
+## Preparation
 
-This provides a key to be used On James:
+To resize root partition to use all of the available space:
 
-- `sudo microceph cluster join eyJuYW1lIjoiamFtZXMiLCJzZWNyZXQiOiI4YzFhNWQwNDIwOGJhODRmNWVkMmEyZmE4YjAyNjI5ZjVlYzIzNzc5MTgzNDRlMGE5ZjIxMzVmOGJhMGI3OTg5IiwiZmluZ2VycHJpbnQiOiI4N2ZlZTY3NWQxYTVkN2E2Mzg1ZmIxZmM4OGNmYzJmNDc1ZWMxM2ViYjY4NWI5YmE3NzJiMGQ1OWNmZjQzN2RhIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4wLjY6NzQ0MyJdfQ==`
+- To display volume information: `sudo vgdisplay``
+- To extend the logical volume for the root partition: `lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv`
+- To resize the root partition: `resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv`
 
-Similarly, to add bukit, on Sigiriya:
+## Installing microceph
 
-- `sudo microceph cluster add bukit`
-
-On Bukit:
-
-- `sudo microceph cluster join eyJuYW1lIjoiYnVraXQiLCJzZWNyZXQiOiJhNmJiZGU2N2Q1ZmVlYWQ3NGM4N2QxM2JjMjA2NzQyMDM5YzZmMWU3NjU4MTE5N2EwZWZlMDE2YTBiOGE5YTEyIiwiZmluZ2VycHJpbnQiOiI4N2ZlZTY3NWQxYTVkN2E2Mzg1ZmIxZmM4OGNmYzJmNDc1ZWMxM2ViYjY4NWI5YmE3NzJiMGQ1OWNmZjQzN2RhIiwiam9pbl9hZGRyZXNzZXMiOlsiMTkyLjE2OC4wLjY6NzQ0MyJdfQ==`
-
-Next create (where using loopback volumes) and add disks
-
-To create a loopback disk:
+- On all hosts in the cluster, install MicroCeph: `sudo snap install microceph`
+- On Sigiriya (the master), bootstrap: `sudo microceph cluster bootstrap`
+- To prep to add james: `sudo microceph cluster add james`
+- This provides a key to be used on James, where we run: `sudo microceph cluster join <token>`
+- Similarly, to add bukit, on Sigiriya, run: - `sudo microceph cluster add bukit`
+- On Bukit `sudo microceph cluster join <token>`
+- Next create (where using loopback volumes) and add disks
+- To create a loopback disk:
 
 ```bash
   #!/bin/bash
@@ -31,8 +32,9 @@ To create a loopback disk:
   loop_dev="$(sudo losetup --show -f "${loop_file}")"
   minor="${loop_dev##/dev/loop}"
   sudo mknod -m 0660 "/dev/sdib" b 7 "${minor}"
-  sudo microceph disk add --wipe "/dev/sdib"
 ```
+
+- Add a disk to each node in the cluster: `sudo microceph disk add --wipe "/dev/sdXX"`
 
 Additional basic setups:
 
@@ -40,83 +42,33 @@ Additional basic setups:
 - `sudo microceph.ceph config set mgr mgr_standby_modules false`
 - `sudo microceph.ceph config set osd osd_crush_chooseleaf_type 0`
 
-Configure microk8s cluster (NOTE: "Before enabling the rook-ceph addon on a strictly confined MicroK8s, make sure the rbd kernel module is loaded with sudo modprobe rbd." ):
+### Installing the ceph dashboard
 
-- `sudo microk8s enable rook-ceph`
+- To expose the dashboard over https, use the prod k8s Certificate Manager to get a certificate from LetsEncrypt, and create secret `ceph-cert`
+- To extract it from k8s:
+- `kubectl get secret ceph-cert -o json | jq -r '.data.["tls.key"]' | base64 -d >ceph.key`
+- `kubectl get secret ceph-cert -o json | jq -r '.data.["tls.crt"]' | base64 -d >ceph.crt`
+- To enable ceph dashboard: `sudo ceph mgr module enable dashboard`
+- `sudo ceph dashboard set-ssl-certificate -i - < /home/colleymj/ceph/ceph.crt`
+- `sudo ceph dashboard set-ssl-certificate-key -i - < /home/colleymj/ceph/ceph.key`
+- Add a user: `echo <> |sudo ceph dashboard ac-user-create colleymj -i - administrator`
+- Get endpoint dashboard ULR: `sudo ceph mgr services`
+- If there is an issue with the standard port: `sudo ceph config set mgr mgr/dashboard/ssl_server_port 8081`
+- Or the host: `ceph config set mgr mgr/dashboard/server_addr 192.168.0.6`
 
-We can now connect the k8s cluster to external storage
+## Connecting microk8s to the ceph cluster
 
+- NOTE: A single node k8s cluster required 4GB RAM and 4 CPUs, else did not complete installation
+- NOTE: "Before enabling the rook-ceph addon on a strictly confined MicroK8s, make sure the rbd kernel module is loaded with `sudo modprobe rbd`." :
+- Configure microk8s cluster:`sudo microk8s enable rook-ceph`
+- We can now connect the k8s cluster to external storage
+- We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: `/var/snap/microceph/current/conf`
+- Using config and key: `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring /vagrant_data/ceph.keyring --rbd-pool dev_rbd`
 
-- We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: `/var/snap/microceph/current/conf` 
+## Some ceph CLI commands
 
-- For interest, contents of `ceph.conf` and `ceph.keyring`:
-
-```conf
-# ceph.conf
-# # Generated by MicroCeph, DO NOT EDIT.
-[global]
-run dir = /var/snap/microceph/707/run
-fsid = 717715ab-d64d-42fe-9219-486015d2c166
-mon host = 192.168.0.6,192.168.0.27,192.168.0.52
-auth allow insecure global id reclaim = false
-public addr = 192.168.0.6
-ms bind ipv4 = true
-ms bind ipv6 = false
-----
-# ceph.keyring
-# Generated by MicroCeph, DO NOT EDIT.
-[client.admin]
-    key = REDACTED
-```
-
-Note: For some reason, using the conf file in /vagrant_data/ gave: `rados.InvalidArgumentError: [errno 22] RADOS invalid argument (error calling conf_read_file)`, so we make a new copy, and use it. Strangely the key did not have this issue...
-
-```bash
- cat /vagrant_data/ceph.conf > ceph.conf
- sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring /vagrant_data/ceph.keyring --rbd-pool dev_rbd
-```
-
-- test: `sudo microk8s kubectl --namespace rook-ceph-external get cephcluster`
-
-NOTE: This gave an error for so long that I thought it was not working. Also, csi-cephfsplugin-provisioner and csi-rbdplugin-provisioner deployments (still) show 0/2 ready...
-
-While attempting to try to remove rook-ceph a few days later to retry from scratch, I got an error indicating that it was in use.
-
-```text
-colleymj@floresiensis:~$ sudo microk8s kubectl --namespace rook-ceph-external get cephcluster
-NAME                 DATADIRHOSTPATH   MONCOUNT   AGE     PHASE       MESSAGE                          HEALTH        EXTERNAL   FSID
-rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster connected successfully   HEALTH_WARN   true       717715ab-d64d-42fe-9219-486015d2c166
-```
-
-To expose the dashboard over https, use the prod k8s Certificate Manager to get a certificate from LetsEncrypt.
-
-To extract it from k8s:
-
-kubectl get secret ceph-cert -o json | jq -r '.data.["tls.key"]' | base64 -d >ceph.key
-kubectl get secret ceph-cert -o json | jq -r '.data.["tls.crt"]' | base64 -d >ceph.crt
-
-sudo ceph mgr module enable dashboard
-
-sudo ceph dashboard set-ssl-certificate -i - < /home/colleymj/ceph/ceph.crt
-sudo ceph dashboard set-ssl-certificate-key -i - < /home/colleymj/ceph/ceph.key
-
-ceph config set mgr mgr/dashboard/server_addr 192.168.0.6
-
-sudo ceph config set mgr mgr/dashboard/server_port 8080
-ceph config set mgr mgr/dashboard/ssl_server_port 8081
-
-ceph dashboard ac-user-create colleymj -i <file-containing-password> administrator
-
-echo <> |sudo ceph dashboard ac-user-create colleymj -i - administrator
-
-Get endpoint (because setting the IP and port above did not work...):
-sudo ceph mgr services
-
-sudo apt install ceph-mgr-rook
-
-
-microceph.ceph config set mgr mgr/dashboard/ssl false
-microceph.ceph mgr module enable dashboard
-echo -n "p@ssw0rd" > /var/snap/microceph/current/conf/password.txt
-microceph.ceph dashboard ac-user-create -i /etc/ceph/password.txt admin administrator
-rm /var/snap/microceph/current/conf/password.txt
+- `sudo microceph status`
+- `sudo microceph cluster config get cluster_network`
+- `sudo microceph cluster config list`
+- `sudo microceph cluster list`
+- `sudo microceph disk list`

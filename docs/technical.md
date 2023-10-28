@@ -65,9 +65,6 @@ For implementation details see the following files in config/ directory:
 - `podzone-certificateIssuer.yaml`
 - `podzone-certs.yaml`
 
-
-
-
 ### Upgrade: NOTE: did not result in rook-ceph add-on being available
 
 - sudo microk8s disable dashboard

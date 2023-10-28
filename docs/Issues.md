@@ -16,7 +16,7 @@
 - `[opensearch-cluster-master-0] Not yet initialized (you may need to run securityadmin)`
 - Cluster not starting up, all pods up
 - High RAM utilisation, removing until workload is deployed.
-- Tested with fluentd (mikrok8s enable community first)
+- Tested with fluentd (microk8s enable community first)
 
 ### Levant architecture
 
@@ -113,7 +113,6 @@ colleymj@balin:~ $ uname -a
 Linux balin 6.1.0-rpi4-rpi-v6 #1 Raspbian 1:6.1.54-1+rpt2 (2023-10-05) armv6l GNU/Linux
 
 - <https://github.com/k3s-io/k3s/issues/4643>
-
 
 ## Dolmen
 

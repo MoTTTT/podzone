@@ -72,3 +72,4 @@ Additional basic setups:
 - `sudo microceph cluster config list`
 - `sudo microceph cluster list`
 - `sudo microceph disk list`
+- `sudo microceph.ceph status`

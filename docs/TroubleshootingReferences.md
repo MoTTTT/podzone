@@ -131,12 +131,4 @@
 - <https://www.virtualbox.org/manual/ch12.html>
 - <https://documentation.suse.com/ses/7.1/html/ses-all/bp-troubleshooting-dashboard.html>
 - <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/42>
-
-
-
-
-
-
-
-
-
+- <https://stackoverflow.com/questions/69322849/rook-ceph-provisioning-issue>

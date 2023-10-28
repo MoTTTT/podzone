@@ -18,10 +18,7 @@ These are currently provisioned as follows
 1. Updating of the DynDns host to IP mappings is managed by the fibre router
 1. The https certificate is managed using certbot on bukit
 
-There are a number of these services that are implemented in such a way that they represent a single point of failure. This is not avoidable in the case of functionality provided by the fibre router. So in order to get the most 
-
-
-acceptable for the fibre router, but all other services need to be highly available.
+There are a number of these services that are implemented in such a way that they represent a single point of failure. This is not avoidable in the case of functionality provided by the fibre router. All other services can be highly available.
 
 The following changes are required:
 
@@ -91,6 +88,9 @@ subgraph Q Solutions
     subgraph james
       /dev/hdc
     end
+  end
+  subgraph Prometheus
+    sigiriya:9090
   end
   subgraph  kubernetes cluster
     subgraph Zope Server

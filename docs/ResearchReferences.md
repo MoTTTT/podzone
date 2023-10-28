@@ -640,9 +640,6 @@
 - <https://maas.io/docs/how-to-guides>
 - <https://maas.io/docs/reference>
 
-
-
-
 - <https://docs.ceph.com/en/quincy/start/intro/>
 - <https://spdk.io/>
 - <https://docs.ceph.com/en/latest/rados/operations/>
@@ -771,3 +768,9 @@
 - <https://computingforgeeks.com/persistent-storage-for-kubernetes-with-ceph-rbd/>
 - <https://rook.github.io/docs/rook/v1.7/ceph-teardown.html>
 - <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-csi-common-issues/>
+
+- <https://k21academy.com/docker-kubernetes/kubernetes-namespace/>
+
+- <https://krew.sigs.k8s.io/docs/user-guide/setup/install/>
+
+- <https://longhorn.io/docs/archives/1.1.1/snapshots-and-backups/csi-snapshot-support/enable-csi-snapshot-support/>

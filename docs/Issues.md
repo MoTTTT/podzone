@@ -81,6 +81,42 @@ NFS:
 - [X] microk8s enable ingress: does not provision an ingress controller
 - [X] <https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml>
 
+```text
+"Found valid IngressClass" ingress="default/cm-acme-http-solver-wrpsk" ingressclass="nginx" 
+```
+
+```text
+E1028 11:53:50.833249       1 controller.go:210] cert-manager/challenges/scheduler 
+"msg"="error scheduling challenge for processing" 
+"error"="Operation cannot be fulfilled on challenges.acme.cert-manager.io 
+"docs-cert-gfdzt-2136338773-280458000\": the object has been modified; please apply your changes to the latest version and try again"
+"resource_kind"="Challenge"
+"resource_name"="docs-cert-gfdzt-2136338773-280458000"
+"resource_namespace"="kube-system"
+"resource_version"="v1"           
+```
+
+``text
+ I1028 12:01:23.238457       1 conditions.go:95] Setting lastTransitionTime for Issuer "test-selfsigned" condition "Ready" to 2023-10-28 12:01:23.23844713 +0000 UTC m=+83.454686327
+ I1028 12:01:23.267715       1 conditions.go:201] Setting lastTransitionTime for Certificate "selfsigned-cert" condition "Ready" to 2023-10-28 12:01:23.267706439 +0000 UTC m=+83.483945638
+ I1028 12:01:23.270382       1 trigger_controller.go:200] cert-manager/certificates-trigger "msg"="Certificate must be re-issued" "key"="cert-manager-test/selfsigned-cert" 
+       "message"="Issuing certificate as Secret does not exist" "reason"="DoesNotExist"
+ I1028 12:01:23.270444       1 conditions.go:201] Setting lastTransitionTime for Certificate "selfsigned-cert" condition "Issuing" to 2023-10-28 12:01:23.270432979 +0000 UTC m=+83.486672175
+ I1028 12:01:23.304273       1 controller.go:161] cert-manager/certificates-trigger "msg"="re-queuing item due to optimistic locking on resource" "key"="cert-manager-test/selfsigned-cert" 
+       "error"="Operation cannot be fulfilled on certificates.cert-manager.io \"selfsigned-cert\": the object has been modified; please apply your changes to the latest version and try again"
+ I1028 12:01:23.304474       1 trigger_controller.go:200] cert-manager/certificates-trigger "msg"="Certificate must be re-issued" "key"="cert-manager-test/selfsigned-cert" 
+       "message"="Issuing certificate as Secret does not exist" "reason"="DoesNotExist"
+ I1028 12:01:23.304500       1 conditions.go:201] Setting lastTransitionTime for Certificate "selfsigned-cert" condition "Issuing" to 2023-10-28 12:01:23.304495648 +0000 UTC m=+83.520734847
+ E1028 12:01:23.448907       1 controller.go:137] cert-manager/issuers "msg"="issuer in work queue no longer exists" "error"="issuer.cert-manager.io \"test-selfsigned\" not found"
+ E1028 12:01:23.615284       1 controller.go:166] cert-manager/certificates-key-manager "msg"="re-queuing item due to error processing" 
+       "error"="secrets \"selfsigned-cert-\" is forbidden: unable to create new content in namespace cert-manager-test because it is being terminated" "key"="cert-manager-test/selfsigned-cert"
+
+
+- 
+
+- `https://askubuntu.com/questions/1316899/remove-node-from-microk8s-cluster`
+
+
 ## Raspberry Pi
 
 - [X] Levant: microk8s on RPi (Ubuntu Server) not/intermittently supported:

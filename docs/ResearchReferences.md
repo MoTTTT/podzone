@@ -774,3 +774,20 @@
 - <https://krew.sigs.k8s.io/docs/user-guide/setup/install/>
 
 - <https://longhorn.io/docs/archives/1.1.1/snapshots-and-backups/csi-snapshot-support/enable-csi-snapshot-support/>
+
+- <https://www.mirantis.com/zeroops/what-is-zeroops/>
+- <https://snapcraft.io/prometheus>
+- <https://prometheus.io/docs/prometheus/latest/getting_started/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/enable-metrics/>
+- <https://github.com/rook/kubectl-rook-ceph>
+- <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-toolbox/>
+- <https://linuxcontainers.org/lxd/>
+- <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/43?page=2>
+_ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
+- <https://docs.ceph.com/en/mimic/rados/operations/monitoring-osd-pg/>
+- <https://ubuntu.com/blog/cloud-storage-at-the-edge-with-microceph>
+
+- <https://docs.bitnami.com/kubernetes/faq/administration/understand-helm-chart/>
+- <https://github.com/kubernetes/git-sync/blob/master/docs/kubernetes.md>
+
+

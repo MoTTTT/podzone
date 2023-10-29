@@ -132,3 +132,11 @@
 - <https://documentation.suse.com/ses/7.1/html/ses-all/bp-troubleshooting-dashboard.html>
 - <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/42>
 - <https://stackoverflow.com/questions/69322849/rook-ceph-provisioning-issue>
+- <https://github.com/rook/rook/issues/11464>
+- <https://lists.ceph.io/hyperkitty/list/ceph-users@ceph.io/thread/ZJIAEWGCAFAMNAPOXFW7FIKJVLYWHZPG/>
+- <https://forum.proxmox.com/threads/ceph-pacific-issue.127987/>
+- <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/>
+- <https://stackoverflow.com/questions/65593899/ceph-health-warn-degraded-data-redundancy-pgs-undersized-after-reweighting>
+- <https://github.com/rook/rook/issues/8749>
+- <https://github.com/rook/rook/issues/8696>
+- <https://github.com/rook/rook/issues/8727>

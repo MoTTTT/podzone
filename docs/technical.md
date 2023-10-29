@@ -47,22 +47,32 @@ Load ingress-nginx using helm:
 - `sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
 - `sudo microk8s kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller`
 
+### Insecure Ingress (can't get Certificate Manager to work without this first being in place...)
+
+- podzone-ingress-class-nginx: We need this because the helm install creates a class called `ingress-nginx`, and cert manager requires one called `nginx`
+- Now enable CertificateManager. LetsEncrypt https certificates are used for https ingress: `sudo microk8s enable cert-manager`
+
+
+- podzone-apache
+
+
+- podzone-ingress-class: deprecate this, use ingress-nginx
+- podzone-non-secure-ingress
+
+- podzone-certs
+
+### NOTE: Reviewing ordering of these above...
+
 Per-host ingress configuration is applied via the kubernetes API. Configuration is per internet host in the inventory. For implementation details see the following files in config/ directory:
 
 - `podzone-control-ingress.yaml`
-- `podzone-dashboard-ingress.yaml`
 - `podzone-musings-ingress.yaml`
-- `podzone-plone-ingress.yaml`
 
 ### Certificate configuration
 
-LetsEncrypt https certificates are used for https ingress. The CertificateManager add on is required.
-
-- `sudo microk8s enable cert-manager`
 
 For implementation details see the following files in config/ directory:
 
-- `podzone-certificateIssuer.yaml`
 - `podzone-certs.yaml`
 
 ### Upgrade: NOTE: did not result in rook-ceph add-on being available
@@ -84,6 +94,30 @@ For implementation details see the following files in config/ directory:
 ### Supporting Infrastructure
 
 - `sudo snap install prometheus`: Available on localhost:9090
+- `nano /var/snap/prometheus/current/prometheus.yml`
+
+```conf
+global:
+  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'codelab-monitor'
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+
+    # Override the global default and scrape targets from this job every 5 seconds.
+    scrape_interval: 5s
+
+    static_configs:
+      - targets: ['localhost:9090']
+```
+
 
 ### Opensearch
 

@@ -30,6 +30,31 @@
 
 ## Cluster configuration
 
+### Test installation 30 Oct, from scratch
+
+- `sudo microk8s enable metallb`
+- `sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
+- NOTE: This gives `ingressClassName: nginx`
+- `sudo microk8s enable rook-ceph`; See technicalCeph.md for more details
+- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
+
+- Test with apache over http
+- Aliases: `alias ka="kubectl apply -f "`; `alias kd="kubectl delete -f "`
+- `ka ApacheService.yaml`
+- `ka ApacheVolumeClaim.yaml`
+- `ka Apache.yaml`
+- `ka ApacheIngress.yaml`
+
+### Test installed: failed, ingress
+
+- `sudo microk8s enable rook-ceph`; See technicalCeph.md for more details
+- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
+- `sudo microk8s enable metallb`
+- `sudo microk8s enable ingress`
+- `sudo microk8s enable cert-manager`
+
+- `kubectl apply -f ClusterIssuer.yaml`
+
 ### Ingress configuration
 
 MetalLB is used to implement an L2 load balancer. The metallb microk8s add-on is required:
@@ -51,17 +76,12 @@ Load ingress-nginx using helm:
 
 - podzone-ingress-class-nginx: We need this because the helm install creates a class called `ingress-nginx`, and cert manager requires one called `nginx`
 - Now enable CertificateManager. LetsEncrypt https certificates are used for https ingress: `sudo microk8s enable cert-manager`
-
-
 - podzone-apache
-
-
 - podzone-ingress-class: deprecate this, use ingress-nginx
 - podzone-non-secure-ingress
-
 - podzone-certs
 
-### NOTE: Reviewing ordering of these above...
+### NOTE: Reviewing ordering of these above
 
 Per-host ingress configuration is applied via the kubernetes API. Configuration is per internet host in the inventory. For implementation details see the following files in config/ directory:
 
@@ -69,7 +89,6 @@ Per-host ingress configuration is applied via the kubernetes API. Configuration 
 - `podzone-musings-ingress.yaml`
 
 ### Certificate configuration
-
 
 For implementation details see the following files in config/ directory:
 
@@ -117,7 +136,6 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 ```
-
 
 ### Opensearch
 

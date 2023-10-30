@@ -4,6 +4,7 @@ site_url: https://musings.thruhere.net/podzone/
 site_description: Podzone Private Consumer cloud
 site_author: Martin Colley
 
+
 plugins:
     - search
     - mermaid2
@@ -15,6 +16,8 @@ nav:
   - Business Requirements: QApps.md
   - Hardware: inventory.md
   - Network Topology: network.md
+  - Site Structure and sources: siteStructure.md 
+  - Tooling: tools.md 
   - Request Routing: ingress.md
   - Workstation Config: workstation.md
   - Service Dependencies: externalServices.md
@@ -25,3 +28,4 @@ nav:
   - References: ResearchReferences.md
   - Issues: Issues.md
   - Troubleshooting: TroubleshootingReferences.md
+  - Deprecated: deprecated.md 

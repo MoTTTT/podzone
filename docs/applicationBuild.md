@@ -19,7 +19,5 @@
 
 ### Postgres
 
-- Persistent storage for data: add `/srv/nfs/db` to nfs exports
-- Persistend storage for import / export / backup:  add `/srv/nfs/backup` to nfs exports
-- Use cluster-internal db GUI tool to avoid requirement to provide ingress
-- 
+- nfs not working for postgres volume, issues with chmod (as with OpenSearch)
+- Use cluster-internal db GUI tool to avoid requirement to provide ingress for a database port.

@@ -63,7 +63,7 @@ Additional basic setups:
 - Configure microk8s cluster:`sudo microk8s enable rook-ceph`
 - We can now connect the k8s cluster to external storage
 - We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: `/var/snap/microceph/current/conf`
-- Using config and key: `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring /vagrant_data/ceph.keyring --rbd-pool dev_rbd`
+- Using config and key: `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
 
 ## Some ceph CLI commands
 

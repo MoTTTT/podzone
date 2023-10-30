@@ -140,3 +140,6 @@
 - <https://github.com/rook/rook/issues/8749>
 - <https://github.com/rook/rook/issues/8696>
 - <https://github.com/rook/rook/issues/8727>
+- <https://stackoverflow.com/questions/63974879/microk8s-metallb-ingress-nginx-how-to-route-external-traffic>
+- <https://stackoverflow.com/questions/43941772/get-yaml-for-deployed-kubernetes-services>
+- 

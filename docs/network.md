@@ -24,7 +24,7 @@ switch1 <-->|1GB| k8s3
 switch1 <-->|1GB| k8s4
 
 ont[[Daisan H665 GPON ONT]]
-router[[TP-LINK EC120-F5 Wireless Dual Band Router]]
+router[[TP-LINK EC120-F5 Router]]
 switch1[[D-Link DGS-1005D]]
 switch2[[TP-Link TL-SG1005D]]
 switch3[[TP-Link TL-SG1008D]]
@@ -61,7 +61,7 @@ ap1 --- other1
 ap1 --- other2
 
 ont[[Daisan H665 GPON ONT]]
-router[[TP-LINK EC120-F5 Wireless Dual Band Router]]
+router[[TP-LINK EC120-F5 Router]]
 switch1[[TP-Link TL-SG1008D]]
 ap1[[TP-Link TL-WR845N]]
 other1(ethernet devices)

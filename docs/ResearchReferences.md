@@ -790,4 +790,21 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://docs.bitnami.com/kubernetes/faq/administration/understand-helm-chart/>
 - <https://github.com/kubernetes/git-sync/blob/master/docs/kubernetes.md>
 
+- <https://askubuntu.com/questions/1316899/remove-node-from-microk8s-cluster>
+- <https://www.nakivo.com/blog/virtualbox-network-setting-guide/>
 
+- <https://github.com/dexidp/dex>
+- <https://github.com/int128/kubelogin>
+
+- <https://microk8s.io/docs/explain-launch-config>
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/explanation/snap-content-interface/>
+
+- <https://snapcraft.io/docs/configuration-in-snaps>
+- <https://snapcraft.io/docs/adding-snap-configuration>
+- <https://microk8s.io/docs/addon-metallb>
+
+- <https://benbrougher.tech/posts/microk8s-ingress/>
+- <https://kubernetes.io/docs/concepts/services-networking/ingress/>
+- <https://kubernetes.github.io/ingress-nginx/user-guide/tls/>
+- <https://www.henryxieblogs.com/2019/04/use-configmap-to-store-httpconf-for.html>
+- <https://stackoverflow.com/questions/69048829/need-support-on-using-git-sync-and-persistent-volumes>

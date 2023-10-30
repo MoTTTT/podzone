@@ -807,4 +807,6 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://kubernetes.io/docs/concepts/services-networking/ingress/>
 - <https://kubernetes.github.io/ingress-nginx/user-guide/tls/>
 - <https://www.henryxieblogs.com/2019/04/use-configmap-to-store-httpconf-for.html>
-- <https://stackoverflow.com/questions/69048829/need-support-on-using-git-sync-and-persistent-volumes>
+- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/>
+- <https://kubernetes.io/blog/2021/09/13/read-write-once-pod-access-mode-alpha/>
+

@@ -142,4 +142,7 @@
 - <https://github.com/rook/rook/issues/8727>
 - <https://stackoverflow.com/questions/63974879/microk8s-metallb-ingress-nginx-how-to-route-external-traffic>
 - <https://stackoverflow.com/questions/43941772/get-yaml-for-deployed-kubernetes-services>
-- 
+- <https://stackoverflow.com/questions/69048829/need-support-on-using-git-sync-and-persistent-volumes>
+- <https://github.com/kubernetes/kubernetes/issues/20466>
+- <https://stackoverflow.com/questions/51317681/how-to-mount-the-sub-path-of-pvc-to-the-specific-path-in-container>
+

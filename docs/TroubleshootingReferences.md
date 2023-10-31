@@ -146,3 +146,9 @@
 - <https://github.com/kubernetes/kubernetes/issues/20466>
 - <https://stackoverflow.com/questions/51317681/how-to-mount-the-sub-path-of-pvc-to-the-specific-path-in-container>
 
+- <https://kubernetes.github.io/ingress-nginx/examples/rewrite/#app-root>
+- <https://v0-3-0--metallb.netlify.app/tutorial/arp/>
+- <https://metallb.universe.tf/troubleshooting/>
+- <https://github.com/kubernetes-sigs/kind/issues/1449>
+- <https://community.temporal.io/t/deadline-exceeded-error-with-helm-charts-deployment/3636/9>
+- <https://github.com/cert-manager/cert-manager/issues/2517>

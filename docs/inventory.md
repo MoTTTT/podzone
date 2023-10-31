@@ -43,7 +43,15 @@
 - Ubuntu Core 22
 - IP: 192.168.0.28
 
-## k8s multipass dev nodes
+## Prod southern.podzone.net
+
+### habilis
+
+### antecessor
+
+### naledi
+
+## multipass dev nodes
 
 ### multipass instance: ardipithecus
 

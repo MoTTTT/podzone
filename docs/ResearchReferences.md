@@ -810,3 +810,9 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/>
 - <https://kubernetes.io/blog/2021/09/13/read-write-once-pod-access-mode-alpha/>
 
+- <https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/>
+- <https://kubernetes.github.io/ingress-nginx/examples/rewrite/#app-root>
+- <https://medium.com/@chamilad/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80>
+- <https://earthly.dev/blog/setup-reverse-proxy-kubernetes-nginx/>
+
+

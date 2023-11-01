@@ -815,4 +815,16 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://medium.com/@chamilad/load-balancing-and-reverse-proxying-for-kubernetes-services-f03dd0efe80>
 - <https://earthly.dev/blog/setup-reverse-proxy-kubernetes-nginx/>
 
+- <https://docs.ceph.com/en/latest/rados/operations/placement-groups/>
+- <https://docs.ceph.com/en/latest/rados/operations/crush-map/>
 
+- <https://docs.ceph.com/en/latest/mgr/administrator/>
+- <https://docs.ceph.com/en/latest/rados/operations/pools/>
+
+- <https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/>
+- <https://kubernetes.io/docs/reference/kubectl/cheatsheet/>
+- <https://ubuntu.com/server/docs/install/autoinstall-quickstart>
+- <https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html>
+- <https://ubuntu.com/security/docker-images>
+- <https://hub.docker.com/u/ubuntu>
+_ <https://ubuntu.com/server/docs/rock-images/introduction>

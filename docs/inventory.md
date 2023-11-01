@@ -47,9 +47,34 @@
 
 ### habilis
 
+- HP t630 Thinclient
+- AMD Quad Core CPU @ 2.0 Ghz
+- 8Gb DDR4 ram
+- 32 GB SSD
+- Additional SSD slot: max 2242 module
+- MAC: 7C-D3-0A-76-64-E3
+- IP: 192.168.0.4
+
 ### antecessor
 
+- HP t630 Thinclient
+- AMD Quad Core CPU @ 2.0 Ghz
+- 8Gb DDR4 ram
+- 32 GB SSD
+- Additional SSD: ?
+- MAC: 7C-D3-0A-77-0D-8D
+- IP: 192.168.0.14
+
 ### naledi
+
+- HP t630 Thinclient
+- AMD Quad Core CPU @ 2.0 Ghz
+- 8Gb DDR4 ram
+- 32 GB SSD
+- Additional SSD: ?
+- MAC: 7C-D3-0A-3E-EB-D1
+- IP: 192.168.0.21
+
 
 ## multipass dev nodes
 
@@ -175,6 +200,9 @@ These instances are managed as follows:
 192.168.0.13  balin
 192.168.0.20  thorin
 192.168.0.26  dwalin
+192.168.0.4   habilis
+192.168.0.14  antecessor
+192.168.0.21  naledi
 ```
 
 ### Ingress hosts
@@ -211,3 +239,4 @@ These instances are managed as follows:
 - DHCP assigned addresses: 192.168.0.2 - 192.168.0.99
 - MetalLB production: 192.168.0.131 - 192.168.0.140
 - MetalLB dev: 192.168.0.141 - 192.168.0.150
+- MetalLB south: 192.168.0.151 - 192.168.0.151

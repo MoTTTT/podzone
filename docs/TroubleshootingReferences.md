@@ -152,3 +152,13 @@
 - <https://github.com/kubernetes-sigs/kind/issues/1449>
 - <https://community.temporal.io/t/deadline-exceeded-error-with-helm-charts-deployment/3636/9>
 - <https://github.com/cert-manager/cert-manager/issues/2517>
+
+- <https://stackoverflow.com/questions/75546753/ceph-fix-activeundersizeddegraded-pgs-after-removing-an-osd>
+- <https://www.reddit.com/r/ceph/comments/11ehf6u/pgs_stuck_in_undersized_mode_for_a_long_time/>
+- <https://ceph-users.ceph.narkive.com/GfJL0JTk/pg-status-is-active-undersized-degraded>
+- <https://forum.proxmox.com/threads/change-num-replicas-on-ceph-rool-online.25904/>
+- <https://forum.proxmox.com/threads/please-help-ceph-pool-stuck-at-undersized-degraded-remapped-backfill_toofull-peered.121690/>
+- <https://forum.proxmox.com/threads/ceph-pool-created-using-mgr.120226/>
+- <https://stackoverflow.com/questions/63456581/1-pg-undersized-health-warn-in-rook-ceph-on-single-node-clusterminikube?rq=3>
+- <https://h30434.www3.hp.com/t5/Desktop-Hardware-and-Upgrade-Questions/HP-t630-Thin-Client-will-it-accept-SSD-M-2-SATA-storage/td-p/8833395>
+- <https://forums.servethehome.com/index.php?threads/does-hp-thin-client-t630-support-nvme.28141/>

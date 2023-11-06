@@ -8,7 +8,7 @@
 - An Apache server is running at OS level on the Ubuntu host, serving static web pages.
 - The Ubuntu host runs on-premise, connected to the internet via a fibre router.
 - The fibre router provides bukit with a static IP and port forwarding of https traffic on the dynamic WAN address to port 443 for the Apache server, and port 8080 for the Zope listener.
-- The static email archive is not accessable from the Internet.
+- The static email archive is not accessible from the Internet.
 - The hostname "qsolutions.endoftheinternet.org" is resolved to the WAN address using ```DynDns```.
 - ```Let's Encrypt``` is used as CA for the SSL certificate.
 - Backups are stored on premise, distributed across hosts, with ad-hoc manual copy onto off-premise media
@@ -32,7 +32,7 @@
 ### Consumer cloud definition
 
 - No public cloud runtime (d1, d2) dependencies
-- Use of Consumer (comodity) components:
+- Use of Consumer (commodity) components:
   - Computing resources
   - Networking
   - Internet access

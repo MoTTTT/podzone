@@ -162,3 +162,14 @@
 - <https://stackoverflow.com/questions/63456581/1-pg-undersized-health-warn-in-rook-ceph-on-single-node-clusterminikube?rq=3>
 - <https://h30434.www3.hp.com/t5/Desktop-Hardware-and-Upgrade-Questions/HP-t630-Thin-Client-will-it-accept-SSD-M-2-SATA-storage/td-p/8833395>
 - <https://forums.servethehome.com/index.php?threads/does-hp-thin-client-t630-support-nvme.28141/>
+- <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/>
+- <https://discuss.linuxcontainers.org/t/microceph-with-more-than-3-nodes/17469>
+- <https://docs.ceph.com/en/latest/mgr/orchestrator_modules/>
+- <https://stackoverflow.com/questions/38959525/hide-git-directory-or-file-with-apache>
+- <https://tecadmin.net/block-git-directory-in-apache-nginx/>
+- <https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory>
+- <https://helm.sh/docs/helm/helm_uninstall/>
+- <https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/>
+- <https://microcloud.is/>
+- <https://ubuntu.com/blog/one_command_micro_cloud>
+- <>

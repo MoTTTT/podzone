@@ -827,4 +827,48 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html>
 - <https://ubuntu.com/security/docker-images>
 - <https://hub.docker.com/u/ubuntu>
-_ <https://ubuntu.com/server/docs/rock-images/introduction>
+- <https://ubuntu.com/server/docs/rock-images/introduction>
+
+- <https://docs.ceph.com/en/latest/mgr/administrator/>
+- <https://docs.ceph.com/en/mimic/rados/configuration/pool-pg-config-ref/>
+- <https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity>
+
+- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>
+- <https://kubernetes.io/docs/concepts/storage/volumes/>
+- <https://cloudyuga.guru/hands_on_lab/subpath>
+- <https://geekflare.com/apache-web-server-hardening-security/>
+- <https://www.tutorialspoint.com/10-apache-web-server-security-and-hardening-tips>
+- <https://cloudinfrastructureservices.co.uk/apache-web-server-security-and-hardening-best-practices-checklist/>
+- <https://geekflare.com/apache-web-server-hardening-security/>
+
+- <https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/>
+- <https://kubernetes.io/docs/concepts/overview/kubernetes-api/>
+- <https://www.pulumi.com/registry/packages/kubernetes/api-docs/yaml/configfile/>
+- <https://microstack.run/docs>
+- <https://ubuntu.com/tutorials/explore-openstack-components-and-set-up-an-openstack-client>
+- <https://www.g2.com/products/kubernetes/competitors/alternatives>
+- <https://github.com/kubernetes/community/blob/8cafef897a22026d42f5e5bb3f104febe7e29830/contributors/devel/controllers.md>
+- <https://fntlnz.wtf/post/what-i-learnt-about-kubernetes-controller/>
+- <https://www.sobyte.net/post/2021-06/several-ways-to-stop-goroutine-in-golang/>
+- <https://github.com/kubernetes/sample-controller/blob/master/docs/controller-client-go.md>
+- <https://github.com/kubernetes/sample-controller/blob/master/controller.go>
+
+- <https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath>
+- <https://cloudyuga.guru/hands_on_lab/subpath>
+
+- <https://stackoverflow.com/questions/33415913/whats-the-best-way-to-share-mount-one-file-into-a-pod/43404857#43404857>
+- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>
+- <https://gist.github.com/tuannvm/0fc6e94a3759c91b1abe71c149152f77>
+- <https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/configmap-resource/>
+- <https://microk8s.io/docs/registry-built-in>
+- <https://github.com/kubernetes/ingress-nginx/blob/main/docs/examples/rewrite/README.md>
+
+
+
+
+
+
+
+
+
+

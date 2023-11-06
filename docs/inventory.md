@@ -51,7 +51,7 @@
 - AMD Quad Core CPU @ 2.0 Ghz
 - 8Gb DDR4 ram
 - 32 GB SSD
-- Additional SSD slot: max 2242 module
+- Additional SSD slot: Install 128 GB M.2 max 2242 module
 - MAC: 7C-D3-0A-76-64-E3
 - IP: 192.168.0.4
 
@@ -61,7 +61,7 @@
 - AMD Quad Core CPU @ 2.0 Ghz
 - 8Gb DDR4 ram
 - 32 GB SSD
-- Additional SSD: ?
+- Additional SSD: Install 128 GB M.2 max 2242 module
 - MAC: 7C-D3-0A-77-0D-8D
 - IP: 192.168.0.14
 
@@ -71,7 +71,7 @@
 - AMD Quad Core CPU @ 2.0 Ghz
 - 8Gb DDR4 ram
 - 32 GB SSD
-- Additional SSD: ?
+- Additional SSD: Install 128 GB M.2 max 2242 module
 - MAC: 7C-D3-0A-3E-EB-D1
 - IP: 192.168.0.21
 
@@ -240,3 +240,7 @@ These instances are managed as follows:
 - MetalLB production: 192.168.0.131 - 192.168.0.140
 - MetalLB dev: 192.168.0.141 - 192.168.0.150
 - MetalLB south: 192.168.0.151 - 192.168.0.151
+
+## References
+
+- HP t630 Thin Client Specifications: <https://support.hp.com/za-en/document/c05240287>

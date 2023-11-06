@@ -6,7 +6,8 @@ Each of these are further decomposed below:
 - [X] Consumer Cloud definition
 - [X] Workload Success criteria
 - [X] MVP deliverables
-- [X] k8s cluster build
+- [X] k8s dev cluster build
+- [X] k8s prod cluster build
 - [X] Networking build
 - [X] Ingress Build
 - [X] Persistent storage
@@ -17,13 +18,29 @@ Each of these are further decomposed below:
 ## Security
 
 - [X] TLS certificate solution
+- [X] https for all external access
+- [ ] Apache hardening
+- [ ] Kubernetes hardening
+- [ ] enable rbac
+- [ ] configure dashboard access controls
+- [ ] user management
 
-## Task-list: k8s cluster build
+## Task-list: k8s dev cluster build
 
 - [X] james (upgrade RAM)
 - [X] sigiriya (upgrade disk)
 - [X] bukit
 - [X] levant
+
+## Task-list: k8s prod cluster build
+
+- [X] Procurement: 3 X HP t630 Thinclient
+- [X] Add second drive:  128 GB M.2 max 2242 modules
+- [X] Host build: habilis
+- [X] Host build: antecessor
+- [X] Host build: naledi
+- [ ] RAM upgrade: 8BG -> 16 GB
+- [ ] Upgrade first drives
 
 ## Task-list: Networking build
 
@@ -45,13 +62,6 @@ Each of these are further decomposed below:
 - [X] Route to zope
 - [ ] Route to podzone docs
 - [ ] DynDns updater operator
-
-## Security
-
-- [X] https for all external access
-- [ ] enable rbac
-- [ ] configure dashboard access controls
-- [ ] user management
 
 ## Task-list: Storage Applications and Services
 

@@ -49,3 +49,11 @@
 - ClusterIssuer.yaml
 - Certificates.yaml
 - ApacheSecureIngress.yaml
+
+## Hardening
+
+### Hardening: Apache
+
+- Extract default httpd.conf
+- Modify: no dir listings, 
+- Create ApacheConfigMap

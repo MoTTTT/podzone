@@ -24,6 +24,7 @@ Each of these are further decomposed below:
 - [ ] enable rbac
 - [ ] configure dashboard access controls
 - [ ] user management
+- [ ] Purge sensitive info from DB
 
 ## Task-list: k8s dev cluster build
 

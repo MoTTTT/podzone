@@ -220,6 +220,8 @@ These instances are managed as follows:
 - central.podzone.net
 - colley.endoftheinternet.org
 - control.podzone.net
+- dev.podzone.net
+- docs.podzone.net
 - east.podzone.net
 - eastern.podzone.net
 - musings.thruhere.net
@@ -231,7 +233,6 @@ These instances are managed as follows:
 - southern.podzone.net
 - west.podzone.net
 - western.podzone.net
-- dev.podzone.net
 
 ### IP Addresses
 

@@ -1,184 +1,60 @@
-# Inventory
+# Hosts Inventory
 
-## Bare metal
+This page provides convenience listings of hosts file entries, and details of devices not already listed.
 
-### k8s node: sigiriya
+## hostnames relevant to the podzone project
 
-- Late 2014 Mac Mini
-- 2.80GHz i5-4308U (2 core, 4 thread)
-- 8GB RAM (soldered)
-- Ubuntu Server 22.04 (upgrade from mcOS)
-- 2TB SSD (upgrade from 500GB)
-- eth0 IP: 192.168.0.6
-- eth1 IP:
-- dolmen key exchange: ssh colleymj@sigiriya
+DNS domains hosted DynDns have been in use for years (the first paid for service was ordered in 2008) and will be used further for this project.
 
-### k8s node: bukit
+### Hostnames for minimum viable product
 
-- Late 2014 Mac Mini
-- 1.4 GHz Dual Core i5
-- 4 GB RAM (soldered)
-- Ubuntu 22.04
-- 500GB SSD
-- eth0 IP: 192.168.0.52
-- eth1 IP:
-- dolmen key exchange: ssh martin@bukit
+- southern.podzone.net
+- musings.thruhere.net
+- qsolutions.endoftheinternet.org
+- docs.podzone.net
 
-### k8s node: james
+### Hostnames configured for future use
 
-- Motherboard: ASRock H61M-VS3
-- 3 GHz Quad Core i5
-- 16GB (upgrade from 8 GB) RAM
-- Ubuntu 22.04
-- 500 GB SSD
-- eth0 IP: 192.168.0.27
-- eth1 IP:
-- dolmen key exchange: ssh colleymj@james
+- central.podzone.net
+- control.podzone.net
+- dev.podzone.net
+- east.podzone.net
+- eastern.podzone.net
+- north.podzone.net
+- northern.podzone.net
+- west.podzone.net
+- western.podzone.net
 
-### k8s node: levant
+### Hostnames made redundant
 
-- Raspberry Pi 4 B
-- 1.8GHz Broadcom BCM2711, Quad Core Cortex-A72
-- 4GB RAM
-- Ubuntu Core 22
-- IP: 192.168.0.28
+These sites are becoming redundant with the MVP implementation, and can be cleaned up:
 
-## Prod southern.podzone.net
+- colley.endoftheinternet.org
+- poc.endoftheinternet.org
+- qapps.does-it.net
 
-### habilis
+## Ingress hosts
 
-- HP t630 Thinclient
-- AMD Quad Core CPU @ 2.0 Ghz
-- 8Gb DDR4 ram
-- 32 GB SSD
-- Additional SSD slot: Install 128 GB M.2 max 2242 module
-- MAC: 7C-D3-0A-76-64-E3
-- IP: 192.168.0.4
+Ingress hosts make use of the DNS entries defined above. `southern.podzone.net` is a wildcard entry used by some of these.
 
-### antecessor
+- <https://musings.thruhere.net>: Routing to Apache instance for serving a static web site.
+- <https://qsolutions.endoftheinternet.org>: Routing to a Zope application server, serving QSolutions Applications.
+- <https://control.southern.podzone.net>: Routing to kubernetes API.
+- <https://db.southern.podzone.net>: Routing to database GUI console.
+- <https://ceph.southern.podzone.net:8443/>: Routing to Ceph dashboard.
 
-- HP t630 Thinclient
-- AMD Quad Core CPU @ 2.0 Ghz
-- 8Gb DDR4 ram
-- 32 GB SSD
-- Additional SSD: Install 128 GB M.2 max 2242 module
-- MAC: 7C-D3-0A-77-0D-8D
-- IP: 192.168.0.14
+## IP Address Management
 
-### naledi
+The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP addresses. The first set are assigned to the DHCP server for allocation, allowing layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease.
 
-- HP t630 Thinclient
-- AMD Quad Core CPU @ 2.0 Ghz
-- 8Gb DDR4 ram
-- 32 GB SSD
-- Additional SSD: Install 128 GB M.2 max 2242 module
-- MAC: 7C-D3-0A-3E-EB-D1
-- IP: 192.168.0.21
+- Addresses assigned to the router DHCP server: `192.168.0.2 - 192.168.0.99`
+- L2 load-balancer IP address range for dev on bare metal: `192.168.0.131 - 192.168.0.140`
+- L2 load-balancer IP address range for dev on virtual servers: `192.168.0.141 - 192.168.0.150`
+- L2 load-balancer IP address range for production: `192.168.0.151 - 192.168.0.151`
 
+## /etc/hosts
 
-## multipass dev nodes
-
-### multipass instance: ardipithecus
-
-### multipass instance: australopithecus
-
-### multipass instance: tugenensis
-
-### multipass instance: tchadensis
-
-## k8s virtualbox dev nodes
-
-These instances are managed as follows:
-
-- Vagrant to spin up the virtualbox machines, and prepare ssh access
-- Vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
-- Ansible for microk8s installation and configuration
-
-### virtualbox on james: floresiensis
-
-- MAC: 08-00-27-8A-AA-C5
-- IP: 192.168.0.19
-
-### virtualbox on james: denisova
-
-- MAC: 08-00-27-19-87-6B
-- IP: 192.168.0.5
-
-### virtualbox on james: rudolfensis
-
-- MAC: 08-00-27-1C-B8-7E
-- IP: 192.168.0.16
-
-### virtualbox on james: ergaster
-
-- MAC: 08-00-27-5D-14-DB
-- IP: 192.168.0.17
-
-## Other devices
-
-### k8s lbr: oovo
-
-- MetalLBR L2 (ARP) Load balancer
-- IP: 192.168.0.131
-
-### Raspberry Pi: balin
-
-- Model: Raspberry Pi Model B Rev 2
-- ARMv6-compatible processor rev 7 (v6l)
-- MAC: B8-27-EB-AB-1A-F3
-- IP: 192.168.0.13
-
-### Raspberry Pi: thorin
-
-- Model: Raspberry Pi Model B Rev 2
-- ARMv6-compatible processor rev 7 (v6l)
-- MAC: B8-27-EB-05-94-A7
-- IP: 192.168.0.20
-
-### Raspberry Pi: dwalin
-
-- Model: Zero W
-- MAC: B8-27-EB-7C-FE-CA
-- IP: 192.168.0.26
-
-### Raspberry Pi: anasazi
-
-- Model: Raspberry Pi 2 Model B Rev 1.1
-- Quad Core 1.2GHz Broadcom BCM2837 64bit CPU {4 X ARMv7 Processor rev 5 (v7l)}
-- 1GB RAM
-- IP: 192.168.0.11
-- MAC: B8-27-EB-BE-0D-EB
-
-### Raspberry Pi: levant
-
-- Model: 4 B
-- 1.8GHz Broadcom BCM2711, Quad Core Cortex-A72
-- 4GB RAM
-- Ubuntu Core 22
-- IP: 192.168.0.28
-
-### Admin Client: dolmen
-
-- MacBook Pro
-- Apple M1
-- 16GB RAM
-- macOs Ventura 13.5.2
-
-### Virtual server: ularu
-
-- Virtualbox on bukit
-- Ubuntu 16.04.7
-- Zope Version 2.13.24 (python 2.7.11, linux2)
-- QApps release 3.0
-- 1GB RAM
-- IP: 192.168.0.3
-- MAC: 08-00-27-C3-E9-F6
-- ssh colleymj@ularu -p 2222
-- NOTE: To be turned down
-
-## Host lists
-
-### /etc/hosts
+The text block below contains the full hosts file entry list, mainly useful on the admin client.
 
 - Add `/etc/hosts` file entries on servers
 - Add `/private/etc/hosts` for Mac clients
@@ -191,7 +67,6 @@ These instances are managed as follows:
 192.168.0.28  levant
 192.168.0.52  bukit
 192.168.0.131 ovoo
-192.168.0.132 inuksuk
 192.168.0.3   ularu
 192.168.0.5   denisova
 192.168.0.16  rudolfensis
@@ -204,44 +79,3 @@ These instances are managed as follows:
 192.168.0.14  antecessor
 192.168.0.21  naledi
 ```
-
-### Ingress hosts
-
-- Apache: `musings.thruhere.net`
-- Tests: `qapps.does-it.net`
-- Zope - QApps: `qsolutions.endoftheinternet.org`
-- K8s API: `control.southern.podzone.net`
-- Dashboard: `dashboard.southern.podzone.net`
-- Opensearch GUI: `opensearch.southern.podzone.net`
-- Fluentd Kibana GUI: `kibana.southern.podzone.net`
-
-### wildcard hostnames on DynDns
-
-- central.podzone.net
-- colley.endoftheinternet.org
-- control.podzone.net
-- dev.podzone.net
-- docs.podzone.net
-- east.podzone.net
-- eastern.podzone.net
-- musings.thruhere.net
-- north.podzone.net
-- northern.podzone.net
-- poc.endoftheinternet.org
-- qapps.does-it.net
-- qsolutions.endoftheinternet.org
-- southern.podzone.net
-- west.podzone.net
-- western.podzone.net
-
-### IP Addresses
-
-- Static IPs for all bare-metal hosts
-- DHCP assigned addresses: 192.168.0.2 - 192.168.0.99
-- MetalLB production: 192.168.0.131 - 192.168.0.140
-- MetalLB dev: 192.168.0.141 - 192.168.0.150
-- MetalLB south: 192.168.0.151 - 192.168.0.151
-
-## References
-
-- HP t630 Thin Client Specifications: <https://support.hp.com/za-en/document/c05240287>

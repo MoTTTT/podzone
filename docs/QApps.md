@@ -46,15 +46,6 @@
     - mail archive
     - solution administration
 
-## Workload success criteria
-
-- [X] https access from on site browser
-- [X] https access from off site browser
-- [X] Web: Browse static sites
-- [X] Web: Download ebooks
-- [ ] QApps application server: Generate and View accounting report, Add and view transaction.
-- [ ] Mail: Access Medico-Legal mail archive from 3rd party mac client
-
 ## MVP deliverables
 
 Containerised Services:
@@ -70,3 +61,12 @@ Operationalisation:
 - Send DB backups to iCloud
 - Remote admin: Secure external access
 - Access cluster from tools on laptop client from internet
+
+## Workload success criteria
+
+- [X] https access from on site browser
+- [X] https access from off site browser
+- [X] Web: Browse static sites
+- [X] Web: Download ebooks
+- [ ] QApps application server: Generate and View accounting report, Add and view transaction.
+- [ ] Mail: Access Medico-Legal mail archive from 3rd party mac client

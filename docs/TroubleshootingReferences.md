@@ -172,4 +172,14 @@
 - <https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/>
 - <https://microcloud.is/>
 - <https://ubuntu.com/blog/one_command_micro_cloud>
-- <>
+- <https://stackoverflow.com/questions/51718202/helm-how-to-define-release-name-value>
+- <https://github.com/helm/helm/issues/6992>
+- <https://stackoverflow.com/questions/51783651/how-to-create-a-namespace-if-it-doesnt-exists-from-helm-templates>
+- <https://stackoverflow.com/questions/52636571/how-to-pass-dynamic-arguments-to-a-helm-chart-that-runs-a-job>
+- <https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath>
+- <https://stackoverflow.com/questions/65399714/what-is-the-difference-between-subpath-and-mountpath-in-kubernetes>
+- <https://multipass.run/docs/authenticating-clients>
+- <https://github.com/canonical/multipass/issues/1714>
+- <https://github.com/canonical/multipass/issues/973>
+- <https://bugs.launchpad.net/juju/+bug/1892389>
+- 

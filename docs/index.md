@@ -1,12 +1,14 @@
-# southern.podzone.net
+# Introduction
 
-## Site relocation and high availability
+This micro-site contains documentation including the requirements, specification, design, and build notes for the technology research, development, test and build of a kubernetes cluster, and migrating a workload from older technologies.
+
+## Background
 
 Over the last 27 years, a number of websites, applications and services have been implemented on a local site, some exposed to the Internet, and some for network internal access only.
 
 This infrastructures has served the requirements of a few entities, some of which still have dependencies on these services.
 
-Faced with the shutdown of the site, and the absence of a sutable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.
+Faced with the shutdown of the site, and the absence of a suitable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.
 
 Although there are many possible solutions, most of them more efficient in terms of hardware utilisation, and effort, the following approach will be taken:
 
@@ -16,22 +18,26 @@ Although there are many possible solutions, most of them more efficient in terms
 
 ## Technology decisions
 
-As mentioned, there are various alternative solutions that would achieve the business goal. Lifecycle cost considerations would typically guide the selection of solution. However, I have the unusual privilidge to re-architect the solution in a way that supports maximum exposure to current technologies, with little regard for the timelines and effort. Selecting this route provides a learning opportunity. This in turn has resulted in a mentoring oportunity.
+As mentioned, there are various alternative solutions that would achieve the business goal. Lifecycle cost considerations would typically guide the selection of solution. However, I have the unusual privilege to re-architect the solution in a way that supports maximum exposure to current technologies, with little regard for the timelines and effort. Selecting this route provides a learning opportunity. This in turn has resulted in a mentoring opportunity.
 
 Technology decisions are further guided by the following learning imperatives:
 
 - Build confidence in deploying, troubleshooting and consuming Kubernetes
 - Apply declarative processes for the platform and service provisioning (IoC)
-- Consumer Cloud case study
+- Documenting a "Consumer Cloud" case study
 
 Additional technology strategy:
 
 - No additional public service consumption, reduction where possible.
 - Continue to utilise open source software
 
-### Existing public service consumption of note
+### Existing public service consumption
 
 - DynDns for domain hosting
-- iCloud for offsite storage
+- iCloud for off-site storage
 - LetsEncrypt for https certificates
 - GitHub for source code repository
+
+## Source code
+
+The source for the project is available from a public repo on GitHub: <https://github.com/MoTTTT/QApps>.

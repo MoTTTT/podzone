@@ -4,7 +4,6 @@ site_url: https://musings.thruhere.net/podzone/
 site_description: Podzone Private Consumer cloud
 site_author: Martin Colley
 
-
 plugins:
     - search
     - mermaid2
@@ -14,18 +13,23 @@ theme: readthedocs
 nav:
   - Podzone Introduction: index.md
   - Business Requirements: QApps.md
-  - Hardware: inventory.md
+  - Task List: Tasklist.md
+  - Virtual Machine Inventory: vminventory.md
+  - Server Inventory: servers.md
+  - IoT Inventory: raspberrypis.md
+  - Hosts Inventory: inventory.md
   - Network Topology: network.md
   - Site Structure and sources: siteStructure.md 
   - Tooling: tools.md 
-  - Request Routing: ingress.md
   - Workstation Config: workstation.md
   - Service Dependencies: externalServices.md
+  - Request Routing: ingress.md
   - Implementation Notes: technical.md
   - Storage Cluster: technicalCeph.md
-  - Task List: Tasklist.md
+  - Application Build Notes: technicalApplication.md 
+  - Monitoring Build Notes: technicalPrometheus.md 
   - Application Build: applicationBuild.md
-  - References: ResearchReferences.md
   - Issues: Issues.md
-  - Troubleshooting: TroubleshootingReferences.md
+  - Research References: ResearchReferences.md
+  - Troubleshooting References: TroubleshootingReferences.md
   - Deprecated: deprecated.md 

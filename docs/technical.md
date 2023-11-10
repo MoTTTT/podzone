@@ -50,6 +50,11 @@
 - Certificates.yaml
 - ApacheSecureIngress.yaml
 
+## juju configuration
+
+- `juju add-k8s prod --storage=ceph-rbd`
+- `juju bootstrap prod`
+
 ## Hardening
 
 ### Hardening: Apache

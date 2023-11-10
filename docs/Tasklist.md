@@ -1,30 +1,27 @@
 # Tasks for building Consumer Cloud Zone 1: southern.podzone.net
 
-Each of these are further decomposed below:
+The following checklist provides a high-level breakdown of the work that needs to be done. Each of these are further decomposed below, where required:
+
+- [X] Documentation
+- [X] k8s dev cluster build
+- [X] k8s prod cluster build
+- [X] Networking build
+- [X] Ingress Build
+- [ ] Security
+- [X] Storage
+- [ ] Applications and Services
+
+## Task-list: Documentation
 
 - [X] Business brief
 - [X] Consumer Cloud definition
 - [X] Workload Success criteria
 - [X] MVP deliverables
-- [X] k8s dev cluster build
-- [X] k8s prod cluster build
-- [X] Networking build
-- [X] Ingress Build
-- [X] Persistent storage
-- [ ] Security
-- [X] Expose k8s API
-- [ ] Applications and Services
-
-## Security
-
-- [X] TLS certificate solution
-- [X] https for all external access
-- [ ] Apache hardening
-- [ ] Kubernetes hardening
-- [ ] enable rbac
-- [ ] configure dashboard access controls
-- [ ] user management
-- [ ] Purge sensitive info from DB
+- [X] Network topology
+- [X] Inventory
+- [ ] Update documentation with production cluster details
+- [ ] Curate reference lists
+- [ ] Site structure
 
 ## Task-list: k8s dev cluster build
 
@@ -42,6 +39,7 @@ Each of these are further decomposed below:
 - [X] Host build: naledi
 - [ ] RAM upgrade: 8BG -> 16 GB
 - [ ] Upgrade first drives
+- [ ] Migrate DynDns updater to cluster (external-dns chart)
 
 ## Task-list: Networking build
 
@@ -64,13 +62,51 @@ Each of these are further decomposed below:
 - [ ] Route to podzone docs
 - [ ] DynDns updater operator
 
-## Task-list: Storage Applications and Services
+## Task-list: Security
 
+- [X] TLS certificate solution
+- [X] https for all external access
+- [ ] Apache hardening
+- [ ] Kubernetes hardening
+- [ ] Purge sensitive info from DB
+
+## Task-list: Storage
+
+- [X] Consolidate data from media
 - [X] Consolidate assets into iCloud
 - [X] Extract source into GitHub
+- [X] Persistent storage for k8s cluster
+
+### Task Breakdown: Consolidate data from media
+
+- [X] /home/${USER} directories on bare metal X 3
+- [X] /media on james
+- [X] thumb drives X 12
+- [X] external hard drives X 1
+- [X] 2.5" replaced hard drives X 3 - Install in james
+- [X] 3.5" replaced hard drives X 2 - Install in external enclosures
+
+### Requirement: Consolidate data from media
+
+- All information of interest on all media to go into iCloud
+- All projects, including legacy and completed ones, into GitHub
+- Sensitive data audit, and secure wipe where required
+- Visible logical status labelling
+
+## Task Breakdown: Extract source into GitHub
+
+- [X] Book: Telling; BA Colley
+- [X] Book: Cannon Becket; AH Colley
+- [X] Book: All the Saints; AH Colley
+- [X] Code: uNode assets
+- [X] Code: BHC assets
+- [X] Code: Archive/Backup search
+
+## Task-list: Applications and Services
+
+- [X] Consolidate Web sites
 - [ ] Extract Zope zexp files and check in
 - [ ] Containerise Zope, including application code and config
-- [X] Consolidate Web sites
 
 ### Task Breakdown: Containerise Zope, including application code and config
 
@@ -81,33 +117,3 @@ Each of these are further decomposed below:
 - [ ] Persistent storage volume for postgres
 - [ ] Postgress Service and Deployment
 - [ ] Postgress ingress
-
-## Task-list: Extract source into GitHub
-
-- [X] Book: Telling; BA Colley
-- [X] Book: Cannon Becket; AH Colley
-- [X] Book: All the Saints; AH Colley
-- [X] Code: MicroNode assets
-- [X] Code: BHC assets
-- [X] Code: Archive/Backup search
-
-## Task-list: Consolidate data
-
-All media to be examined and processed:
-
-- All information of interest on all media to go into iCloud
-- All projects, including legacy and completed ones, into GitHub
-- Sensitive data audit, and secure wipe where required
-- Visible logical status labelling
-
-- [ ] /home/${USER} directories on bare metal X 3
-- [X] /media on james
-- [X] thumb drives X 12
-- [X] external hard drives X 1
-- [X] 2.5" replaced hard drives X 3
-- [X] 3.5" replaced hard drives X 2
-
-### Media repurposing
-
-- [X] 2.5" replaced hard drives X 3 - Install in james
-- [X] 3.5" replaced hard drives X 2 - Install in external enclosures

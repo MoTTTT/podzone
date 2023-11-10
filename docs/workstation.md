@@ -1,5 +1,9 @@
 # Workstation config
 
+The purpose of this page is to keep some track of software installations required for build, troubleshooting and administration of the solution. Some of the tools are described in the Tooling topic above, under *Administration*.
+
+## Tooling
+
 Tools installed on Dolmen for cluster build and management:
 
 - ansible
@@ -7,11 +11,12 @@ Tools installed on Dolmen for cluster build and management:
 - calicoctl
 - k8s
 - helm
-- helmfile
 - jq
 - octant
 - openssl
 - vagrant
+
+## Connectivity
 
 ```mermaid
 ---
@@ -62,3 +67,10 @@ ansible --- ssh
         end
       end
 ```
+
+## Hardware configuration
+
+- MacBook Pro
+- Apple M1
+- 16GB RAM
+- macOs Ventura 13.5.2

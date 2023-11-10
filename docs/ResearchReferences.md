@@ -867,9 +867,79 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 
 - <https://orbcode.org/orbuculum/>
 
+- <https://techcrunch.com/2023/08/31/best-practices-for-cloud-finops/>
+- <https://techcrunch.com/2019/05/15/vmware-acquires-bitnami-to-deliver-packaged-applications-anywhere/>
+- <https://artifacthub.io/>
+- <https://charts.helm.sh/stable/>
+- <https://blog.knoldus.com/helm2-vs-helm3-simplified/>
+- <https://www.wiz.io/>
+- <https://chartmuseum.com/>
+- <https://charts.helm.sh/stable/>
+- <https://github.com/kubernetes-sigs/kustomize>
+- <https://github.com/kubernetes-sigs/kustomize/blob/master/examples/valueAdd.md>
+
+- <https://helmfile.readthedocs.io/en/latest/>
 
 
 
+- <https://kubernetes.io/docs/concepts/security/service-accounts/>
+- <https://helm.sh/docs/helm/helm_list/>
+- <https://helm.sh/docs/helm/helm_uninstall/>
+- <https://helm.sh/docs/howto/charts_tips_and_tricks/>
+- <https://www.devspace.sh/component-chart/docs/introduction>
+- <https://www.devspace.sh/docs/getting-started/introduction>
 
+- <https://docs.bitnami.com/kubernetes/faq/get-started/understand-charts-release-process/>
+- <https://artifacthub.io/packages/helm/bitnami/apache>
+
+- <https://docs.parseplatform.org/>
+- <https://docs.parseplatform.org/parse-server/guide/>
+
+- <https://github.com/kubernetes/git-sync>
+- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>
+
+- <https://pkg.go.dev/text/template>
+- <https://github.com/Masterminds/sprig>
+
+- <https://kubeapps.dev/>
+- <https://suitecrm.com/>
+
+- <https://en.wikipedia.org/wiki/Trusted_Platform_Module>
+- <https://www.rackspace.com/>
+- <https://www.cloudsigma.com/>
+- <https://en.wikipedia.org/wiki/IA-64>
+- <https://en.wikipedia.org/wiki/Redundant_array_of_independent_memory>
+- <https://www.ibm.com/linuxone>
+- <https://www.ibm.com/products/linuxone-4>
+- <https://en.wikipedia.org/wiki/IBM_Z>
+- <https://en.wikipedia.org/wiki/Z/Architecture>
+
+- <https://microstack.run/docs/multi-node>
+- <https://en.wikipedia.org/wiki/QEMU>
+- <https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine>
+
+- <https://multipass.run/docs/multipass-gui-client>
+- <https://linux.how2shout.com/how-to-use-virt-manager-gui-to-manage-multipass-ubuntu-vms/>
+
+- <https://github.com/raspberrypi/pico-tflmicro>
+- <https://www.kubeflow.org/docs/components/pipelines/v1/introduction/>
+- <https://www.kubeflow.org/>
+- <https://charmhub.io/jupyter-ui>
+
+- <https://ubuntu.com/lxd>
+- <https://www.mirantis.com/blog/object-storage-openstack-cloud-swift-ceph/>
+
+- <https://docs.ceph.com/en/quincy/cephfs/mount-using-kernel-driver/>
+- <https://ceph.com/assets/pdfs/weil-rados-pdsw07.pdf>
+- <https://charmhub.io/swift-storage>
+- <https://charmhub.io/ceph-fs>
+- <https://charmhub.io/topics/canonical-observability-stack>
+- <https://wiki.openstack.org/wiki/Heat>
+
+- <https://github.com/canonical/manual-tls-certificates-operator/tree/main>
+- <https://github.com/canonical/postgresql-k8s-operator/tree/main>
+- <https://juju.is/docs/juju/manage-same-model-integrations>
+- <https://juju.is/docs/juju/tutorial>
+- 
 
 

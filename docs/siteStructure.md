@@ -5,7 +5,7 @@
 ### Musings
 
 - Source: `git@github.com:MoTTTT/musings.git`
-- Directory: site/
+- Redirect from / to current/site/
 
 - <https://musings.thruhere.net/>
 - <https://musings.thruhere.net/closeencounters.html>

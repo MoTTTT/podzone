@@ -4,17 +4,17 @@
 
 ### Musings
 
-- Source: `git@github.com:MoTTTT/musings.git`
-- Redirect from / to current/site/
+A microsite with the writings of various members of the family.
 
-- <https://musings.thruhere.net/>
-- <https://musings.thruhere.net/closeencounters.html>
-- <https://musings.thruhere.net/telling/>
-- Link: <http://books.apple.com/us/book/id6445276669>
-- <https://musings.thruhere.net/CannonBecket004.txt>
-- <https://musings.thruhere.net/AndAllTheSaints.html>
-- <https://musings.thruhere.net/GrandpasMemories.txt>
-- <https://musings.thruhere.net/sunsets.html>
+- Source: `git@github.com:MoTTTT/musings.git`
+- Introduction: <https://musings.thruhere.net/>
+- Norma's: <https://musings.thruhere.net/closeencounters.html>
+- Mom's: <https://musings.thruhere.net/telling/>
+- Link to Mom's' ebook: <http://books.apple.com/us/book/id6445276669>
+- Dad's: <https://musings.thruhere.net/CannonBecket004.txt>
+- Dad's: <https://musings.thruhere.net/AndAllTheSaints.html>
+- Dad's: <https://musings.thruhere.net/GrandpasMemories.txt>
+- MoTTTT's: <https://musings.thruhere.net/sunsets.html>
 
 ### Podzone
 

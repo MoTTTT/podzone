@@ -42,15 +42,15 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href=".">Podzone Introduction</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#site-relocation-and-high-availability">Site relocation and high availability</a>
+    <li class="toctree-l2"><a class="reference internal" href="#background">Background</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#technology-decisions">Technology decisions</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#existing-public-service-consumption-of-note">Existing public service consumption of note</a>
+    <li class="toctree-l3"><a class="reference internal" href="#existing-public-service-consumption">Existing public service consumption</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#source-code">Source code</a>
     </li>
     </ul>
                 </li>
@@ -60,7 +60,23 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="inventory/">Hardware</a>
+                <li class="toctree-l1"><a class="reference internal" href="Tasklist/">Task List</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="vminventory/">Virtual Machine Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="servers/">Server Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="raspberrypis/">IoT Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="inventory/">Hosts Inventory</a>
                 </li>
               </ul>
               <ul>
@@ -76,15 +92,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="ingress/">Request Routing</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="workstation/">Workstation Config</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="externalServices/">Service Dependencies</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="ingress/">Request Routing</a>
                 </li>
               </ul>
               <ul>
@@ -96,7 +112,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="Tasklist/">Task List</a>
+                <li class="toctree-l1"><a class="reference internal" href="technicalApplication/">Application Build Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="technicalPrometheus/">Monitoring Build Notes</a>
                 </li>
               </ul>
               <ul>
@@ -104,15 +124,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="ResearchReferences/">References</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="Issues/">Issues</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="TroubleshootingReferences/">Troubleshooting</a>
+                <li class="toctree-l1"><a class="reference internal" href="ResearchReferences/">Research References</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="TroubleshootingReferences/">Troubleshooting References</a>
                 </li>
               </ul>
               <ul>
@@ -142,14 +162,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="southernpodzonenet">southern.podzone.net</h1>
-<h2 id="introduction">Introduction</h2>
-<p>This micro-site contains documentation including requirements, specification, design, and build notes for the technology research, development, test and build of a kubernetes cluster and its workload.</p>
-<p>The source for the product is available from a public repo on GitHub: https://github.com/MoTTTT/QApps</p>
-<h2 id="site-relocation-and-high-availability">Site relocation and high availability</h2>
+                <h1 id="introduction">Introduction</h1>
+<p>This micro-site contains documentation including the requirements, specification, design, and build notes for the technology research, development, test and build of a kubernetes cluster, and migrating a workload from older technologies.</p>
+<h2 id="background">Background</h2>
 <p>Over the last 27 years, a number of websites, applications and services have been implemented on a local site, some exposed to the Internet, and some for network internal access only.</p>
 <p>This infrastructures has served the requirements of a few entities, some of which still have dependencies on these services.</p>
-<p>Faced with the shutdown of the site, and the absence of a sutable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.</p>
+<p>Faced with the shutdown of the site, and the absence of a suitable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.</p>
 <p>Although there are many possible solutions, most of them more efficient in terms of hardware utilisation, and effort, the following approach will be taken:</p>
 <ul>
 <li>Migrate the services to a redundant highly available configuration, on site, using a set of servers, and related network configuration.</li>
@@ -157,25 +175,27 @@
 <li>When relocated, set up an equivalent new site, providing site redundancy.</li>
 </ul>
 <h2 id="technology-decisions">Technology decisions</h2>
-<p>As mentioned, there are various alternative solutions that would achieve the business goal. Lifecycle cost considerations would typically guide the selection of solution. However, I have the unusual privilidge to re-architect the solution in a way that supports maximum exposure to current technologies, with little regard for the timelines and effort. Selecting this route provides a learning opportunity. This in turn has resulted in a mentoring oportunity.</p>
+<p>As mentioned, there are various alternative solutions that would achieve the business goal. Lifecycle cost considerations would typically guide the selection of solution. However, I have the unusual privilege to re-architect the solution in a way that supports maximum exposure to current technologies, with little regard for the timelines and effort. Selecting this route provides a learning opportunity. This in turn has resulted in a mentoring opportunity.</p>
 <p>Technology decisions are further guided by the following learning imperatives:</p>
 <ul>
 <li>Build confidence in deploying, troubleshooting and consuming Kubernetes</li>
 <li>Apply declarative processes for the platform and service provisioning (IoC)</li>
-<li>Consumer Cloud case study</li>
+<li>Documenting a "Consumer Cloud" case study</li>
 </ul>
 <p>Additional technology strategy:</p>
 <ul>
 <li>No additional public service consumption, reduction where possible.</li>
 <li>Continue to utilise open source software</li>
 </ul>
-<h3 id="existing-public-service-consumption-of-note">Existing public service consumption of note</h3>
+<h3 id="existing-public-service-consumption">Existing public service consumption</h3>
 <ul>
 <li>DynDns for domain hosting</li>
-<li>iCloud for offsite storage</li>
+<li>iCloud for off-site storage</li>
 <li>LetsEncrypt for https certificates</li>
 <li>GitHub for source code repository</li>
 </ul>
+<h2 id="source-code">Source code</h2>
+<p>The source for the project is available from a public repo on GitHub: <a href="https://github.com/MoTTTT/QApps">https://github.com/MoTTTT/QApps</a>.</p>
               
             </div>
           </div><footer>
@@ -224,5 +244,5 @@
 
 <!--
 MkDocs version : 1.5.3
-Build Date UTC : 2023-11-07 15:21:02.743833+00:00
+Build Date UTC : 2023-11-13 12:13:23.211858+00:00
 -->

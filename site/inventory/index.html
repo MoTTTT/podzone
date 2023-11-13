@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/inventory/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Hardware - Podzone</title>
+    <title>Hosts Inventory - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Hardware";
+        var mkdocs_page_name = "Hosts Inventory";
         var mkdocs_page_input_path = "inventory.md";
         var mkdocs_page_url = "/podzone/inventory/";
       </script>
@@ -47,88 +47,40 @@
                 <li class="toctree-l1"><a class="reference internal" href="../QApps/">Business Requirements</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vminventory/">Virtual Machine Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../servers/">Server Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../raspberrypis/">IoT Inventory</a>
+                </li>
+              </ul>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Hosts Inventory</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#bare-metal">Bare metal</a>
+    <li class="toctree-l2"><a class="reference internal" href="#hostnames-relevant-to-the-podzone-project">hostnames relevant to the podzone project</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#k8s-node-sigiriya">k8s node: sigiriya</a>
+    <li class="toctree-l3"><a class="reference internal" href="#hostnames-for-minimum-viable-product">Hostnames for minimum viable product</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#k8s-node-bukit">k8s node: bukit</a>
+    <li class="toctree-l3"><a class="reference internal" href="#hostnames-configured-for-future-use">Hostnames configured for future use</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#k8s-node-james">k8s node: james</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#k8s-node-levant">k8s node: levant</a>
+    <li class="toctree-l3"><a class="reference internal" href="#hostnames-made-redundant">Hostnames made redundant</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prod-southernpodzonenet">Prod southern.podzone.net</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#habilis">habilis</a>
+    <li class="toctree-l2"><a class="reference internal" href="#ingress-hosts">Ingress hosts</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#antecessor">antecessor</a>
+    <li class="toctree-l2"><a class="reference internal" href="#ip-address-management">IP Address Management</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#naledi">naledi</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#multipass-dev-nodes">multipass dev nodes</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-ardipithecus">multipass instance: ardipithecus</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-australopithecus">multipass instance: australopithecus</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-tugenensis">multipass instance: tugenensis</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-tchadensis">multipass instance: tchadensis</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#k8s-virtualbox-dev-nodes">k8s virtualbox dev nodes</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#virtualbox-on-james-floresiensis">virtualbox on james: floresiensis</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#virtualbox-on-james-denisova">virtualbox on james: denisova</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#virtualbox-on-james-rudolfensis">virtualbox on james: rudolfensis</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#virtualbox-on-james-ergaster">virtualbox on james: ergaster</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#other-devices">Other devices</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#k8s-lbr-oovo">k8s lbr: oovo</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-balin">Raspberry Pi: balin</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-thorin">Raspberry Pi: thorin</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-dwalin">Raspberry Pi: dwalin</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-anasazi">Raspberry Pi: anasazi</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#raspberry-pi-levant">Raspberry Pi: levant</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#admin-client-dolmen">Admin Client: dolmen</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#virtual-server-ularu">Virtual server: ularu</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#host-lists">Host lists</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#etchosts">/etc/hosts</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ingress-hosts">Ingress hosts</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#wildcard-hostnames-on-dyndns">wildcard hostnames on DynDns</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ip-addresses">IP Addresses</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    <li class="toctree-l2"><a class="reference internal" href="#etchosts">/etc/hosts</a>
     </li>
     </ul>
                 </li>
@@ -146,15 +98,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../workstation/">Workstation Config</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../externalServices/">Service Dependencies</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
                 </li>
               </ul>
               <ul>
@@ -166,7 +118,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Monitoring Build Notes</a>
                 </li>
               </ul>
               <ul>
@@ -174,15 +130,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">References</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../Issues/">Issues</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">Research References</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
                 </li>
               </ul>
               <ul>
@@ -203,7 +159,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Hardware</li>
+      <li class="breadcrumb-item active">Hosts Inventory</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -212,175 +168,55 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="inventory">Inventory</h1>
-<h2 id="bare-metal">Bare metal</h2>
-<h3 id="k8s-node-sigiriya">k8s node: sigiriya</h3>
+                <h1 id="hosts-inventory">Hosts Inventory</h1>
+<p>This page provides convenience listings of hosts file entries, and details of devices not already listed.</p>
+<h2 id="hostnames-relevant-to-the-podzone-project">hostnames relevant to the podzone project</h2>
+<p>DNS domains hosted DynDns have been in use for years (the first paid for service was ordered in 2008) and will be used further for this project.</p>
+<h3 id="hostnames-for-minimum-viable-product">Hostnames for minimum viable product</h3>
 <ul>
-<li>Late 2014 Mac Mini</li>
-<li>2.80GHz i5-4308U (2 core, 4 thread)</li>
-<li>8GB RAM (soldered)</li>
-<li>Ubuntu Server 22.04 (upgrade from mcOS)</li>
-<li>2TB SSD (upgrade from 500GB)</li>
-<li>eth0 IP: 192.168.0.6</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh colleymj@sigiriya</li>
+<li>southern.podzone.net</li>
+<li>musings.thruhere.net</li>
+<li>qsolutions.endoftheinternet.org</li>
+<li>docs.podzone.net</li>
 </ul>
-<h3 id="k8s-node-bukit">k8s node: bukit</h3>
+<h3 id="hostnames-configured-for-future-use">Hostnames configured for future use</h3>
 <ul>
-<li>Late 2014 Mac Mini</li>
-<li>1.4 GHz Dual Core i5</li>
-<li>4 GB RAM (soldered)</li>
-<li>Ubuntu 22.04</li>
-<li>500GB SSD</li>
-<li>eth0 IP: 192.168.0.52</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh martin@bukit</li>
+<li>central.podzone.net</li>
+<li>control.podzone.net</li>
+<li>dev.podzone.net</li>
+<li>east.podzone.net</li>
+<li>eastern.podzone.net</li>
+<li>north.podzone.net</li>
+<li>northern.podzone.net</li>
+<li>west.podzone.net</li>
+<li>western.podzone.net</li>
 </ul>
-<h3 id="k8s-node-james">k8s node: james</h3>
+<h3 id="hostnames-made-redundant">Hostnames made redundant</h3>
+<p>These sites are becoming redundant with the MVP implementation, and can be cleaned up:</p>
 <ul>
-<li>Motherboard: ASRock H61M-VS3</li>
-<li>3 GHz Quad Core i5</li>
-<li>16GB (upgrade from 8 GB) RAM</li>
-<li>Ubuntu 22.04</li>
-<li>500 GB SSD</li>
-<li>eth0 IP: 192.168.0.27</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh colleymj@james</li>
+<li>colley.endoftheinternet.org</li>
+<li>poc.endoftheinternet.org</li>
+<li>qapps.does-it.net</li>
 </ul>
-<h3 id="k8s-node-levant">k8s node: levant</h3>
+<h2 id="ingress-hosts">Ingress hosts</h2>
+<p>Ingress hosts make use of the DNS entries defined above. <code>southern.podzone.net</code> is a wildcard entry used by some of these.</p>
 <ul>
-<li>Raspberry Pi 4 B</li>
-<li>1.8GHz Broadcom BCM2711, Quad Core Cortex-A72</li>
-<li>4GB RAM</li>
-<li>Ubuntu Core 22</li>
-<li>IP: 192.168.0.28</li>
+<li><a href="https://musings.thruhere.net">https://musings.thruhere.net</a>: Routing to Apache instance for serving a static web site.</li>
+<li><a href="https://qsolutions.endoftheinternet.org">https://qsolutions.endoftheinternet.org</a>: Routing to a Zope application server, serving QSolutions Applications.</li>
+<li><a href="https://control.southern.podzone.net">https://control.southern.podzone.net</a>: Routing to kubernetes API.</li>
+<li><a href="https://db.southern.podzone.net">https://db.southern.podzone.net</a>: Routing to database GUI console.</li>
+<li><a href="https://ceph.southern.podzone.net:8443/">https://ceph.southern.podzone.net:8443/</a>: Routing to Ceph dashboard.</li>
 </ul>
-<h2 id="prod-southernpodzonenet">Prod southern.podzone.net</h2>
-<h3 id="habilis">habilis</h3>
+<h2 id="ip-address-management">IP Address Management</h2>
+<p>The internal network uses the <code>192.168.0.0/24</code> subnet, providing 256 unique IP addresses. The first set are assigned to the DHCP server for allocation, allowing layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease.</p>
 <ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD slot: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-76-64-E3</li>
-<li>IP: 192.168.0.4</li>
+<li>Addresses assigned to the router DHCP server: <code>192.168.0.2 - 192.168.0.99</code></li>
+<li>L2 load-balancer IP address range for dev on bare metal: <code>192.168.0.131 - 192.168.0.140</code></li>
+<li>L2 load-balancer IP address range for dev on virtual servers: <code>192.168.0.141 - 192.168.0.150</code></li>
+<li>L2 load-balancer IP address range for production: <code>192.168.0.151 - 192.168.0.151</code></li>
 </ul>
-<h3 id="antecessor">antecessor</h3>
-<ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-77-0D-8D</li>
-<li>IP: 192.168.0.14</li>
-</ul>
-<h3 id="naledi">naledi</h3>
-<ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-3E-EB-D1</li>
-<li>IP: 192.168.0.21</li>
-</ul>
-<h2 id="multipass-dev-nodes">multipass dev nodes</h2>
-<h3 id="multipass-instance-ardipithecus">multipass instance: ardipithecus</h3>
-<h3 id="multipass-instance-australopithecus">multipass instance: australopithecus</h3>
-<h3 id="multipass-instance-tugenensis">multipass instance: tugenensis</h3>
-<h3 id="multipass-instance-tchadensis">multipass instance: tchadensis</h3>
-<h2 id="k8s-virtualbox-dev-nodes">k8s virtualbox dev nodes</h2>
-<p>These instances are managed as follows:</p>
-<ul>
-<li>Vagrant to spin up the virtualbox machines, and prepare ssh access</li>
-<li>Vagrant box image: <a href="https://app.vagrantup.com/techchad2022/boxes/ubuntu2204">https://app.vagrantup.com/techchad2022/boxes/ubuntu2204</a></li>
-<li>Ansible for microk8s installation and configuration</li>
-</ul>
-<h3 id="virtualbox-on-james-floresiensis">virtualbox on james: floresiensis</h3>
-<ul>
-<li>MAC: 08-00-27-8A-AA-C5</li>
-<li>IP: 192.168.0.19</li>
-</ul>
-<h3 id="virtualbox-on-james-denisova">virtualbox on james: denisova</h3>
-<ul>
-<li>MAC: 08-00-27-19-87-6B</li>
-<li>IP: 192.168.0.5</li>
-</ul>
-<h3 id="virtualbox-on-james-rudolfensis">virtualbox on james: rudolfensis</h3>
-<ul>
-<li>MAC: 08-00-27-1C-B8-7E</li>
-<li>IP: 192.168.0.16</li>
-</ul>
-<h3 id="virtualbox-on-james-ergaster">virtualbox on james: ergaster</h3>
-<ul>
-<li>MAC: 08-00-27-5D-14-DB</li>
-<li>IP: 192.168.0.17</li>
-</ul>
-<h2 id="other-devices">Other devices</h2>
-<h3 id="k8s-lbr-oovo">k8s lbr: oovo</h3>
-<ul>
-<li>MetalLBR L2 (ARP) Load balancer</li>
-<li>IP: 192.168.0.131</li>
-</ul>
-<h3 id="raspberry-pi-balin">Raspberry Pi: balin</h3>
-<ul>
-<li>Model: Raspberry Pi Model B Rev 2</li>
-<li>ARMv6-compatible processor rev 7 (v6l)</li>
-<li>MAC: B8-27-EB-AB-1A-F3</li>
-<li>IP: 192.168.0.13</li>
-</ul>
-<h3 id="raspberry-pi-thorin">Raspberry Pi: thorin</h3>
-<ul>
-<li>Model: Raspberry Pi Model B Rev 2</li>
-<li>ARMv6-compatible processor rev 7 (v6l)</li>
-<li>MAC: B8-27-EB-05-94-A7</li>
-<li>IP: 192.168.0.20</li>
-</ul>
-<h3 id="raspberry-pi-dwalin">Raspberry Pi: dwalin</h3>
-<ul>
-<li>Model: Zero W</li>
-<li>MAC: B8-27-EB-7C-FE-CA</li>
-<li>IP: 192.168.0.26</li>
-</ul>
-<h3 id="raspberry-pi-anasazi">Raspberry Pi: anasazi</h3>
-<ul>
-<li>Model: Raspberry Pi 2 Model B Rev 1.1</li>
-<li>Quad Core 1.2GHz Broadcom BCM2837 64bit CPU {4 X ARMv7 Processor rev 5 (v7l)}</li>
-<li>1GB RAM</li>
-<li>IP: 192.168.0.11</li>
-<li>MAC: B8-27-EB-BE-0D-EB</li>
-</ul>
-<h3 id="raspberry-pi-levant">Raspberry Pi: levant</h3>
-<ul>
-<li>Model: 4 B</li>
-<li>1.8GHz Broadcom BCM2711, Quad Core Cortex-A72</li>
-<li>4GB RAM</li>
-<li>Ubuntu Core 22</li>
-<li>IP: 192.168.0.28</li>
-</ul>
-<h3 id="admin-client-dolmen">Admin Client: dolmen</h3>
-<ul>
-<li>MacBook Pro</li>
-<li>Apple M1</li>
-<li>16GB RAM</li>
-<li>macOs Ventura 13.5.2</li>
-</ul>
-<h3 id="virtual-server-ularu">Virtual server: ularu</h3>
-<ul>
-<li>Virtualbox on bukit</li>
-<li>Ubuntu 16.04.7</li>
-<li>Zope Version 2.13.24 (python 2.7.11, linux2)</li>
-<li>QApps release 3.0</li>
-<li>1GB RAM</li>
-<li>IP: 192.168.0.3</li>
-<li>MAC: 08-00-27-C3-E9-F6</li>
-<li>ssh colleymj@ularu -p 2222</li>
-<li>NOTE: To be turned down</li>
-</ul>
-<h2 id="host-lists">Host lists</h2>
-<h3 id="etchosts">/etc/hosts</h3>
+<h2 id="etchosts">/etc/hosts</h2>
+<p>The text block below contains the full hosts file entry list, mainly useful on the admin client.</p>
 <ul>
 <li>Add <code>/etc/hosts</code> file entries on servers</li>
 <li>Add <code>/private/etc/hosts</code> for Mac clients</li>
@@ -392,7 +228,6 @@
 192.168.0.28  levant
 192.168.0.52  bukit
 192.168.0.131 ovoo
-192.168.0.132 inuksuk
 192.168.0.3   ularu
 192.168.0.5   denisova
 192.168.0.16  rudolfensis
@@ -405,52 +240,11 @@
 192.168.0.14  antecessor
 192.168.0.21  naledi
 </code></pre>
-<h3 id="ingress-hosts">Ingress hosts</h3>
-<ul>
-<li>Apache: <code>musings.thruhere.net</code></li>
-<li>Tests: <code>qapps.does-it.net</code></li>
-<li>Zope - QApps: <code>qsolutions.endoftheinternet.org</code></li>
-<li>K8s API: <code>control.southern.podzone.net</code></li>
-<li>Dashboard: <code>dashboard.southern.podzone.net</code></li>
-<li>Opensearch GUI: <code>opensearch.southern.podzone.net</code></li>
-<li>Fluentd Kibana GUI: <code>kibana.southern.podzone.net</code></li>
-</ul>
-<h3 id="wildcard-hostnames-on-dyndns">wildcard hostnames on DynDns</h3>
-<ul>
-<li>central.podzone.net</li>
-<li>colley.endoftheinternet.org</li>
-<li>control.podzone.net</li>
-<li>dev.podzone.net</li>
-<li>docs.podzone.net</li>
-<li>east.podzone.net</li>
-<li>eastern.podzone.net</li>
-<li>musings.thruhere.net</li>
-<li>north.podzone.net</li>
-<li>northern.podzone.net</li>
-<li>poc.endoftheinternet.org</li>
-<li>qapps.does-it.net</li>
-<li>qsolutions.endoftheinternet.org</li>
-<li>southern.podzone.net</li>
-<li>west.podzone.net</li>
-<li>western.podzone.net</li>
-</ul>
-<h3 id="ip-addresses">IP Addresses</h3>
-<ul>
-<li>Static IPs for all bare-metal hosts</li>
-<li>DHCP assigned addresses: 192.168.0.2 - 192.168.0.99</li>
-<li>MetalLB production: 192.168.0.131 - 192.168.0.140</li>
-<li>MetalLB dev: 192.168.0.141 - 192.168.0.150</li>
-<li>MetalLB south: 192.168.0.151 - 192.168.0.151</li>
-</ul>
-<h2 id="references">References</h2>
-<ul>
-<li>HP t630 Thin Client Specifications: <a href="https://support.hp.com/za-en/document/c05240287">https://support.hp.com/za-en/document/c05240287</a></li>
-</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../QApps/" class="btn btn-neutral float-left" title="Business Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../raspberrypis/" class="btn btn-neutral float-left" title="IoT Inventory"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../network/" class="btn btn-neutral float-right" title="Network Topology">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -474,7 +268,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../QApps/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../raspberrypis/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../network/" style="color: #fcfcfc">Next &raquo;</a></span>

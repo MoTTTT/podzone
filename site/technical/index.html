@@ -48,7 +48,23 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../inventory/">Hardware</a>
+                <li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../vminventory/">Virtual Machine Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../servers/">Server Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../raspberrypis/">IoT Inventory</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../inventory/">Hosts Inventory</a>
                 </li>
               </ul>
               <ul>
@@ -64,15 +80,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../workstation/">Workstation Config</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../externalServices/">Service Dependencies</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
                 </li>
               </ul>
               <ul class="current">
@@ -88,6 +104,8 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#juju-configuration">juju configuration</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#hardening">Hardening</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#hardening-apache">Hardening: Apache</a>
@@ -102,7 +120,11 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Monitoring Build Notes</a>
                 </li>
               </ul>
               <ul>
@@ -110,15 +132,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">References</a>
-                </li>
-              </ul>
-              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../Issues/">Issues</a>
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting</a>
+                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">Research References</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
                 </li>
               </ul>
               <ul>
@@ -199,6 +221,11 @@
 <li>Certificates.yaml</li>
 <li>ApacheSecureIngress.yaml</li>
 </ul>
+<h2 id="juju-configuration">juju configuration</h2>
+<ul>
+<li><code>juju add-k8s prod --storage=ceph-rbd</code></li>
+<li><code>juju bootstrap prod</code></li>
+</ul>
 <h2 id="hardening">Hardening</h2>
 <h3 id="hardening-apache">Hardening: Apache</h3>
 <ul>
@@ -210,7 +237,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../externalServices/" class="btn btn-neutral float-left" title="Service Dependencies"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ingress/" class="btn btn-neutral float-left" title="Request Routing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../technicalCeph/" class="btn btn-neutral float-right" title="Storage Cluster">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -234,7 +261,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../externalServices/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../ingress/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../technicalCeph/" style="color: #fcfcfc">Next &raquo;</a></span>

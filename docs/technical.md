@@ -40,6 +40,8 @@
 
 ## Infrastructure Test: musings over https with git-sync
 
+Initial kubernetes cluster and application functionality is tested using hand-coded kubernetes resources.
+
 - Test with apache over http, by applying the following
 - ApacheService.yaml
 - ApacheVolumeClaim.yaml
@@ -49,6 +51,71 @@
 - ClusterIssuer.yaml
 - Certificates.yaml
 - ApacheSecureIngress.yaml
+
+## Static site wrapper
+
+There are two static sites in scope. Both require the following features:
+
+- Leverage container storage class, provided by an external ceph cluster.
+- Set up https certificates using LetsEncrypt
+- Leverage L2 load-balancer and Internet ingress
+- Pull the static content from a github repo
+- Externalised Web server configuration for hardening without image build
+
+The **kubernetes** resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith <https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/>.
+
+The default chart deploys musings.thruhere.net, and is deployed as follows:
+
+```bash
+helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
+```
+
+A set of value overrides is applied to deploy the docs.podzone.net site, and is deployed as follows (with a values.yaml file in the current directory):
+
+```bash
+helm  install apple-base --debug  --namespace podzone qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/' -f values.yaml --values values.yaml
+```
+
+Note the following:
+
+- `orange-base` and `apple-base` are release names
+- The name-spaces `musings` and `podzone` are used to keep resources separated, and need to pre-exist. e.g. `kubectl create namespace podzone`
+
+The values.yaml file for the podzone site looks like this:
+
+```yaml
+# Override defaults from qapps for podzone site.
+certificates:
+  musings:
+    name: podzone-cert
+    dnsName: docs.podzone.net
+gitsyncimage:
+  args:
+    - --repo=https://github.com/MoTTTT/podzone.git
+    - --depth=1
+    - --period=240s
+    - --max-failures=10
+    - --link=current
+    - --root=/git-apache
+    - --verbose=9
+ingress:
+  hosts:
+  - host: docs.podzone.net
+    paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: apache-service
+            port:
+              number: 80
+  tls:
+    - secretName: podzone-cert
+      hosts:
+        - docs.podzone.net
+test:
+  url: "https://docs.podzone.net/index.html"
+```
 
 ## juju configuration
 
@@ -60,5 +127,90 @@
 ### Hardening: Apache
 
 - Extract default httpd.conf
-- Modify: no dir listings, 
-- Create ApacheConfigMap
+- Disable unused modules
+- Apply best-practice hardening configurations
+
+The final configuration file is as follows:
+
+```conf
+# httpd.conf
+# Apache configuration customised for qapps
+
+# Modules critical for simple static site use-case
+LoadModule mpm_event_module modules/mod_mpm_event.so
+LoadModule access_compat_module modules/mod_access_compat.so
+LoadModule reqtimeout_module modules/mod_reqtimeout.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule log_config_module modules/mod_log_config.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule unixd_module modules/mod_unixd.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule authz_core_module modules/mod_authz_core.so
+
+# Generic settings for qapps apache server component
+ServerRoot "/usr/local/apache2"
+Listen 80
+ServerAdmin martinjcolley@gmail.com
+<IfModule unixd_module>
+    User www-data
+    Group www-data
+</IfModule>
+
+# Document root set up to accommodate "current/site" content root provided by volume mapped git-sync directory
+# Only request types required for static site access are allowed
+# Indexes not generated where index.html file does not exist
+DocumentRoot "/usr/local/apache2/htdocs/current/site"
+<Directory "/usr/local/apache2/htdocs/current/site">
+    Options -Indexes -Includes +FollowSymLinks
+    AllowOverride None
+    Require all granted
+    <LimitExcept GET HEAD>
+        deny from all
+    </LimitExcept>
+</Directory>
+
+# Hardening:
+# Prevent server detail leakages
+# Set headers for best practice security
+# Enable request time-out to prevent slow request denial of service
+ServerTokens Prod
+ServerSignature Off
+FileETag None
+TraceEnable off
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-XSS-Protection "1; mode=block"
+Timeout 60
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+<Files ".ht*">
+    Require all denied
+</Files>
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+<IfModule headers_module>
+    RequestHeader unset Proxy early
+</IfModule>
+
+# Logging configuration
+ErrorLog /proc/self/fd/2
+LogLevel warn
+<IfModule log_config_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    <IfModule logio_module>
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+    </IfModule>
+    CustomLog /proc/self/fd/1 common
+</IfModule>
+
+# Support for compression
+<IfModule mime_module>
+    TypesConfig conf/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+</IfModule>
+```

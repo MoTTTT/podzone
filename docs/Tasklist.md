@@ -59,14 +59,14 @@ The following checklist provides a high-level breakdown of the work that needs t
 - [X] Route to Search GUI : Cancelled
 - [X] Route to k8s API
 - [X] Route to zope
-- [ ] Route to podzone docs
+- [X] Route to podzone docs
 - [ ] DynDns updater operator
 
 ## Task-list: Security
 
 - [X] TLS certificate solution
 - [X] https for all external access
-- [ ] Apache hardening
+- [X] Apache hardening
 - [ ] Kubernetes hardening
 - [ ] Purge sensitive info from DB
 

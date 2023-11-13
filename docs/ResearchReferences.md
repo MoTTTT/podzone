@@ -940,6 +940,31 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://github.com/canonical/postgresql-k8s-operator/tree/main>
 - <https://juju.is/docs/juju/manage-same-model-integrations>
 - <https://juju.is/docs/juju/tutorial>
-- 
+- <https://juju.is/docs/juju/integration>
+- <https://juju.is/docs/juju/manage-machines>
+- <https://juju.is/docs/juju/configuration>
+- <https://juju.is/docs/juju/manage-applications>
 
+- <https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/>
+- <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/>
+
+- <https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/>
+- <https://kubernetes.io/docs/tutorials/configuration/configure-redis-using-configmap/>
+- <https://carlos.mendible.com/2019/02/10/kubernetes-mount-file-pod-with-configmap/>
+
+- <https://docs.bitnami.com/kubernetes/faq/administration/understand-helm-chart/>
+
+
+- <https://httpd.apache.org/docs/2.4/en/mod/mod_access_compat.html>
+- <https://httpd.apache.org/docs/2.4/en/mod/mod_auth_basic.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_reqtimeout.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_filter.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_mime.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_env.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_headers.html>
+- <https://httpd.apache.org/docs/current/mod/mod_setenvif.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_version.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_unixd.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_status.html>
+- <https://httpd.apache.org/docs/2.4/mod/mod_alias.html>
 

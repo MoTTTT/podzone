@@ -182,4 +182,9 @@
 - <https://github.com/canonical/multipass/issues/1714>
 - <https://github.com/canonical/multipass/issues/973>
 - <https://bugs.launchpad.net/juju/+bug/1892389>
+- <https://stackoverflow.com/questions/61069841/helm-template-debug-or-helm-install-dry-run-debug-which-is-best>
+- <https://helm.sh/docs/chart_template_guide/debugging/>
+- <https://github.com/helm/helm/issues/4574>
+- <https://github.com/bitnami/charts/issues/2720>
+- <https://serverfault.com/questions/356493/apache2-why-limitexcept-parameter-results-deny-not-allowed-here-error-in-vi>
 - 

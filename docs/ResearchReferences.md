@@ -968,3 +968,7 @@ _ <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://httpd.apache.org/docs/2.4/mod/mod_status.html>
 - <https://httpd.apache.org/docs/2.4/mod/mod_alias.html>
 
+- <https://bitnami.com/enterprise>
+
+- <https://helm.sh/docs/topics/chart_repository/>
+- <https://help.cloudsmith.io/docs/helm-chart-repository>

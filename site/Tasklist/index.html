@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/Tasklist/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Task List - Podzone</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Task List";
+        var mkdocs_page_input_path = "Tasklist.md";
+        var mkdocs_page_url = "/podzone/Tasklist/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Podzone
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Podzone Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../QApps/">Business Requirements</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../inventory/">Hardware</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../network/">Network Topology</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../siteStructure/">Site Structure and sources</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tools/">Tooling</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../workstation/">Workstation Config</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../externalServices/">Service Dependencies</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technical/">Implementation Notes</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Storage Cluster</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Task List</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#security">Security</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-k8s-dev-cluster-build">Task-list: k8s dev cluster build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-k8s-prod-cluster-build">Task-list: k8s prod cluster build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-networking-build">Task-list: Networking build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-ingress-build">Task-list: Ingress Build</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-storage-applications-and-services">Task-list: Storage Applications and Services</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#task-breakdown-containerise-zope-including-application-code-and-config">Task Breakdown: Containerise Zope, including application code and config</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-extract-source-into-github">Task-list: Extract source into GitHub</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#task-list-consolidate-data">Task-list: Consolidate data</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#media-repurposing">Media repurposing</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../applicationBuild/">Application Build</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">References</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Issues/">Issues</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../deprecated/">Deprecated</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Podzone</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Task List</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="tasks-for-building-consumer-cloud-zone-1-southernpodzonenet">Tasks for building Consumer Cloud Zone 1: southern.podzone.net</h1>
+<p>Each of these are further decomposed below:</p>
+<ul>
+<li>[X] Business brief</li>
+<li>[X] Consumer Cloud definition</li>
+<li>[X] Workload Success criteria</li>
+<li>[X] MVP deliverables</li>
+<li>[X] k8s dev cluster build</li>
+<li>[X] k8s prod cluster build</li>
+<li>[X] Networking build</li>
+<li>[X] Ingress Build</li>
+<li>[X] Persistent storage</li>
+<li>[ ] Security</li>
+<li>[X] Expose k8s API</li>
+<li>[ ] Applications and Services</li>
+</ul>
+<h2 id="security">Security</h2>
+<ul>
+<li>[X] TLS certificate solution</li>
+<li>[X] https for all external access</li>
+<li>[ ] Apache hardening</li>
+<li>[ ] Kubernetes hardening</li>
+<li>[ ] enable rbac</li>
+<li>[ ] configure dashboard access controls</li>
+<li>[ ] user management</li>
+<li>[ ] Purge sensitive info from DB</li>
+</ul>
+<h2 id="task-list-k8s-dev-cluster-build">Task-list: k8s dev cluster build</h2>
+<ul>
+<li>[X] james (upgrade RAM)</li>
+<li>[X] sigiriya (upgrade disk)</li>
+<li>[X] bukit</li>
+<li>[X] levant</li>
+</ul>
+<h2 id="task-list-k8s-prod-cluster-build">Task-list: k8s prod cluster build</h2>
+<ul>
+<li>[X] Procurement: 3 X HP t630 Thinclient</li>
+<li>[X] Add second drive:  128 GB M.2 max 2242 modules</li>
+<li>[X] Host build: habilis</li>
+<li>[X] Host build: antecessor</li>
+<li>[X] Host build: naledi</li>
+<li>[ ] RAM upgrade: 8BG -&gt; 16 GB</li>
+<li>[ ] Upgrade first drives</li>
+</ul>
+<h2 id="task-list-networking-build">Task-list: Networking build</h2>
+<ul>
+<li>[X] Network design</li>
+<li>[X] Refactor wired network</li>
+<li>[X] Router config (port forward, dynamic dns)</li>
+<li>[X] https certificate for (qsolutions.endoftheinternet.org)</li>
+<li>[X] Load balancer (MetalLB)</li>
+<li>[X] DynDns WAN IP updates (ddclient)</li>
+</ul>
+<h2 id="task-list-ingress-build">Task-list: Ingress Build</h2>
+<ul>
+<li>[X] Certificate manager</li>
+<li>[X] Certificates  for 4 X LetsEncrypt host certs</li>
+<li>[X] Route to Apache static sites</li>
+<li>[X] Route to k8s dashboard</li>
+<li>[X] Route to Search GUI : Cancelled</li>
+<li>[X] Route to k8s API</li>
+<li>[X] Route to zope</li>
+<li>[ ] Route to podzone docs</li>
+<li>[ ] DynDns updater operator</li>
+</ul>
+<h2 id="task-list-storage-applications-and-services">Task-list: Storage Applications and Services</h2>
+<ul>
+<li>[X] Consolidate assets into iCloud</li>
+<li>[X] Extract source into GitHub</li>
+<li>[ ] Extract Zope zexp files and check in</li>
+<li>[ ] Containerise Zope, including application code and config</li>
+<li>[X] Consolidate Web sites</li>
+</ul>
+<h3 id="task-breakdown-containerise-zope-including-application-code-and-config">Task Breakdown: Containerise Zope, including application code and config</h3>
+<ul>
+<li>[X] Plone Service and Deployment</li>
+<li>[X] Plone ingress for qsolutions.endoftheinternet.org</li>
+<li>[X] Ingress rewrite rules for Zope Virtual Host Monster</li>
+<li>[ ] Plone ZPsycopgDA installation (containerInit?)</li>
+<li>[ ] Persistent storage volume for postgres</li>
+<li>[ ] Postgress Service and Deployment</li>
+<li>[ ] Postgress ingress</li>
+</ul>
+<h2 id="task-list-extract-source-into-github">Task-list: Extract source into GitHub</h2>
+<ul>
+<li>[X] Book: Telling; BA Colley</li>
+<li>[X] Book: Cannon Becket; AH Colley</li>
+<li>[X] Book: All the Saints; AH Colley</li>
+<li>[X] Code: MicroNode assets</li>
+<li>[X] Code: BHC assets</li>
+<li>[X] Code: Archive/Backup search</li>
+</ul>
+<h2 id="task-list-consolidate-data">Task-list: Consolidate data</h2>
+<p>All media to be examined and processed:</p>
+<ul>
+<li>All information of interest on all media to go into iCloud</li>
+<li>All projects, including legacy and completed ones, into GitHub</li>
+<li>Sensitive data audit, and secure wipe where required</li>
+<li>
+<p>Visible logical status labelling</p>
+</li>
+<li>
+<p>[ ] /home/${USER} directories on bare metal X 3</p>
+</li>
+<li>[X] /media on james</li>
+<li>[X] thumb drives X 12</li>
+<li>[X] external hard drives X 1</li>
+<li>[X] 2.5" replaced hard drives X 3</li>
+<li>[X] 3.5" replaced hard drives X 2</li>
+</ul>
+<h3 id="media-repurposing">Media repurposing</h3>
+<ul>
+<li>[X] 2.5" replaced hard drives X 3 - Install in james</li>
+<li>[X] 3.5" replaced hard drives X 2 - Install in external enclosures</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../technicalCeph/" class="btn btn-neutral float-left" title="Storage Cluster"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../applicationBuild/" class="btn btn-neutral float-right" title="Application Build">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../technicalCeph/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../applicationBuild/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

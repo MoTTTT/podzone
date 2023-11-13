@@ -117,11 +117,6 @@ test:
   url: "https://docs.podzone.net/index.html"
 ```
 
-## juju configuration
-
-- `juju add-k8s prod --storage=ceph-rbd`
-- `juju bootstrap prod`
-
 ## Hardening
 
 ### Hardening: Apache
@@ -214,3 +209,8 @@ LogLevel warn
     AddType application/x-gzip .gz .tgz
 </IfModule>
 ```
+
+## juju configuration
+
+- `juju add-k8s prod --storage=ceph-rbd`
+- `juju bootstrap prod`

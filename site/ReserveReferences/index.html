@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/ReserveReferences/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Ecosystem References - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Ecosystem References";
+        var mkdocs_page_input_path = "ReserveReferences.md";
+        var mkdocs_page_url = "/podzone/ReserveReferences/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="..">Podzone Introduction</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../QApps/">Business Requirements</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../vminventory/">Virtual Machine Inventory</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../servers/">Server Inventory</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../raspberrypis/">IoT Inventory</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventory/">Hosts Inventory</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../network/">Network Topology</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../siteStructure/">Site Structure and sources</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tools/">Tooling</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../workstation/">Workstation Config</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../externalServices/">Service Dependencies</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technical/">Implementation Notes</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Storage Cluster</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build Notes</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Monitoring Build Notes</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../applicationBuild/">Application Build</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Issues/">Issues</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">Research References</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ApplicationReferences/">ApplicationReferences</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IoTReferences/">Internet of Things, and Edge Computing references</a>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Ecosystem References</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#openstack-microcloud-juju-maas">Openstack, MicroCloud, juju, MAAS</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#unsorted">Unsorted</a>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../deprecated/">Deprecated</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Ecosystem References</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="reserve-references">Reserve References</h1>
+<p>These links are not directly related to the PodZone project, or Kubernetes upskilling. They are included as they are resources relevant to the ecosystem.</p>
+<h2 id="openstack-microcloud-juju-maas">Openstack, MicroCloud, juju, MAAS</h2>
+<ul>
+<li><a href="https://www.openstack.org/">https://www.openstack.org/</a></li>
+<li><a href="https://www.openstack.org/community">https://www.openstack.org/community</a></li>
+<li><a href="https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack">https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack</a></li>
+<li><a href="https://www.openstack.org/use-cases/bare-metal/">https://www.openstack.org/use-cases/bare-metal/</a></li>
+<li><a href="https://www.openstack.org/user-survey/2022-user-survey-report">https://www.openstack.org/user-survey/2022-user-survey-report</a></li>
+<li><a href="https://wiki.openstack.org/wiki/Heat">https://wiki.openstack.org/wiki/Heat</a></li>
+<li><a href="https://microcloud.is/">https://microcloud.is/</a></li>
+<li><a href="https://microstack.run/docs/multi-node">https://microstack.run/docs/multi-node</a></li>
+<li><a href="https://microstack.run/docs">https://microstack.run/docs</a></li>
+<li><a href="https://juju.is/">https://juju.is/</a></li>
+<li><a href="https://juju.is/docs/juju/configuration">https://juju.is/docs/juju/configuration</a></li>
+<li><a href="https://juju.is/docs/juju/integration">https://juju.is/docs/juju/integration</a></li>
+<li><a href="https://juju.is/docs/juju/manage-applications">https://juju.is/docs/juju/manage-applications</a></li>
+<li><a href="https://juju.is/docs/juju/manage-machines">https://juju.is/docs/juju/manage-machines</a></li>
+<li><a href="https://juju.is/docs/juju/manage-same-model-integrations">https://juju.is/docs/juju/manage-same-model-integrations</a></li>
+<li><a href="https://juju.is/docs/juju/tutorial">https://juju.is/docs/juju/tutorial</a></li>
+<li><a href="https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm">https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm</a></li>
+<li><a href="https://juju.is/docs/sdk">https://juju.is/docs/sdk</a></li>
+<li><a href="https://juju.is/model-driven-operations-manifesto">https://juju.is/model-driven-operations-manifesto</a></li>
+<li><a href="https://maas.io/docs/about-cloud-networking">https://maas.io/docs/about-cloud-networking</a></li>
+<li><a href="https://maas.io/docs/about-dhcp">https://maas.io/docs/about-dhcp</a></li>
+<li><a href="https://maas.io/docs/about-maas-networks">https://maas.io/docs/about-maas-networks</a></li>
+<li><a href="https://maas.io/docs/about-tcp-ip-networks">https://maas.io/docs/about-tcp-ip-networks</a></li>
+<li><a href="https://maas.io/docs/bootstrap-maas">https://maas.io/docs/bootstrap-maas</a></li>
+<li><a href="https://maas.io/docs/cloud-networking-essentials-for-maas">https://maas.io/docs/cloud-networking-essentials-for-maas</a></li>
+<li><a href="https://maas.io/docs/explanation">https://maas.io/docs/explanation</a></li>
+<li><a href="https://maas.io/docs/how-to-guides">https://maas.io/docs/how-to-guides</a></li>
+<li><a href="https://maas.io/docs/installation-requirements">https://maas.io/docs/installation-requirements</a></li>
+<li><a href="https://maas.io/docs/overview-of-maas">https://maas.io/docs/overview-of-maas</a></li>
+<li><a href="https://maas.io/docs/reference">https://maas.io/docs/reference</a></li>
+<li><a href="https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview">https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview</a></li>
+</ul>
+<h2 id="unsorted">Unsorted</h2>
+<ul>
+<li><a href="https://airflow.apache.org/">https://airflow.apache.org/</a></li>
+<li><a href="https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3">https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3</a></li>
+<li><a href="https://book.kubebuilder.io/">https://book.kubebuilder.io/</a></li>
+<li><a href="https://book.kubebuilder.io/quick-start">https://book.kubebuilder.io/quick-start</a></li>
+<li><a href="https://charmhub.io/jupyter-ui">https://charmhub.io/jupyter-ui</a></li>
+<li><a href="https://cloud-init.io/">https://cloud-init.io/</a></li>
+<li><a href="https://cloud.redhat.com/blog/introducing-the-operator-framework">https://cloud.redhat.com/blog/introducing-the-operator-framework</a></li>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/">https://cloudinit.readthedocs.io/en/latest/</a></li>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html">https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html</a></li>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/reference/examples.html">https://cloudinit.readthedocs.io/en/latest/reference/examples.html</a></li>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/reference/modules.html">https://cloudinit.readthedocs.io/en/latest/reference/modules.html</a></li>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/tutorial/lxd.html">https://cloudinit.readthedocs.io/en/latest/tutorial/lxd.html</a></li>
+<li><a href="https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity">https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity</a></li>
+<li><a href="https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775">https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775</a></li>
+<li><a href="https://docs.openstack.org/openstack-ansible-os_ironic/latest/">https://docs.openstack.org/openstack-ansible-os_ironic/latest/</a></li>
+<li><a href="https://docs.oracle.com/cd/E19683-01/816-5042/auto32/index.html">https://docs.oracle.com/cd/E19683-01/816-5042/auto32/index.html</a></li>
+<li><a href="https://en.wikipedia.org/wiki/1-Wire">https://en.wikipedia.org/wiki/1-Wire</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Fog_computing">https://en.wikipedia.org/wiki/Fog_computing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FreeBSD_jail">https://en.wikipedia.org/wiki/FreeBSD_jail</a></li>
+<li><a href="https://en.wikipedia.org/wiki/FreeRTOS">https://en.wikipedia.org/wiki/FreeRTOS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Government_Digital_Service">https://en.wikipedia.org/wiki/Government_Digital_Service</a></li>
+<li><a href="https://en.wikipedia.org/wiki/IA-64">https://en.wikipedia.org/wiki/IA-64</a></li>
+<li><a href="https://en.wikipedia.org/wiki/IBM_Z">https://en.wikipedia.org/wiki/IBM_Z</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine">https://en.wikipedia.org/wiki/Kernel-based_Virtual_Machine</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Mirantis">https://en.wikipedia.org/wiki/Mirantis</a></li>
+<li><a href="https://en.wikipedia.org/wiki/OpenStack">https://en.wikipedia.org/wiki/OpenStack</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Preboot_Execution_Environment">https://en.wikipedia.org/wiki/Preboot_Execution_Environment</a></li>
+<li><a href="https://en.wikipedia.org/wiki/QEMU">https://en.wikipedia.org/wiki/QEMU</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Redundant_array_of_independent_memory">https://en.wikipedia.org/wiki/Redundant_array_of_independent_memory</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Rust_(programming_language)">https://en.wikipedia.org/wiki/Rust_(programming_language)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Scala_(programming_language)">https://en.wikipedia.org/wiki/Scala_(programming_language)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Trusted_Platform_Module">https://en.wikipedia.org/wiki/Trusted_Platform_Module</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Twelve-Factor_App_methodology">https://en.wikipedia.org/wiki/Twelve-Factor_App_methodology</a></li>
+<li><a href="https://en.wikipedia.org/wiki/TypeScript">https://en.wikipedia.org/wiki/TypeScript</a></li>
+<li><a href="https://en.wikipedia.org/wiki/UEFI">https://en.wikipedia.org/wiki/UEFI</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Z/Architecture">https://en.wikipedia.org/wiki/Z/Architecture</a></li>
+<li><a href="https://blog.frankel.ch/hard-things-computer-science/">https://blog.frankel.ch/hard-things-computer-science/</a>4</li>
+<li><a href="https://ubuntu.com/blog/451-research-benchmarks-public-and-private-infrastructure-cost">https://ubuntu.com/blog/451-research-benchmarks-public-and-private-infrastructure-cost</a></li>
+<li><a href="https://ubuntu.com/blog/bootstack-managed-cloud-factsheet-2">https://ubuntu.com/blog/bootstack-managed-cloud-factsheet-2</a></li>
+<li><a href="https://ubuntu.com/blog/canonical-kubernetes-for-financial-services">https://ubuntu.com/blog/canonical-kubernetes-for-financial-services</a></li>
+<li><a href="https://ubuntu.com/blog/data-ops-at-petabyte-scale">https://ubuntu.com/blog/data-ops-at-petabyte-scale</a></li>
+<li><a href="https://ubuntu.com/blog/diataxis-a-new-foundation-for-canonical-documentation">https://ubuntu.com/blog/diataxis-a-new-foundation-for-canonical-documentation</a></li>
+<li><a href="https://kodekloud.com/blog/kubectl-cp/">https://kodekloud.com/blog/kubectl-cp/</a></li>
+<li><a href="https://kodekloud.com/blog/kubernetes-headless-service/">https://kodekloud.com/blog/kubernetes-headless-service/</a></li>
+<li><a href="https://medium.com/jaegertracing/a-guide-to-deploying-jaeger-on-kubernetes-in-production-69afb9a7c8e5">https://medium.com/jaegertracing/a-guide-to-deploying-jaeger-on-kubernetes-in-production-69afb9a7c8e5</a></li>
+<li><a href="https://www.portainer.io/kubernetes-management-platform">https://www.portainer.io/kubernetes-management-platform</a></li>
+<li><a href="https://www.pulumi.com/registry/packages/kubernetes/api-docs/yaml/configfile/">https://www.pulumi.com/registry/packages/kubernetes/api-docs/yaml/configfile/</a></li>
+<li><a href="https://www.weave.works/docs/net/latest/kubernetes/kube-addon/">https://www.weave.works/docs/net/latest/kubernetes/kube-addon/</a></li>
+<li><a href="https://forum.snapcraft.io/t/cloud-init-with-netplan/1301/2">https://forum.snapcraft.io/t/cloud-init-with-netplan/1301/2</a></li>
+<li><a href="https://forum.snapcraft.io/t/data-locations/24905">https://forum.snapcraft.io/t/data-locations/24905</a></li>
+<li><a href="https://forum.snapcraft.io/t/how-to-preconfigure-custom-image/4154">https://forum.snapcraft.io/t/how-to-preconfigure-custom-image/4154</a></li>
+<li><a href="https://forum.snapcraft.io/t/preconfigure-ubuntu-core-image-that-does-not-require-store-account-login-on-first-boot/7994">https://forum.snapcraft.io/t/preconfigure-ubuntu-core-image-that-does-not-require-store-account-login-on-first-boot/7994</a></li>
+<li><a href="https://forum.snapcraft.io/t/quickstart-guide/3876">https://forum.snapcraft.io/t/quickstart-guide/3876</a></li>
+<li><a href="https://forum.snapcraft.io/t/the-snap-format/698">https://forum.snapcraft.io/t/the-snap-format/698</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/concepts/glossary/">https://gateway-api.sigs.k8s.io/concepts/glossary/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/">https://gateway-api.sigs.k8s.io/concepts/roles-and-personas/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/concepts/service-facets/">https://gateway-api.sigs.k8s.io/concepts/service-facets/</a></li>
+<li><a href="https://freshtomato.org/">https://freshtomato.org/</a></li>
+<li><a href="https://gist.github.com/tuannvm/0fc6e94a3759c91b1abe71c149152f77">https://gist.github.com/tuannvm/0fc6e94a3759c91b1abe71c149152f77</a></li>
+<li><a href="https://git.yourcmc.ru/vitalif/vitastor/src/branch/master/README.md">https://git.yourcmc.ru/vitalif/vitastor/src/branch/master/README.md</a></li>
+<li><a href="https://github.com/axians/meta-microservicebus">https://github.com/axians/meta-microservicebus</a></li>
+<li><a href="https://github.com/canonical/k8s-dqlite">https://github.com/canonical/k8s-dqlite</a></li>
+<li><a href="https://github.com/dexidp/dex">https://github.com/dexidp/dex</a></li>
+<li><a href="https://github.com/fralau/mkdocs-mermaid2-plugin">https://github.com/fralau/mkdocs-mermaid2-plugin</a></li>
+<li><a href="https://github.com/GoogleContainerTools/kaniko">https://github.com/GoogleContainerTools/kaniko</a></li>
+<li><a href="https://github.com/jetstack/kube-lego#kube-lego">https://github.com/jetstack/kube-lego#kube-lego</a></li>
+<li><a href="https://github.com/jordanwilson230/kubectl-plugins">https://github.com/jordanwilson230/kubectl-plugins</a></li>
+<li><a href="https://github.com/kelseyhightower/confd">https://github.com/kelseyhightower/confd</a></li>
+<li><a href="https://github.com/Masterminds/sprig">https://github.com/Masterminds/sprig</a></li>
+<li><a href="https://go.dev/blog/using-go-modules">https://go.dev/blog/using-go-modules</a></li>
+<li><a href="https://gopaddle.io/">https://gopaddle.io/</a></li>
+<li><a href="https://github.com/nextcloud/all-in-one">https://github.com/nextcloud/all-in-one</a></li>
+<li><a href="https://github.com/spacewalkproject/spacewalk">https://github.com/spacewalkproject/spacewalk</a></li>
+<li><a href="https://kafka.apache.org/">https://kafka.apache.org/</a></li>
+<li><a href="https://kafka.apache.org/intro">https://kafka.apache.org/intro</a></li>
+<li><a href="https://kafka.apache.org/quickstart">https://kafka.apache.org/quickstart</a></li>
+<li><a href="https://kafka.apache.org/uses">https://kafka.apache.org/uses</a></li>
+<li><a href="https://docs.parseplatform.org/">https://docs.parseplatform.org/</a></li>
+<li><a href="https://docs.parseplatform.org/parse-server/guide/">https://docs.parseplatform.org/parse-server/guide/</a></li>
+<li><a href="https://docs.saltproject.io/en/latest/ref/cli/salt-minion.html">https://docs.saltproject.io/en/latest/ref/cli/salt-minion.html</a></li>
+<li><a href="https://docs.saltproject.io/en/master/topics/tutorials/walkthrough.html">https://docs.saltproject.io/en/master/topics/tutorials/walkthrough.html</a></li>
+<li><a href="https://docs.swimm.io/">https://docs.swimm.io/</a></li>
+<li><a href="https://fedoraproject.org/coreos/">https://fedoraproject.org/coreos/</a></li>
+<li><a href="https://github.com/tektoncd/pipeline/">https://github.com/tektoncd/pipeline/</a></li>
+<li><a href="https://hackernoon.com/managing-ubuntu-snaps-the-stuff-no-one-tells-you-625dfbe4b26c">https://hackernoon.com/managing-ubuntu-snaps-the-stuff-no-one-tells-you-625dfbe4b26c</a></li>
+<li><a href="https://hackernoon.com/what-is-fluid-computing-its-applications-and-the-future-ahead-nnh30ea">https://hackernoon.com/what-is-fluid-computing-its-applications-and-the-future-ahead-nnh30ea</a></li>
+<li><a href="https://hadoop.apache.org/">https://hadoop.apache.org/</a></li>
+<li><a href="https://help.ubuntu.com/community/IPMI">https://help.ubuntu.com/community/IPMI</a></li>
+<li><a href="https://hub.datree.io/built-in-rules">https://hub.datree.io/built-in-rules</a></li>
+<li><a href="https://hub.docker.com/u/ubuntu">https://hub.docker.com/u/ubuntu</a></li>
+<li><a href="https://inaccel.com/">https://inaccel.com/</a></li>
+<li><a href="https://ipwithease.com/vlan-vs-vxlan/">https://ipwithease.com/vlan-vs-vxlan/</a></li>
+<li><a href="https://ipwithease.com/vxlan-and-otv/">https://ipwithease.com/vxlan-and-otv/</a></li>
+<li><a href="https://ipxe.org/">https://ipxe.org/</a></li>
+<li><a href="https://istio.io/">https://istio.io/</a></li>
+<li><a href="https://katacontainers.io/">https://katacontainers.io/</a></li>
+<li><a href="https://krew.sigs.k8s.io/docs/user-guide/setup/install/">https://krew.sigs.k8s.io/docs/user-guide/setup/install/</a></li>
+<li><a href="https://kroki.io/">https://kroki.io/</a></li>
+<li><a href="https://kubespray.io/#/">https://kubespray.io/#/</a></li>
+<li><a href="https://layers.openembedded.org/layerindex/branch/master/layers/">https://layers.openembedded.org/layerindex/branch/master/layers/</a></li>
+<li><a href="https://levelup.gitconnected.com/12-microservices-pattern-i-wish-i-knew-before-the-system-design-interview-5c35919f16a2">https://levelup.gitconnected.com/12-microservices-pattern-i-wish-i-knew-before-the-system-design-interview-5c35919f16a2</a></li>
+<li><a href="https://linbit.com/linstor/">https://linbit.com/linstor/</a></li>
+<li><a href="https://linkerd.io/">https://linkerd.io/</a></li>
+<li><a href="https://longhorn.io/docs/archives/1.1.1/snapshots-and-backups/csi-snapshot-support/enable-csi-snapshot-support/">https://longhorn.io/docs/archives/1.1.1/snapshots-and-backups/csi-snapshot-support/enable-csi-snapshot-support/</a></li>
+<li><a href="https://mia-platform.eu/">https://mia-platform.eu/</a></li>
+<li><a href="https://mir-server.io/ubuntu-frame">https://mir-server.io/ubuntu-frame</a></li>
+<li><a href="https://mobyproject.org/">https://mobyproject.org/</a></li>
+<li><a href="https://mqtt.org/">https://mqtt.org/</a></li>
+<li><a href="https://netplan.io/">https://netplan.io/</a></li>
+<li><a href="https://netplan.readthedocs.io/en/stable/examples/">https://netplan.readthedocs.io/en/stable/examples/</a></li>
+<li><a href="https://news.ycombinator.com/item?id=31605302">https://news.ycombinator.com/item?id=31605302</a></li>
+<li><a href="https://nextcloud.com/athome/">https://nextcloud.com/athome/</a></li>
+<li><a href="https://nextcloud.com/install/">https://nextcloud.com/install/</a></li>
+<li><a href="https://nodered.org/">https://nodered.org/</a></li>
+<li><a href="https://openbuildservice.org/">https://openbuildservice.org/</a></li>
+<li><a href="https://pressbooks-dev.oer.hawaii.edu/principlesofeconomics/chapter/10-2-oligopoly/">https://pressbooks-dev.oer.hawaii.edu/principlesofeconomics/chapter/10-2-oligopoly/</a></li>
+<li><a href="https://stacklok.com/minder">https://stacklok.com/minder</a></li>
+<li><a href="https://stacklok.com/trusty">https://stacklok.com/trusty</a></li>
+<li><a href="https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-local-archives">https://packaging.python.org/en/latest/tutorials/installing-packages/#installing-from-local-archives</a></li>
+<li><a href="https://pkg.go.dev/text/template">https://pkg.go.dev/text/template</a></li>
+<li><a href="https://snapcraft.io/docs/adding-snap-configuration">https://snapcraft.io/docs/adding-snap-configuration</a></li>
+<li><a href="https://snapcraft.io/docs/configuration-in-snaps">https://snapcraft.io/docs/configuration-in-snaps</a></li>
+<li><a href="https://techcrunch.com/2019/05/15/vmware-acquires-bitnami-to-deliver-packaged-applications-anywhere/">https://techcrunch.com/2019/05/15/vmware-acquires-bitnami-to-deliver-packaged-applications-anywhere/</a></li>
+<li><a href="https://suitecrm.com/">https://suitecrm.com/</a></li>
+<li><a href="https://techcrunch.com/2023/08/31/best-practices-for-cloud-finops/">https://techcrunch.com/2023/08/31/best-practices-for-cloud-finops/</a></li>
+<li><a href="https://ubuntu.com/blog/tag/hadoop">https://ubuntu.com/blog/tag/hadoop</a></li>
+<li><a href="https://traefik.io/traefik/">https://traefik.io/traefik/</a></li>
+<li><a href="https://toml.io/en/">https://toml.io/en/</a></li>
+<li><a href="https://ubuntu.com/core/docs/networkmanager">https://ubuntu.com/core/docs/networkmanager</a></li>
+<li><a href="https://ubuntu.com/server/docs/network-configuration">https://ubuntu.com/server/docs/network-configuration</a></li>
+<li><a href="https://ubuntu.com/server/docs/rock-images/introduction">https://ubuntu.com/server/docs/rock-images/introduction</a></li>
+<li><a href="https://voidlinux.org/">https://voidlinux.org/</a></li>
+<li><a href="https://wiki.adamsweet.org/doku.php?id=ipmi_on_linux">https://wiki.adamsweet.org/doku.php?id=ipmi_on_linux</a></li>
+<li><a href="https://wiki.linuxfoundation.org/networking/bonding">https://wiki.linuxfoundation.org/networking/bonding</a></li>
+<li><a href="https://wiki.ubuntu.com/FanNetworking">https://wiki.ubuntu.com/FanNetworking</a></li>
+<li><a href="https://www.bloorresearch.com/technology/big-software/">https://www.bloorresearch.com/technology/big-software/</a></li>
+<li><a href="https://www.asrock.com/mb/Intel/H61M-VS3/index.asp">https://www.asrock.com/mb/Intel/H61M-VS3/index.asp</a></li>
+<li><a href="https://www.cloudsigma.com/">https://www.cloudsigma.com/</a></li>
+<li><a href="https://www.devspace.sh/component-chart/docs/introduction">https://www.devspace.sh/component-chart/docs/introduction</a></li>
+<li><a href="https://www.devspace.sh/docs/getting-started/introduction">https://www.devspace.sh/docs/getting-started/introduction</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04">https://www.digitalocean.com/community/tutorials/how-to-add-swap-space-on-ubuntu-20-04</a></li>
+<li><a href="https://www.docker.com/blog/how-to-build-and-test-your-docker-images-in-the-cloud-with-docker-hub/">https://www.docker.com/blog/how-to-build-and-test-your-docker-images-in-the-cloud-with-docker-hub/</a></li>
+<li><a href="https://www.freedesktop.org/software/systemd/man/systemd-networkd.service.html">https://www.freedesktop.org/software/systemd/man/systemd-networkd.service.html</a></li>
+<li><a href="https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/">https://www.howtogeek.com/50787/add-a-user-to-a-group-or-second-group-on-linux/</a></li>
+<li><a href="https://www.getport.io/">https://www.getport.io/</a></li>
+<li><a href="https://www.ibm.com/linuxone">https://www.ibm.com/linuxone</a></li>
+<li><a href="https://www.ibm.com/products/linuxone-4">https://www.ibm.com/products/linuxone-4</a></li>
+<li><a href="https://www.infoq.com/news/2014/03/docker_0_9/">https://www.infoq.com/news/2014/03/docker_0_9/</a></li>
+<li><a href="https://www.jetbrains.com/space/">https://www.jetbrains.com/space/</a></li>
+<li><a href="https://www.kube-ovn.io/">https://www.kube-ovn.io/</a></li>
+<li><a href="https://www.kubeflow.org/">https://www.kubeflow.org/</a></li>
+<li><a href="https://www.kubeflow.org/docs/components/pipelines/v1/introduction/">https://www.kubeflow.org/docs/components/pipelines/v1/introduction/</a></li>
+<li><a href="https://www.lifewire.com/definition-of-tftp-817576">https://www.lifewire.com/definition-of-tftp-817576</a></li>
+<li><a href="https://www.linkedin.com/pulse/pxe-boot-apple-mac-out-touching-keyboard-eric-bruno/">https://www.linkedin.com/pulse/pxe-boot-apple-mac-out-touching-keyboard-eric-bruno/</a></li>
+<li><a href="https://www.linuxandubuntu.com/home/ubuntu-pro-vs-ubuntu?expand_article=1">https://www.linuxandubuntu.com/home/ubuntu-pro-vs-ubuntu?expand_article=1</a></li>
+<li><a href="https://www.oracle.com/corporate/acquisitions/dyn/technologies/ecommerce-customer-faq.html">https://www.oracle.com/corporate/acquisitions/dyn/technologies/ecommerce-customer-faq.html</a></li>
+<li><a href="https://www.portainer.io/">https://www.portainer.io/</a></li>
+<li><a href="https://www.rackspace.com/">https://www.rackspace.com/</a></li>
+<li><a href="https://www.rancher.com/">https://www.rancher.com/</a></li>
+<li><a href="https://www.redhat.com/sysadmin/analyze-processes-lsof">https://www.redhat.com/sysadmin/analyze-processes-lsof</a></li>
+<li><a href="https://www.sobyte.net/post/2021-06/several-ways-to-stop-goroutine-in-golang/">https://www.sobyte.net/post/2021-06/several-ways-to-stop-goroutine-in-golang/</a></li>
+<li><a href="https://www.sqlalchemy.org/">https://www.sqlalchemy.org/</a></li>
+<li><a href="https://www.techtarget.com/searchnetworking/definition/Preboot-Execution-Environment">https://www.techtarget.com/searchnetworking/definition/Preboot-Execution-Environment</a></li>
+<li><a href="https://www.terraform.io/">https://www.terraform.io/</a></li>
+<li><a href="https://www.theregister.com/2019/06/25/oracle_dyn_cloud_axed_2020/">https://www.theregister.com/2019/06/25/oracle_dyn_cloud_axed_2020/</a></li>
+<li><a href="https://www.zdnet.com/article/programming-languages-developers-reveal-what-they-love-and-loathe-and-what-pays-best/">https://www.zdnet.com/article/programming-languages-developers-reveal-what-they-love-and-loathe-and-what-pays-best/</a></li>
+<li><a href="https://www.sigstore.dev/">https://www.sigstore.dev/</a></li>
+<li><a href="https://www.upbound.io/">https://www.upbound.io/</a></li>
+<li><a href="https://www.wireguard.com/">https://www.wireguard.com/</a></li>
+<li><a href="https://www.wiz.io/">https://www.wiz.io/</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../IoTReferences/" title="Internet of Things, and Edge Computing references"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../TroubleshootingReferences/" title="Troubleshooting References">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../IoTReferences/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../TroubleshootingReferences/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+</body>
+</html>

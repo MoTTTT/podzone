@@ -82,6 +82,24 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Service Dependencies</a>
 <ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#existing-public-services">Existing public services</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#additional-public-services">Additional public services</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation details</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#as-is-implementation">As-is implementation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#to-be-solution">To-be solution</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -118,6 +136,18 @@
 </li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../ApplicationReferences/">ApplicationReferences</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../IoTReferences/">Internet of Things, and Edge Computing references</a>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ReserveReferences/">Ecosystem References</a>
+</li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
 </li>
 </ul>
@@ -146,6 +176,21 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="external-services">External Services</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this context, External Services are referred to as those services, provisioned on the WAN from the perspective of the cluster LAN, that the solution is dependant on, either at build or run-time. While the intention is to reduce external dependencies where possible, some need to be external (such as domain hosting) and some are currently not supported internally (such as repo and artefact hosting).</p>
+<h3 id="existing-public-services">Existing public services</h3>
+<ul>
+<li>DynDns for domain hosting</li>
+<li>iCloud for off-site storage</li>
+<li>LetsEncrypt for https certificates</li>
+<li>GitHub for source code repository</li>
+</ul>
+<h3 id="additional-public-services">Additional public services</h3>
+<ul>
+<li>Cloudsmith for helm chart repository</li>
+</ul>
+<h2 id="implementation-details">Implementation details</h2>
+<h3 id="requirements">Requirements</h3>
 <p>Non functional services requirements are as follows:</p>
 <ol>
 <li>Storage</li>
@@ -155,7 +200,8 @@
 <li>Internet name service (DNS)</li>
 <li>Certificate for https</li>
 </ol>
-<p>These are currently provisioned as follows</p>
+<h3 id="as-is-implementation">As-is implementation</h3>
+<p>The non function requirements are currently provisioned as follows</p>
 <ol>
 <li>Storage is supplied to the network using a NFS server, sigiriya</li>
 <li>Internet ingress is implemented using fibre router port forwarding to multiple internal network IP:Port listeners</li>
@@ -165,7 +211,8 @@
 <li>The https certificate is managed using certbot on bukit</li>
 </ol>
 <p>There are a number of these services that are implemented in such a way that they represent a single point of failure. This is not avoidable in the case of functionality provided by the fibre router. All other services can be highly available.</p>
-<p>The following changes are required:</p>
+<h3 id="to-be-solution">To-be solution</h3>
+<p>The following changes are required</p>
 <ol>
 <li>Migrate from NFS to distributed storage. Ceph has been selected</li>
 <li>Internet ingress fan-out will be handled by the k8s cluster. The router will only forward ports 80 and 443 to the cluster lbr (ovoo)</li>

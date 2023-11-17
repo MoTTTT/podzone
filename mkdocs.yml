@@ -31,5 +31,8 @@ nav:
   - Application Build: applicationBuild.md
   - Issues: Issues.md
   - Research References: ResearchReferences.md
+  - ApplicationReferences: ApplicationReferences.md
+  - Internet of Things, and Edge Computing references: IoTReferences.md
+  - Ecosystem References: ReserveReferences.md
   - Troubleshooting References: TroubleshootingReferences.md
   - Deprecated: deprecated.md 

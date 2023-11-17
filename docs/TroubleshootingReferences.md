@@ -187,4 +187,11 @@
 - <https://github.com/helm/helm/issues/4574>
 - <https://github.com/bitnami/charts/issues/2720>
 - <https://serverfault.com/questions/356493/apache2-why-limitexcept-parameter-results-deny-not-allowed-here-error-in-vi>
-- 
+- <https://kodekloud.com/blog/debug-crashloopbackoff/>
+- <https://discuss.elastic.co/t/filebeat-not-able-to-find-logs-on-microk8/182023>
+- <https://discuss.hashicorp.com/t/0-3-nodes-are-available-pod-has-unbound-immediate-persistentvolumeclaims/51642>
+- <https://stackoverflow.com/questions/33415913/whats-the-best-way-to-share-mount-one-file-into-a-pod/43404857#43404857>
+- <https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible>
+- <https://stackoverflow.com/questions/73421967/how-to-use-git-sync-image-as-a-sidecar-in-kubernetes-that-git-pulls-periodically>
+- <https://release.com/blog/kubernetes-how-to-debug-crashloopbackoff-in-a-container>
+ 

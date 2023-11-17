@@ -10,6 +10,7 @@ The following checklist provides a high-level breakdown of the work that needs t
 - [ ] Security
 - [X] Storage
 - [ ] Applications and Services
+- [ ] Testing
 
 ## Task-list: Documentation
 
@@ -20,7 +21,7 @@ The following checklist provides a high-level breakdown of the work that needs t
 - [X] Network topology
 - [X] Inventory
 - [ ] Update documentation with production cluster details
-- [ ] Curate reference lists
+- [X] Curate reference lists
 - [ ] Site structure
 
 ## Task-list: k8s dev cluster build
@@ -117,3 +118,10 @@ The following checklist provides a high-level breakdown of the work that needs t
 - [ ] Persistent storage volume for postgres
 - [ ] Postgress Service and Deployment
 - [ ] Postgress ingress
+
+## Testing
+
+- [ ] Cluster High Availability testing
+- [ ] Cluster failure recovery
+- [ ] Web functional test
+- [ ] Application functional test

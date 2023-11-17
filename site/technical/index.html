@@ -142,6 +142,18 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ApplicationReferences/">ApplicationReferences</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../IoTReferences/">Internet of Things, and Edge Computing references</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../ReserveReferences/">Ecosystem References</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
                 </li>
               </ul>
@@ -233,7 +245,14 @@
 <li>Pull the static content from a github repo</li>
 <li>Externalised Web server configuration for hardening without image build</li>
 </ul>
-<p>The <strong>kubernetes</strong> resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith <a href="https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/</a>.</p>
+<p>The <strong>kubernetes</strong> resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith.</p>
+<p>Once the Cloudsmith account is created, a repo needs to be created, and the package can be uploaded through the web GUI.</p>
+<p>A CLI is available for Cloudsmith, allowing a more automated approach.</p>
+<p>To package and upload:</p>
+<pre><code class="language-bash">helm package ./qapps
+cloudsmith push helm q-solutions/qapps qapps-0.1.1.tgz
+</code></pre>
+<p>The package is now available as: <a href="https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/</a>.</p>
 <p>The default chart deploys musings.thruhere.net, and is deployed as follows:</p>
 <pre><code class="language-bash">helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
 </code></pre>

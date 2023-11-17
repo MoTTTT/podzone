@@ -62,7 +62,20 @@ There are two static sites in scope. Both require the following features:
 - Pull the static content from a github repo
 - Externalised Web server configuration for hardening without image build
 
-The **kubernetes** resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith <https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/>.
+The **kubernetes** resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith.
+
+Once the Cloudsmith account is created, a repo needs to be created, and the package can be uploaded through the web GUI.
+
+A CLI is available for Cloudsmith, allowing a more automated approach.
+
+To package and upload:
+
+```bash
+helm package ./qapps
+cloudsmith push helm q-solutions/qapps qapps-0.1.1.tgz
+```
+
+The package is now available as: <https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/>.
 
 The default chart deploys musings.thruhere.net, and is deployed as follows:
 

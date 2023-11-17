@@ -31,12 +31,6 @@ Additional technology strategy:
 - No additional public service consumption, reduction where possible.
 - Continue to utilise open source software
 
-### Existing public service consumption
-
-- DynDns for domain hosting
-- iCloud for off-site storage
-- LetsEncrypt for https certificates
-- GitHub for source code repository
 
 ## Source code
 

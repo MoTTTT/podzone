@@ -1,5 +1,24 @@
 # External Services
 
+## Introduction
+
+In this context, External Services are referred to as those services, provisioned on the WAN from the perspective of the cluster LAN, that the solution is dependant on, either at build or run-time. While the intention is to reduce external dependencies where possible, some need to be external (such as domain hosting) and some are currently not supported internally (such as repo and artefact hosting).
+
+### Existing public services
+
+- DynDns for domain hosting
+- iCloud for off-site storage
+- LetsEncrypt for https certificates
+- GitHub for source code repository
+
+### Additional public services
+
+- Cloudsmith for helm chart repository
+
+## Implementation details
+
+### Requirements
+
 Non functional services requirements are as follows:
 
 1. Storage
@@ -9,7 +28,9 @@ Non functional services requirements are as follows:
 1. Internet name service (DNS)
 1. Certificate for https
 
-These are currently provisioned as follows
+### As-is implementation
+
+The non function requirements are currently provisioned as follows
 
 1. Storage is supplied to the network using a NFS server, sigiriya
 1. Internet ingress is implemented using fibre router port forwarding to multiple internal network IP:Port listeners
@@ -20,7 +41,9 @@ These are currently provisioned as follows
 
 There are a number of these services that are implemented in such a way that they represent a single point of failure. This is not avoidable in the case of functionality provided by the fibre router. All other services can be highly available.
 
-The following changes are required:
+### To-be solution
+
+The following changes are required
 
 1. Migrate from NFS to distributed storage. Ceph has been selected
 2. Internet ingress fan-out will be handled by the k8s cluster. The router will only forward ports 80 and 443 to the cluster lbr (ovoo)

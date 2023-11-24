@@ -194,4 +194,13 @@
 - <https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible>
 - <https://stackoverflow.com/questions/73421967/how-to-use-git-sync-image-as-a-sidecar-in-kubernetes-that-git-pulls-periodically>
 - <https://release.com/blog/kubernetes-how-to-debug-crashloopbackoff-in-a-container>
- 
+- <https://askubuntu.com/questions/1482503/ubuntu-server-22-04-3-lts-system-has-been-minimized>
+- <https://ansiblepilot.medium.com/ansible-troubleshooting-error-no-module-named-markupsafe-8c9f45dae5b5>
+- <https://askubuntu.com/questions/1379866/not-showing-available-ram>
+- <https://www.reddit.com/r/kubernetes/comments/ypfi4l/how_to_create_readwritemany_persistent_volumes/>
+- <https://github.com/rook/rook/issues/5936>
+- <https://github.com/rook/rook/issues/4209>
+- <https://github.com/canonical/microceph/issues/23>
+- <https://github.com/canonical/microceph/issues/145>
+- <https://github.com/canonical/microceph/issues/251>
+- <https://github.com/canonical/microceph/issues>

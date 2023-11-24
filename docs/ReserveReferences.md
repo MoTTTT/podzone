@@ -2,6 +2,36 @@
 
 These links are not directly related to the PodZone project, or Kubernetes upskilling. They are included as they are resources relevant to the ecosystem.
 
+## Consumer Cloud
+
+- <https://nextcloud.com/>
+- <https://nextcloud.com/athome/>
+- <https://nextcloud.com/install/>
+- <https://github.com/nextcloud/all-in-one>
+- <https://docs.kubesail.com/>
+- <https://docs.kubesail.com/getting-started/>
+- <https://docs.kubesail.com/templates/>
+- <https://photostructure.com/>
+
+## Kubernetes Repositories,Management platforms, Security and Governance
+
+- <https://blog.container-solutions.com/installing-a-registry-on-kubernetes-quickstart>
+- <https://helm.sh/docs/topics/chart_repository/>
+- <https://helm.sh/docs/topics/provenance/>
+- <https://jfrog.com/>
+- <https://www.portainer.io/>
+- <https://juju.is/>
+- <https://www.redhat.com/en/technologies/cloud-computing/openshift>
+- <https://www.rancher.com/community>
+- <https://www.rancher.com/>
+- <https://www.portainer.io/portainer-vs-rancher-vs-openshift>
+- <https://dyrectorio.com/>
+- <https://kubermachines.com/>
+- <https://arioslabs.io/products/klate/>
+- <https://www.flexiant.com/>
+- <https://kublr.com/>
+- <https://keybase.io/>
+
 ## Openstack, MicroCloud, juju, MAAS
 
 - <https://www.openstack.org/>
@@ -110,7 +140,6 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://github.com/Masterminds/sprig>
 - <https://go.dev/blog/using-go-modules>
 - <https://gopaddle.io/>
-- <https://github.com/nextcloud/all-in-one>
 - <https://github.com/spacewalkproject/spacewalk>
 - <https://kafka.apache.org/>
 - <https://kafka.apache.org/intro>
@@ -150,8 +179,6 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://netplan.io/>
 - <https://netplan.readthedocs.io/en/stable/examples/>
 - <https://news.ycombinator.com/item?id=31605302>
-- <https://nextcloud.com/athome/>
-- <https://nextcloud.com/install/>
 - <https://nodered.org/>
 - <https://openbuildservice.org/>
 - <https://pressbooks-dev.oer.hawaii.edu/principlesofeconomics/chapter/10-2-oligopoly/>
@@ -209,3 +236,41 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://www.upbound.io/>
 - <https://www.wireguard.com/>
 - <https://www.wiz.io/>
+
+## New
+
+- <https://wiki.ubuntu.com/Minimal>
+- <https://linux.die.net/man/8/dmidecode>
+- <https://www.ibm.com/docs/en/spectrumvirtualsoftw/8.2.x?topic=planning-iscsi-overview>
+- <https://betterprogramming.pub/strato-dyndns-controller-for-kubernetes-9a59ae426c5b>
+- <https://codeburst.io/ddclient-c9a6ac1d8f81>
+- <https://morioh.com/a/a7abca2fa0c4/how-to-setup-a-free-dynamic-dns-service-with-ddclient-on-kubernetes>
+- <https://www.kubecost.com/kubernetes-best-practices/kubernetes-external-service/>
+- <https://en.wikipedia.org/wiki/TUN/TAP>
+- <https://wiki.ubuntu.com/PlanetUbuntu>
+- <https://wiki.ubuntu.com/Membership>
+- <http://www.catb.org/~esr/writings/magic-cauldron/magic-cauldron.html>
+- <https://www.sanitarium.net/jokes/getjoke.cgi?41>
+- <https://developer.ibm.com/articles/compare-deep-learning-frameworks/>
+- <https://developer.ibm.com/articles/cc-machine-learning-deep-learning-architectures/>
+- <https://developer.ibm.com/components/tekton/>
+- <https://developer.ibm.com/>
+- <https://www.seebs.net/faqs/manager.html>
+- <https://www.seebs.net/faqs/hacker.html>
+- <https://en.wikipedia.org/wiki/The_Magic_Cauldron_(essay)>
+- <https://en.wikipedia.org/wiki/Homesteading_the_Noosphere>
+- <https://ideas.ted.com/sick-and-tired-of-the-culture-of-contempt-here-are-5-ways-you-can-subvert-it/>
+- <https://blog.aurynn.com/2015/12/16-contempt-culture>
+- <https://www.sangoma.com/products/open-source/>
+- <https://docs.asterisk.org/About-the-Project/A-Brief-History-of-the-Asterisk-Project/>
+- <https://clusterlabs.org/pacemaker/>
+- <https://corosync.github.io/corosync/>
+- <https://en.wikipedia.org/wiki/Corosync_Cluster_Engine>
+- <https://en.wikipedia.org/wiki/Hyper-converged_infrastructure>
+- <https://en.wikipedia.org/wiki/Proxmox_Virtual_Environment>
+- <https://upload.wikimedia.org/wikipedia/commons/7/79/UbuntuFamilyTree1210.svg>
+- <https://github.com/canonical/microceph/blob/main/HACKING.md>
+- <https://github.com/spf13/cobra>
+- <https://discuss.linuxcontainers.org/t/introducing-microceph/15457>
+- <https://rook.io/docs/rook/v1.3/ceph-quickstart.html>
+- <https://rook.io/docs/rook/v1.3/ceph-filesystem.html>

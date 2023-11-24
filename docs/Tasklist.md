@@ -41,6 +41,7 @@ The following checklist provides a high-level breakdown of the work that needs t
 - [ ] RAM upgrade: 8BG -> 16 GB
 - [ ] Upgrade first drives
 - [ ] Migrate DynDns updater to cluster (external-dns chart)
+- [ ] Ingress load balancer
 
 ## Task-list: Networking build
 

@@ -51,6 +51,7 @@ The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP a
 - L2 load-balancer IP address range for dev on bare metal: `192.168.0.131 - 192.168.0.140`
 - L2 load-balancer IP address range for dev on virtual servers: `192.168.0.141 - 192.168.0.150`
 - L2 load-balancer IP address range for production: `192.168.0.151 - 192.168.0.151`
+- Hercules static IP assignment: `192.168.0.160`
 
 ## /etc/hosts
 

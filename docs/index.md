@@ -31,7 +31,6 @@ Additional technology strategy:
 - No additional public service consumption, reduction where possible.
 - Continue to utilise open source software
 
-
 ## Source code
 
 The source for the project is available from a public repo on GitHub: <https://github.com/MoTTTT/QApps>.

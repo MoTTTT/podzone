@@ -64,6 +64,24 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://rocket.readthedocs.io/en/latest/README/>
 - <https://wiki.ubuntu.com/Lvm>
 - <https://www.youtube.com/watch?v=sK5i-N34im8> {Jérôme Petazzoni: cgroups, namespaces, and beyond}
+- <https://hercstudio.sourceforge.io/>
+- <https://www.howtoinstall.me/ubuntu/18-04/hercules/>
+- <https://hercstudio.sourceforge.io/ubuntu.html>
+- <http://www.hercules-390.eu/>
+- <https://ubuntu.com/download/server/s390x>
+- <http://www.hercules-390.org/hercconf.html#CCKD>
+- <https://astr0baby.wordpress.com/2018/06/03/installing-ubuntu-18-04-server-s390x-in-hercules-mainframe-simulator/>
+- <https://supratim-sanyal.blogspot.com/2018/10/bionic-beaver-on-zarchitecture-my.html>
+- <https://wiki.ubuntu.com/S390X>
+- <https://cloud-images.ubuntu.com/releases/22.04/release/>
+- <https://share.confex.com/share/124/webprogram/Handout/Session16427/share-march-2015-kvm-for-zvm-lovers.pdf>
+- <http://www.hercules-390.org/hercsupp.html>
+- <http://www.hercules-390.org/hercinst.html>
+- <https://hercstudio.sourceforge.io/index.html>
+- <https://en.wikipedia.org/wiki/Hercules_(emulator)>
+- <https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software>
+- <https://linuxcontainers.org/incus/>
+- <https://linuxcontainers.org/incus/try-it/>
 
 ## Kubernetes
 
@@ -249,6 +267,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://www.freecodecamp.org/news/subnet-cheat-sheet-24-subnet-mask-30-26-27-29-and-other-ip-address-cidr-network-references/>
 - <https://www.getambassador.io/docs/edge-stack/latest/howtos/cert-manager>
 - <https://www.wiz.io/blog/from-pod-security-policies-to-pod-security-standards-a-migration-guide>  
+- <https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>
 
 ## Storage
 

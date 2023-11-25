@@ -1,6 +1,6 @@
-# Implementation Notes
+# Prometheus Implementation Notes
 
-## Supporting Infrastructure
+## Server installation
 
 - `sudo snap install prometheus`: Available on localhost:9090
 - `nano /var/snap/prometheus/current/prometheus.yml`
@@ -25,4 +25,21 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9090']
+```
+
+## Scraping ceph
+
+- Enable ceph monitoring endpoints: `ceph mgr module enable prometheus`
+
+Add to prometheus config (IP addresses are for prod cluster):
+
+```yaml
+  - job_name: 'microceph'
+
+    # Ceph's default for scrape_interval is 15s.
+    scrape_interval: 15s
+
+    # List of all the ceph-mgr instances along with default (or configured) port.
+    static_configs:
+    - targets: ['192.168.0.4:9283', '192.168.0.14:9283', '192.168.0.21:9283']
 ```

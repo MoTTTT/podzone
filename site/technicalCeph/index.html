@@ -212,7 +212,7 @@
 <ul>
 <li>Add a disk to each node in the cluster: <code>sudo microceph disk add --wipe "/dev/sdXX"</code></li>
 </ul>
-<p>Additional basic setups:</p>
+<p>Additional basic setups, for test cluster:</p>
 <ul>
 <li><code>sudo microceph.ceph config set global osd_pool_default_size 2</code></li>
 <li><code>sudo microceph.ceph config set mgr mgr_standby_modules false</code></li>
@@ -239,7 +239,7 @@
 <li>Configure microk8s cluster:<code>sudo microk8s enable rook-ceph</code></li>
 <li>We can now connect the k8s cluster to external storage</li>
 <li>We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: <code>/var/snap/microceph/current/conf</code></li>
-<li>Using config and key: <code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd</code></li>
+<li>Using config and key: <code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool southcluster_rbd</code></li>
 </ul>
 <h2 id="some-ceph-cli-commands">Some ceph CLI commands</h2>
 <ul>

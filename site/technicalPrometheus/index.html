@@ -110,7 +110,9 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Monitoring Build Notes</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#supporting-infrastructure">Supporting Infrastructure</a>
+    <li class="toctree-l2"><a class="reference internal" href="#server-installation">Server installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#scraping-ceph">Scraping ceph</a>
     </li>
     </ul>
                 </li>
@@ -170,8 +172,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="implementation-notes">Implementation Notes</h1>
-<h2 id="supporting-infrastructure">Supporting Infrastructure</h2>
+                <h1 id="prometheus-implementation-notes">Prometheus Implementation Notes</h1>
+<h2 id="server-installation">Server installation</h2>
 <ul>
 <li><code>sudo snap install prometheus</code>: Available on localhost:9090</li>
 <li><code>nano /var/snap/prometheus/current/prometheus.yml</code></li>
@@ -195,6 +197,20 @@ scrape_configs:
 
     static_configs:
       - targets: ['localhost:9090']
+</code></pre>
+<h2 id="scraping-ceph">Scraping ceph</h2>
+<ul>
+<li>Enable ceph monitoring endpoints: <code>ceph mgr module enable prometheus</code></li>
+</ul>
+<p>Add to prometheus config (IP addresses are for prod cluster):</p>
+<pre><code class="language-yaml">  - job_name: 'microceph'
+
+    # Ceph's default for scrape_interval is 15s.
+    scrape_interval: 15s
+
+    # List of all the ceph-mgr instances along with default (or configured) port.
+    static_configs:
+    - targets: ['192.168.0.4:9283', '192.168.0.14:9283', '192.168.0.21:9283']
 </code></pre>
               
             </div>

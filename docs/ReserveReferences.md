@@ -283,5 +283,5 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://laptop.org/>
 - <https://news.ycombinator.com/item?id=35166317>
 - <https://wiki.ubuntu.com/Lvm>
-
+- <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/enable-metrics/>
 

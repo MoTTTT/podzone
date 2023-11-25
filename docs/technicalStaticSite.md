@@ -1,10 +1,18 @@
 # Wrapping static site functionality into a helm chart
 
-An open sourced helm chart has been published. If anyone else has this **exact** same requirement or use-case, then it would save a bit of work for others. Hope so.
+Kubernetes object specifications can be applied to the cluster manually using `kubectl`. However, as these objects increase in number, an abstraction above that of Kubernetes objects is useful, if not necessary. This is where helm plays a role, allowing sets of objects to be managed collectively, and provides a mechanism to externalise key aspects of configuration. This is achieved with a templating language, leaving the key configuration items isolated and aggregated. This in turn, together with a configuration value overriding facility, allows for the same package to be re-used with only the key configuration items requiring further management.
+
+## static-site
+
+The kubernetes objects required for a static site have been refactored into a dedicated github repo: <https://github.com/MoTTTT/static-site.git>
+
+The helm chart has been published on [Cloudsmith](https://cloudsmith.com). It is available here: <https://cloudsmith.io/~q-solutions/repos/static-site/packages/>.
+
+If anyone else has a similar requirement or use-case, then it would save a bit of work. I hope so, and welcome feedback.
 
 ## Helm Chart description
 
-Hardened Apache Web Server with git-sync, and LetsEncrypt certificate
+**Hardened Apache Web Server with git-sync, and LetsEncrypt certificate**
 
 This Helm Chart contains the following resources:
 

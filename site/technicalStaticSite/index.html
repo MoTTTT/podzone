@@ -98,6 +98,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Static site Helm Chart</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#static-site">static-site</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#helm-chart-description">Helm Chart description</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
@@ -183,9 +185,13 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="wrapping-static-site-functionality-into-a-helm-chart">Wrapping static site functionality into a helm chart</h1>
-<p>An open sourced helm chart has been published. If anyone else has this <strong>exact</strong> same requirement or use-case, then it would save a bit of work for others. Hope so.</p>
+<p>Kubernetes object specifications can be applied to the cluster manually using <code>kubectl</code>. However, as these objects increase in number, an abstraction above that of Kubernetes objects is useful, if not necessary. This is where helm plays a role, allowing sets of objects to be managed collectively, and provides a mechanism to externalise key aspects of configuration. This is achieved with a templating language, leaving the key configuration items isolated and aggregated. This in turn, together with a configuration value overriding facility, allows for the same package to be re-used with only the key configuration items requiring further management.</p>
+<h2 id="static-site">static-site</h2>
+<p>The kubernetes objects required for a static site have been refactored into a dedicated github repo: <a href="https://github.com/MoTTTT/static-site.git">https://github.com/MoTTTT/static-site.git</a></p>
+<p>The helm chart has been published on <a href="https://cloudsmith.com">Cloudsmith</a>. It is available here: <a href="https://cloudsmith.io/~q-solutions/repos/static-site/packages/">https://cloudsmith.io/~q-solutions/repos/static-site/packages/</a>.</p>
+<p>If anyone else has a similar requirement or use-case, then it would save a bit of work. I hope so, and welcome feedback.</p>
 <h2 id="helm-chart-description">Helm Chart description</h2>
-<p>Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</p>
+<p><strong>Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</strong></p>
 <p>This Helm Chart contains the following resources:</p>
 <ul>
 <li>clusterissuer.yaml: Set the <code>issuer</code> definition in values.yaml</li>

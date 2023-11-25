@@ -104,13 +104,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#publishing-and-use-of-the-helm-chart">Publishing and use of the helm chart</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installation-and-cluster-validation">Installation, and cluster validation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#hardening">Hardening</a>
+    <li class="toctree-l2"><a class="reference internal" href="#apache-hardening">Apache Hardening</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hardening-apache">Hardening: Apache</a>
+    <li class="toctree-l3"><a class="reference internal" href="#approach">Approach</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#to_do">To_Do</a>
     </li>
     </ul>
                 </li>
@@ -209,17 +209,10 @@
 cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz
 </code></pre>
 <p>The package is now available as: <a href="https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/</a>.</p>
-<p>The default chart deploys musings.thruhere.net, and is deployed as release <code>musings-01</code> follows:</p>
+<p>The default chart deploys the <a href="https://musings.thruhere.net">https://musings.thruhere.net</a> site, and is deployed as release <code>musings-01</code> as follows:</p>
 <pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
 </code></pre>
 <p>Using a values file overriding details like dns name, and source git repo, the second static site is deployed as release <code>podzone-01</code>:</p>
-<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
-</code></pre>
-<h2 id="installation-and-cluster-validation">Installation, and cluster validation</h2>
-<p>The default settings for static-site deploys the <a href="https://musings.thruhere.net">https://musings.thruhere.net</a> site:</p>
-<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-</code></pre>
-<p>To install podzone docs, some values are overridden using:</p>
 <pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
 </code></pre>
 <p>The values.yaml file for the podzone site looks like this:</p>
@@ -251,16 +244,20 @@ ingress:
 test:
   url: &quot;https://docs.podzone.net/index.html&quot;
 </code></pre>
-<h2 id="hardening">Hardening</h2>
-<h3 id="hardening-apache">Hardening: Apache</h3>
+<h2 id="apache-hardening">Apache Hardening</h2>
+<p>The Apache server is a very capable and feature complete web server, serving or fronting over 10% of web and application resource installations. The default Apache configuration accommodates a broad set of web server use-cases, providing web server administrators considerable flexibility, and also the responsibility of first line defence. During initial testing, it was evident from request logs that some viewers were hostile. This was evident from the <code>.git</code> directory interest, and the expressed hope that a vulnerable wordpress site had been found.</p>
+<p>The default configuration therefore represents an unnecessarily large attack surface. The specific requirements for the applications is narrow in scope. There is no need for directory listings. Nor are there any legitimate POST requests. This would be the case for most static sites, especially considering the typical microservice architecture, where api deployments can be distinct from the front-end functionality.</p>
+<p>One of the reasons to share the final configuration is the possibility of improvement through feedback.</p>
+<h3 id="approach">Approach</h3>
 <ul>
 <li>Extract default httpd.conf</li>
 <li>Disable unused modules</li>
-<li>Apply best-practice hardening configurations</li>
+<li>Set minimum privileges on document root - no directory listings.</li>
+<li>Disable POST requests</li>
+<li>Apply best-practice hardening configurations (more about this can be found in references).</li>
 </ul>
 <p>The final configuration file is as follows:</p>
-<pre><code class="language-conf"># httpd.conf
-# Apache configuration customised for qapps
+<pre><code class="language-conf"># httpd.conf for static-site
 
 # Modules critical for simple static site use-case
 LoadModule mpm_event_module modules/mod_mpm_event.so
@@ -340,6 +337,10 @@ LogLevel warn
     AddType application/x-gzip .gz .tgz
 &lt;/IfModule&gt;
 </code></pre>
+<h2 id="to_do">To_Do</h2>
+<ul>
+<li>The static-site V0.1.1 solution has a broader dependency: updating of Name Server entries for the site domains. Currently the installation has the support of a DynDns updater running on an unrelated host on the network. Adding an operator to handle this on the cluster, one for each site is required.</li>
+</ul>
               
             </div>
           </div><footer>

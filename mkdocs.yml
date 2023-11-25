@@ -25,6 +25,7 @@ nav:
   - Service Dependencies: externalServices.md
   - Request Routing: ingress.md
   - Implementation Notes: technical.md
+  - Static site Helm Chart: technicalStaticSite.md
   - Storage Cluster: technicalCeph.md
   - Application Build Notes: technicalApplication.md 
   - Monitoring Build Notes: technicalPrometheus.md 

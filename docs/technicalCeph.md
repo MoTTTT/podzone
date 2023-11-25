@@ -28,7 +28,7 @@ To resize root partition to use all of the available space:
 ```bash
   #!/bin/bash
   loop_file="$(sudo mktemp -p /mnt XXXX.img)"
-  sudo truncate -s 10G "${loop_file}"
+  sudo truncate -s 60G "${loop_file}"
   loop_dev="$(sudo losetup --show -f "${loop_file}")"
   minor="${loop_dev##/dev/loop}"
   sudo mknod -m 0660 "/dev/sdib" b 7 "${minor}"

@@ -104,17 +104,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#static-site-wrapper">Static site wrapper</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#hardening">Hardening</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#hardening-apache">Hardening: Apache</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#juju-configuration">juju configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#ceph-configuration">Ceph configuration</a>
     </li>
     </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Static site Helm Chart</a>
                 </li>
               </ul>
               <ul>
@@ -211,6 +207,7 @@
 <li>Ubuntu Server and Desktop: <code>sudo snap install microk8s --channel=1.28/stable --classic</code></li>
 <li>Ubuntu Core: <code>sudo snap install microk8s --channel=latest/edge/strict</code></li>
 <li>If required to prevent deployment to RPi arch (e.g. Opensearch): <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
+<li>Set up user with sudo rights</li>
 </ul>
 <h2 id="cluster-configuration">Cluster configuration</h2>
 <ul>
@@ -224,179 +221,30 @@
 <li>NOTE: This gives <code>ingressClassName: nginx</code></li>
 </ul>
 <h2 id="infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</h2>
-<p>Initial kubernetes cluster and application functionality is tested using hand-coded kubernetes resources.</p>
+<p>An installation of static-site, with default configuration (musings):</p>
+<p>NOTE: WAN port forwarding to the metallb IP address is required for certificates to be issued.</p>
+<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
+</code></pre>
+<p>This install tests the following cluster capabilities:</p>
 <ul>
-<li>Test with apache over http, by applying the following</li>
-<li>ApacheService.yaml</li>
-<li>ApacheVolumeClaim.yaml</li>
-<li>Apache.yaml</li>
-<li>ApacheIngress.yaml</li>
-<li>Checkpoint: This should provide web solution at lbr IP address, and a certificate error on external access</li>
-<li>ClusterIssuer.yaml</li>
-<li>Certificates.yaml</li>
-<li>ApacheSecureIngress.yaml</li>
+<li>L2 load balancer</li>
+<li>Ingress</li>
+<li>Certificate Manager</li>
 </ul>
-<h2 id="static-site-wrapper">Static site wrapper</h2>
-<p>There are two static sites in scope. Both require the following features:</p>
+<p>To install podzone docs:</p>
+<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
+</code></pre>
+<h2 id="ceph-configuration">Ceph configuration</h2>
 <ul>
-<li>Leverage container storage class, provided by an external ceph cluster.</li>
-<li>Set up https certificates using LetsEncrypt</li>
-<li>Leverage L2 load-balancer and Internet ingress</li>
-<li>Pull the static content from a github repo</li>
-<li>Externalised Web server configuration for hardening without image build</li>
-</ul>
-<p>The <strong>kubernetes</strong> resources and configuration for the musings site is wrapped using helm. The helm chart is packaged and kindly hosted on Cloudsmith.</p>
-<p>Once the Cloudsmith account is created, a repo needs to be created, and the package can be uploaded through the web GUI.</p>
-<p>A CLI is available for Cloudsmith, allowing a more automated approach.</p>
-<p>To package and upload:</p>
-<pre><code class="language-bash">helm package ./qapps
-cloudsmith push helm q-solutions/qapps qapps-0.1.1.tgz
-</code></pre>
-<p>The package is now available as: <a href="https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/</a>.</p>
-<p>The default chart deploys musings.thruhere.net, and is deployed as follows:</p>
-<pre><code class="language-bash">helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
-</code></pre>
-<p>A set of value overrides is applied to deploy the docs.podzone.net site, and is deployed as follows (with a values.yaml file in the current directory):</p>
-<pre><code class="language-bash">helm  install apple-base --debug  --namespace podzone qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/' -f values.yaml --values values.yaml
-</code></pre>
-<p>Note the following:</p>
-<ul>
-<li><code>orange-base</code> and <code>apple-base</code> are release names</li>
-<li>The name-spaces <code>musings</code> and <code>podzone</code> are used to keep resources separated, and need to pre-exist. e.g. <code>kubectl create namespace podzone</code></li>
-</ul>
-<p>The values.yaml file for the podzone site looks like this:</p>
-<pre><code class="language-yaml"># Override defaults from qapps for podzone site.
-certificates:
-  musings:
-    name: podzone-cert
-    dnsName: docs.podzone.net
-gitsyncimage:
-  args:
-    - --repo=https://github.com/MoTTTT/podzone.git
-    - --depth=1
-    - --period=240s
-    - --max-failures=10
-    - --link=current
-    - --root=/git-apache
-    - --verbose=9
-ingress:
-  hosts:
-  - host: docs.podzone.net
-    paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          service:
-            name: apache-service
-            port:
-              number: 80
-  tls:
-    - secretName: podzone-cert
-      hosts:
-        - docs.podzone.net
-test:
-  url: &quot;https://docs.podzone.net/index.html&quot;
-</code></pre>
-<h2 id="hardening">Hardening</h2>
-<h3 id="hardening-apache">Hardening: Apache</h3>
-<ul>
-<li>Extract default httpd.conf</li>
-<li>Disable unused modules</li>
-<li>Apply best-practice hardening configurations</li>
-</ul>
-<p>The final configuration file is as follows:</p>
-<pre><code class="language-conf"># httpd.conf
-# Apache configuration customised for qapps
-
-# Modules critical for simple static site use-case
-LoadModule mpm_event_module modules/mod_mpm_event.so
-LoadModule access_compat_module modules/mod_access_compat.so
-LoadModule reqtimeout_module modules/mod_reqtimeout.so
-LoadModule mime_module modules/mod_mime.so
-LoadModule log_config_module modules/mod_log_config.so
-LoadModule headers_module modules/mod_headers.so
-LoadModule unixd_module modules/mod_unixd.so
-LoadModule dir_module modules/mod_dir.so
-LoadModule authz_core_module modules/mod_authz_core.so
-
-# Generic settings for qapps apache server component
-ServerRoot &quot;/usr/local/apache2&quot;
-Listen 80
-ServerAdmin martinjcolley@gmail.com
-&lt;IfModule unixd_module&gt;
-    User www-data
-    Group www-data
-&lt;/IfModule&gt;
-
-# Document root set up to accommodate &quot;current/site&quot; content root provided by volume mapped git-sync directory
-# Only request types required for static site access are allowed
-# Indexes not generated where index.html file does not exist
-DocumentRoot &quot;/usr/local/apache2/htdocs/current/site&quot;
-&lt;Directory &quot;/usr/local/apache2/htdocs/current/site&quot;&gt;
-    Options -Indexes -Includes +FollowSymLinks
-    AllowOverride None
-    Require all granted
-    &lt;LimitExcept GET HEAD&gt;
-        deny from all
-    &lt;/LimitExcept&gt;
-&lt;/Directory&gt;
-
-# Hardening:
-# Prevent server detail leakages
-# Set headers for best practice security
-# Enable request time-out to prevent slow request denial of service
-ServerTokens Prod
-ServerSignature Off
-FileETag None
-TraceEnable off
-Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
-Header always append X-Frame-Options SAMEORIGIN
-Header set X-XSS-Protection &quot;1; mode=block&quot;
-Timeout 60
-&lt;IfModule dir_module&gt;
-    DirectoryIndex index.html
-&lt;/IfModule&gt;
-&lt;Files &quot;.ht*&quot;&gt;
-    Require all denied
-&lt;/Files&gt;
-&lt;Directory /&gt;
-    AllowOverride none
-    Require all denied
-&lt;/Directory&gt;
-&lt;IfModule headers_module&gt;
-    RequestHeader unset Proxy early
-&lt;/IfModule&gt;
-
-# Logging configuration
-ErrorLog /proc/self/fd/2
-LogLevel warn
-&lt;IfModule log_config_module&gt;
-    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot;&quot; combined
-    LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b&quot; common
-    &lt;IfModule logio_module&gt;
-      LogFormat &quot;%h %l %u %t \&quot;%r\&quot; %&gt;s %b \&quot;%{Referer}i\&quot; \&quot;%{User-Agent}i\&quot; %I %O&quot; combinedio
-    &lt;/IfModule&gt;
-    CustomLog /proc/self/fd/1 common
-&lt;/IfModule&gt;
-
-# Support for compression
-&lt;IfModule mime_module&gt;
-    TypesConfig conf/mime.types
-    AddType application/x-compress .Z
-    AddType application/x-gzip .gz .tgz
-&lt;/IfModule&gt;
-</code></pre>
-<h2 id="juju-configuration">juju configuration</h2>
-<ul>
-<li><code>juju add-k8s prod --storage=ceph-rbd</code></li>
-<li><code>juju bootstrap prod</code></li>
+<li><code>microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
+<li><code>microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool microk8s_rbd</code></li>
 </ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../ingress/" class="btn btn-neutral float-left" title="Request Routing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalCeph/" class="btn btn-neutral float-right" title="Storage Cluster">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalStaticSite/" class="btn btn-neutral float-right" title="Static site Helm Chart">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -422,7 +270,7 @@ LogLevel warn
       <span><a href="../ingress/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../technicalCeph/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technicalStaticSite/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

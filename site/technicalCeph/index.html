@@ -95,6 +95,10 @@
                 <li class="toctree-l1"><a class="reference internal" href="../technical/">Implementation Notes</a>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Static site Helm Chart</a>
+                </li>
+              </ul>
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Storage Cluster</a>
     <ul class="current">
@@ -200,7 +204,7 @@
 </ul>
 <pre><code class="language-bash">  #!/bin/bash
   loop_file=&quot;$(sudo mktemp -p /mnt XXXX.img)&quot;
-  sudo truncate -s 10G &quot;${loop_file}&quot;
+  sudo truncate -s 60G &quot;${loop_file}&quot;
   loop_dev=&quot;$(sudo losetup --show -f &quot;${loop_file}&quot;)&quot;
   minor=&quot;${loop_dev##/dev/loop}&quot;
   sudo mknod -m 0660 &quot;/dev/sdib&quot; b 7 &quot;${minor}&quot;
@@ -250,7 +254,7 @@
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technical/" class="btn btn-neutral float-left" title="Implementation Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalStaticSite/" class="btn btn-neutral float-left" title="Static site Helm Chart"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../technicalApplication/" class="btn btn-neutral float-right" title="Application Build Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -274,7 +278,7 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technical/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../technicalStaticSite/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../technicalApplication/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -274,3 +274,14 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://discuss.linuxcontainers.org/t/introducing-microceph/15457>
 - <https://rook.io/docs/rook/v1.3/ceph-quickstart.html>
 - <https://rook.io/docs/rook/v1.3/ceph-filesystem.html>
+- <https://blog.linuxmint.com/?p=3766>
+- <https://blog.linuxmint.com/?p=3906>
+- <https://linuxmint-user-guide.readthedocs.io/en/latest/snap.html>
+- <https://en.wikipedia.org/wiki/Snap_(software)>
+- <https://0pointer.de/blog/projects/the-biggest-myths.html>
+- <https://thenewstack.io/unix-greatest-inspiration-behind-systemd/>
+- <https://laptop.org/>
+- <https://news.ycombinator.com/item?id=35166317>
+- <https://wiki.ubuntu.com/Lvm>
+
+

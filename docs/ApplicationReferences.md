@@ -71,8 +71,6 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://www.zope.dev/world.html>
 - <https://hub.docker.com/r/robcast/legacy-zope>
 
-
-
 ## Network, Ingress and Certification Management
 
 - <https://benbrougher.tech/posts/microk8s-ingress/>

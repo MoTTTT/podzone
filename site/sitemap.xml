@@ -2,127 +2,132 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://musings.thruhere.net/podzone/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/ApplicationReferences/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/IoTReferences/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/Issues/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/QApps/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/ResearchReferences/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/ReserveReferences/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/Tasklist/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/TroubleshootingReferences/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/applicationBuild/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/deprecated/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/externalServices/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/ingress/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/inventory/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/network/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/raspberrypis/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/servers/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/siteStructure/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/technical/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/technicalApplication/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/technicalCeph/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/technicalPrometheus/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://musings.thruhere.net/podzone/technicalStaticSite/</loc>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/tools/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/vminventory/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/workstation/</loc>
-         <lastmod>2023-11-17</lastmod>
+         <lastmod>2023-11-25</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

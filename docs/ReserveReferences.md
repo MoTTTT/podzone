@@ -284,4 +284,9 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://news.ycombinator.com/item?id=35166317>
 - <https://wiki.ubuntu.com/Lvm>
 - <https://canonical-microceph.readthedocs-hosted.com/en/latest/how-to/enable-metrics/>
-
+- <https://docs.ceph.com/en/quincy/mgr/dashboard/>
+- <https://grafana.com/docs/grafana/latest/fundamentals/intro-to-prometheus/>
+- <https://jonathangazeley.com/2020/09/10/building-a-hyperconverged-kubernetes-cluster-with-microk8s-and-ceph/>
+- <https://docs.ceph.com/en/latest/mgr/orchestrator/>
+- <https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-22-04>
+- 

@@ -5,7 +5,7 @@
 - `sudo snap install prometheus`: Available on localhost:9090
 - `nano /var/snap/prometheus/current/prometheus.yml`
 
-```conf
+```yaml
 global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 

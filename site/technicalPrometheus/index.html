@@ -178,7 +178,7 @@
 <li><code>sudo snap install prometheus</code>: Available on localhost:9090</li>
 <li><code>nano /var/snap/prometheus/current/prometheus.yml</code></li>
 </ul>
-<pre><code class="language-conf">global:
+<pre><code class="language-yaml">global:
   scrape_interval:     15s # By default, scrape targets every 15 seconds.
 
   # Attach these labels to any time series or alerts when communicating with

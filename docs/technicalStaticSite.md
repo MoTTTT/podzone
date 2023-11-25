@@ -34,27 +34,13 @@ cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz
 
 The package is now available as: <https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/>.
 
-The default chart deploys musings.thruhere.net, and is deployed as release `musings-01` follows:
+The default chart deploys the <https://musings.thruhere.net> site, and is deployed as release `musings-01` as follows:
 
 ```bash
 helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
 ```
 
 Using a values file overriding details like dns name, and source git repo, the second static site is deployed as release `podzone-01`:
-
-```bash
-helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
-```
-
-## Installation, and cluster validation
-
-The default settings for static-site deploys the <https://musings.thruhere.net> site:
-
-```bash
-helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-```
-
-To install podzone docs, some values are overridden using:
 
 ```bash
 helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
@@ -92,19 +78,26 @@ test:
   url: "https://docs.podzone.net/index.html"
 ```
 
-## Hardening
+## Apache Hardening
 
-### Hardening: Apache
+The Apache server is a very capable and feature complete web server, serving or fronting over 10% of web and application resource installations. The default Apache configuration accommodates a broad set of web server use-cases, providing web server administrators considerable flexibility, and also the responsibility of first line defence. During initial testing, it was evident from request logs that some viewers were hostile. This was evident from the `.git` directory interest, and the expressed hope that a vulnerable wordpress site had been found.
+
+The default configuration therefore represents an unnecessarily large attack surface. The specific requirements for the applications is narrow in scope. There is no need for directory listings. Nor are there any legitimate POST requests. This would be the case for most static sites, especially considering the typical microservice architecture, where api deployments can be distinct from the front-end functionality.
+
+One of the reasons to share the final configuration is the possibility of improvement through feedback.
+
+### Approach
 
 - Extract default httpd.conf
 - Disable unused modules
-- Apply best-practice hardening configurations
+- Set minimum privileges on document root - no directory listings.
+- Disable POST requests
+- Apply best-practice hardening configurations (more about this can be found in references).
 
 The final configuration file is as follows:
 
 ```conf
-# httpd.conf
-# Apache configuration customised for qapps
+# httpd.conf for static-site
 
 # Modules critical for simple static site use-case
 LoadModule mpm_event_module modules/mod_mpm_event.so
@@ -184,3 +177,7 @@ LogLevel warn
     AddType application/x-gzip .gz .tgz
 </IfModule>
 ```
+
+## To_Do
+
+- The static-site V0.1.1 solution has a broader dependency: updating of Name Server entries for the site domains. Currently the installation has the support of a DynDns updater running on an unrelated host on the network. Adding an operator to handle this on the cluster, one for each site is required.

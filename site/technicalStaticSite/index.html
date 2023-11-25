@@ -101,6 +101,10 @@
     <li class="toctree-l2"><a class="reference internal" href="#static-site">static-site</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#helm-chart-description">Helm Chart description</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hardened-apache-web-server-with-git-sync-and-letsencrypt-certificate">Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
     </li>
@@ -191,15 +195,15 @@
 <p>The helm chart has been published on <a href="https://cloudsmith.com">Cloudsmith</a>. It is available here: <a href="https://cloudsmith.io/~q-solutions/repos/static-site/packages/">https://cloudsmith.io/~q-solutions/repos/static-site/packages/</a>.</p>
 <p>If anyone else has a similar requirement or use-case, then it would save a bit of work. I hope so, and welcome feedback.</p>
 <h2 id="helm-chart-description">Helm Chart description</h2>
-<p><strong>Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</strong></p>
-<p>This Helm Chart contains the following resources:</p>
+<h3 id="hardened-apache-web-server-with-git-sync-and-letsencrypt-certificate">Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</h3>
+<p>The Helm Chart contains the following resources:</p>
 <ul>
-<li>clusterissuer.yaml: Set the <code>issuer</code> definition in values.yaml</li>
-<li>certificate.yaml: Set the <code>certificate</code> definition in values.yaml</li>
+<li>clusterissuer.yaml: This sets up a config for the certificate requests. Set the <code>issuer</code> definition in values.yaml</li>
+<li>certificate.yaml: This sets up a certificate for the site. Set the <code>certificate</code> definition in values.yaml</li>
 <li>configmap.yaml: This loads a minimal <code>httpd.conf</code> file, with security hardening appropriate for a static site</li>
 <li>deployment.yaml: This spins up Apache, with a git-sync-sidecar, and uses the <code>httpd.conf</code> configmap</li>
-<li>ingress.yaml: Set the <code>ingres</code> definition in values.yaml</li>
-<li>service.yaml: Service endpoint for the deployment</li>
+<li>service.yaml: This is a cluster internal endpoint that load balances requests to the pods in the deployment.</li>
+<li>ingress.yaml: This sets up an external endpoint, and routes requests to the Service. Set the <code>ingres</code> definition in values.yaml</li>
 <li>serviceaccount.yaml: Service Account for the deployment</li>
 </ul>
 <h2 id="prerequisites">Prerequisites</h2>
@@ -211,9 +215,10 @@
 </ul>
 <h2 id="publishing-and-use-of-the-helm-chart">Publishing and use of the helm chart</h2>
 <p>The helm chart is packaged using helm, and kindly hosted on Cloudsmith.</p>
-<pre><code class="language-bash">helm package ./static-site
-cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz
-</code></pre>
+<ul>
+<li>To package the helm chart: <code>helm package ./static-site</code></li>
+<li>To upload to CloudSmith: <code>cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz</code></li>
+</ul>
 <p>The package is now available as: <a href="https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/</a>.</p>
 <p>The default chart deploys the <a href="https://musings.thruhere.net">https://musings.thruhere.net</a> site, and is deployed as release <code>musings-01</code> as follows:</p>
 <pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
@@ -221,7 +226,7 @@ cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz
 <p>Using a values file overriding details like dns name, and source git repo, the second static site is deployed as release <code>podzone-01</code>:</p>
 <pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
 </code></pre>
-<p>The values.yaml file for the podzone site looks like this:</p>
+<p>The valuespodzone.yaml file looks like this:</p>
 <pre><code class="language-yaml"># Override defaults from qapps for podzone site.
 # Values for podzone
 certificate:

@@ -12,16 +12,16 @@ If anyone else has a similar requirement or use-case, then it would save a bit o
 
 ## Helm Chart description
 
-**Hardened Apache Web Server with git-sync, and LetsEncrypt certificate**
+### Hardened Apache Web Server with git-sync, and LetsEncrypt certificate
 
-This Helm Chart contains the following resources:
+The Helm Chart contains the following resources:
 
-- clusterissuer.yaml: Set the `issuer` definition in values.yaml
-- certificate.yaml: Set the `certificate` definition in values.yaml
+- clusterissuer.yaml: This sets up a config for the certificate requests. Set the `issuer` definition in values.yaml
+- certificate.yaml: This sets up a certificate for the site. Set the `certificate` definition in values.yaml
 - configmap.yaml: This loads a minimal `httpd.conf` file, with security hardening appropriate for a static site
 - deployment.yaml: This spins up Apache, with a git-sync-sidecar, and uses the `httpd.conf` configmap
-- ingress.yaml: Set the `ingres` definition in values.yaml
-- service.yaml: Service endpoint for the deployment
+- service.yaml: This is a cluster internal endpoint that load balances requests to the pods in the deployment.
+- ingress.yaml: This sets up an external endpoint, and routes requests to the Service. Set the `ingres` definition in values.yaml
 - serviceaccount.yaml: Service Account for the deployment
 
 ## Prerequisites
@@ -35,10 +35,8 @@ This Helm Chart contains the following resources:
 
 The helm chart is packaged using helm, and kindly hosted on Cloudsmith.
 
-```bash
-helm package ./static-site
-cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz
-```
+- To package the helm chart: `helm package ./static-site`
+- To upload to CloudSmith: `cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz`
 
 The package is now available as: <https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/>.
 
@@ -54,7 +52,7 @@ Using a values file overriding details like dns name, and source git repo, the s
 helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
 ```
 
-The values.yaml file for the podzone site looks like this:
+The valuespodzone.yaml file looks like this:
 
 ```yaml
 # Override defaults from qapps for podzone site.

@@ -289,4 +289,46 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://jonathangazeley.com/2020/09/10/building-a-hyperconverged-kubernetes-cluster-with-microk8s-and-ceph/>
 - <https://docs.ceph.com/en/latest/mgr/orchestrator/>
 - <https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-22-04>
-- 
+- <https://apps.apple.com/us/app/wireguard/id1451685025?mt=12>
+- <https://nordvpn.com/blog/vpn-wireguard/>
+- <https://vitux.com/how-to-install-wireguard-vpn-on-ubuntu-22-04/>
+- <https://www.digitalocean.com/community/tutorials/how-to-set-up-wireguard-on-ubuntu-22-04>
+- <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/47>
+- <https://discuss.linuxcontainers.org/t/introducing-microceph/15457/45>
+- <https://github.com/canonical/microceph/issues/251#issuecomment-1809014963>
+- <https://github.com/canonical/microceph/issues/146>
+- <https://github.com/canonical/microceph/issues/254>
+- <https://docs.ceph.com/en/mimic/start/quick-ceph-deploy/>
+- <https://medium.com/cts-technologies/are-kubernetes-days-numbered-a3c267e65ee9>
+- <https://www.theregister.com/2021/03/22/canonical_flutter/>
+- <https://martinfowler.com/bliki/CrossPlatformMobile.html>
+- <https://canonical.com/blog/bring-multi-platform-apps-to-linux-desktop-with-flutter-3>
+- <https://pub.dev/publishers/canonical.com/packages>
+- <https://github.com/firecracker-microvm/firecracker/blob/main/docs/prod-host-setup.md>
+- <https://aws.amazon.com/fargate/>
+- <https://aws.amazon.com/lambda/>
+- <https://github.com/firecracker-microvm/firecracker>
+- <https://opensource.com/article/19/3/rust-virtual-machine>
+- <https://chromium.googlesource.com/chromiumos/platform/crosvm/>
+- <https://opensource.com/article/19/3/rust-virtual-machine>
+- <https://canonical.com/blog/how-we-designed-the-new-ubuntu-desktop-installer>
+- <https://foundation.rust-lang.org/news/2021-02-08-hello-world/>
+- <https://aturon.github.io/tech/2018/05/25/listening-part-1/>
+- <https://aturon.github.io/tech/2018/06/02/listening-part-2/>
+- <https://aturon.github.io/tech/2018/06/18/listening-part-3/>
+- <https://marc.info/?l=linux-kernel&m=137391223711946&w=2>
+- <https://marc.info/?l=linux-kernel&m=136130347127908&w=2>
+
+- <https://aturon.github.io/personal/2019/06/24/survivor-skills/>
+- <https://aturon.github.io/personal/2020/09/13/grief-trauma-healing/>
+
+- <https://bholley.net/blog/2017/stylo.html>
+
+- <https://helm.sh/docs/chart_best_practices/templates/>
+- <https://helm.sh/docs/chart_template_guide/accessing_files/>
+- <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-csi-common-issues/>
+- <https://github.com/rook/rook/tree/master/deploy/examples>
+- <https://rook.io/docs/rook/v1.12/Storage-Configuration/Shared-Filesystem-CephFS/filesystem-storage/>
+- <https://docs.ceph.com/en/mimic/cephfs/createfs/>
+- <https://docs.ceph.com/en/mimic/start/quick-cephfs/>
+- <https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/ceph_file_system_guide/introduction-to-ceph-file-system>

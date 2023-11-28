@@ -58,6 +58,12 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Server Inventory</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#production">Production</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hp-t360-specs">HP t360 specs</a>
+    </li>
+        </ul>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#development-environment">Development Environment</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#sigiriya">sigiriya</a>
@@ -65,18 +71,6 @@
     <li class="toctree-l3"><a class="reference internal" href="#bukit">bukit</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#james">james</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#levant">levant</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#production-southernpodzonenet">Production southern.podzone.net</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#habilis">habilis</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#antecessor">antecessor</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#naledi">naledi</a>
     </li>
         </ul>
     </li>
@@ -192,82 +186,54 @@
               
                 <h1 id="bare-metal-inventory">Bare Metal Inventory</h1>
 <p>The server inventory is split into "Production" and "Development".</p>
+<h2 id="production">Production</h2>
+<p>For the production environment, second hand hardware was purchased. Hardware that became redundant due to a call-centre upgrade was purchased second-hand online.</p>
+<p>The devices are HP t630 Thin Clients, for which the specifications are available from HP online: <a href="https://support.hp.com/za-en/document/c05240287">https://support.hp.com/za-en/document/c05240287</a>.</p>
+<p>The devices each had single 32GB M.2 SATA SSDs, and 8GB DDR4 RAM, which were upgraded, giving the following common configuration:</p>
+<h3 id="hp-t360-specs">HP t360 specs</h3>
+<ul>
+<li>HP t630 Thinclient</li>
+<li>OS: Ubuntu Server 22.04 minimised</li>
+<li>AMD Quad Core CPU @ 2.0 Ghz</li>
+<li>24Gb DDR4 RAM</li>
+<li>128 GB M.2 SATA SSDs</li>
+<li>256 GB M.2 SATA SSDs</li>
+</ul>
+<p>The t360s have been assigned names and static IP addresses as follows:</p>
+<ul>
+<li>habilis: 192.168.0.4</li>
+<li>antecessor: 192.168.0.14</li>
+<li>naledi: 192.168.0.21</li>
+</ul>
 <h2 id="development-environment">Development Environment</h2>
-<p>A number of personal machines and workstations (and a capable edge device) were re-purposed to create a dev environment. Upgrades to disk and ram were done where possible. It would have been great to get RAM on all devices up to 16GB, but unfortunately only one device accommodated this.</p>
+<p>Three personal machines and workstations were re-purposed to create a dev environment. Upgrades to disk and ram were done where possible. It would have been great to get RAM on all devices up to 16GB, or more, but unfortunately only one device accommodated upgrade, and that to only 16GB.</p>
 <h3 id="sigiriya">sigiriya</h3>
 <ul>
 <li>Late 2014 Mac Mini</li>
 <li>2.80GHz i5-4308U (2 core, 4 thread)</li>
 <li>8GB RAM (soldered)</li>
-<li>Ubuntu Server 22.04 (upgrade from mcOS)</li>
+<li>Ubuntu Server 22.04 (upgrade from macOS)</li>
 <li>2TB SSD (upgrade from 500GB)</li>
 <li>eth0 IP: 192.168.0.6</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh colleymj@sigiriya</li>
 </ul>
 <h3 id="bukit">bukit</h3>
 <ul>
 <li>Late 2014 Mac Mini</li>
 <li>1.4 GHz Dual Core i5</li>
 <li>4 GB RAM (soldered)</li>
-<li>Ubuntu 22.04</li>
+<li>Ubuntu 22.04 desktop (existing installation)</li>
 <li>500GB SSD</li>
 <li>eth0 IP: 192.168.0.52</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh martin@bukit</li>
+<li>admin user: martin</li>
 </ul>
 <h3 id="james">james</h3>
 <ul>
 <li>Motherboard: ASRock H61M-VS3</li>
 <li>3 GHz Quad Core i5</li>
 <li>16GB (upgrade from 8 GB) RAM</li>
-<li>Ubuntu 22.04</li>
+<li>Ubuntu 22.04 desktop (existing installation)</li>
 <li>500 GB SSD</li>
 <li>eth0 IP: 192.168.0.27</li>
-<li>eth1 IP:</li>
-<li>dolmen key exchange: ssh colleymj@james</li>
-</ul>
-<h3 id="levant">levant</h3>
-<ul>
-<li>Raspberry Pi 4 B</li>
-<li>1.8GHz Broadcom BCM2711, Quad Core Cortex-A72</li>
-<li>4GB RAM</li>
-<li>Ubuntu Core 22</li>
-<li>IP: 192.168.0.28</li>
-</ul>
-<h2 id="production-southernpodzonenet">Production southern.podzone.net</h2>
-<p>For the production environment, second hand hardware was purchased. Hardware that became redundant due to a call-centre upgrade was purchased second-hand online.</p>
-<p>The devices are HP t630 Thin Clients, for which the specifications are available from HP online: <a href="https://support.hp.com/za-en/document/c05240287">https://support.hp.com/za-en/document/c05240287</a>.</p>
-<p>Additional disk was added for the ceph cluster. If necessary, the RAM and first disk can be upgraded.</p>
-<h3 id="habilis">habilis</h3>
-<ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD slot: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-76-64-E3</li>
-<li>IP: 192.168.0.4</li>
-</ul>
-<h3 id="antecessor">antecessor</h3>
-<ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-77-0D-8D</li>
-<li>IP: 192.168.0.14</li>
-</ul>
-<h3 id="naledi">naledi</h3>
-<ul>
-<li>HP t630 Thinclient</li>
-<li>AMD Quad Core CPU @ 2.0 Ghz</li>
-<li>8Gb DDR4 ram</li>
-<li>32 GB SSD</li>
-<li>Additional SSD: Install 128 GB M.2 max 2242 module</li>
-<li>MAC: 7C-D3-0A-3E-EB-D1</li>
-<li>IP: 192.168.0.21</li>
 </ul>
               
             </div>

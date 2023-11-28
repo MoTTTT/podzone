@@ -47,11 +47,13 @@ Ingress hosts make use of the DNS entries defined above. `southern.podzone.net` 
 
 The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP addresses. The first set are assigned to the DHCP server for allocation, allowing layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease.
 
-- Addresses assigned to the router DHCP server: `192.168.0.2 - 192.168.0.99`
-- L2 load-balancer IP address range for dev on bare metal: `192.168.0.131 - 192.168.0.140`
-- L2 load-balancer IP address range for dev on virtual servers: `192.168.0.141 - 192.168.0.150`
-- L2 load-balancer IP address range for production: `192.168.0.151 - 192.168.0.151`
-- Hercules static IP assignment: `192.168.0.160`
+- `192.168.0.2 - 192.168.0.99`: Addresses assigned to the router DHCP server
+- `192.168.0.104 - 102.168.0.111`: (`192.168.0.104/29`) Wireguard
+- `192.168.0.131 - 192.168.0.140`: L2 load-balancer IP address range for dev on bare metal
+- `192.168.0.141 - 192.168.0.150`: L2 load-balancer IP address range for dev on virtual servers
+- `192.168.0.151 - 192.168.0.151`: L2 load-balancer IP address range for production
+- `192.168.0.160`: Hercules static IP assignment
+- `192.168.0.160`: Hercules static IP assignment
 
 ## /etc/hosts
 

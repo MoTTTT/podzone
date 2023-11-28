@@ -12,6 +12,7 @@ DNS domains hosted DynDns have been in use for years (the first paid for service
 - musings.thruhere.net
 - qsolutions.endoftheinternet.org
 - docs.podzone.net
+- mottttspot.servegame.org
 
 ### Hostnames configured for future use
 

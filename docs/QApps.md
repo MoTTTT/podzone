@@ -54,6 +54,7 @@ Containerised Services:
 - Postgres
 - Mail
 - Apache
+- Minecraft
 
 Operationalisation:
 

@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalWireguard/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalIoT/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Wireguard installation notes - Podzone</title>
+    <title>Rust on the uNode embedded controller development board - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Wireguard installation notes";
-        var mkdocs_page_input_path = "technicalWireguard.md";
-        var mkdocs_page_url = "/podzone/technicalWireguard/";
+        var mkdocs_page_name = "Rust on the uNode embedded controller development board";
+        var mkdocs_page_input_path = "technicalIoT.md";
+        var mkdocs_page_url = "/podzone/technicalIoT/";
       </script>
     
     <!--[if lt IE 9]>
@@ -62,7 +62,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Rust on the uNode embedded controller development board</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#toolchain-installation">Toolchain installation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#main-references">Main references</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
@@ -80,9 +88,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Wireguard installation notes</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Inventory</span></p>
@@ -126,7 +132,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Implementation</li>
-      <li class="breadcrumb-item active">Wireguard installation notes</li>
+      <li class="breadcrumb-item active">Rust on the uNode embedded controller development board</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -135,37 +141,73 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="wireguard-installation-notes">Wireguard installation notes</h1>
+                <h1 id="rust-on-the-unode-embedded-controller-development-board">Rust on the uNode embedded controller development board</h1>
+<p>The uNode (pronounced microNode) development board was designed in 1994, with a 10 unit production run in 2015.</p>
+<p>The board exposes all the pins on a connector to the 80C552 microcontroller, as well as providing on board RTC, RAM, a 16 key keypad, a 2X24 character LCD screen, and an RS232 port.</p>
+<p>Power is supplied at 9V, which is regulated on-board. There is an onboard battery keeping RAM values static, and RTC functioning in the absence of power 9V power.</p>
+<p>The board has a bootloader mode, selected with a dip switch, that allows code to be streamed in on the serial port, and stored in RAM, for execution in run mode. The bootloader mode also supports setting the RTC, and serial baud rate.</p>
+<h2 id="toolchain-installation">Toolchain installation</h2>
+<p>This is being recorded for when we want to automate build environment build.</p>
 <ul>
-<li>To load and verify wireguard linux kernel module: <code>modprobe wireguard</code>; <code>lsmod | grep wireguard</code></li>
-<li>To load permanently: <code>sudo echo 'wireguard' &gt;&gt; /etc/modules</code></li>
-<li>Install wireguard tools: <code>apt install wireguard-tools</code></li>
-<li>Generate server key, save and secure: <code>wg genkey | sudo tee /etc/wireguard/server.key</code>; <code>chmod 0400 /etc/wireguard/server.key</code></li>
-<li>Public key: <code>cat /etc/wireguard/server.key | wg pubkey | sudo tee /etc/wireguard/server.pub</code></li>
+<li>Note: The tool-chain needs to run on Linux, I shelled into a workstation from my Macbook to do the following:</li>
+<li><code>git clone https://github.com/meta-rust/meta-rust.git</code></li>
+<li><code>git clone https://git.yoctoproject.org/poky</code></li>
+<li><code>cd poky &amp;&amp; git checkout -b honister origin/honister &amp;&amp; cd -</code></li>
+<li><code>git clone https://git.openembedded.org/meta-openembedded</code></li>
+<li><code>cd meta-openembedded &amp;&amp; git checkout -b honister origin/honister &amp;&amp; cd -</code></li>
+<li><code>cd pokey</code></li>
+<li>Add rust lines to <code>BBLAYERS</code> in <code>conf/bblayers.conf</code>: </li>
 </ul>
-<p>mkdir -p /etc/wireguard/clients</p>
-<p>wg genkey | tee /etc/wireguard/clients/client1.key</p>
-<p>cat /etc/wireguard/clients/client1.key | wg pubkey | tee /etc/wireguard/clients/client1.pub</p>
-<p>/etc/wireguard/wg0.conf</p>
-<pre><code class="language-conf">[Interface]
-PrivateKey = &lt;&gt;
-Address = 192.168.0.104/29
-ListenPort = 51820
-SaveConfig = true
-[Peer]
-PublicKey = &lt;&gt;
-AllowedIPs = 192.168.0.1/24
+<pre><code class="language-text">  /mnt/data/tmp/meta-openembedded/meta-oe \
+  /mnt/data/tmp/meta-rust \`
 </code></pre>
 <ul>
-<li>Only required for egress from vpn server: <code>/etc/sysctl.conf</code>: uncomment <code>net.ipv4.ip_forward=1</code>; Apply: <code>sysctl -p</code>
-ip route list default</li>
+<li>Add <code>rust-hello-world</code> file to build directory:</li>
+</ul>
+<pre><code class="language-rust">inherit cargo
+
+SRC_URI = &quot;git://github.com/meta-rust/rust-hello-world.git;protocol=https;branch=master&quot;
+SRCREV=&quot;e0fa23f1a3cb1eb1407165bd2fc36d2f6e6ad728&quot;
+LIC_FILES_CHKSUM=&quot;file://COPYRIGHT;md5=e6b2207ac3740d2d01141c49208c2147&quot;
+
+SRC_URI += &quot;\
+    file://0001-enable-LTO.patch \
+    &quot;
+
+SUMMARY = &quot;Hello World by Cargo for Rust&quot;
+HOMEPAGE = &quot;https://github.com/meta-rust/rust-hello-world&quot;
+LICENSE = &quot;MIT | Apache-2.0&quot;
+
+S = &quot;${WORKDIR}/git&quot;
+
+BBCLASSEXTEND = &quot;native&quot;
+</code></pre>
+<ul>
+<li><code>bitbake rust-hello-world</code></li>
+<li>Initial run reported missing toolchain dependencies: <code>sudo apt install chrpath diffstat liblz4-tool</code></li>
+<li>Second run failed due to broken pipe, after an hour or so.</li>
+<li>
+<p>Third run failed due to broken pipe</p>
+</li>
+<li>
+<p>For Rasperry Pi pico: <code>MACHINE should be set to "raspberrypi-pico"</code></p>
+</li>
+<li>
+<p><code>git clone --recurse-submodules https://github.com/ahcbb6/meta-raspberrypi-baremetal.git</code></p>
+</li>
+</ul>
+<h3 id="main-references">Main references</h3>
+<ul>
+<li><a href="https://michael2012z.medium.com/rust-with-yocto-eab41476cd7b">https://michael2012z.medium.com/rust-with-yocto-eab41476cd7b</a></li>
+<li><a href="https://jaycarlson.net/embedded-linux/">https://jaycarlson.net/embedded-linux/</a></li>
+<li><a href="https://github.com/ahcbb6/meta-raspberrypi-baremetal">https://github.com/ahcbb6/meta-raspberrypi-baremetal</a></li>
 </ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalTools/" class="btn btn-neutral float-left" title="Tools"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../inventoryHosts/" class="btn btn-neutral float-right" title="Hosts Inventory">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalIngress/" class="btn btn-neutral float-left" title="Ingress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalIssues/" class="btn btn-neutral float-right" title="Issues">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -188,10 +230,10 @@ ip route list default</li>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalTools/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../technicalIngress/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../inventoryHosts/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technicalIssues/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

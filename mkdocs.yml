@@ -11,29 +11,37 @@ plugins:
 theme: readthedocs
 
 nav:
-  - Podzone Introduction: index.md
-  - Business Requirements: QApps.md
-  - Task List: Tasklist.md
-  - Virtual Machine Inventory: vminventory.md
-  - Server Inventory: servers.md
-  - IoT Inventory: raspberrypis.md
-  - Hosts Inventory: inventory.md
-  - Network Topology: network.md
-  - Site Structure and sources: siteStructure.md 
-  - Tooling: tools.md 
-  - Workstation Config: workstation.md
-  - Service Dependencies: externalServices.md
-  - Request Routing: ingress.md
-  - Implementation Notes: technical.md
-  - Static site Helm Chart: technicalStaticSite.md
-  - Storage Cluster: technicalCeph.md
-  - Application Build Notes: technicalApplication.md 
-  - Monitoring Build Notes: technicalPrometheus.md 
-  - Application Build: applicationBuild.md
-  - Issues: Issues.md
-  - Research References: ResearchReferences.md
-  - ApplicationReferences: ApplicationReferences.md
-  - Internet of Things, and Edge Computing references: IoTReferences.md
-  - Ecosystem References: ReserveReferences.md
-  - Troubleshooting References: TroubleshootingReferences.md
-  - Deprecated: deprecated.md 
+  - 'Requirements':
+    - requirementIntroduction.md
+    - requirementBackground.md
+    - requirementBusinessBrief.md
+  - 'Implementation':
+    - technicalConsumerCloud.md
+    - technicalApplication.md
+    - technicalCeph.md
+    - technicalCluster.md
+    - technicalExternalServices.md
+    - technicalIngress.md
+    - technicalIoT.md
+    - technicalIssues.md
+    - technicalNFS.md
+    - technicalNetwork.md
+    - technicalPrometheus.md
+    - technicalSiteStructure.md
+    - technicalStaticSite.md
+    - technicalTasklist.md
+    - technicalTools.md
+    - technicalWireguard.md
+  - 'Inventory':
+    - inventoryHosts.md
+    - inventoryIoT.md
+    - inventoryServers.md
+    - inventoryVm.md
+    - inventoryWorkstation.md
+  - 'References':
+      - referencesApplication.md
+      - referencesIoT.md
+      - referencesResearch.md
+      - referencesReserve.md
+      - referencesTroubleshooting.md
+

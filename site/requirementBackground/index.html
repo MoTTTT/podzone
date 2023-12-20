@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalWireguard/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/requirementBackground/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Wireguard installation notes - Podzone</title>
+    <title>Background - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Wireguard installation notes";
-        var mkdocs_page_input_path = "technicalWireguard.md";
-        var mkdocs_page_url = "/podzone/technicalWireguard/";
+        var mkdocs_page_name = "Background";
+        var mkdocs_page_input_path = "requirementBackground.md";
+        var mkdocs_page_url = "/podzone/requirementBackground/";
       </script>
     
     <!--[if lt IE 9]>
@@ -40,16 +40,20 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Requirements</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Background</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#high-level-roadmap">High Level Roadmap</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Implementation</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
@@ -80,9 +84,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Wireguard installation notes</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Inventory</span></p>
@@ -125,8 +127,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Implementation</li>
-      <li class="breadcrumb-item active">Wireguard installation notes</li>
+          <li class="breadcrumb-item">Requirements</li>
+      <li class="breadcrumb-item active">Background</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -135,37 +137,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="wireguard-installation-notes">Wireguard installation notes</h1>
+                <h1 id="background">Background</h1>
+<p>Since the late 1990s, a number of websites, applications and services have been implemented on a local site, some exposed to the Internet, and some for network internal access only.</p>
+<p>This infrastructures has served the requirements of a few people, and legal entities, some of which still have dependencies on these services.</p>
+<p>This functionality has been built as a residential on-premise set of solutions running on workstation hardware repurposed as servers, the first of these being a "Alf", a 75 MHz Pentium, with 40 M RAM.</p>
+<p>While it is difficult to imagine now, Alf, with it's limited resources by today's standards, would have run the Slackware distribution of Linux, with an application written for the Zope object publishing platform, with Postgres as database server. It would have provided additional services alongside the application server solution. None of these services were exposed on the Internet until about 2005. The first domain invoice was issued in 2008, before which free dynamic dns domains were used to serve applications and content.</p>
+<p>The first application running on-premise was a line of business application for property syndicate management, property rental management, and general purpose book-keeping and accounting reporting functionality. Over time, personal blogs, online book sales, and a cake marketing site were added. On site services grew to include mail archives, file serving, and several minecraft worlds.</p>
+<p>Of these all, the syndicate management and accounting applications are still critical, with the mail and file store solutions being used only occasionally.</p>
+<p>Faced with the shutdown of the site, and the absence of a suitable replacement site for four to six months, a plan is required to provide ongoing services. The services will need to run with no change in service delivery, after the current physical site is shut down. For some months a new site will not be available, so accommodation for the services will need to be arranged in the intervening months.</p>
+<h2 id="high-level-roadmap">High Level Roadmap</h2>
+<p>The following implementation approach will be taken:</p>
 <ul>
-<li>To load and verify wireguard linux kernel module: <code>modprobe wireguard</code>; <code>lsmod | grep wireguard</code></li>
-<li>To load permanently: <code>sudo echo 'wireguard' &gt;&gt; /etc/modules</code></li>
-<li>Install wireguard tools: <code>apt install wireguard-tools</code></li>
-<li>Generate server key, save and secure: <code>wg genkey | sudo tee /etc/wireguard/server.key</code>; <code>chmod 0400 /etc/wireguard/server.key</code></li>
-<li>Public key: <code>cat /etc/wireguard/server.key | wg pubkey | sudo tee /etc/wireguard/server.pub</code></li>
-</ul>
-<p>mkdir -p /etc/wireguard/clients</p>
-<p>wg genkey | tee /etc/wireguard/clients/client1.key</p>
-<p>cat /etc/wireguard/clients/client1.key | wg pubkey | tee /etc/wireguard/clients/client1.pub</p>
-<p>/etc/wireguard/wg0.conf</p>
-<pre><code class="language-conf">[Interface]
-PrivateKey = &lt;&gt;
-Address = 192.168.0.104/29
-ListenPort = 51820
-SaveConfig = true
-[Peer]
-PublicKey = &lt;&gt;
-AllowedIPs = 192.168.0.1/24
-</code></pre>
-<ul>
-<li>Only required for egress from vpn server: <code>/etc/sysctl.conf</code>: uncomment <code>net.ipv4.ip_forward=1</code>; Apply: <code>sysctl -p</code>
-ip route list default</li>
+<li>Migrate the services to a redundant highly available configuration, on site, using a set of servers, and related network configuration.</li>
+<li>Arrange rented / shared accommodation, and set the servers and networking up to be remotely accessed and administered.</li>
+<li>All source information, including site code and data to be available independently of the site, on the Internet, to support second site build.</li>
+<li>When relocated, set up an equivalent new site, providing site redundancy.</li>
 </ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalTools/" class="btn btn-neutral float-left" title="Tools"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../inventoryHosts/" class="btn btn-neutral float-right" title="Hosts Inventory">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../requirementIntroduction/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../requirementBusinessBrief/" class="btn btn-neutral float-right" title="QApps Business Brief">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -188,10 +181,10 @@ ip route list default</li>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalTools/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../requirementIntroduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../inventoryHosts/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../requirementBusinessBrief/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

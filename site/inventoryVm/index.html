@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalWireguard/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/inventoryVm/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Wireguard installation notes - Podzone</title>
+    <title>Virtual Machine Inventory - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Wireguard installation notes";
-        var mkdocs_page_input_path = "technicalWireguard.md";
-        var mkdocs_page_url = "/podzone/technicalWireguard/";
+        var mkdocs_page_name = "Virtual Machine Inventory";
+        var mkdocs_page_input_path = "inventoryVm.md";
+        var mkdocs_page_url = "/podzone/inventoryVm/";
       </script>
     
     <!--[if lt IE 9]>
@@ -49,7 +49,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Implementation</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
@@ -80,20 +80,46 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Wireguard installation notes</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Inventory</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Bare Metal Inventory</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Virtual Machine Inventory</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#virtual-server-ularu">Virtual server: ularu</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#virtualbox-dev-nodes">Virtualbox dev nodes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#denisova">denisova</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#rudolfensis">rudolfensis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ergaster">ergaster</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#floresiensis">floresiensis</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multipass-dev-nodes">Multipass dev nodes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-ardipithecus">multipass instance: ardipithecus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-australopithecus">multipass instance: australopithecus</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-tugenensis">multipass instance: tugenensis</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multipass-instance-tchadensis">multipass instance: tchadensis</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
                   </li>
@@ -125,8 +151,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Implementation</li>
-      <li class="breadcrumb-item active">Wireguard installation notes</li>
+          <li class="breadcrumb-item">Inventory</li>
+      <li class="breadcrumb-item active">Virtual Machine Inventory</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -135,37 +161,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="wireguard-installation-notes">Wireguard installation notes</h1>
+                <h1 id="virtual-machine-inventory">Virtual Machine Inventory</h1>
+<h2 id="virtual-server-ularu">Virtual server: ularu</h2>
+<p>Ularu is the single instance service the full current workload. It represents an unacceptable single point of failure. It is to be turned down once MVP implementation is complete.</p>
 <ul>
-<li>To load and verify wireguard linux kernel module: <code>modprobe wireguard</code>; <code>lsmod | grep wireguard</code></li>
-<li>To load permanently: <code>sudo echo 'wireguard' &gt;&gt; /etc/modules</code></li>
-<li>Install wireguard tools: <code>apt install wireguard-tools</code></li>
-<li>Generate server key, save and secure: <code>wg genkey | sudo tee /etc/wireguard/server.key</code>; <code>chmod 0400 /etc/wireguard/server.key</code></li>
-<li>Public key: <code>cat /etc/wireguard/server.key | wg pubkey | sudo tee /etc/wireguard/server.pub</code></li>
+<li>Virtualbox on bukit</li>
+<li>Ubuntu 16.04.7</li>
+<li>Zope Version 2.13.24 (python 2.7.11, linux2)</li>
+<li>QApps release 3.0</li>
+<li>RAM assignment: 1.8GB</li>
+<li>CPU assignment: 1</li>
+<li>IP: 192.168.0.3</li>
+<li>MAC: 08-00-27-C3-E9-F6</li>
+<li>ssh colleymj@ularu -p 2222</li>
 </ul>
-<p>mkdir -p /etc/wireguard/clients</p>
-<p>wg genkey | tee /etc/wireguard/clients/client1.key</p>
-<p>cat /etc/wireguard/clients/client1.key | wg pubkey | tee /etc/wireguard/clients/client1.pub</p>
-<p>/etc/wireguard/wg0.conf</p>
-<pre><code class="language-conf">[Interface]
-PrivateKey = &lt;&gt;
-Address = 192.168.0.104/29
-ListenPort = 51820
-SaveConfig = true
-[Peer]
-PublicKey = &lt;&gt;
-AllowedIPs = 192.168.0.1/24
-</code></pre>
+<h2 id="virtualbox-dev-nodes">Virtualbox dev nodes</h2>
+<p>Before the production servers were procured, "prod" (not yet feature complete, but servicing web) was run on the currently labelled "dev" infrastructure, leaving a need for dev work without compromising the rolled out solution. To support this, a set of virtual machines, running on james, were deployed. These instances are managed as follows:</p>
 <ul>
-<li>Only required for egress from vpn server: <code>/etc/sysctl.conf</code>: uncomment <code>net.ipv4.ip_forward=1</code>; Apply: <code>sysctl -p</code>
-ip route list default</li>
+<li>Vagrant to spin up the virtualbox machines, and prepare ssh access</li>
+<li>Vagrant box image: <a href="https://app.vagrantup.com/techchad2022/boxes/ubuntu2204">https://app.vagrantup.com/techchad2022/boxes/ubuntu2204</a></li>
+<li>Ansible for microk8s installation and configuration</li>
 </ul>
+<h3 id="denisova">denisova</h3>
+<ul>
+<li>RAM assignment: 4GB</li>
+<li>CPU assignment: 4</li>
+<li>MAC: 08-00-27-19-87-6B</li>
+<li>IP: 192.168.0.5</li>
+</ul>
+<h3 id="rudolfensis">rudolfensis</h3>
+<ul>
+<li>RAM assignment: 2GB</li>
+<li>CPU assignment: 1</li>
+<li>MAC: 08-00-27-1C-B8-7E</li>
+<li>IP: 192.168.0.16</li>
+</ul>
+<h3 id="ergaster">ergaster</h3>
+<ul>
+<li>RAM assignment: 2GB</li>
+<li>CPU assignment: 1</li>
+<li>MAC: 08-00-27-5D-14-DB</li>
+<li>IP: 192.168.0.17</li>
+</ul>
+<h3 id="floresiensis">floresiensis</h3>
+<ul>
+<li>RAM assignment: 1GB</li>
+<li>CPU assignment: 1</li>
+<li>MAC: 08-00-27-8A-AA-C5</li>
+<li>IP: 192.168.0.19</li>
+</ul>
+<h2 id="multipass-dev-nodes">Multipass dev nodes</h2>
+<p>These are named place-holders for a MicroCloud exercise.</p>
+<h3 id="multipass-instance-ardipithecus">multipass instance: ardipithecus</h3>
+<h3 id="multipass-instance-australopithecus">multipass instance: australopithecus</h3>
+<h3 id="multipass-instance-tugenensis">multipass instance: tugenensis</h3>
+<h3 id="multipass-instance-tchadensis">multipass instance: tchadensis</h3>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalTools/" class="btn btn-neutral float-left" title="Tools"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../inventoryHosts/" class="btn btn-neutral float-right" title="Hosts Inventory">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../inventoryServers/" class="btn btn-neutral float-left" title="Bare Metal Inventory"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../inventoryWorkstation/" class="btn btn-neutral float-right" title="Workstation config">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -188,10 +244,10 @@ ip route list default</li>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalTools/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../inventoryServers/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../inventoryHosts/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../inventoryWorkstation/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

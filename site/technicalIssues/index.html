@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalIssues/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Issues - Podzone</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Issues";
+        var mkdocs_page_input_path = "technicalIssues.md";
+        var mkdocs_page_url = "/podzone/technicalIssues/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Podzone
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Requirements</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Implementation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Issues</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#ddclient">ddclient</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#zope">Zope</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#opensearch">Opensearch</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#levant-architecture">Levant architecture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#persistent-storage-permissions">Persistent Storage permissions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vmmax_map_count">vm.max_map_count</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#networking">Networking</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#raspberry-pi">Raspberry Pi</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dolmen">Dolmen</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist/">Tasks for building Consumer Cloud Zone 1: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Inventory</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Bare Metal Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Podzone</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Implementation</li>
+      <li class="breadcrumb-item active">Issues</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="issues">Issues</h1>
+<h2 id="ddclient">ddclient</h2>
+<pre><code class="language-text">[migrations] started
+[migrations] no migrations found
+usermod: no changes
+───────────────────────────────────────
+
+      ██╗     ███████╗██╗ ██████╗ 
+      ██║     ██╔════╝██║██╔═══██╗
+      ██║     ███████╗██║██║   ██║
+      ██║     ╚════██║██║██║   ██║
+      ███████╗███████║██║╚██████╔╝
+      ╚══════╝╚══════╝╚═╝ ╚═════╝ 
+
+   Brought to you by linuxserver.io
+───────────────────────────────────────
+
+To support LSIO projects visit:
+https://www.linuxserver.io/donate/
+
+───────────────────────────────────────
+GID/UID
+───────────────────────────────────────
+
+User UID:    911
+User GID:    911
+───────────────────────────────────────
+
+[custom-init] No custom files found, skipping...
+Setting up watches.
+Watches established.
+[ls.io-init] done.
+/run/s6/basedir/scripts/rc.init: line 76: -f /etc/ddclient/ddclient.conf: not found
+Stream closed EOF for ddclient/ddclient01-76c5bc7c6d-5p922 (ddclient)
+
+</code></pre>
+<h2 id="zope">Zope</h2>
+<ul>
+<li>Currently (and since before the 2016 install) zope comes bundled with plone</li>
+<li>Plone current installs Zope 4</li>
+<li><code>Zope 4 is a successor to Zope 2.13, making many changes that are not backwards compatible with Zope 2.</code></li>
+<li>Zope 2 still available, last updated 2010: <a href="https://old.zope.dev/Products/Zope/folder_contents">https://old.zope.dev/Products/Zope/folder_contents</a></li>
+<li>Docker images for Zope 2 are available, e.g. <a href="https://hub.docker.com/r/eeacms/zope-2-10-5">https://hub.docker.com/r/eeacms/zope-2-10-5</a></li>
+<li>Check also <a href="https://github.com/plone/cookiecutter-zope-instance">https://github.com/plone/cookiecutter-zope-instance</a></li>
+</ul>
+<h2 id="opensearch">Opensearch</h2>
+<ul>
+<li>Persistent data store issues: resolved by reproducing and fixing nfs issues externally</li>
+<li><code>OpenSearch Dashboards server is not ready yet</code></li>
+<li><code>[opensearch-cluster-master-0] Not yet initialized (you may need to run securityadmin)</code></li>
+<li>Cluster not starting up, all pods up</li>
+<li>High RAM utilisation, removing until workload is deployed.</li>
+<li>Tested with fluentd (microk8s enable community first)</li>
+</ul>
+<h3 id="levant-architecture">Levant architecture</h3>
+<pre><code class="language-text">Fatal glibc error: This version of Amazon Linux requires a newer ARM64 processor compliant with at least ARM architecture 8.2-a with cryptographic extensions. 
+On EC2 this is Graviton 2 or later.
+</code></pre>
+<ul>
+<li>Prevent pod scheduling onto Levant <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
+</ul>
+<h3 id="persistent-storage-permissions">Persistent Storage permissions</h3>
+<pre><code class="language-text">Name:          cephfs-pvc-registry
+Namespace:     admin
+StorageClass:  rook-cephfs
+Status:        Pending
+Volume:        
+Labels:        &lt;none&gt;
+Annotations:   volume.beta.kubernetes.io/storage-provisioner: rook-ceph.cephfs.csi.ceph.com
+               volume.kubernetes.io/storage-provisioner: rook-ceph.cephfs.csi.ceph.com
+Finalizers:    [kubernetes.io/pvc-protection]
+Capacity:      
+Access Modes:  
+VolumeMode:    Filesystem
+Used By:       &lt;none&gt;
+Events:
+  Type     Reason                Age               From                                                                                                             Message
+  ----     ------                ----              ----                                                                                                             -------
+  Normal   ExternalProvisioning  7s (x4 over 22s)  persistentvolume-controller                                                                                      Waiting for a volume to be created either by the external provisioner 'rook-ceph.cephfs.csi.ceph.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+  Normal   Provisioning          6s (x6 over 22s)  rook-ceph.cephfs.csi.ceph.com_csi-cephfsplugin-provisioner-95fbd8485-fb9pw_69c2e6ae-38ed-45a2-970c-4723c7e3e6d0  External provisioner is provisioning volume for claim &quot;admin/cephfs-pvc-registry&quot;
+  Warning  ProvisioningFailed    6s (x6 over 22s)  rook-ceph.cephfs.csi.ceph.com_csi-cephfsplugin-provisioner-95fbd8485-fb9pw_69c2e6ae-38ed-45a2-970c-4723c7e3e6d0  failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
+</code></pre>
+<pre><code class="language-text">2023-11-20T11:29:19.877413868Z csi-snapshotter W1120 11:29:19.877245       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:29:19.877451041Z csi-snapshotter E1120 11:29:19.877305       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:29:36.823050521Z csi-snapshotter W1120 11:29:36.822847       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:29:36.823092729Z csi-snapshotter E1120 11:29:36.822917       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:30:07.188915165Z csi-snapshotter W1120 11:30:07.188720       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:30:07.188988621Z csi-snapshotter E1120 11:30:07.188779       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:30:11.962789416Z csi-snapshotter W1120 11:30:11.962564       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:30:11.962821763Z csi-snapshotter E1120 11:30:11.962645       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:30:37.517657237Z csi-snapshotter W1120 11:30:37.517472       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:30:37.517705067Z csi-snapshotter E1120 11:30:37.517544       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:30:52.471136995Z csi-snapshotter W1120 11:30:52.470842       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:30:52.471201513Z csi-snapshotter E1120 11:30:52.470918       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:31:33.033589640Z csi-snapshotter W1120 11:31:33.033389       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:31:33.033666055Z csi-snapshotter E1120 11:31:33.033451       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:31:36.770477011Z csi-snapshotter W1120 11:31:36.770049       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:31:36.770535799Z csi-snapshotter E1120 11:31:36.770202       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:32:28.083071138Z csi-snapshotter W1120 11:32:28.082874       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:32:28.083113470Z csi-snapshotter E1120 11:32:28.082932       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:32:31.358857770Z csi-snapshotter W1120 11:32:31.358678       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:32:31.358893226Z csi-snapshotter E1120 11:32:31.358733       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:33:12.002229884Z csi-snapshotter W1120 11:33:12.002044       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:33:12.002263360Z csi-snapshotter E1120 11:33:12.002089       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:33:20.724244370Z csi-snapshotter W1120 11:33:20.724086       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:33:20.724276979Z csi-snapshotter E1120 11:33:20.724140       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:33:56.586826741Z csi-snapshotter W1120 11:33:56.586617       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:33:56.586867349Z csi-snapshotter E1120 11:33:56.586700       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
+2023-11-20T11:34:04.996189494Z csi-snapshotter W1120 11:34:04.995951       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:34:04.996229187Z csi-snapshotter E1120 11:34:04.996024       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+2023-11-20T11:31:54.700054085Z csi-provisioner I1120 11:31:54.699841       1 controller.go:1337] provision &quot;admin/cephfs-pvc-registry&quot; class &quot;rook-cephfs&quot;: started
+2023-11-20T11:31:54.700403345Z csi-provisioner I1120 11:31:54.700159       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: 'Normal' reason: 'Provisioning' External provisioner is provisioning volume for claim &quot;admin/cephfs-pvc-registry&quot;
+2023-11-20T11:31:54.709752611Z csi-provisioner W1120 11:31:54.709502       1 controller.go:934] Retrying syncing claim &quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, failure 12
+2023-11-20T11:31:54.709809356Z csi-provisioner E1120 11:31:54.709572       1 controller.go:957] error syncing claim &quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;: failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
+2023-11-20T11:31:54.709836775Z csi-provisioner I1120 11:31:54.709618       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: 'Warning' reason: 'ProvisioningFailed' failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
+</code></pre>
+<pre><code class="language-text">apiVersion: v1
+data:
+  userID: Y3NpLXJiZC1wcm92aXNpb25lcg==
+  userKey: QVFDM0hrUmxacGZCSFJBQWc1Y2RDaW9ZZmxxUUdGbURuMGE3Znc9PQ==
+kind: Secret
+metadata:
+  creationTimestamp: &quot;2023-11-02T22:12:09Z&quot;
+  name: rook-csi-rbd-provisioner
+  namespace: rook-ceph-external
+  resourceVersion: &quot;2627&quot;
+  uid: 655bfcc6-eca4-41ce-a81d-e2668c327484
+type: kubernetes.io/rook
+
+</code></pre>
+<pre><code class="language-text"> Waiting for a volume to be created either by the external provisioner 'rook-ceph.rbd.csi.ceph.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.                                                 
+</code></pre>
+<pre><code class="language-text">Warning  FailedScheduling  20s (x2 over 5m20s)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..
+</code></pre>
+<ul>
+<li>test: <code>sudo microk8s kubectl --namespace rook-ceph-external get cephcluster</code></li>
+</ul>
+<p>NOTE: This gave an error for so long that I thought it was not working. Also, csi-cephfsplugin-provisioner and csi-rbdplugin-provisioner deployments (still) show 0/2 ready...</p>
+<p>While attempting to try to remove rook-ceph a few days later to retry from scratch, I got an error indicating that it was in use.</p>
+<pre><code class="language-text">colleymj@floresiensis:~$ sudo microk8s kubectl --namespace rook-ceph-external get cephcluster
+NAME                 DATADIRHOSTPATH   MONCOUNT   AGE     PHASE       MESSAGE                          HEALTH        EXTERNAL   FSID
+rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster connected successfully   HEALTH_WARN   true       717715ab-d64d-42fe-9219-486015d2c166
+</code></pre>
+<p>NFS:</p>
+<pre><code class="language-text">[2023-10-07T08:47:23,800][INFO ][o.o.s.OpenSearchSecurityPlugin] [opensearch-cluster-master-0] Disabled https compression by default to mitigate BREACH attacks. You can enable it by setting 'http.compression: true' in opensearch.yml
+[2023-10-07T08:47:23,803][INFO ][o.o.e.ExtensionsManager  ] [opensearch-cluster-master-0] ExtensionsManager initialized 
+[2023-10-07T08:47:23,825][ERROR][o.o.b.OpenSearchUncaughtExceptionHandler] [opensearch-cluster-master-0] uncaught exception in thread [main]
+       org.opensearch.bootstrap.StartupException: OpenSearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/opensearch/data/nodes];       
+</code></pre>
+<ul>
+<li>PersistentVolumeCLaim error: <code>no persistent volumes available for this claim and no storage class is set</code></li>
+<li>
+<p>chown failure: <code>enableInitChown: false</code></p>
+</li>
+<li>
+<p>Reproduce on direct nfs mount on dolmen, fine tuned /etc/exports with <code>all_squash</code></p>
+</li>
+</ul>
+<h3 id="vmmax_map_count">vm.max_map_count</h3>
+<ul>
+<li>
+<p><code>[1]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]</code></p>
+</li>
+<li>
+<p>Temporary: <code>sysctl -w vm.max_map_count=262144</code></p>
+</li>
+<li>Permanent: Add <code>vm.max_map_count = 262144</code> to /etc/sysctl.conf</li>
+</ul>
+<h2 id="networking">Networking</h2>
+<ul>
+<li>[X] Letsencrypt acme-challenge failing <code>"msg"="Certificate must be re-issued" "key"="default/qsolution-cert" "message"="Issuing certificate as Secret does not exist"</code>: Use helm ingress controller installation, nit <code>microk8s enable ingress</code></li>
+<li>[X] Node IP Address not populating in ExternalIP for NodePort: Need to use MetalLB</li>
+<li>[X] ingress-nginx-controller calls out to <code>google.com</code>, <code>fingerprints.bablosoft.com</code>, <code>ip.bablosoft.com</code> and <code>api.ipify.org</code></li>
+<li>[X] ingress-controller giving 404 error - not routing requests to back-end</li>
+<li>[X] Ingress controllers:</li>
+<li>[X] Helm install: <code>helm upgrade --install ingress-nginx ingress-nginx   --repo https://kubernetes.github.io/ingress-nginx   --namespace ingress-nginx - [X] create-namespace</code></li>
+<li>[X] microk8s enable ingress: does not provision an ingress controller</li>
+<li>[X] <a href="https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml">https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml</a></li>
+</ul>
+<pre><code class="language-text">&quot;Found valid IngressClass&quot; ingress=&quot;default/cm-acme-http-solver-wrpsk&quot; ingressclass=&quot;nginx&quot; 
+</code></pre>
+<pre><code class="language-text">E1028 11:53:50.833249       1 controller.go:210] cert-manager/challenges/scheduler 
+&quot;msg&quot;=&quot;error scheduling challenge for processing&quot; 
+&quot;error&quot;=&quot;Operation cannot be fulfilled on challenges.acme.cert-manager.io 
+&quot;docs-cert-gfdzt-2136338773-280458000\&quot;: the object has been modified; please apply your changes to the latest version and try again&quot;
+&quot;resource_kind&quot;=&quot;Challenge&quot;
+&quot;resource_name&quot;=&quot;docs-cert-gfdzt-2136338773-280458000&quot;
+&quot;resource_namespace&quot;=&quot;kube-system&quot;
+&quot;resource_version&quot;=&quot;v1&quot;           
+</code></pre>
+<h2 id="raspberry-pi">Raspberry Pi</h2>
+<ul>
+<li>[X] Levant: microk8s on RPi (Ubuntu Server) not/intermittently supported:</li>
+</ul>
+<pre><code class="language-text">error: snap &quot;microk8s&quot; is not available on stable for
+       this architecture (armhf) but exists on other
+       architectures (amd64, arm64, ppc64el).
+</code></pre>
+<ul>
+<li>[X] Levant: microk8s on RiPi (Ubuntu Core) intermittently supported:</li>
+</ul>
+<pre><code class="language-text">martinjcolley@levant:~$ snap install microk8s --channel=latest/edge/strict
+error: snap &quot;microk8s&quot; requires classic confinement which is only available on classic systems
+</code></pre>
+<ul>
+<li>
+<p>[ ] Opensearch deploy fails to RPi arch: <code>kubectl taint nodes levant key1=value1:NoSchedule</code></p>
+</li>
+<li>
+<p>[ ] Installing k3s on model 2B boards with ``</p>
+</li>
+</ul>
+<pre><code class="language-text">[INFO]  systemd: Starting k3s
+Job for k3s.service failed because a fatal signal was delivered causing the control process to dump core.
+See &quot;systemctl status k3s.service&quot; and &quot;journalctl -xeu k3s.service&quot; for details.
+colleymj@balin:~ $ curl -sfL https://get.k3s.io | sh -
+</code></pre>
+<p>colleymj@balin:~ $ uname -a
+Linux balin 6.1.0-rpi4-rpi-v6 #1 Raspbian 1:6.1.54-1+rpt2 (2023-10-05) armv6l GNU/Linux</p>
+<ul>
+<li><a href="https://github.com/k3s-io/k3s/issues/4643">https://github.com/k3s-io/k3s/issues/4643</a></li>
+</ul>
+<h2 id="dolmen">Dolmen</h2>
+<ul>
+<li>[ ] Networking issues, probably caused by Cisco Anyconnect, see refs</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../technicalIoT/" class="btn btn-neutral float-left" title="Rust on the uNode embedded controller development board"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalNFS/" class="btn btn-neutral float-right" title="Deprecated">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../technicalIoT/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../technicalNFS/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

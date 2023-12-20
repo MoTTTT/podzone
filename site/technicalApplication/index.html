@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalApplication/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Application Build Notes - Podzone</title>
+    <title>Application Build - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Application Build Notes";
+        var mkdocs_page_name = "Application Build";
         var mkdocs_page_input_path = "technicalApplication.md";
         var mkdocs_page_url = "/podzone/technicalApplication/";
       </script>
@@ -39,113 +39,93 @@
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Requirements</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="..">Podzone Introduction</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+                  </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../QApps/">Business Requirements</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../Tasklist/">Task List</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../vminventory/">Virtual Machine Inventory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../servers/">Server Inventory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../raspberrypis/">IoT Inventory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../inventory/">Hosts Inventory</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../network/">Network Topology</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../siteStructure/">Site Structure and sources</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../tools/">Tooling</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../workstation/">Workstation Config</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../externalServices/">Service Dependencies</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ingress/">Request Routing</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technical/">Implementation Notes</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Static site Helm Chart</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Storage Cluster</a>
-                </li>
-              </ul>
+              <p class="caption"><span class="caption-text">Implementation</span></p>
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="./">Application Build Notes</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Application Build</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#zope">Zope</a>
+    <li class="toctree-l2"><a class="reference internal" href="#requirement">Requirement</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#platform-requirement">Platform requirement</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-take-on">Data take-on</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#zope">Zope</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#postgres">Postgres</a>
+    </li>
+        </ul>
     </li>
     </ul>
-                </li>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist/">Tasks for building Consumer Cloud Zone 1: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">Inventory</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Monitoring Build Notes</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Bare Metal Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+                  </li>
               </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../applicationBuild/">Application Build</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../Issues/">Issues</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ResearchReferences/">Research References</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ApplicationReferences/">ApplicationReferences</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../IoTReferences/">Internet of Things, and Edge Computing references</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../ReserveReferences/">Ecosystem References</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../TroubleshootingReferences/">Troubleshooting References</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../deprecated/">Deprecated</a>
-                </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+                  </li>
               </ul>
       </div>
     </div>
@@ -161,7 +141,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Application Build Notes</li>
+          <li class="breadcrumb-item">Implementation</li>
+      <li class="breadcrumb-item active">Application Build</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -170,8 +151,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="implementation-notes">Implementation Notes</h1>
-<h2 id="zope">Zope</h2>
+                <h1 id="application-build">Application Build</h1>
+<h2 id="requirement">Requirement</h2>
+<h3 id="platform-requirement">Platform requirement</h3>
+<ul>
+<li>Zope Python based Application server</li>
+<li>Python Postgress driver</li>
+<li>Zope Postgres driver wrapper</li>
+<li>Postgress Database</li>
+<li>Database GUI</li>
+</ul>
+<h3 id="data-take-on">Data take-on</h3>
+<ul>
+<li>Postgress export from legacy implementation</li>
+<li>Import into new Postgress instance</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="zope">Zope</h3>
 <ul>
 <li>Initial install of Plone, provides Zope 4, which is not backward compatable with the Zope 2 applications, so use a legacy zope image.</li>
 <li>
@@ -181,12 +177,17 @@
 <p>Zope volume mounts: ./var/filestorage; ./var/blobstorage; ./products</p>
 </li>
 </ul>
+<h3 id="postgres">Postgres</h3>
+<ul>
+<li>nfs not working for postgres volume, issues with chmod (as with OpenSearch)</li>
+<li>Use cluster-internal db GUI tool to avoid requirement to provide ingress for a database port.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalCeph/" class="btn btn-neutral float-left" title="Storage Cluster"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalPrometheus/" class="btn btn-neutral float-right" title="Monitoring Build Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalConsumerCloud/" class="btn btn-neutral float-left" title="Consumer Cloud"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalCeph/" class="btn btn-neutral float-right" title="Persistent data">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -209,10 +210,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalCeph/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../technicalConsumerCloud/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../technicalPrometheus/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technicalCeph/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

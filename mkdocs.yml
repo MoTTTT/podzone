@@ -33,6 +33,7 @@ nav:
     - technicalTools.md
     - technicalWireguard.md
   - 'Inventory':
+    - inventorySite.md
     - inventoryHosts.md
     - inventoryIoT.md
     - inventoryServers.md

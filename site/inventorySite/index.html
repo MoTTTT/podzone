@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalIngress/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/inventorySite/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Ingress - Podzone</title>
+<title>Site Inventory - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Ingress";
-        var mkdocs_page_input_path = "technicalIngress.md";
-        var mkdocs_page_url = "/podzone/technicalIngress/";
+        var mkdocs_page_name = "Site Inventory";
+        var mkdocs_page_input_path = "inventorySite.md";
+        var mkdocs_page_url = "/podzone/inventorySite/";
       </script>
 <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -45,7 +45,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Implementation</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
@@ -56,21 +56,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Ingress</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#ingress-configuration">Ingress configuration</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#l2-load-balancer">L2 Load Balancer</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#ingress-controller">Ingress Controller</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#certificate-management">Certificate Management</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#ingress-definition">Ingress definition</a>
-</li>
-</ul>
-</li>
-</ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
 </li>
@@ -94,8 +80,20 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Inventory</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Site Inventory</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#south-africa-sa">South Africa (SA)</a>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+<li class="toctree-l3"><a class="reference internal" href="#sa-current-main">SA: Current Main</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sa-temporary-main-site-no-high-availability">SA: Temporary Main Site, no High Availability</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#united-kingdom-uk">United Kingdom (UK)</a>
+</li>
+</ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
 </li>
@@ -135,8 +133,8 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item">Implementation</li>
-<li class="breadcrumb-item active">Ingress</li>
+<li class="breadcrumb-item">Inventory</li>
+<li class="breadcrumb-item active">Site Inventory</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -144,73 +142,39 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="ingress">Ingress</h1>
-<div class="mermaid">---
-title: southern.podzone.net Request Routing
----
-graph TD
-
-clientExt1 --&gt; routerPort1
-routerPort1 --&gt; ovoo
-lbr --&gt; ingress
-
-ingress --&gt;|musings.thruhere.net| app1
-ingress --&gt;|qsolutions.endoftheinternet.org| app4
-ingress --&gt;|control.southern.podzone.net| app2
-ingress --&gt;|dashboard.southern.podzone.net| app3
-
-  subgraph Internet
-    clientExt1([Internet Client])
-  end
-  subgraph Router
-    routerPort1[[port forward :443-&gt; oovo:443]]
-  end
-  subgraph southern.podzone.net
-
-    subgraph ovoo
-      lbr{{lbr}}
-    end
-    ingress
-    app1(apache)
-    app4(zope)
-    app2(k8s control plane)
-    app3(k8s dashboard)
-
-  end
+<h1 id="site-inventory">Site Inventory</h1>
+<h2 id="south-africa-sa">South Africa (SA)</h2>
+<h3 id="sa-current-main">SA: Current Main</h3>
+<p>High Availability is achieved with k8s and ceph HA clustering.</p>
+<ul>
+<li>Shut Down #1: Node 1 Pack for UK: Before 20240113</li>
+<li>Shut Down #2: Node 2 Pack for UK: Before 20240113</li>
+<li>Shut Down #2: Node 3 Pack for UK: Before 20240116 12pm</li>
+</ul>
+<h3 id="sa-temporary-main-site-no-high-availability">SA: Temporary Main Site, no High Availability</h3>
+<p>Availability: Single node k8s, no ceph</p>
+<ul>
+<li>Start Up: Before 20240113</li>
+<li>Shut Down: After 20240120</li>
+</ul>
+<h2 id="united-kingdom-uk">United Kingdom (UK)</h2>
+<p>High availability: k8s and ceph</p>
+<ul>
+<li>Start Up #1: Nodes 3 and 4: After 20240116</li>
+<li>Start Up #2: Node 1: After 20240119</li>
+</ul>
+<div class="mermaid">timeline
+    title Production Traffic
+    20240113 : SA Current
+    20240114 : SA Temporary
+    20240122 : UK Southampton Temporary
+    20240701 : UK Southampton Permanent
 </div>
-<h2 id="ingress-configuration">Ingress configuration</h2>
-<h3 id="l2-load-balancer">L2 Load Balancer</h3>
-<p>MetalLB is used to implement an L2 load balancer. The metallb microk8s add-on is required:</p>
-<ul>
-<li><code>sudo microk8s enable metallb</code></li>
-<li>Production: Assign range: 192.168.0.131-192.168.0.132</li>
-<li>Dev: Assign range: 192.168.0.141-192.168.0.142</li>
-</ul>
-<h3 id="ingress-controller">Ingress Controller</h3>
-<p>An ingress controller is required. De-facto standard seems to be ingress-nginx.</p>
-<p>Load ingress-nginx using helm:</p>
-<ul>
-<li><code>sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace</code></li>
-<li><code>sudo microk8s kubectl --namespace ingress-nginx get services -o wide -w ingress-nginx-controller</code></li>
-</ul>
-<p>NOTE: Enabling the microk8s add-on failed to produce a working ingress for me, not sure what I was doing wrong.</p>
-<h3 id="certificate-management">Certificate Management</h3>
-<p>Enable the microk8s cert-manager, and define ClusterIssuer and Certificate requirements</p>
-<ul>
-<li><code>sudo microk8s enable cert-manager</code></li>
-<li>ClusterIssuer.yaml</li>
-<li>Certificates.yaml</li>
-</ul>
-<h3 id="ingress-definition">Ingress definition</h3>
-<p>Annotations link in the Certificate ClusterIssuer, and config to specify the hostname and tls secret. There is also an annotation to set the app-root.</p>
-<ul>
-<li>ApacheSecureIngress.yaml</li>
-</ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../technicalExternalServices/" title="External Services"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalIoT/" title="Rust on the uNode embedded controller development board">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-left" href="../technicalWireguard/" title="Wireguard installation notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../inventoryHosts/" title="Hosts Inventory">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
@@ -225,8 +189,8 @@ ingress --&gt;|dashboard.southern.podzone.net| app3
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../technicalExternalServices/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalIoT/" style="color: #fcfcfc">Next »</a></span>
+<span><a href="../technicalWireguard/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../inventoryHosts/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>

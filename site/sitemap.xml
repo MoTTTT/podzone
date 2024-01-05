@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://musings.thruhere.net/podzone/inventorySite/</loc>
+         <lastmod>2024-01-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://musings.thruhere.net/podzone/inventoryVm/</loc>
          <lastmod>2024-01-05</lastmod>
          <changefreq>daily</changefreq>

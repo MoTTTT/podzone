@@ -31,6 +31,7 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://www.flexiant.com/>
 - <https://kublr.com/>
 - <https://keybase.io/>
+- <https://github.com/alexellis/k3sup>
 
 ## Openstack, MicroCloud, juju, MAAS
 
@@ -236,6 +237,16 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://www.upbound.io/>
 - <https://www.wireguard.com/>
 - <https://www.wiz.io/>
+
+## Serverless
+
+- <https://www.serverless.com/framework/docs/providers/kubeless/guide/intro>
+- <https://www.cncf.io/blog/2020/04/13/serverless-open-source-frameworks-openfaas-knative-more/>
+- <https://alternativeto.net/software/openfaas/>
+- <https://docs.openfaas.com/deployment/kubernetes/>
+- <https://www.openfaas.com/pricing/>
+- <https://blog.alexellis.io/serverless-kubernetes-on-raspberry-pi/>
+- <>
 
 ## New
 

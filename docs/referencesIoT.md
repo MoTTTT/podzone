@@ -112,3 +112,8 @@
 - <https://www.digikey.com/en/maker/projects/intro-to-embedded-linux-part-1-buildroot/a73a56de62444610a2187cd9e681c3f2>
 - <https://www.digikey.com/en/maker/projects/intro-to-embedded-linux-part-2-yocto-project/2c08a1ad09d74f20b9844e566d332da4>
 - <https://docs.yoctoproject.org/1.8/yocto-project-qs/yocto-project-qs.html>
+- <https://github.com/rayui/scooby>
+- <https://metebalci.com/blog/bare-metal-rpi3-network-boot/>
+- <https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/>
+- <https://git.yoctoproject.org/meta-raspberrypi/>
+- <https://docs.yoctoproject.org/2.4.4/bsp-guide/bsp-guide.html>

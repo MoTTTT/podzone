@@ -131,3 +131,19 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://sourceforge.net/projects/ddclient/>
 - <https://platform9.com/learn/v1.0/tutorials/nginix-controller-via-yaml>
 - <https://www.datree.io/helm-chart/ddns-updater-truecharts>
+
+## Wordpress
+
+- <https://kubeapps.dev/docs/latest/tutorials/getting-started/>
+- <https://github.com/jvalderrama/helm-training>
+- <https://kubeapps.dev/docs/latest/tutorials/getting-started/>
+- <https://kubeapps.dev/docs/latest/howto/dashboard/>
+- <https://bitnami.com/stack/wordpress/helm>
+
+## Minecraft
+
+- <https://docker-minecraft-server.readthedocs.io/en/latest/>
+- <https://hub.docker.com/r/itzg/minecraft-server/>
+- <https://github.com/solarhess/kubernetes-minecraft-server>
+- <https://github.com/solarhess/kubernetes-minecraft-server/blob/master/helm/minecraft/templates/volume.yaml>
+- 

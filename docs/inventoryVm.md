@@ -22,6 +22,8 @@ Before the production servers were procured, "prod" (not yet feature complete, b
 - Vagrant box image: <https://app.vagrantup.com/techchad2022/boxes/ubuntu2204>
 - Ansible for microk8s installation and configuration
 
+After production server procurement, these hosts are turned down, and hostnames and IP addresses reclaimed.
+
 ### denisova
 
 - RAM assignment: 4GB

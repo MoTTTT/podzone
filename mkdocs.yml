@@ -38,6 +38,7 @@ nav:
     - inventoryServers.md
     - inventoryVm.md
     - inventoryWorkstation.md
+    - inventoryCosting.md
   - 'References':
       - referencesApplication.md
       - referencesIoT.md

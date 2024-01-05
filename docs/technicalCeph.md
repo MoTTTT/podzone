@@ -73,3 +73,10 @@ Additional basic setups, for test cluster:
 - `sudo microceph cluster list`
 - `sudo microceph disk list`
 - `sudo microceph.ceph status`
+
+## Ceph References for FS
+
+- <https://docs.ceph.com/en/quincy/cephfs/createfs/>
+- <https://github.com/rook/rook/blob/master/deploy/examples/filesystem.yaml>
+- <https://rook.io/docs/rook/latest/CRDs/Cluster/external-cluster/>
+- <https://rook.io/docs/rook/latest-release/Getting-Started/example-configurations/#shared-filesystem>

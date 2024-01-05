@@ -1,4 +1,4 @@
-# Bare Metal Inventory
+# Server Inventory
 
 The server inventory is split into "Production" and "Development".
 
@@ -19,11 +19,21 @@ The devices each had single 32GB M.2 SATA SSDs, and 8GB DDR4 RAM, which were upg
 - 128 GB M.2 SATA SSDs
 - 256 GB M.2 SATA SSDs
 
-The t360s have been assigned names and static IP addresses as follows:
+### southern.podzone.net
+
+The devices for the southern.podzone.net cluster have been assigned names and static IP addresses as follows:
 
 - habilis: 192.168.0.4
 - antecessor: 192.168.0.14
 - naledi: 192.168.0.21
+
+### northern.podzone.net
+
+The devices for the southern.podzone.net cluster have been assigned names and static IP addresses as follows:
+
+- denisova
+- rudolfensis
+- ergaster
 
 ## Development Environment
 

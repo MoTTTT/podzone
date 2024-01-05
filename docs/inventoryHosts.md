@@ -72,14 +72,13 @@ The text block below contains the full hosts file entry list, mainly useful on t
 192.168.0.52  bukit
 192.168.0.131 ovoo
 192.168.0.3   ularu
-192.168.0.5   denisova
-192.168.0.16  rudolfensis
-192.168.0.17  ergaster
-192.168.0.19  floresiensis
 192.168.0.13  balin
 192.168.0.20  thorin
 192.168.0.26  dwalin
 192.168.0.4   habilis
 192.168.0.14  antecessor
 192.168.0.21  naledi
+192.168.0.45  denisova
+192.168.0.16  rudolfensis
+192.168.0.17  ergaster
 ```

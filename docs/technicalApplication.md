@@ -1,8 +1,6 @@
 # Application Build
 
-## Requirement
-
-### Platform requirement
+## Platform requirement
 
 - Zope Python based Application server
 - Python Postgress driver
@@ -10,7 +8,52 @@
 - Postgress Database
 - Database GUI
 
-### Data take-on
+## Migration
+
+Move ularu VM from bukit (to be recovered) to antecessor
+
+1. Export VM in .ova format
+1. Test on james (final target server)
+
+### Importing VM on james
+
+VBoxManage import UbuntuAppServerClean202401.ova --dry-run
+
+VBoxManage import UbuntuAppServerClean202401.ova
+
+VBoxManage list vms
+
+VBoxManage startvm "Ubuntu App Server" --type headless
+
+```text
+Waiting for VM "Ubuntu App Server" to power on...
+VBoxManage: error: Nonexistent host networking interface, name 'enp3s0f0' (VERR_INTERNAL_ERROR)
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component ConsoleWrap, interface IConsole
+```
+
+ip address show | grep enp
+
+```text
+2: enp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 192.168.0.14/24 metric 100 brd 192.168.0.255 scope global enp1s0
+```
+
+VBoxManage showvminfo "Ubuntu App Server"
+
+VBoxManage modifyvm "Ubuntu App Server" --nic2 bridged --bridgeadapter1 enp1s0
+
+Did not work, needed to change `<BridgedInterface name="enp1s0"/>` in /home/colleymj/VirtualBox VMs/Ubuntu App Server/Ubuntu App Server.vbox
+
+
+```text
+VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
+```
+
+VBoxManage modifyvm "Ubuntu App Server" --cpus 1
+
+VBoxManage modifyvm "Ubuntu App Server" --paravirtprovider none
+
+## Data take-on
 
 - Postgress export from legacy implementation
 - Import into new Postgress instance

@@ -387,3 +387,9 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://spacelift.io/blog/opentf-announcing-terraform-fork>
 - <https://www.terraform.io/use-cases/infrastructure-as-code>
 - <https://www.hashicorp.com/products/terraform>
+
+- <https://ubuntu.com/blog/if-youre-still-using-ifconfig-youre-living-in-the-past>
+
+- <https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html>
+- <https://www.virtualbox.org/manual/ch08.html>
+- <https://www.cyberithub.com/vboxmanage-an-introduction-to-virtualbox-cli-with-examples/>

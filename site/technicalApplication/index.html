@@ -54,13 +54,15 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Application Build</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#requirement">Requirement</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#platform-requirement">Platform requirement</a>
+    <li class="toctree-l2"><a class="reference internal" href="#platform-requirement">Platform requirement</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#data-take-on">Data take-on</a>
+    <li class="toctree-l2"><a class="reference internal" href="#migration">Migration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#importing-vm-on-james">Importing VM on james</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#data-take-on">Data take-on</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a>
         <ul>
@@ -156,8 +158,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="application-build">Application Build</h1>
-<h2 id="requirement">Requirement</h2>
-<h3 id="platform-requirement">Platform requirement</h3>
+<h2 id="platform-requirement">Platform requirement</h2>
 <ul>
 <li>Zope Python based Application server</li>
 <li>Python Postgress driver</li>
@@ -165,7 +166,31 @@
 <li>Postgress Database</li>
 <li>Database GUI</li>
 </ul>
-<h3 id="data-take-on">Data take-on</h3>
+<h2 id="migration">Migration</h2>
+<p>Move ularu VM from bukit (to be recovered) to antecessor</p>
+<ol>
+<li>Export VM in .ova format</li>
+<li>Test on james (final target server)</li>
+</ol>
+<h3 id="importing-vm-on-james">Importing VM on james</h3>
+<p>VBoxManage import UbuntuAppServerClean202401.ova --dry-run</p>
+<p>VBoxManage import UbuntuAppServerClean202401.ova</p>
+<p>VBoxManage list vms</p>
+<p>VBoxManage startvm "Ubuntu App Server" --type headless</p>
+<pre><code class="language-text">Waiting for VM &quot;Ubuntu App Server&quot; to power on...
+VBoxManage: error: Nonexistent host networking interface, name 'enp3s0f0' (VERR_INTERNAL_ERROR)
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component ConsoleWrap, interface IConsole
+</code></pre>
+<p>ip address show | grep enp</p>
+<pre><code class="language-text">2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 192.168.0.14/24 metric 100 brd 192.168.0.255 scope global enp1s0
+</code></pre>
+<p>VBoxManage showvminfo "Ubuntu App Server"</p>
+<p>VBoxManage modifyvm "Ubuntu App Server" --nic2 bridged --bridgeadapter1 enp1s0</p>
+<p>Did not work, needed to change <code>&lt;BridgedInterface name="enp1s0"/&gt;</code> in /home/colleymj/VirtualBox VMs/Ubuntu App Server/Ubuntu App Server.vbox</p>
+<pre><code class="language-text">VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
+</code></pre>
+<h2 id="data-take-on">Data take-on</h2>
 <ul>
 <li>Postgress export from legacy implementation</li>
 <li>Import into new Postgress instance</li>

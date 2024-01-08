@@ -63,22 +63,37 @@ The text block below contains the full hosts file entry list, mainly useful on t
 - Add `/etc/hosts` file entries on servers
 - Add `/private/etc/hosts` for Mac clients
 
+Cleaned up hosts entries, grouped.
+
 ```text
+# Workstations
 192.168.0.6   sigiriya
-192.168.0.11  anasazi
 192.168.0.18  dolmen
 192.168.0.27  james
-192.168.0.28  levant
-192.168.0.52  bukit
-192.168.0.131 ovoo
-192.168.0.3   ularu
-192.168.0.13  balin
-192.168.0.20  thorin
-192.168.0.26  dwalin
+
+# Cluster Nodes
 192.168.0.4   habilis
 192.168.0.14  antecessor
 192.168.0.21  naledi
-192.168.0.45  denisova
-192.168.0.16  rudolfensis
-192.168.0.17  ergaster
+192.168.0.7   denisova
+192.168.0.30  rudolfensis
+192.168.0.33  ergaster
+```
+
+Turned down:
+
+```text
+# Dynamic VM, will be assigned IP on startup:
+192.168.0.47  ularu
+
+# Mac mini, rebuild for sale
+192.168.0.52  bukit
+
+# IoT Devices
+192.168.0.11  anasazi
+192.168.0.28  levant
+192.168.0.131 ovoo
+192.168.0.13  balin
+192.168.0.20  thorin
+192.168.0.26  dwalin
 ```

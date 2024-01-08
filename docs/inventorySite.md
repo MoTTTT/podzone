@@ -12,7 +12,7 @@ High Availability is achieved with k8s and ceph HA clustering.
 
 ### SA: Temporary Main Site, no High Availability
 
-Availability: Single node k8s, no ceph
+Availability: {Single node k8s, no ceph} OR {3 Node complete cluster}
 
 - Start Up: Before 20240113
 - Shut Down: After 20240120
@@ -30,5 +30,6 @@ timeline
     20240113 : SA Current
     20240114 : SA Temporary
     20240122 : UK Southampton Temporary
+    20240130 : SA Current Network Shutdown
     20240701 : UK Southampton Permanent
 ```

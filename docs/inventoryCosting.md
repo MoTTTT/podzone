@@ -26,6 +26,7 @@ With 256GB allocated to each ceph node, with 3 replicas of each object stored, s
 1. Availability of M.2 SATA SSDs is limited. M.2 NVME SSDs, which are more easily available than the SATAs are not supported.
 1. Availability of M.2 size 2242 M.2 modules is limited, the 2280 size modules being more easily available.
 1. Some of the t630s devices did not support adjusting the BIOS to boot from the secondary module slot, requiring a 2242 size boot device module.
+1. Stock of each of the modules is limited. Online ordering cancellations due to availability happened more than once.
 
 As a result of these constraints, some modules were over specified for their purpose, but for all devices, at least 128GB was assigned to the boot SSD.
 

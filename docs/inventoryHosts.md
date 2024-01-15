@@ -52,7 +52,8 @@ The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP a
 - `192.168.0.104 - 102.168.0.111`: (`192.168.0.104/29`) Wireguard
 - `192.168.0.131 - 192.168.0.140`: L2 load-balancer IP address range for dev on bare metal
 - `192.168.0.141 - 192.168.0.150`: L2 load-balancer IP address range for dev on virtual servers
-- `192.168.0.151 - 192.168.0.151`: L2 load-balancer IP address range for production
+- `192.168.0.151 - 192.168.0.151`: L2 load-balancer IP address range for production (southcluster)
+- `192.168.0.152 - 192.168.0.152`: L2 load-balancer IP address range for production (northcluster)
 - `192.168.0.160`: Hercules static IP assignment
 - `192.168.0.160`: Hercules static IP assignment
 

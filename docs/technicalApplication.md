@@ -53,6 +53,12 @@ VBoxManage modifyvm "Ubuntu App Server" --cpus 1
 
 VBoxManage modifyvm "Ubuntu App Server" --paravirtprovider none
 
+## Dyn DNS
+
+- sudo apt install ddclient
+- user; qapps
+- hosts: southern.podzone.net,musings.thruhere.net,qsolutions.endoftheinternet.org,docs.podzone.net,mottttspot.servegame.org,poc.endoftheinternet.org
+
 ## Data take-on
 
 - Postgress export from legacy implementation

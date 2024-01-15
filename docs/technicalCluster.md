@@ -21,12 +21,15 @@
 
 ## Node installations
 
-- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
-- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
 - Ubuntu Server and Desktop: `sudo snap install microk8s --channel=1.28/stable --classic`
 - Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
-- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
 - Set up user with sudo rights
+
+### For Raspberry Pi
+
+- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
+- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
+- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
 
 ## Cluster configuration
 

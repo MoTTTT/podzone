@@ -32,6 +32,7 @@ nav:
     - technicalTasklist.md
     - technicalTools.md
     - technicalWireguard.md
+    - technicalWordpress.md
   - 'Inventory':
     - inventorySite.md
     - inventoryHosts.md

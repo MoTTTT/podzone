@@ -62,6 +62,8 @@
     </li>
         </ul>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dyn-dns">Dyn DNS</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#data-take-on">Data take-on</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a>
@@ -101,6 +103,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Inventory</span></p>
@@ -190,6 +194,14 @@ VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component Consol
 <p>Did not work, needed to change <code>&lt;BridgedInterface name="enp1s0"/&gt;</code> in /home/colleymj/VirtualBox VMs/Ubuntu App Server/Ubuntu App Server.vbox</p>
 <pre><code class="language-text">VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
 </code></pre>
+<p>VBoxManage modifyvm "Ubuntu App Server" --cpus 1</p>
+<p>VBoxManage modifyvm "Ubuntu App Server" --paravirtprovider none</p>
+<h2 id="dyn-dns">Dyn DNS</h2>
+<ul>
+<li>sudo apt install ddclient</li>
+<li>user; qapps</li>
+<li>hosts: southern.podzone.net,musings.thruhere.net,qsolutions.endoftheinternet.org,docs.podzone.net,mottttspot.servegame.org,poc.endoftheinternet.org</li>
+</ul>
 <h2 id="data-take-on">Data take-on</h2>
 <ul>
 <li>Postgress export from legacy implementation</li>

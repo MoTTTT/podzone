@@ -1,4 +1,4 @@
-# Tasks for building Consumer Cloud Zone 1: southern.podzone.net
+# Task List: southern.podzone.net
 
 The following checklist provides a high-level breakdown of the work that needs to be done. Each of these are further decomposed below, where required:
 

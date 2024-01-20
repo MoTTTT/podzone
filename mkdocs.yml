@@ -15,7 +15,10 @@ nav:
     - requirementIntroduction.md
     - requirementBackground.md
     - requirementBusinessBrief.md
+    - technicalTasklist1.md
+    - technicalTasklist2.md
   - 'Implementation':
+    - technicalKubernetes.md
     - technicalConsumerCloud.md
     - technicalApplication.md
     - technicalCeph.md
@@ -29,7 +32,7 @@ nav:
     - technicalPrometheus.md
     - technicalSiteStructure.md
     - technicalStaticSite.md
-    - technicalTasklist.md
+
     - technicalTools.md
     - technicalWireguard.md
     - technicalWordpress.md

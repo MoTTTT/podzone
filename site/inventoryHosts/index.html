@@ -47,9 +47,15 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Implementation</span></p>
               <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
@@ -76,8 +82,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist/">Tasks for building Consumer Cloud Zone 1: southern.podzone.net</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
@@ -103,9 +107,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ingress-hosts">Ingress hosts</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ip-address-management">IP Address Management</a>
+    <li class="toctree-l2"><a class="reference internal" href="#ip-address-management-southern">IP Address Management: southern</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ip-address-management-northern">IP Address Management: northern</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#etchosts">/etc/hosts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#original-site">Original Site</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#northern-interim-site">Northern interim site</a>
     </li>
     </ul>
                   </li>
@@ -197,7 +209,7 @@
 <li><a href="https://db.southern.podzone.net">https://db.southern.podzone.net</a>: Routing to database GUI console.</li>
 <li><a href="https://ceph.southern.podzone.net:8443/">https://ceph.southern.podzone.net:8443/</a>: Routing to Ceph dashboard.</li>
 </ul>
-<h2 id="ip-address-management">IP Address Management</h2>
+<h2 id="ip-address-management-southern">IP Address Management: southern</h2>
 <p>The internal network uses the <code>192.168.0.0/24</code> subnet, providing 256 unique IP addresses. The first set are assigned to the DHCP server for allocation, allowing layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease.</p>
 <ul>
 <li><code>192.168.0.2 - 192.168.0.99</code>: Addresses assigned to the router DHCP server</li>
@@ -209,13 +221,19 @@
 <li><code>192.168.0.160</code>: Hercules static IP assignment</li>
 <li><code>192.168.0.160</code>: Hercules static IP assignment</li>
 </ul>
+<h2 id="ip-address-management-northern">IP Address Management: northern</h2>
+<p>The internal network uses the <code>192.168.1.0/24</code> subnet, providing 256 unique IP addresses. The DHCP server currently serves all of these, requiring adjustment to allow a layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease. Since the subnet differs from the site the nodes were built on, rebuild of the ceph clusters will be required, and may be required for microk8s.</p>
+<ul>
+<li><code>192.168.0.2 - 192.168.0.99</code>: Addresses assigned to the router DHCP server</li>
+<li><code>192.168.0.152 - 192.168.0.152</code>: L2 load-balancer IP address range for production (northcluster)</li>
+</ul>
 <h2 id="etchosts">/etc/hosts</h2>
 <p>The text block below contains the full hosts file entry list, mainly useful on the admin client.</p>
 <ul>
 <li>Add <code>/etc/hosts</code> file entries on servers</li>
 <li>Add <code>/private/etc/hosts</code> for Mac clients</li>
 </ul>
-<p>Cleaned up hosts entries, grouped.</p>
+<h3 id="original-site">Original Site</h3>
 <pre><code class="language-text"># Workstations
 192.168.0.6   sigiriya
 192.168.0.18  dolmen
@@ -243,6 +261,16 @@
 192.168.0.13  balin
 192.168.0.20  thorin
 192.168.0.26  dwalin
+</code></pre>
+<h2 id="northern-interim-site">Northern interim site</h2>
+<pre><code class="language-text"># Workstations
+192.168.0.18  dolmen
+
+# Cluster Nodes
+192.168.1.117  habilis
+192.168.1.113  antecessor
+192.168.1.112  naledi
+192.168.1.115  ularu
 </code></pre>
               
             </div>

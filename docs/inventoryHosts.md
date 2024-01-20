@@ -44,7 +44,7 @@ Ingress hosts make use of the DNS entries defined above. `southern.podzone.net` 
 - <https://db.southern.podzone.net>: Routing to database GUI console.
 - <https://ceph.southern.podzone.net:8443/>: Routing to Ceph dashboard.
 
-## IP Address Management
+## IP Address Management: southern
 
 The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP addresses. The first set are assigned to the DHCP server for allocation, allowing layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease.
 
@@ -57,6 +57,13 @@ The internal network uses the `192.168.0.0/24` subnet, providing 256 unique IP a
 - `192.168.0.160`: Hercules static IP assignment
 - `192.168.0.160`: Hercules static IP assignment
 
+## IP Address Management: northern
+
+The internal network uses the `192.168.1.0/24` subnet, providing 256 unique IP addresses. The DHCP server currently serves all of these, requiring adjustment to allow a layer 2 load balanced routers to be defined in the same subnet. Static IPs are assigned to all kubernetes hosts, configured on the router as static, on initial lease. Since the subnet differs from the site the nodes were built on, rebuild of the ceph clusters will be required, and may be required for microk8s.
+
+- `192.168.0.2 - 192.168.0.99`: Addresses assigned to the router DHCP server
+- `192.168.0.152 - 192.168.0.152`: L2 load-balancer IP address range for production (northcluster)
+
 ## /etc/hosts
 
 The text block below contains the full hosts file entry list, mainly useful on the admin client.
@@ -64,7 +71,7 @@ The text block below contains the full hosts file entry list, mainly useful on t
 - Add `/etc/hosts` file entries on servers
 - Add `/private/etc/hosts` for Mac clients
 
-Cleaned up hosts entries, grouped.
+### Original Site
 
 ```text
 # Workstations
@@ -97,4 +104,17 @@ Turned down:
 192.168.0.13  balin
 192.168.0.20  thorin
 192.168.0.26  dwalin
+```
+
+## Northern interim site
+
+```text
+# Workstations
+192.168.0.18  dolmen
+
+# Cluster Nodes
+192.168.1.117  habilis
+192.168.1.113  antecessor
+192.168.1.112  naledi
+192.168.1.115  ularu
 ```

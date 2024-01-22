@@ -42,12 +42,21 @@ Scaling up would be easy while DDR4 RAM is available, first replacing the 8GB mo
 
 Maximum supported RAM for a three node cluster would be 191GB, once dedicated GPU RAM is considered.
 
-## Average Pricing
+## Example Pricing: SA
 
 - t630 unit price: R900
 - M.2 SATA 256GB SSD: R469
 - M.2 SATA 128GB SSD: R339
 - 16GB DDR4 RAM: R899
+- Node cost: R2607 == £116
+
+## Example Pricing: UK
+
+- t630 unit price: £35 (1 ordered)
+- M.2 SATA 2242 256GB SSD: £18.66 (3 ordered)
+- M.2 SATA 2280 128GB SSD: £13.95 (3 ordered)
+- 16GB DDR4 RAM: £19.99 (3 ordered)
+- Node cost: £88 == R2125
 
 ## References
 

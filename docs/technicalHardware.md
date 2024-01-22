@@ -10,6 +10,8 @@
 ### Production Kubernetes Cluster
 
 - 3 X HP t360
+- Reference, no storage?: <https://support.hp.com/gb-en/document/c05240287>
+- Reference, has storage: <https://support.hp.com/gb-en/document/c05847930>
 
 ### IT Development devices
 
@@ -22,3 +24,4 @@
 - Ubuntu desktop: james
 
 ### IoT Devices
+

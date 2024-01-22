@@ -27,7 +27,7 @@ The CNCF has a large eco-system of technologies that complement and rely on kube
 - Promise Theory in kubernetes allows a resource to be modelled as voluntarily and autonomously co-operating with other resources in the kubernetes system
 - The use of declarative specification follows in the form of the publishing of a **Promise** to the kubernetes system in the form of a resource definition
 - Resource definitions are loaded via the kubernetes API
-- The kubernetes API is used to interact with the kubernetes system, and the objects deployed in the system.x
+- The kubernetes API is used to interact with the kubernetes system, and the objects deployed in the system.
 
 ### Clustering
 

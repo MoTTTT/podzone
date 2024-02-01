@@ -2,7 +2,20 @@
 
 ## Production hardware
 
-The t630s purchased for build of production clusters have the following capacities of interest:
+### Hardware selection
+
+The following criteria were used to short-list potential hardware:
+
+- DDR4 RAM capacity
+- No of CPU Cores, and processor speed
+- SSD module capacity
+- Recovered or second hand hardware
+- Small form factor
+- Low noise
+
+The HP t630 meets these requirements, although has a limitation of only supporting SATA SSDs. At the time of this project there are many units available, as they were popular for scaled call centre and office use. These varied widely in price. Those without power supply and cable are not of use, so check before ordering.
+
+The t630s purchased for build of cluster nodes have the following capacities:
 
 - 4 X 2.2GHz CPU cores (AMD GX-420GI)
 - 2 X SODIMM DDR4 RAM slots (Max capacity 64GB RAM)
@@ -29,6 +42,8 @@ With 256GB allocated to each ceph node, with 3 replicas of each object stored, s
 1. Stock of each of the modules is limited. Online ordering cancellations due to availability happened more than once.
 
 As a result of these constraints, some modules were over specified for their purpose, but for all devices, at least 128GB was assigned to the boot SSD.
+
+NOTE: The UK refurbished / second hand parts online market is easy, quick and reliable. Ebay would be good to have in SA.
 
 ### RAM
 
@@ -57,6 +72,23 @@ Maximum supported RAM for a three node cluster would be 191GB, once dedicated GP
 - M.2 SATA 2280 128GB SSD: £13.95 (3 ordered)
 - 16GB DDR4 RAM: £19.99 (3 ordered)
 - Node cost: £88 == R2125
+
+## SSD pricing
+
+### m.2 SATA
+
+- 128GB £14 : £112/TB
+- 256GB £20 : £80/TB
+- 512GB £30 : £60/TB
+- 1TB £55   : £55/TB
+- 2TB £100  : £50/TB
+
+### m.2 nvme
+
+- 215 GB £25 : 100
+- 1 TB £53
+- 2 TB £120 : 60
+- 4 TB £233 : 58
 
 ## References
 

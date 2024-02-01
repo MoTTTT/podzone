@@ -63,6 +63,7 @@ The internal network uses the `192.168.1.0/24` subnet, providing 256 unique IP a
 
 - `192.168.0.2 - 192.168.0.99`: Addresses assigned to the router DHCP server
 - `192.168.0.152 - 192.168.0.152`: L2 load-balancer IP address range for production (northcluster)
+- `192.168.1.220 - 192.168.1.220`: L2 L2 load-balancer IP address range for production (northcluster) UK
 
 ## /etc/hosts
 
@@ -112,9 +113,13 @@ Turned down:
 # Workstations
 192.168.0.18  dolmen
 
+# VMs
+192.168.1.115  ularu
+
 # Cluster Nodes
 192.168.1.117  habilis
 192.168.1.113  antecessor
 192.168.1.112  naledi
-192.168.1.115  ularu
+192.168.1.130  neanderthal
+192.168.1.131  erectus
 ```

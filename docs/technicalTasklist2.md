@@ -66,6 +66,14 @@ Node IP addresses have changed. This is not supported by Ceph. Ceph cluster to b
 
 ### Five node cluster
 
-- [ ] EBay 05-11112-51382: 5 X t630 {dariaiddle}
+- [X] EBay 05-11112-51382: 5 X t630 {dariaiddle}
 - [X] EBay 11-11107-65868: 5 X 16GB DDR4 RAM
 - [ ] EBay 23-11098-89931: 1 X 256GB 2242 SSD
+- [ ] EBay 12-11141-17449: 5 X Cat6 0.5m ethernet cables
+- [ ] EBay 12-11141-17448: 5 X 128GB 2280 SSD
+- [ ] EBay 12-11141-17446: 4 X 256GB 2242 SSD
+
+### Data server
+
+- [ ] EBay 12-11141-17445: 1 X 2 TB 2280 SSD
+- [ ] EBay 12-11141-17447: NVMe + SATA adapter

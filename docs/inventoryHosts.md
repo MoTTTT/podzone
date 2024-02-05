@@ -122,4 +122,6 @@ Turned down:
 192.168.1.112  naledi
 192.168.1.130  neanderthal
 192.168.1.131  erectus
+192.168.1.137  floresiensis
+192.168.1.134  rudolfensis
 ```

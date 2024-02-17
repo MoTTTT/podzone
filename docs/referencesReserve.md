@@ -12,6 +12,8 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://docs.kubesail.com/getting-started/>
 - <https://docs.kubesail.com/templates/>
 - <https://photostructure.com/>
+- <https://www.inkandswitch.com/local-first/>
+- <https://news.ycombinator.com/item?id=35031109>
 
 ## Kubernetes Repositories,Management platforms, Security and Governance
 

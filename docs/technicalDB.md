@@ -17,4 +17,18 @@
 
 ### POC Notes
 
-- Create k8s resources in ~/QAppsCluster/DB
+- Workspace: Create k8s resources in ~/QAppsCluster/DB
+
+### Adminer
+
+- `kubectl create namespace adminer`
+- `kubectl apply --namespace adminer -f adminer-svc.yaml`
+- `kubectl apply --namespace adminer -f adminer-deployment.yaml`
+- `kubectl apply --namespace adminer -f adminer-ingress.yaml`
+
+## References
+
+- <https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc>
+- <https://artifacthub.io/packages/helm/bitnami/postgresql>
+- <https://github.com/bitnami/charts/tree/main/bitnami/postgresql-ha>
+- <https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/>

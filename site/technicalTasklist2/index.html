@@ -61,6 +61,16 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#testing">Testing</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#procurement">Procurement</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#three-node-cluster">Three node cluster</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#five-node-cluster">Five node cluster</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#data-server">Data server</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
               </ul>
@@ -90,7 +100,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -177,35 +187,62 @@
 </ul>
 <h2 id="task-list-k8s-prod-cluster-build">Task-list: k8s prod cluster build</h2>
 <ul>
-<li>[ ] Install power, network, and first two nodes</li>
+<li>[X] Install power, network, and first two nodes</li>
 <li>[ ] Install ddclient and configure</li>
-<li>[ ] Total clean-up: <code>snap remove microk8s</code></li>
-<li>[ ] Install microk8s, cluster nodes, and configure</li>
-<li>[ ] </li>
+<li>[X] Total clean-up: <code>snap remove microk8s</code></li>
+<li>[X] Install microk8s, cluster nodes, and configure</li>
+<li>[ ] DynDNS and Router config for test domain</li>
 </ul>
 <h2 id="task-list-networking-build">Task-list: Networking build</h2>
 <ul>
-<li>[ ] Ethernet cabling from router to switch</li>
-<li>[ ] Switch install and cabling to nodes</li>
-<li>[ ] Router config: Static IP assignments</li>
-<li>[ ] Client config: update hosts file</li>
+<li>[X] Ethernet cabling from router to switch</li>
+<li>[X] Switch install and cabling to nodes</li>
+<li>[X] Router config: Static IP assignments</li>
+<li>[X] Client config: update hosts file</li>
 <li>[ ] Router config: Port forward</li>
-<li>[ ] Router config: Set DHCP range to reserve LBR IP</li>
+<li>[X] Router config: Set DHCP range to reserve LBR IP</li>
 </ul>
 <h2 id="storage">Storage</h2>
 <p>Node IP addresses have changed. This is not supported by Ceph. Ceph cluster to be re-built from scratch.</p>
 <ul>
-<li>[ ] Total clean-up: <code>snap remove microceph</code></li>
-<li>[ ] reinstall ceph on each node</li>
-<li>[ ] cluster ceph nodes</li>
-<li>[ ] disk assignment</li>
+<li>[X] Total clean-up: <code>snap remove microceph</code></li>
+<li>[X] reinstall ceph on each node</li>
+<li>[X] cluster ceph nodes</li>
+<li>[X] disk assignment</li>
 </ul>
 <h2 id="testing">Testing</h2>
 <ul>
+<li>[ ] t360 unit: Geekbench</li>
 <li>[ ] Cluster High Availability testing</li>
 <li>[ ] Cluster failure recovery</li>
 <li>[ ] Web functional test</li>
 <li>[ ] Application functional test</li>
+</ul>
+<h2 id="procurement">Procurement</h2>
+<h3 id="three-node-cluster">Three node cluster</h3>
+<ul>
+<li>[X] EBay 20-11075-47632: 1 X t630 {dariaiddle 2}</li>
+<li>[X] EBay 11-11081-94689: 3 X 128GB 2280 SSD</li>
+<li>[X] EBay 23-11073-38931: 3 X 256GB 2242 SSD</li>
+<li>[X] EBay 23-11073-47935: 3 X 16GB DDR4 RAM</li>
+<li>[X] EBay 15-11092-59277: 1 X t630 {dariaiddle 3}</li>
+<li>[X] EBay 10-11096-24713: 1 X t520 {chillitech_ltd}</li>
+</ul>
+<h3 id="five-node-cluster">Five node cluster</h3>
+<ul>
+<li>[X] EBay 05-11112-51382: 5 X t630 {dariaiddle}</li>
+<li>[X] EBay 11-11107-65868: 5 X 16GB DDR4 RAM</li>
+<li>[ ] EBay 23-11098-89931: 1 X 256GB 2242 SSD</li>
+<li>[X] EBay 12-11141-17449: 5 X Cat6 0.5m ethernet cables</li>
+<li>[X] EBay 12-11141-17448: 5 X 128GB 2280 SSD</li>
+<li>[ ] EBay 12-11141-17446: 4 X 256GB 2242 SSD</li>
+<li>[X] Amazon 206-2426422-7388328: 8 Port Gigabit switch</li>
+<li>[X] The range: 6 way Power strip</li>
+</ul>
+<h3 id="data-server">Data server</h3>
+<ul>
+<li>[X] EBay 12-11141-17445: 1 X 2 TB 2280 SSD</li>
+<li>[ ] EBay 12-11141-17447: NVMe + SATA adapter</li>
 </ul>
               
             </div>

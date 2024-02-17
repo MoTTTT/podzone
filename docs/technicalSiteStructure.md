@@ -1,8 +1,6 @@
-# Site structure and git sync
+# Podzone Sites
 
-## Site structure
-
-### Musings
+## Musings
 
 A microsite with the writings of various members of the family.
 
@@ -23,3 +21,6 @@ A microsite with the writings of various members of the family.
 - Directory: site/
 - <https://docs.podzone.net/>
 - Structure defined in `mkdocs.yaml`
+
+### Wordpress instances
+

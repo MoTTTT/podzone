@@ -78,7 +78,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -157,7 +157,7 @@
 <p>wg genkey | tee /etc/wireguard/clients/client1.key</p>
 <p>cat /etc/wireguard/clients/client1.key | wg pubkey | tee /etc/wireguard/clients/client1.pub</p>
 <p>/etc/wireguard/wg0.conf</p>
-<pre><code class="language-conf">[Interface]
+<div class="highlight"><pre><span></span><code>[Interface]
 PrivateKey = &lt;&gt;
 Address = 192.168.0.104/29
 ListenPort = 51820
@@ -165,7 +165,7 @@ SaveConfig = true
 [Peer]
 PublicKey = &lt;&gt;
 AllowedIPs = 192.168.0.1/24
-</code></pre>
+</code></pre></div>
 <ul>
 <li>Only required for egress from vpn server: <code>/etc/sysctl.conf</code>: uncomment <code>net.ipv4.ip_forward=1</code>; Apply: <code>sysctl -p</code>
 ip route list default</li>

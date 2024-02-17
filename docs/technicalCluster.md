@@ -33,13 +33,13 @@
 
 ## Cluster configuration
 
-- `microk8s enable metrics-server`
-- `microk8s enable rook-ceph`; See technicalCeph.md for more details
-- `microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
-- `microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd`
-- `microk8s enable metallb`
-- `microk8s enable cert-manager`
-- `microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
+- `sudo microk8s enable metrics-server`
+- `sudo microk8s enable rook-ceph`; See technicalCeph.md for more details
+- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
+- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd`
+- `sudo microk8s enable metallb`
+- `sudo microk8s enable cert-manager`
+- `sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
 - NOTE: This gives `ingressClassName: nginx`
 
 ## Infrastructure Test: musings over https with git-sync

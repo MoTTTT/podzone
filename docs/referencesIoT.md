@@ -1,5 +1,13 @@
 # Edge and IoT References
 
+## Build
+
+- Networking library: <https://github.com/cesanta/mongoose>
+- <https://github.com/cpq/bare-metal-programming-guide>
+- 
+
+## Mixed
+
 - <https://blog.balena.io/resin-io-changes-name-to-balena-releases-open-source-edition/>
 - <https://community.element14.com/products/raspberry-pi/w/polls/20656/raspberry-pi-2-which-os-is-best>
 - <https://dd-wrt.com/>

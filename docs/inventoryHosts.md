@@ -124,4 +124,8 @@ Turned down:
 192.168.1.131  erectus
 192.168.1.137  floresiensis
 192.168.1.134  rudolfensis
+192.168.1.140  norham01
+192.168.1.141  norham02
+192.168.1.142  norham03
+192.168.1.143  norham04
 ```

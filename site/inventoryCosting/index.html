@@ -78,7 +78,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -106,6 +106,10 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Costing</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#production-hardware">Production hardware</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hardware-selection">Hardware selection</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#drives">Drives</a>
         <ul>
@@ -118,6 +122,14 @@
     <li class="toctree-l2"><a class="reference internal" href="#example-pricing-sa">Example Pricing: SA</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#example-pricing-uk">Example Pricing: UK</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ssd-pricing">SSD pricing</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#m2-sata">m.2 SATA</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#m2-nvme">m.2 nvme</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
@@ -163,7 +175,18 @@
               
                 <h1 id="costing">Costing</h1>
 <h2 id="production-hardware">Production hardware</h2>
-<p>The t630s purchased for build of production clusters have the following capacities of interest:</p>
+<h3 id="hardware-selection">Hardware selection</h3>
+<p>The following criteria were used to short-list potential hardware:</p>
+<ul>
+<li>DDR4 RAM capacity</li>
+<li>No of CPU Cores, and processor speed</li>
+<li>SSD module capacity</li>
+<li>Recovered or second hand hardware</li>
+<li>Small form factor</li>
+<li>Low noise</li>
+</ul>
+<p>The HP t630 meets these requirements, although has a limitation of only supporting SATA SSDs. At the time of this project there are many units available, as they were popular for scaled call centre and office use. These varied widely in price. Those without power supply and cable are not of use, so check before ordering.</p>
+<p>The t630s purchased for build of cluster nodes have the following capacities:</p>
 <ul>
 <li>4 X 2.2GHz CPU cores (AMD GX-420GI)</li>
 <li>2 X SODIMM DDR4 RAM slots (Max capacity 64GB RAM)</li>
@@ -186,6 +209,7 @@
 <li>Stock of each of the modules is limited. Online ordering cancellations due to availability happened more than once.</li>
 </ol>
 <p>As a result of these constraints, some modules were over specified for their purpose, but for all devices, at least 128GB was assigned to the boot SSD.</p>
+<p>NOTE: The UK refurbished / second hand parts online market is easy, quick and reliable. Ebay would be good to have in SA.</p>
 <h3 id="ram">RAM</h3>
 <p>The t630 has two DDR4 RAM slots. The devices purchased were populated with one 8GB module.</p>
 <p>An additional 16GB module was purchased to make up for a total of 24 GB.</p>
@@ -207,6 +231,22 @@
 <li>M.2 SATA 2280 128GB SSD: £13.95 (3 ordered)</li>
 <li>16GB DDR4 RAM: £19.99 (3 ordered)</li>
 <li>Node cost: £88 == R2125</li>
+</ul>
+<h2 id="ssd-pricing">SSD pricing</h2>
+<h3 id="m2-sata">m.2 SATA</h3>
+<ul>
+<li>128GB £14 : £112/TB</li>
+<li>256GB £20 : £80/TB</li>
+<li>512GB £30 : £60/TB</li>
+<li>1TB £55   : £55/TB</li>
+<li>2TB £100  : £50/TB</li>
+</ul>
+<h3 id="m2-nvme">m.2 nvme</h3>
+<ul>
+<li>215 GB £25 : 100</li>
+<li>1 TB £53</li>
+<li>2 TB £120 : 60</li>
+<li>4 TB £233 : 58</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

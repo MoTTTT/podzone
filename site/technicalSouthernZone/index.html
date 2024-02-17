@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalSouthernZone/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Overflow and historical information on original zone - Podzone</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Overflow and historical information on original zone";
+        var mkdocs_page_input_path = "technicalSouthernZone.md";
+        var mkdocs_page_url = "/podzone/technicalSouthernZone/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Podzone
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Requirements</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Implementation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Inventory</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Podzone</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Overflow and historical information on original zone</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="overflow-and-historical-information-on-original-zone">Overflow and historical information on original zone</h1>
+<div class="highlight"><pre><span></span><code>---
+title: southern.podzone.net Network Topology, Original
+---
+graph LR
+
+ISP --- ont
+ont --- router
+router --- switch2
+router ---switch3
+router --- ap1
+router --- other2
+router --- workstation
+ap1 --- other1
+ap1 --- other2
+switch2 --- other1
+switch3 --- switch1
+switch3 --- other1
+switch1 &lt;--&gt;|1GB| k8s1
+switch1 &lt;--&gt;|1GB| k8s2
+switch1 &lt;--&gt;|1GB| k8s3
+switch1 &lt;--&gt;|1GB| k8s4
+
+ont[[Daisan H665 GPON ONT]]
+router[[TP-LINK EC120-F5 Router]]
+switch1[[D-Link DGS-1005D]]
+switch2[[TP-Link TL-SG1005D]]
+switch3[[TP-Link TL-SG1008D]]
+ap1[[TP-Link TL-WR845N]]
+other1(ethernet devices)
+other2(wifi devices)
+k8s1{{levant}}
+k8s2{{james}}
+k8s3{{bukit}}
+k8s4{{sigiriya}}
+workstation(dolmen)
+</code></pre></div>
+<h2 id="development-environment">Development Environment</h2>
+<p>Three personal machines and workstations were re-purposed to create a dev environment. Upgrades to disk and ram were done where possible. It would have been great to get RAM on all devices up to 16GB, or more, but unfortunately only one device accommodated upgrade, and that to only 16GB.</p>
+<h3 id="sigiriya">sigiriya</h3>
+<ul>
+<li>Late 2014 Mac Mini</li>
+<li>2.80GHz i5-4308U (2 core, 4 thread)</li>
+<li>8GB RAM (soldered)</li>
+<li>Ubuntu Server 22.04 (upgrade from macOS)</li>
+<li>2TB SSD (upgrade from 500GB)</li>
+<li>eth0 IP: 192.168.0.6</li>
+</ul>
+<h3 id="bukit">bukit</h3>
+<ul>
+<li>Late 2014 Mac Mini</li>
+<li>1.4 GHz Dual Core i5</li>
+<li>4 GB RAM (soldered)</li>
+<li>Ubuntu 22.04 desktop (existing installation)</li>
+<li>500GB SSD</li>
+<li>eth0 IP: 192.168.0.52</li>
+<li>admin user: martin</li>
+</ul>
+<h3 id="james">james</h3>
+<ul>
+<li>Motherboard: ASRock H61M-VS3</li>
+<li>3 GHz Quad Core i5</li>
+<li>16GB (upgrade from 8 GB) RAM</li>
+<li>Ubuntu 22.04 desktop (existing installation)</li>
+<li>500 GB SSD</li>
+<li>eth0 IP: 192.168.0.27</li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

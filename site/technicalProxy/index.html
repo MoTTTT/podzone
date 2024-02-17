@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalProxy/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Reverse proxy - Podzone</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Reverse proxy";
+        var mkdocs_page_input_path = "technicalProxy.md";
+        var mkdocs_page_url = "/podzone/technicalProxy/";
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Podzone
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Requirements</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Implementation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Inventory</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Podzone</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Reverse proxy</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="reverse-proxy">Reverse proxy</h1>
+<p>The northern site needed to be issued with a static IP address from the ISP.</p>
+<p>With one cluster on site, this IP address would have port forwarding configured on the router, to send http and https traffic to the metallb L2 load balancer.</p>
+<p>However, since more than on cluster will be served on the same IP address, a front-end proxy is installed on a t520, which will also run ddclient.</p>
+<h2 id="certbot">Certbot</h2>
+<p>In order to reverse proxy to the https endpoints in the cluster, we need to terminate ssl for all hosts supported. LetsEncryp's Certbot is used, with the following hosts:</p>
+<div class="highlight"><pre><span></span><code>blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net
+</code></pre></div>
+<h2 id="northern-request-routing">Northern request routing</h2>
+<div class="highlight"><pre><span></span><code>---
+title: northern.podzone.net Request routing
+---
+graph TD
+
+Internet --145.40.190.159  --&gt; router
+router --&gt; dmz
+dmz ---&gt; metallb1
+dmz ---&gt; metallb2
+dmz ---&gt; metallb3
+
+metallb1 --&gt; k8s01
+metallb1 --&gt; k8s02
+metallb1 --&gt; k8s03
+metallb2 --&gt; k8s04
+metallb2 --&gt; k8s05
+metallb2 --&gt; k8s06
+metallb3 --&gt; k8s07
+metallb3 --&gt; k8s08
+metallb3 --&gt; k8s09
+metallb3 --&gt; k8s10
+
+metallb1[[prod]]
+metallb2[[dev]]
+metallb3[[norham]]
+router[[Router Port Forwarding]]
+dmz{{rudolfensis}}
+k8s01{{habilis}}
+k8s02{{antecessor}}
+k8s03{{naledi}}
+k8s04{{neanderthal}}
+k8s05{{erectus}}
+k8s06{{floresiensis}}
+k8s07{{norham01}}
+k8s08{{norham02}}
+k8s09{{norham03}}
+k8s10{{norham04}}
+</code></pre></div>
+<h3 id="sample-config-file">Sample config file</h3>
+<p><VirtualHost *:443>
+  SSLProxyEngine on
+  SSLProxyVerify none
+  ProxyPreserveHost on
+  ProxyPass /  https://192.168.1.220/
+  ProxyPassReverse /  https://192.168.1.220/
+  ProxyRequests Off
+  ServerName blog.podzone.org
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  ServerAlias central.podzone.net
+  ServerAlias control.podzone.net
+  ServerAlias dev.podzone.net
+  ServerAlias prod.podzone.net
+  ServerAlias docs.podzone.net
+  ServerAlias gymyc.podzone.net
+  ServerAlias musings.thruhere.net
+  ServerAlias north.podzone.net
+  ServerAlias northern.podzone.net
+  ServerAlias wordpress.podzone.org
+  ServerAlias adam.blog.podzone.org
+  ServerAlias charles.blog.podzone.org
+  ServerAlias motttt.blog.podzone.org
+  ServerAlias dbgui.dev.podzone.net
+  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+</VirtualHost>
+<VirtualHost *:80>
+  ProxyPreserveHost on
+  ProxyPass /  http://192.168.1.220/
+  ProxyPassReverse /  http://192.168.1.220/
+  ProxyRequests Off
+  RewriteEngine on
+  RewriteCond %{SERVER_NAME} =musings.thruhere.net [OR]
+  RewriteCond %{SERVER_NAME} =blog.podzone.org [OR]
+  RewriteCond %{SERVER_NAME} =gymyc.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =northern.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =dev.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =prod.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =central.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =docs.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =wordpress.podzone.org [OR]
+  RewriteCond %{SERVER_NAME} =motttt.blog.podzone.org [OR]
+  RewriteCond %{SERVER_NAME} =north.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =adam.blog.podzone.org [OR]
+  RewriteCond %{SERVER_NAME} =control.podzone.net [OR]
+  RewriteCond %{SERVER_NAME} =charles.blog.podzone.org [OR]
+  RewriteCond %{SERVER_NAME} =dbgui.dev.podzone.net
+  RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost></p>
+<h2 id="adding-a-domain">Adding a domain</h2>
+<p>To add a domain, e.g. norma.blog.podzone.org, call certbot with the <code>--expand</code> option.</p>
+<h3 id="current-list">Current list</h3>
+<div class="highlight"><pre><span></span><code>certbot<span class="w"> </span>--expand<span class="w"> </span>-d<span class="w"> </span>blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net,norma.blog.podzone.org,uktoday.blogsite.org,uktoday.thruhere.net,uktoday.podzone.org,uktoday.podzone.net,uktoday.blog.podzone.org
+</code></pre></div>
+<h2 id="additional-domains">Additional domains</h2>
+<h3 id="uk-today">UK Today</h3>
+<ul>
+<li>uktoday.blogsite.org</li>
+<li>uktoday.thruhere.net</li>
+<li>uktoday.podzone.org</li>
+<li>uktoday.podzone.net</li>
+<li>uktoday.blog.podzone.org</li>
+</ul>
+<h2 id="unused-dyndns-hosts">Unused DynDns hosts</h2>
+<ul>
+<li>east.podzone.net</li>
+<li>eastern.podzone.net</li>
+<li>southern.podzone.net</li>
+<li>west.podzone.net</li>
+<li>western.podzone.net</li>
+<li>colley.endoftheinternet.org</li>
+<li>mottttspot.servegame.org</li>
+<li>poc.endoftheinternet.org</li>
+<li>qapps.does-it.net</li>
+<li>qsolutions.endoftheinternet.org</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/mcallegari/qlcplus">https://github.com/mcallegari/qlcplus</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Server_Name_Indication">https://en.wikipedia.org/wiki/Server_Name_Indication</a></li>
+<li><a href="https://serverfault.com/questions/1043940/apache-reverse-proxy-preserving-ssl">https://serverfault.com/questions/1043940/apache-reverse-proxy-preserving-ssl</a></li>
+<li><a href="https://www.reddit.com/r/sysadmin/comments/3vvz86/is_there_a_way_to_do_ssl_passthrough_via_an/">https://www.reddit.com/r/sysadmin/comments/3vvz86/is_there_a_way_to_do_ssl_passthrough_via_an/</a></li>
+<li><a href="https://eff-certbot.readthedocs.io/en/latest/using.html#re-creating-and-updating-existing-certificates">https://eff-certbot.readthedocs.io/en/latest/using.html#re-creating-and-updating-existing-certificates</a></li>
+</ul>
+              
+            </div>
+          </div><footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

@@ -100,7 +100,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -185,19 +185,19 @@
 <p>VBoxManage import UbuntuAppServerClean202401.ova</p>
 <p>VBoxManage list vms</p>
 <p>VBoxManage startvm "Ubuntu App Server" --type headless</p>
-<pre><code class="language-text">Waiting for VM &quot;Ubuntu App Server&quot; to power on...
-VBoxManage: error: Nonexistent host networking interface, name 'enp3s0f0' (VERR_INTERNAL_ERROR)
+<div class="highlight"><pre><span></span><code>Waiting for VM &quot;Ubuntu App Server&quot; to power on...
+VBoxManage: error: Nonexistent host networking interface, name &#39;enp3s0f0&#39; (VERR_INTERNAL_ERROR)
 VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component ConsoleWrap, interface IConsole
-</code></pre>
+</code></pre></div>
 <p>ip address show | grep enp</p>
-<pre><code class="language-text">2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+<div class="highlight"><pre><span></span><code>2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
     inet 192.168.0.14/24 metric 100 brd 192.168.0.255 scope global enp1s0
-</code></pre>
+</code></pre></div>
 <p>VBoxManage showvminfo "Ubuntu App Server"</p>
 <p>VBoxManage modifyvm "Ubuntu App Server" --nic2 bridged --bridgeadapter1 enp1s0</p>
 <p>Did not work, needed to change <code>&lt;BridgedInterface name="enp1s0"/&gt;</code> in /home/colleymj/VirtualBox VMs/Ubuntu App Server/Ubuntu App Server.vbox</p>
-<pre><code class="language-text">VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
-</code></pre>
+<div class="highlight"><pre><span></span><code>VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
+</code></pre></div>
 <p>VBoxManage modifyvm "Ubuntu App Server" --cpus 1</p>
 <p>VBoxManage modifyvm "Ubuntu App Server" --paravirtprovider none</p>
 <h2 id="dyn-dns">Dyn DNS</h2>

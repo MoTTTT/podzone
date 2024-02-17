@@ -84,7 +84,7 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -155,32 +155,32 @@
 <li><code>sudo snap install prometheus</code>: Available on localhost:9090</li>
 <li><code>nano /var/snap/prometheus/current/prometheus.yml</code></li>
 </ul>
-<pre><code class="language-yaml">global:
-  scrape_interval:     15s
-  external_labels:
-    monitor: 'podzone-monitor'
-scrape_configs:
-  - job_name: 'prometheus'
-    scrape_interval: 5s
-    static_configs:
-      - targets: ['localhost:9090']
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
+<span class="w">  </span><span class="nt">external_labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">monitor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;podzone-monitor&#39;</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;prometheus&#39;</span>
+<span class="w">    </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;localhost:9090&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
 <h2 id="scraping-ceph">Scraping ceph</h2>
 <ul>
 <li>Enable ceph monitoring endpoints: <code>ceph mgr module enable prometheus</code></li>
 </ul>
 <p>Add to prometheus config (IP addresses are for prod cluster):</p>
-<pre><code class="language-yaml">  - job_name: 'microceph'
-    scrape_interval: 15s
-    static_configs:
-    - targets: ['192.168.0.4:9283', '192.168.0.14:9283', '192.168.0.21:9283']
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;microceph&#39;</span>
+<span class="w">    </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;192.168.0.4:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.0.14:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.0.21:9283&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../technicalNetwork/" class="btn btn-neutral float-left" title="Network Topology"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalSiteStructure/" class="btn btn-neutral float-right" title="Site structure and git sync">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalSiteStructure/" class="btn btn-neutral float-right" title="Podzone Sites">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

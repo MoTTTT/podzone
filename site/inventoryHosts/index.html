@@ -78,7 +78,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -226,6 +226,7 @@
 <ul>
 <li><code>192.168.0.2 - 192.168.0.99</code>: Addresses assigned to the router DHCP server</li>
 <li><code>192.168.0.152 - 192.168.0.152</code>: L2 load-balancer IP address range for production (northcluster)</li>
+<li><code>192.168.1.220 - 192.168.1.220</code>: L2 L2 load-balancer IP address range for production (northcluster) UK</li>
 </ul>
 <h2 id="etchosts">/etc/hosts</h2>
 <p>The text block below contains the full hosts file entry list, mainly useful on the admin client.</p>
@@ -234,7 +235,7 @@
 <li>Add <code>/private/etc/hosts</code> for Mac clients</li>
 </ul>
 <h3 id="original-site">Original Site</h3>
-<pre><code class="language-text"># Workstations
+<div class="highlight"><pre><span></span><code># Workstations
 192.168.0.6   sigiriya
 192.168.0.18  dolmen
 192.168.0.27  james
@@ -246,9 +247,9 @@
 192.168.0.7   denisova
 192.168.0.30  rudolfensis
 192.168.0.33  ergaster
-</code></pre>
+</code></pre></div>
 <p>Turned down:</p>
-<pre><code class="language-text"># Dynamic VM, will be assigned IP on startup:
+<div class="highlight"><pre><span></span><code># Dynamic VM, will be assigned IP on startup:
 192.168.0.47  ularu
 
 # Mac mini, rebuild for sale
@@ -261,17 +262,27 @@
 192.168.0.13  balin
 192.168.0.20  thorin
 192.168.0.26  dwalin
-</code></pre>
+</code></pre></div>
 <h2 id="northern-interim-site">Northern interim site</h2>
-<pre><code class="language-text"># Workstations
+<div class="highlight"><pre><span></span><code># Workstations
 192.168.0.18  dolmen
+
+# VMs
+192.168.1.115  ularu
 
 # Cluster Nodes
 192.168.1.117  habilis
 192.168.1.113  antecessor
 192.168.1.112  naledi
-192.168.1.115  ularu
-</code></pre>
+192.168.1.130  neanderthal
+192.168.1.131  erectus
+192.168.1.137  floresiensis
+192.168.1.134  rudolfensis
+192.168.1.140  norham01
+192.168.1.141  norham02
+192.168.1.142  norham03
+192.168.1.143  norham04
+</code></pre></div>
               
             </div>
           </div><footer>

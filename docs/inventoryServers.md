@@ -1,14 +1,14 @@
 # Server Inventory
 
-The server inventory is split into "Production" and "Development".
+As cluster build-out has progressed, devices and their resource configuration have been standardised. Detail of the original development environments has since been refactored out of this documentation.
 
-## Production
+## Cluster nodes
 
-For the production environment, second hand hardware was purchased. Hardware that became redundant due to a call-centre upgrade was purchased second-hand online.
+Cluster nodes are HP t630 Thin Clients, for which the specifications are available from HP online: <https://support.hp.com/za-en/document/c05240287>.
 
-The devices are HP t630 Thin Clients, for which the specifications are available from HP online: <https://support.hp.com/za-en/document/c05240287>.
+The devices were purchased second hand, and typically had limited RAM and disk installed (e.g. 32GB disk, and 8GB DDR4 RAM).
 
-The devices each had single 32GB M.2 SATA SSDs, and 8GB DDR4 RAM, which were upgraded, giving the following common configuration:
+RAM and disk were installed, giving the following common node configuration:
 
 ### HP t360 specs
 
@@ -19,50 +19,40 @@ The devices each had single 32GB M.2 SATA SSDs, and 8GB DDR4 RAM, which were upg
 - 128 GB M.2 SATA SSDs
 - 256 GB M.2 SATA SSDs
 
-### southern.podzone.net
+## northern zone solution
 
-The devices for the southern.podzone.net cluster have been assigned names and static IP addresses as follows:
+### http request router
 
-- habilis: 192.168.0.4
-- antecessor: 192.168.0.14
-- naledi: 192.168.0.21
+In order to support multiple k8s clusters on the northern network served by a single static IP assigned by the ISP,
+without any cluster depending on another, an HP t520 device is added to the solution to serve a reverse proxy (apache) function.
+Routing of https requests at the proxy is  based on domain name. In addition, the domain name IP address management function (ddclient)
+and tls certificate management for the reverse proxy (certbot) are provided on this device:
 
-### northern.podzone.net
+- rudolfensis:  t520; apache, ddclient, certbot
 
-The devices for the southern.podzone.net cluster have been assigned names and static IP addresses as follows:
+### Kubernetes nodes
 
-- denisova
-- rudolfensis
-- ergaster
+The northern zone solution has the following node configuration:
 
-## Development Environment
+- naledi:       t630; k8s, ceph
+- habilis:      t630; k8s, ceph
+- antecessor:   t630; k8s, ceph
+- neanderthal:  t630; k8s, ceph
+- erectus:      t630; k8s, ceph
+- floresiensis: t630; k8s, ceph
+- norham01:     t630; k8s, ceph
+- norham02:     t630; k8s, ceph
+- norham03:     t630; k8s, ceph
+- norham04:     t630; k8s, ceph
 
-Three personal machines and workstations were re-purposed to create a dev environment. Upgrades to disk and ram were done where possible. It would have been great to get RAM on all devices up to 16GB, or more, but unfortunately only one device accommodated upgrade, and that to only 16GB.
+### Cluster resource totals
 
-### sigiriya
+- Total t630 CPU: 40 cores
+- Total t630 RAM: 200 GB
+- Total t630 Raw Disk: 2.5 TB
 
-- Late 2014 Mac Mini
-- 2.80GHz i5-4308U (2 core, 4 thread)
-- 8GB RAM (soldered)
-- Ubuntu Server 22.04 (upgrade from macOS)
-- 2TB SSD (upgrade from 500GB)
-- eth0 IP: 192.168.0.6
+## southern zone solution
 
-### bukit
-
-- Late 2014 Mac Mini
-- 1.4 GHz Dual Core i5
-- 4 GB RAM (soldered)
-- Ubuntu 22.04 desktop (existing installation)
-- 500GB SSD
-- eth0 IP: 192.168.0.52
-- admin user: martin
-
-### james
-
-- Motherboard: ASRock H61M-VS3
-- 3 GHz Quad Core i5
-- 16GB (upgrade from 8 GB) RAM
-- Ubuntu 22.04 desktop (existing installation)
-- 500 GB SSD
-- eth0 IP: 192.168.0.27
+- denisova:     t630; k8s, ceph, ddclient, ularu
+- rudolfensis:  t630; k8s, ceph
+- ergaster:     t630; k8s, ceph

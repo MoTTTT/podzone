@@ -1,164 +1,171 @@
 <!DOCTYPE html>
-
-<html class="writer-html5" lang="en">
+<html class="writer-html5" lang="en" >
 <head>
-<meta charset="utf-8"/>
-<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalKubernetes/" rel="canonical"/>
-<link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Kubernetes - Podzone</title>
-<link href="../css/theme.css" rel="stylesheet"/>
-<link href="../css/theme_extra.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
-<script>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalKubernetes/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Kubernetes - Podzone</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
         // Current page data
         var mkdocs_page_name = "Kubernetes";
         var mkdocs_page_input_path = "technicalKubernetes.md";
         var mkdocs_page_url = "/podzone/technicalKubernetes/";
       </script>
-<!--[if lt IE 9]>
+    
+    <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
+
 <body class="wy-body-for-nav" role="document">
-<div class="wy-grid-for-nav">
-<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
-<div class="wy-side-scroll">
-<div class="wy-side-nav-search">
-<a class="icon icon-home" href=".."> Podzone
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> Podzone
         </a><div role="search">
-<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
-<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
-</form>
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
 </div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Requirements</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Implementation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#technology-trajectory">Technology Trajectory</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#promise-theory">Promise theory</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clustering">Clustering</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#clustered-resources">Clustered Resources</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Inventory</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">References</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Podzone</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Implementation</li>
+      <li class="breadcrumb-item active">Kubernetes</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
 </div>
-<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<p class="caption"><span class="caption-text">Requirements</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">Implementation</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#technology-trajectory">Technology Trajectory</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#promise-theory">Promise theory</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustering">Clustering</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustered-resources">Clustered Resources</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">Inventory</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">References</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
-<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
-<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
-<a href="..">Podzone</a>
-</nav>
-<div class="wy-nav-content">
-<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
-<ul class="wy-breadcrumbs">
-<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item">Implementation</li>
-<li class="breadcrumb-item active">Kubernetes</li>
-<li class="wy-breadcrumbs-aside">
-</li>
-</ul>
-<hr/>
-</div>
-<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
-<div class="section" itemprop="articleBody">
-<h1 id="kubernetes">Kubernetes</h1>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="kubernetes">Kubernetes</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Kubernetes is an Open Source system that provides functionality to manage the lifecycle of containerised computing loads. It can achieve this over a clustered infrastructure, providing high availability, and scaling.</p>
 <h3 id="definitions">Definitions</h3>
@@ -185,7 +192,7 @@
 <p>Clustering provides a layer of abstraction for computing resources, spanning virtual or physical machines.</p>
 <p>In a single machine instance the processes and applications interact with the machine's operating system apis.</p>
 <p>In a cluster the processes and applications interact with the cluster system's apis.</p>
-<div class="mermaid">---
+<div class="highlight"><pre><span></span><code>---
 title: Example of Computing resources of a machine instance
 ---
 graph LR
@@ -210,9 +217,9 @@ subgraph OS2[Machine Resources]
     end
   end
 end
-</div>
+</code></pre></div>
 <h3 id="clustered-resources">Clustered Resources</h3>
-<div class="mermaid">---
+<div class="highlight"><pre><span></span><code>---
 title: Computing resources of a machine cluster
 ---
 graph LR
@@ -273,8 +280,8 @@ subgraph OS2[Cluster Resources]
     end
   end
 end
-</div>
-<div class="mermaid">---
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>---
 title: Abstracted Resources
 ---
 graph LR
@@ -297,7 +304,7 @@ subgraph OS2[Cluster Resources]
     end
   end
 end
-</div>
+</code></pre></div>
 <h2 id="references">References</h2>
 <ul>
 <li>
@@ -307,39 +314,51 @@ end
 <p><a href="https://en.wikipedia.org/wiki/Promise_theory">https://en.wikipedia.org/wiki/Promise_theory</a></p>
 </li>
 </ul>
-</div>
-</div><footer>
-<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../technicalTasklist2/" title="Task List: northern.podzone.net"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalConsumerCloud/" title="Consumer Cloud">Next <span class="icon icon-circle-arrow-right"></span></a>
-</div>
-<hr/>
-<div role="contentinfo">
-<!-- Copyright etc -->
-</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../technicalTasklist2/" class="btn btn-neutral float-left" title="Task List: northern.podzone.net"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalConsumerCloud/" class="btn btn-neutral float-right" title="Consumer Cloud">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../technicalTasklist2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../technicalConsumerCloud/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
-</div>
-</section>
-</div>
-<div aria-label="Versions" class="rst-versions" role="note">
-<span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../technicalTasklist2/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalConsumerCloud/" style="color: #fcfcfc">Next »</a></span>
-</span>
-</div>
-<script src="../js/jquery-3.6.0.min.js"></script>
-<script>var base_url = "..";</script>
-<script src="../js/theme_extra.js"></script>
-<script src="../js/theme.js"></script>
-<script src="../search/main.js"></script>
-<script>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script></body>
+
+</body>
 </html>

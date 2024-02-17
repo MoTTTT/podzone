@@ -98,7 +98,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Site structure and git sync</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
@@ -197,20 +197,20 @@
 </ul>
 <h2 id="cluster-configuration">Cluster configuration</h2>
 <ul>
-<li><code>microk8s enable metrics-server</code></li>
-<li><code>microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
-<li><code>microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd</code></li>
-<li><code>microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd</code></li>
-<li><code>microk8s enable metallb</code></li>
-<li><code>microk8s enable cert-manager</code></li>
-<li><code>microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace</code></li>
+<li><code>sudo microk8s enable metrics-server</code></li>
+<li><code>sudo microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
+<li><code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd</code></li>
+<li><code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd</code></li>
+<li><code>sudo microk8s enable metallb</code></li>
+<li><code>sudo microk8s enable cert-manager</code></li>
+<li><code>sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace</code></li>
 <li>NOTE: This gives <code>ingressClassName: nginx</code></li>
 </ul>
 <h2 id="infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</h2>
 <p>An installation of static-site, with default configuration (musings):</p>
 <p>NOTE: WAN port forwarding to the metallb IP address is required for certificates to be issued.</p>
-<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-</code></pre>
+<div class="highlight"><pre><span></span><code>helm<span class="w">  </span>install<span class="w"> </span>musings-01<span class="w"> </span>--debug<span class="w">  </span>--namespace<span class="w"> </span>musings<span class="w"> </span>--create-namespace<span class="w"> </span>static-site<span class="w"> </span>--repo<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/&#39;</span>
+</code></pre></div>
 <p>This install tests the following cluster capabilities:</p>
 <ul>
 <li>L2 load balancer</li>
@@ -218,8 +218,8 @@
 <li>Certificate Manager</li>
 </ul>
 <p>To install podzone docs:</p>
-<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
-</code></pre>
+<div class="highlight"><pre><span></span><code>helm<span class="w">  </span>install<span class="w"> </span>podzone-01<span class="w"> </span>--debug<span class="w">  </span>--namespace<span class="w"> </span>podzone<span class="w"> </span>--create-namespace<span class="w"> </span>static-site<span class="w"> </span>--repo<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/&#39;</span><span class="w"> </span>--values<span class="w"> </span>valuespodzone.yaml
+</code></pre></div>
 <h2 id="ceph-configuration">Ceph configuration</h2>
 <ul>
 <li><code>microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>

@@ -19,39 +19,40 @@ nav:
     - requirementIntroduction.md
     - requirementBackground.md
     - requirementBusinessBrief.md
+  - 'Analysis':
+    - technicalConsumerCloud.md
+    - technicalExternalServices.md
+    - inventorySite.md
     - technicalTasklist1.md
     - technicalTasklist2.md
-  - 'Implementation':
-    - technicalKubernetes.md
-    - technicalConsumerCloud.md
-    - technicalApplication.md
-    - technicalCeph.md
-    - technicalCluster.md
-    - technicalExternalServices.md
-    - technicalIngress.md
-    - technicalIoT.md
-    - technicalIssues.md
-    - technicalNFS.md
-    - technicalNetwork.md
-    - technicalPrometheus.md
+    - inventoryCosting.md
+  - 'Workload':
     - technicalSiteStructure.md
     - technicalStaticSite.md
-
-    - technicalTools.md
-    - technicalWireguard.md
     - technicalWordpress.md
+    - technicalApplication.md
+    - technicalIoT.md
+  - 'Substrate':
+    - technicalKubernetes.md
+    - technicalCluster.md
+    - technicalCeph.md
+    - technicalIngress.md
+    - technicalNFS.md
+    - technicalNetwork.md
+    - technicalIssues.md
+  - 'Tools':
+    - technicalTools.md
+    - technicalPrometheus.md
+    - technicalWireguard.md
   - 'Inventory':
-    - inventorySite.md
+    - inventoryServers.md
     - inventoryHosts.md
     - inventoryIoT.md
-    - inventoryServers.md
     - inventoryVm.md
     - inventoryWorkstation.md
-    - inventoryCosting.md
   - 'References':
-      - referencesApplication.md
-      - referencesIoT.md
-      - referencesResearch.md
-      - referencesReserve.md
-      - referencesTroubleshooting.md
-
+    - referencesApplication.md
+    - referencesIoT.md
+    - referencesResearch.md
+    - referencesReserve.md
+    - referencesTroubleshooting.md

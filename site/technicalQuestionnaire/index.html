@@ -47,63 +47,72 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
                   </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Analysis</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
                   </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Implementation</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+              </ul>
+              <p class="caption"><span class="caption-text">Workload</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Substrate</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
-                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Tools</span></p>
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Inventory</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">References</span></p>
@@ -457,10 +466,26 @@
 label + label {clear: none;}
 input {vertical-align: top;}</p>
 <h2 id="db-design">DB design</h2>
-<p>-- Adminer 4.7.6 PostgreSQL dump</p>
-<p>DROP TABLE IF EXISTS "customer";
+<ul>
+<li>Naming convention: lower case table and attribute names</li>
+<li>Naming convention: underscore to separate words in names</li>
+</ul>
+<p>Sample:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">CONTACTME</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">APPLICATION</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">NAME</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">EMAIL</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">SUBJECT</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">MESSAGE</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">400</span><span class="p">),</span>
+<span class="w">    </span><span class="n">COMPANY</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ADDRESS</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="n">CONTACT</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">));</span>
+</code></pre></div>
+<p>DROP TABLE IF EXISTS "CUSTOMER";
 CREATE TABLE "norma"."customer" (
-    "id" integer NOT NULL,
+    "id" integer NOT NULL PRIMARY K,
     "name" character varying(20) NOT NULL,
     "surname" character varying(20) NOT NULL,
     "email" character varying(20) NOT NULL
@@ -473,97 +498,97 @@ CREATE TABLE "norma"."interest_answers" (
     "Q02" boolean NOT NULL,
     "Q03" boolean NOT NULL,
     "Q04" boolean NOT NULL,
-    "Q05" integer NOT NULL,
+    "Q05" boolean NOT NULL,
     "Q06" boolean NOT NULL,
     "Q07" boolean NOT NULL,
     "Q08" boolean NOT NULL,
     "Q09" boolean NOT NULL,
-    "Q10" integer NOT NULL,
+    "Q10" boolean NOT NULL,
     "Q11" boolean NOT NULL,
     "Q12" boolean NOT NULL,
     "Q13" boolean NOT NULL,
     "Q14" boolean NOT NULL,
-    "Q15" integer NOT NULL,
+    "Q15" boolean NOT NULL,
     "Q16" boolean NOT NULL,
     "Q17" boolean NOT NULL,
     "Q18" boolean NOT NULL,
     "Q19" boolean NOT NULL,
-    "Q20" integer NOT NULL,
+    "Q20" boolean NOT NULL,
     "Q21" boolean NOT NULL,
     "Q22" boolean NOT NULL,
     "Q23" boolean NOT NULL,
     "Q24" boolean NOT NULL,
-    "Q25" integer NOT NULL,
+    "Q25" boolean NOT NULL,
     "Q26" boolean NOT NULL,
     "Q27" boolean NOT NULL,
     "Q28" boolean NOT NULL,
     "Q29" boolean NOT NULL,
-    "Q30" integer NOT NULL,
+    "Q30" boolean NOT NULL,
     "Q31" boolean NOT NULL,
     "Q32" boolean NOT NULL,
     "Q33" boolean NOT NULL,
     "Q34" boolean NOT NULL,
-    "Q35" integer NOT NULL,
+    "Q35" boolean NOT NULL,
     "Q36" boolean NOT NULL,
     "Q37" boolean NOT NULL,
     "Q38" boolean NOT NULL,
     "Q39" boolean NOT NULL,
-    "Q40" integer NOT NULL,
+    "Q40" boolean NOT NULL,
     "Q41" boolean NOT NULL,
     "Q42" boolean NOT NULL,
     "Q43" boolean NOT NULL,
     "Q44" boolean NOT NULL,
-    "Q45" integer NOT NULL,
+    "Q45" boolean NOT NULL,
     "Q46" boolean NOT NULL,
     "Q47" boolean NOT NULL,
     "Q48" boolean NOT NULL,
     "Q49" boolean NOT NULL,
-    "Q50" integer NOT NULL,
+    "Q50" boolean NOT NULL,
     "Q51" boolean NOT NULL,
     "Q52" boolean NOT NULL,
     "Q53" boolean NOT NULL,
     "Q54" boolean NOT NULL,
-    "Q55" integer NOT NULL,
+    "Q55" boolean NOT NULL,
     "Q56" boolean NOT NULL,
     "Q57" boolean NOT NULL,
     "Q58" boolean NOT NULL,
     "Q59" boolean NOT NULL,
-    "Q60" integer NOT NULL,
+    "Q60" boolean NOT NULL,
     "Q61" boolean NOT NULL,
     "Q62" boolean NOT NULL,
     "Q63" boolean NOT NULL,
     "Q64" boolean NOT NULL,
-    "Q65" integer NOT NULL,
+    "Q65" boolean NOT NULL,
     "Q66" boolean NOT NULL,
     "Q67" boolean NOT NULL,
     "Q68" boolean NOT NULL,
     "Q69" boolean NOT NULL,
-    "Q70" integer NOT NULL,
+    "Q70" boolean NOT NULL,
     "Q71" boolean NOT NULL,
     "Q72" boolean NOT NULL,
     "Q73" boolean NOT NULL,
     "Q74" boolean NOT NULL,
-    "Q75" integer NOT NULL,
+    "Q75" boolean NOT NULL,
     "Q76" boolean NOT NULL,
     "Q77" boolean NOT NULL,
     "Q78" boolean NOT NULL,
     "Q79" boolean NOT NULL,
-    "Q80" integer NOT NULL,
+    "Q80" boolean NOT NULL,
     "Q81" boolean NOT NULL,
     "Q82" boolean NOT NULL,
     "Q83" boolean NOT NULL,
     "Q84" boolean NOT NULL,
-    "Q85" integer NOT NULL,
+    "Q85" boolean NOT NULL,
     "Q86" boolean NOT NULL,
     "Q87" boolean NOT NULL,
     "Q88" boolean NOT NULL,
     "Q89" boolean NOT NULL,
-    "Q90" integer NOT NULL,
+    "Q90" boolean NOT NULL,
     "Q91" boolean NOT NULL,
     "Q92" boolean NOT NULL,
     "Q93" boolean NOT NULL,
     "Q94" boolean NOT NULL,
-    "Q95" integer NOT NULL,
+    "Q95" boolean NOT NULL,
     "Q96" boolean NOT NULL
 ) WITH (oids = false);</p>
               

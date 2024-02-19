@@ -47,7 +47,6 @@ kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' 
 ## ansible
 
 ansible southcluster -i inventory.yaml -m command -a "free -m"
-
  
 To accept new ssh keys:
 ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml
@@ -56,6 +55,10 @@ ansible-playbook -i inventory.yaml playbook.yaml
 ansible-inventory -i inventory.yaml --list
 ansible devcluster -m ping -i inventory.yaml
 
+## apache
+
+- sudo systemctl restart apache2
+- 
 
 ## plone
 

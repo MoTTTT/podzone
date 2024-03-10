@@ -16,7 +16,6 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://kubernetes.io/docs/concepts/extend-kubernetes/operator/>
 - <https://operatorframework.io/>
 
-
 ## Applications
 
 - <https://3.docs.plone.org/manage/deploying/backup.html>
@@ -149,7 +148,6 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://discuss.kubernetes.io/t/addon-ingress/11259/31>
 - <https://discuss.kubernetes.io/t/addon-ingress/11259/35>
 - <https://github.com/canonical/microk8s-core-addons/blob/main/addons/ingress/ingress.yaml>
-- 
 
 ## Wordpress
 
@@ -165,4 +163,3 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://hub.docker.com/r/itzg/minecraft-server/>
 - <https://github.com/solarhess/kubernetes-minecraft-server>
 - <https://github.com/solarhess/kubernetes-minecraft-server/blob/master/helm/minecraft/templates/volume.yaml>
-- 

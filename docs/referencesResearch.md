@@ -397,7 +397,6 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://docs.ceph.com/en/latest/mgr/dashboard/>
 - <https://docs.ceph.com/en/latest/mgr/prometheus/>
 - <https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-alerts/>
-- 
 
 ## Helm
 

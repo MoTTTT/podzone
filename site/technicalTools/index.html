@@ -101,13 +101,27 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Tools</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#distributions">Distributions</a>
+    <li class="toctree-l2"><a class="reference internal" href="#technology-strategy">Technology Strategy</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#substrate-technology-selection">Substrate Technology Selection</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#administration">Administration</a>
+        </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#additional-components-to-be-investigated">Additional components to be investigated</a>
+    <li class="toctree-l2"><a class="reference internal" href="#administration-technologies-selected">Administration technologies selected</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#essential">Essential</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#installation-on-mac">Installation on Mac</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#application-and-advanced">Application and advanced</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#platform-technologies">Platform technologies</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tool-installations">Tool installations</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#vagrant">Vagrant</a>
     </li>
@@ -175,38 +189,53 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="tools">Tools</h1>
-<p>Tool and technology selection is influenced by server, workstation and admin client installed base.</p>
-<p>Server infrastructure includes Mac and PC hardware, with Ubuntu OS installed. Server infrastructure is currently in use. Build of new software infrastructure will cohabit with existing software assets.
-Redundant tooling will be removed as workload shifts to new software infrastructure.</p>
-<p>Software distributions will therefore be chosen for Ubuntu OS packaging.</p>
-<p>Initial build is manual, dev and subsequent releases are declarative.</p>
-<h2 id="distributions">Distributions</h2>
+<h2 id="technology-strategy">Technology Strategy</h2>
+<ul>
+<li>Leverage Ubuntu experience</li>
+<li>Initial build is manual, dev and subsequent releases are declarative</li>
+<li>Increasing abstraction for infrastructure and application pipelines</li>
+</ul>
+<h3 id="substrate-technology-selection">Substrate Technology Selection</h3>
 <ul>
 <li>Kubernetes: Microk8s snap</li>
 <li>Ceph: MicroCeph snap</li>
 <li>Prometheus: snap</li>
 </ul>
-<h2 id="administration">Administration</h2>
+<h2 id="administration-technologies-selected">Administration technologies selected</h2>
+<h3 id="essential">Essential</h3>
+<h3 id="installation-on-mac">Installation on Mac</h3>
 <ul>
-<li>Kubernetes admin: kubectl (kubernetes-cli)</li>
-<li>Kubernetes Terminal UI: k9s</li>
-<li>Kubernetes Web UI (client side): octant</li>
-<li>CNI admin: calicoctl</li>
-<li>Database dashboard: adminer</li>
-<li>Monitoring: Prometheus</li>
+<li>Recommend <code>brew</code></li>
+<li>Depends on x-code, so install with: <code>xcode-select --install</code></li>
+<li>Install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"</code></li>
+<li>Terminal browser: midnight commander (<strong>mc</strong>) installation: <code>brew install mc</code></li>
+<li>Kubernetes admin: <strong>kubectl</strong> installation: <code>brew install kubernetes-cli</code></li>
+<li>Kubernetes Terminal User Interface <strong>k9s</strong> installation: <code>brew install k9s</code></li>
+<li>Kubernetes GUI User Interface <strong>octant</strong> installation: <code>brew install octant</code></li>
+<li>Kubernetes Application release management <strong>helm</strong> installation: <code>brew install helm</code></li>
+</ul>
+<h3 id="application-and-advanced">Application and advanced</h3>
+<ul>
 <li>Virtual Machine provisioning: Vagrant</li>
 <li>VM Configuration and microk8s cluster build: ansible</li>
-<li>Application release management: helm</li>
+<li>Distributed Networking admin: calicoctl</li>
+<li>Database dashboard: adminer</li>
 <li>json processor: jq</li>
-<li>Terminal browser: midnight commander (mc)</li>
 <li>Cloudsmith CLI (helm repository management)</li>
+<li>Wireguard</li>
 </ul>
-<h2 id="additional-components-to-be-investigated">Additional components to be investigated</h2>
+<h2 id="platform-technologies">Platform technologies</h2>
 <ul>
-<li>Backup: Longhorn</li>
-<li>SSO: Dex</li>
+<li>Monitoring: Prometheus</li>
+<li>Backup: Longhorn (to be evaluated)</li>
+<li>SSO: Dex (to be evaluated)</li>
 </ul>
 <h2 id="references">References</h2>
+<h2 id="tool-installations">Tool installations</h2>
+<ul>
+<li><a href="https://www.redswitches.com/blog/install-homebrew-on-mac/">https://www.redswitches.com/blog/install-homebrew-on-mac/</a></li>
+<li><a href="https://formulae.brew.sh/formula/kubernetes-cli">https://formulae.brew.sh/formula/kubernetes-cli</a></li>
+</ul>
 <h3 id="vagrant">Vagrant</h3>
 <ul>
 <li><a href="https://app.vagrantup.com/boxes/search">https://app.vagrantup.com/boxes/search</a></li>

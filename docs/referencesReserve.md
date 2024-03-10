@@ -250,7 +250,6 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://docs.openfaas.com/deployment/kubernetes/>
 - <https://www.openfaas.com/pricing/>
 - <https://blog.alexellis.io/serverless-kubernetes-on-raspberry-pi/>
-- <>
 
 ## New
 
@@ -333,12 +332,9 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://aturon.github.io/tech/2018/06/18/listening-part-3/>
 - <https://marc.info/?l=linux-kernel&m=137391223711946&w=2>
 - <https://marc.info/?l=linux-kernel&m=136130347127908&w=2>
-
 - <https://aturon.github.io/personal/2019/06/24/survivor-skills/>
 - <https://aturon.github.io/personal/2020/09/13/grief-trauma-healing/>
-
 - <https://bholley.net/blog/2017/stylo.html>
-
 - <https://helm.sh/docs/chart_best_practices/templates/>
 - <https://helm.sh/docs/chart_template_guide/accessing_files/>
 - <https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-csi-common-issues/>
@@ -347,11 +343,8 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://docs.ceph.com/en/mimic/cephfs/createfs/>
 - <https://docs.ceph.com/en/mimic/start/quick-cephfs/>
 - <https://access.redhat.com/documentation/en-us/red_hat_ceph_storage/3/html/ceph_file_system_guide/introduction-to-ceph-file-system>
-
 - <https://helm.sh/docs/helm/helm_pull/>
-
 - <https://kubesail.com/template/loopDelicious/ddclient>
-
 - <https://ubuntu.com/blog/why-and-how-to-use-rust-on-ubuntu>
 - <https://blog.rust-lang.org/2015/04/10/Fearless-Concurrency.html>
 - <https://llvm.org/>
@@ -367,14 +360,12 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://www.freecodecamp.org/news/embedded-rust-programming-on-raspberry-pi-zero-w/>
 - <https://forums.raspberrypi.com/viewtopic.php?t=353488>
 - <https://canonical.com/blog/tag/flutter>
-
 - <https://github.com/GoogleChrome/lighthouse/>
 - <https://backstage.io/docs/overview/architecture-overview>
 - <https://backstage.io/docs/features/software-catalog/>
 - <https://backstage.io/plugins/>
 - <https://backstage.io/blog/2022/03/16/backstage-turns-two/>
 - <https://backstage.io/docs/overview/what-is-backstage>
-
 - <https://www.businessinsider.in/tech/enterprise/news/the-ceo-of-developer-startup-sentry-explains-the-huge-change-it-made-to-its-business-to-prevent-amazon-and-other-startups-from-profiting-off-its-code/articleshow/72096570.cms>
 - <https://www.confluent.io/confluent-community-license-faq/>
 - <https://www.confluent.io/blog/license-changes-confluent-platform>
@@ -391,9 +382,7 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://spacelift.io/blog/opentf-announcing-terraform-fork>
 - <https://www.terraform.io/use-cases/infrastructure-as-code>
 - <https://www.hashicorp.com/products/terraform>
-
 - <https://ubuntu.com/blog/if-youre-still-using-ifconfig-youre-living-in-the-past>
-
 - <https://www.oracle.com/technical-resources/articles/it-infrastructure/admin-manage-vbox-cli.html>
 - <https://www.virtualbox.org/manual/ch08.html>
 - <https://www.cyberithub.com/vboxmanage-an-introduction-to-virtualbox-cli-with-examples/>

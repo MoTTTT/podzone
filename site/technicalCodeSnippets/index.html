@@ -157,42 +157,50 @@
               
                 <h1 id="command-line-snippets">Command line snippets</h1>
 <h2 id="microk8s">microk8s</h2>
-<p>sudo snap install microk8s --channel=1.28/stable --classic</p>
-<h2 id="helm">helm</h2>
-<p>helm repo add truecharts https://charts.truecharts.org/
-helm pull [chart URL | repo/chartname] [...] [flags]
-helm package static-site
-cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz
-helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml . 
-helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml --values valuespodzone.yaml</p>
-<p>helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml
-helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
-helm  install orange-base --debug  --namespace musings ./qapps</p>
-<h2 id="ceph">ceph</h2>
-<p>sudo ceph config set mgr mgr/prometheus/server_addr sigiriya
-sudo ceph config set mgr mgr/prometheus/port 9090</p>
-<p>https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool</p>
-<p>mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4</p>
-<p>sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ</p>
-<p>Mount apple volume - <code>./apfs-fuse /dev/sdb2 /mt/sdb1</code></p>
-<h2 id="kubectl">kubectl</h2>
-<p>kubectl config set-context --current --namespace=<namespace-name>
-kubectl config set-context --current --namespace=admin
-kubectl drain --ignore-daemonsets <node name>
-kubectl uncordon <node name>
-kubectl get -n default serviceaccount kubeapps-operator -o yaml
-kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c</p>
 <ul>
+<li>sudo snap install microk8s --channel=1.28/stable --classic</li>
+</ul>
+<h2 id="helm">helm</h2>
+<ul>
+<li>helm repo add truecharts https://charts.truecharts.org/</li>
+<li>helm pull [chart URL | repo/chartname] [...] [flags]</li>
+<li>helm package static-site</li>
+<li>cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz</li>
+<li>helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'</li>
+<li>helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .</li>
+<li>helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml</li>
+<li>helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml</li>
+<li>helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'</li>
+<li>helm  install orange-base --debug  --namespace musings ./qapps</li>
+</ul>
+<h2 id="ceph">ceph</h2>
+<ul>
+<li>sudo ceph config set mgr mgr/prometheus/server_addr sigiriya</li>
+<li>sudo ceph config set mgr mgr/prometheus/port 9090</li>
+<li><a href="https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool">https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool</a></li>
+<li>mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4</li>
+<li>sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ</li>
+<li>Mount apple volume - <code>./apfs-fuse /dev/sdb2 /mt/sdb1</code></li>
+</ul>
+<h2 id="kubectl">kubectl</h2>
+<ul>
+<li>kubectl config set-context --current --namespace=<namespace-name></li>
+<li>kubectl config set-context --current --namespace=admin</li>
+<li>kubectl drain --ignore-daemonsets <node name></li>
+<li>kubectl uncordon <node name></li>
+<li>kubectl get -n default serviceaccount kubeapps-operator -o yaml</li>
+<li>kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c</li>
 <li>Aliases: <code>alias ka="kubectl apply -f "</code>; <code>alias kd="kubectl delete -f "</code></li>
+<li>kubectl api-resources</li>
 </ul>
 <h2 id="ansible">ansible</h2>
-<p>ansible southcluster -i inventory.yaml -m command -a "free -m"</p>
-<p>To accept new ssh keys:
-ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml</p>
-<p>ansible-playbook -i inventory.yaml playbook.yaml
-ansible-inventory -i inventory.yaml --list
-ansible devcluster -m ping -i inventory.yaml</p>
+<ul>
+<li><code>ansible southcluster -i inventory.yaml -m command -a "free -m"</code></li>
+<li>To accept new ssh keys: <code>- ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml</code></li>
+<li><code>ansible-playbook -i inventory.yaml playbook.yaml</code></li>
+<li><code>ansible-inventory -i inventory.yaml --list</code></li>
+<li><code>ansible devcluster -m ping -i inventory.yaml</code></li>
+</ul>
 <h2 id="apache">apache</h2>
 <ul>
 <li>sudo systemctl restart apache2</li>
@@ -200,14 +208,15 @@ ansible devcluster -m ping -i inventory.yaml</p>
 <li>sudo apache2ctl -t</li>
 </ul>
 <h2 id="plone">plone</h2>
-<p>/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
-/usr/local/Plone/Python-2.7/bin/python 
-/usr/local/Plone/zinstance/parts/instance/bin/interpreter 
-/usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
-docker pull robcast/legacy-zope
-docker pull robcast/legacy-zope:2.13</p>
+<ul>
+<li><code>/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
+/usr/local/Plone/Python-2.7/bin/python</code></li>
+<li><code>/usr/local/Plone/zinstance/parts/instance/bin/interpreter</code></li>
+<li><code>/usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf</code></li>
+<li><code>docker pull robcast/legacy-zope</code></li>
+<li><code>docker pull robcast/legacy-zope:2.13</code></li>
+</ul>
 <p>sudo usermod -aG sudo c</p>
-<p>kubectl api-resources</p>
 <h2 id="vagrant">Vagrant</h2>
 <p>vagrant init techchad2022/ubuntu2204
 vagrant up
@@ -267,18 +276,22 @@ sudo lsof -i @james</p>
 <p>export QAPPS_PASSWORD="<password>"
 envsubst &lt; podzone-db.yaml | kubectl apply -f -</p>
 <h2 id="manual-site-updates">Manual site updates</h2>
-<h1 id="binbash">!/bin/bash</h1>
-<p>mkdocs build
-apachepod=<code>kubectl get pods -n default -o json |jq -r .items[].metadata.name | grep apache</code>
-kubectl exec -n default $apachepod -- rm -R /var/www/html/podzone
-kubectl -n default cp ~/workspace/podzone/site/ $apachepod:/tmp/podzone/
-kubectl exec -n default $apachepod -- chown -R nobody:nogroup  /tmp/podzone/
-kubectl exec -n default $apachepod -- mv /tmp/podzone  /var/www/html</p>
-<p>kubectl exec apache-bf4996969-qnmqf -- rm -R /var/www/html/telling
-kubectl cp ~/workspace/telling/site/ apache-bf4996969-qnmqf:/tmp/telling/
-kubectl exec apache-bf4996969-qnmqf -- chown -R nobody:nogroup  /tmp/telling/
-kubectl exec apache-bf4996969-qnmqf -- mv /tmp/telling  /var/www/html</p>
-<p>kubectl cp ~/workspace/QApps/sites/index.html apache-bf4996969-qnmqf:/var/www.html/</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+mkdocs<span class="w"> </span>build
+<span class="nv">apachepod</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span>jq<span class="w"> </span>-r<span class="w"> </span>.items<span class="o">[]</span>.metadata.name<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>apache<span class="sb">`</span>
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>-R<span class="w"> </span>/var/www/html/podzone
+kubectl<span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span>cp<span class="w"> </span>~/workspace/podzone/site/<span class="w"> </span><span class="nv">$apachepod</span>:/tmp/podzone/
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>nobody:nogroup<span class="w">  </span>/tmp/podzone/
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>mv<span class="w"> </span>/tmp/podzone<span class="w">  </span>/var/www/html
+
+
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>-R<span class="w"> </span>/var/www/html/telling
+kubectl<span class="w"> </span>cp<span class="w"> </span>~/workspace/telling/site/<span class="w"> </span>apache-bf4996969-qnmqf:/tmp/telling/
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>nobody:nogroup<span class="w">  </span>/tmp/telling/
+kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>mv<span class="w"> </span>/tmp/telling<span class="w">  </span>/var/www/html
+
+kubectl<span class="w"> </span>cp<span class="w"> </span>~/workspace/QApps/sites/index.html<span class="w"> </span>apache-bf4996969-qnmqf:/var/www.html/
+</code></pre></div>
 <h2 id="command-line-completion">Command line completion</h2>
 <p>source &lt;(kubectl completion bash)
 echo "source &lt;(kubectl completion bash)" &gt;&gt; ~/.bashrc</p>
@@ -309,7 +322,6 @@ echo "source &lt;(kubectl completion bash)" &gt;&gt; ~/.bashrc</p>
 <li><code>helm install opensearch-data opensearch/opensearch -f opensearch-sigiriya.yaml</code></li>
 <li><code>helm install dashboards opensearch/opensearch-dashboards</code></li>
 </ul>
-<h2 id="opensearch_1">Opensearch</h2>
 <p>Opensearch dashboard:</p>
 <p>Get the application URL by running these commands:
   export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/name=opensearch-dashboards,app.kubernetes.io/instance=dashboards" -o jsonpath="{.items[0].metadata.name}")

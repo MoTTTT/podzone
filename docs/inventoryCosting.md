@@ -111,7 +111,6 @@ Maximum supported RAM for a three node cluster would be 191GB, once dedicated GP
 | 14/02/2024 | | | | -11,45  |
 | 14/02/2024 | | | | -7,77   |
 
-
 ## References
 
 - HP t630 specs: <https://support.hp.com/za-en/document/c05240287>

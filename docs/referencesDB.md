@@ -3,7 +3,6 @@
 - <https://github.com/wodby/adminer>
 - <https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc>
 
-
 ## Other refs
 
 - <https://www.geekbench.com/download/linux/>

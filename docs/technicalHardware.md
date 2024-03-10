@@ -24,4 +24,3 @@
 - Ubuntu desktop: james
 
 ### IoT Devices
-

@@ -19,7 +19,7 @@ This is being recorded for when we want to automate build environment build.
 - `git clone https://git.openembedded.org/meta-openembedded`
 - `cd meta-openembedded && git checkout -b honister origin/honister && cd -`
 - `cd pokey`
-- Add rust lines to `BBLAYERS` in `conf/bblayers.conf`: 
+- Add rust lines to `BBLAYERS` in `conf/bblayers.conf`:
 
 ```text
   /mnt/data/tmp/meta-openembedded/meta-oe \

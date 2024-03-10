@@ -2,58 +2,48 @@
 
 ## microk8s
 
-sudo snap install microk8s --channel=1.28/stable --classic
+- sudo snap install microk8s --channel=1.28/stable --classic
 
 ## helm
 
-helm repo add truecharts https://charts.truecharts.org/
-helm pull [chart URL | repo/chartname] [...] [flags]
-helm package static-site
-cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz
-helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml . 
-helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml --values valuespodzone.yaml
-
-helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml
-helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
-helm  install orange-base --debug  --namespace musings ./qapps
+- helm repo add truecharts https://charts.truecharts.org/
+- helm pull [chart URL | repo/chartname] [...] [flags]
+- helm package static-site
+- cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz
+- helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
+- helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .
+- helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml
+- helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml
+- helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
+- helm  install orange-base --debug  --namespace musings ./qapps
 
 ## ceph
 
-sudo ceph config set mgr mgr/prometheus/server_addr sigiriya
-sudo ceph config set mgr mgr/prometheus/port 9090
-
-
-https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool
-
-mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4
-
-sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ
-
-Mount apple volume - `./apfs-fuse /dev/sdb2 /mt/sdb1`
-
+- sudo ceph config set mgr mgr/prometheus/server_addr sigiriya
+- sudo ceph config set mgr mgr/prometheus/port 9090
+- <https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool>
+- mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4
+- sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ
+- Mount apple volume - `./apfs-fuse /dev/sdb2 /mt/sdb1`
 
 ## kubectl
 
-kubectl config set-context --current --namespace=<namespace-name>
-kubectl config set-context --current --namespace=admin
-kubectl drain --ignore-daemonsets <node name>
-kubectl uncordon <node name>
-kubectl get -n default serviceaccount kubeapps-operator -o yaml
-kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c
-
+- kubectl config set-context --current --namespace=<namespace-name>
+- kubectl config set-context --current --namespace=admin
+- kubectl drain --ignore-daemonsets <node name>
+- kubectl uncordon <node name>
+- kubectl get -n default serviceaccount kubeapps-operator -o yaml
+- kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c
 - Aliases: `alias ka="kubectl apply -f "`; `alias kd="kubectl delete -f "`
+- kubectl api-resources
 
 ## ansible
 
-ansible southcluster -i inventory.yaml -m command -a "free -m"
- 
-To accept new ssh keys:
-ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml
-
-ansible-playbook -i inventory.yaml playbook.yaml
-ansible-inventory -i inventory.yaml --list
-ansible devcluster -m ping -i inventory.yaml
+- `ansible southcluster -i inventory.yaml -m command -a "free -m"`
+- To accept new ssh keys: `- ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml`
+- `ansible-playbook -i inventory.yaml playbook.yaml`
+- `ansible-inventory -i inventory.yaml --list`
+- `ansible devcluster -m ping -i inventory.yaml`
 
 ## apache
 
@@ -63,16 +53,14 @@ ansible devcluster -m ping -i inventory.yaml
 
 ## plone
 
-/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
-/usr/local/Plone/Python-2.7/bin/python 
-/usr/local/Plone/zinstance/parts/instance/bin/interpreter 
-/usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
-docker pull robcast/legacy-zope
-docker pull robcast/legacy-zope:2.13
+- `/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
+/usr/local/Plone/Python-2.7/bin/python`
+- `/usr/local/Plone/zinstance/parts/instance/bin/interpreter`
+- `/usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf`
+- `docker pull robcast/legacy-zope`
+- `docker pull robcast/legacy-zope:2.13`
 
 sudo usermod -aG sudo c
-
-kubectl api-resources
 
 ## Vagrant
 
@@ -127,7 +115,6 @@ sudo nano /etc/dphys-swapfile: set CONF_SWAPSIZE=2048
 sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 
-
 ## unix
 
 usermod -a -G sudo colleymj
@@ -146,7 +133,6 @@ ip route show
 ss -tunap
 sudo lsof -i @james
 
-
 ## Postgres
 
 kubectl rollout status deployment/postgres
@@ -155,9 +141,9 @@ kubectl rollout status deployment/postgres
 export QAPPS_PASSWORD="<password>"
 envsubst < podzone-db.yaml | kubectl apply -f -
 
-
 ## Manual site updates
 
+```bash
 #!/bin/bash
 mkdocs build
 apachepod=`kubectl get pods -n default -o json |jq -r .items[].metadata.name | grep apache`
@@ -173,13 +159,12 @@ kubectl exec apache-bf4996969-qnmqf -- chown -R nobody:nogroup  /tmp/telling/
 kubectl exec apache-bf4996969-qnmqf -- mv /tmp/telling  /var/www/html
 
 kubectl cp ~/workspace/QApps/sites/index.html apache-bf4996969-qnmqf:/var/www.html/
-
+```
 
 ## Command line completion
 
 source <(kubectl completion bash)
 echo "source <(kubectl completion bash)" >> ~/.bashrc
-
 
 ## Jenkinsx
 
@@ -193,7 +178,6 @@ Zope volume mounts:
 ./var/filestorage
 ./var/blobstorage
 ./products
-
 
 kubectl cp ~/.factorio/saves/k8s-test.zip factorio/factorio-0:/factorio/saves/
 
@@ -215,10 +199,6 @@ kubectl cp ~/.factorio/saves/k8s-test.zip factorio/factorio-0:/factorio/saves/
 - `helm install opensearch-client opensearch/opensearch -f opensearch-james.yaml`
 - `helm install opensearch-data opensearch/opensearch -f opensearch-sigiriya.yaml`
 - `helm install dashboards opensearch/opensearch-dashboards`
-
-
-
-## Opensearch
 
 Opensearch dashboard:
 

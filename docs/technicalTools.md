@@ -1,41 +1,54 @@
 # Tools
 
-Tool and technology selection is influenced by server, workstation and admin client installed base.
+## Technology Strategy
 
-Server infrastructure includes Mac and PC hardware, with Ubuntu OS installed. Server infrastructure is currently in use. Build of new software infrastructure will cohabit with existing software assets.
-Redundant tooling will be removed as workload shifts to new software infrastructure.
+- Leverage Ubuntu experience
+- Initial build is manual, dev and subsequent releases are declarative
+- Increasing abstraction for infrastructure and application pipelines
 
-Software distributions will therefore be chosen for Ubuntu OS packaging.
-
-Initial build is manual, dev and subsequent releases are declarative.
-
-## Distributions
+### Substrate Technology Selection
 
 - Kubernetes: Microk8s snap
 - Ceph: MicroCeph snap
 - Prometheus: snap
 
-## Administration
+## Administration technologies selected
 
-- Kubernetes admin: kubectl (kubernetes-cli)
-- Kubernetes Terminal UI: k9s
-- Kubernetes Web UI (client side): octant
-- CNI admin: calicoctl
-- Database dashboard: adminer
-- Monitoring: Prometheus
+### Essential
+
+### Installation on Mac
+
+- Recommend `brew`
+- Depends on x-code, so install with: `xcode-select --install`
+- Install brew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"`
+- Terminal browser: midnight commander (**mc**) installation: `brew install mc`
+- Kubernetes admin: **kubectl** installation: `brew install kubernetes-cli`
+- Kubernetes Terminal User Interface **k9s** installation: `brew install k9s`
+- Kubernetes GUI User Interface **octant** installation: `brew install octant`
+- Kubernetes Application release management **helm** installation: `brew install helm`
+
+### Application and advanced
+
 - Virtual Machine provisioning: Vagrant
 - VM Configuration and microk8s cluster build: ansible
-- Application release management: helm
+- Distributed Networking admin: calicoctl
+- Database dashboard: adminer
 - json processor: jq
-- Terminal browser: midnight commander (mc)
 - Cloudsmith CLI (helm repository management)
+- Wireguard
 
-## Additional components to be investigated
+## Platform technologies
 
-- Backup: Longhorn
-- SSO: Dex
+- Monitoring: Prometheus
+- Backup: Longhorn (to be evaluated)
+- SSO: Dex (to be evaluated)
 
 ## References
+
+## Tool installations
+
+- <https://www.redswitches.com/blog/install-homebrew-on-mac/>
+- <https://formulae.brew.sh/formula/kubernetes-cli>
 
 ### Vagrant
 

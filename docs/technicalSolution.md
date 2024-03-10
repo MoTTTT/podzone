@@ -9,7 +9,7 @@
 
 - Static Site: <https://musings.thruhere.net/>
 - Static Site: <https://docs.podzone.net/>
-- Wordpress: 
+- Wordpress:
 - Minecraft:
 - Mail:
 
@@ -18,4 +18,3 @@
 - <https://www.linkedin.com/in/martincolley/>
 - <https://github.com/MoTTTT>
 - <https://cloudsmith.io/~q-solutions>
-- 

@@ -20,6 +20,4 @@ microk8s helm3 repo update`
 /srv/nfs/backup  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 ```
 
-The following file in the config/ directory creates a general purpose storage class `nfs-csi`, and one specifically for the web site `apache-storage-class`:
-
-- `podzone-pc-nfs.yaml`
+The following file in the config/ directory creates a general purpose storage class `nfs-csi`, and one specifically for the web site `apache-storage-class`:  `podzone-pc-nfs.yaml`

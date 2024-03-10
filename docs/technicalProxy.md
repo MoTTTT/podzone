@@ -56,13 +56,13 @@ k8s09{{norham03}}
 k8s10{{norham04}}
 ```
 
-
 ### Sample config file
 
 ### Rudolfensis Apache configuration file
 
 ServerName north.podzone.net
 
+```conf
 <VirtualHost *:443>
   SSLProxyEngine on
   SSLProxyVerify none
@@ -165,9 +165,11 @@ RewriteCond %{SERVER_NAME} =uktoday.thruhere.net [OR]
 RewriteCond %{SERVER_NAME} =musings.thruhere.net
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
+```
 
 ### Reconfigured Virtual Hosts
 
+```conf
 <VirtualHost *:443>
   ServerName north.podzone.net
   ServerAlias adam.blog.podzone.org
@@ -259,6 +261,11 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
   ProxyPass /  http://192.168.1.113:8080/
   ProxyPassReverse /  http://192.168.1.113:8080/
   ProxyRequests Off
+```
+
+### Ceph dashboard issues
+
+- Unsuccessful load balancer configuration, due to ceph redirect to active dashboard node
 
 ## Adding a domain
 

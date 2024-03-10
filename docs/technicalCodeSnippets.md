@@ -58,7 +58,8 @@ ansible devcluster -m ping -i inventory.yaml
 ## apache
 
 - sudo systemctl restart apache2
-- 
+- sudo apachectl configtest
+- sudo apache2ctl -t
 
 ## plone
 

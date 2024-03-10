@@ -19,7 +19,7 @@ scrape_configs:
 
 ## Microk8s observability
 
-
+- More work required, default config needs to be overridden.
 
 ## Scraping ceph
 
@@ -42,7 +42,6 @@ scrape_configs:
     static_configs:
     - targets: ['192.168.1.113:9283', '192.168.1.117:9283', '192.168.1.112:9283']
 ```
-
 
 ### Reference
 

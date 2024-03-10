@@ -75,6 +75,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
               <ul>
@@ -90,6 +92,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
               </ul>
@@ -101,7 +105,15 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#server-installation">Server installation</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#microk8s-observability">Microk8s observability</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#scraping-ceph">Scraping ceph</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
     </ul>
                   </li>
@@ -174,16 +186,71 @@
 <span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;localhost:9090&#39;</span><span class="p p-Indicator">]</span>
 </code></pre></div>
+<h2 id="microk8s-observability">Microk8s observability</h2>
+<ul>
+<li>More work required, default config needs to be overridden.</li>
+</ul>
 <h2 id="scraping-ceph">Scraping ceph</h2>
 <ul>
 <li>Enable ceph monitoring endpoints: <code>ceph mgr module enable prometheus</code></li>
+<li>ceph-mgr nodes: {192.168.1.113,192.168.1.117,192.168.1.112}</li>
+<li>Add to prometheus config (IP addresses are for prod cluster):</li>
 </ul>
-<p>Add to prometheus config (IP addresses are for prod cluster):</p>
-<div class="highlight"><pre><span></span><code><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;microceph&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w">     </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
+<span class="w">  </span><span class="nt">external_labels</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">monitor</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;podzone&#39;</span>
+<span class="nt">scrape_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;prometheus&#39;</span>
+<span class="w">    </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5s</span>
+<span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;localhost:9090&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;microceph&#39;</span>
 <span class="w">    </span><span class="nt">scrape_interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15s</span>
 <span class="w">    </span><span class="nt">static_configs</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;192.168.0.4:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.0.14:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.0.21:9283&#39;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">targets</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&#39;192.168.1.113:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.1.117:9283&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&#39;192.168.1.112:9283&#39;</span><span class="p p-Indicator">]</span>
 </code></pre></div>
+<h3 id="reference">Reference</h3>
+<p>Prod cluster:</p>
+<div class="highlight"><pre><span></span><code>MicroCeph deployment summary:
+- antecessor (192.168.1.113)
+  Services: mds, mgr, mon, osd
+  Disks: 1
+- erectus (192.168.1.131)
+  Services: osd
+  Disks: 1
+- floresiensis (192.168.1.137)
+  Services: osd
+  Disks: 1
+- habilis (192.168.1.117)
+  Services: mds, mgr, mon, osd
+  Disks: 1
+- naledi (192.168.1.112)
+  Services: mds, mgr, mon, osd
+  Disks: 1
+- neanderthal (192.168.1.130)
+  Services: osd
+  Disks: 1
+- norham01 (192.168.1.140)
+  Services: osd
+  Disks: 1
+- norham02 (192.168.1.141)
+  Services: osd
+  Disks: 1
+- norham03 (192.168.1.142)
+  Services: osd
+  Disks: 1
+- norham04 (192.168.1.143)
+  Services: osd
+  Disks: 1
+</code></pre></div>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://apim.docs.wso2.com/en/4.0.0/reference/k8s-operators/k8s-api-operator/">https://apim.docs.wso2.com/en/4.0.0/reference/k8s-operators/k8s-api-operator/</a></li>
+<li><a href="https://operatorhub.io/operator/api-operator">https://operatorhub.io/operator/api-operator</a></li>
+<li><a href="https://github.com/grafana/grafana-operator">https://github.com/grafana/grafana-operator</a></li>
+<li><a href="https://github.com/prometheus-operator/prometheus-operator">https://github.com/prometheus-operator/prometheus-operator</a></li>
+</ul>
               
             </div>
           </div><footer>

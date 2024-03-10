@@ -75,6 +75,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
               <ul>
@@ -89,6 +91,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
@@ -190,7 +194,11 @@ ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml</p>
 ansible-inventory -i inventory.yaml --list
 ansible devcluster -m ping -i inventory.yaml</p>
 <h2 id="apache">apache</h2>
-<h2 id="-sudo-systemctl-restart-apache2">- sudo systemctl restart apache2</h2>
+<ul>
+<li>sudo systemctl restart apache2</li>
+<li>sudo apachectl configtest</li>
+<li>sudo apache2ctl -t</li>
+</ul>
 <h2 id="plone">plone</h2>
 <p>/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
 /usr/local/Plone/Python-2.7/bin/python 

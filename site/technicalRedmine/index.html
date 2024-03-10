@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalKubernetes/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalRedmine/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Kubernetes - Podzone</title>
+    <title>Redmine - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Kubernetes";
-        var mkdocs_page_input_path = "technicalKubernetes.md";
-        var mkdocs_page_url = "/podzone/technicalKubernetes/";
+        var mkdocs_page_name = "Redmine";
+        var mkdocs_page_input_path = "technicalRedmine.md";
+        var mkdocs_page_url = "/podzone/technicalRedmine/";
       </script>
     
     <!--[if lt IE 9]>
@@ -64,7 +64,7 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Workload</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
@@ -75,34 +75,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Redmine</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#technology-trajectory">Technology Trajectory</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#promise-theory">Promise theory</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#clustering">Clustering</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#clustered-resources">Clustered Resources</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
@@ -168,8 +148,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Substrate</li>
-      <li class="breadcrumb-item active">Kubernetes</li>
+          <li class="breadcrumb-item">Workload</li>
+      <li class="breadcrumb-item active">Redmine</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -178,161 +158,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="kubernetes">Kubernetes</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Kubernetes is an Open Source system that provides functionality to manage the lifecycle of containerised computing loads. It can achieve this over a clustered infrastructure, providing high availability, and scaling.</p>
-<h3 id="definitions">Definitions</h3>
+                <h1 id="redmine">Redmine</h1>
 <ul>
-<li><code>Kubernetes</code>: A <em>container</em> <em>orchestration</em> system.</li>
-<li><code>Container</code>: Software packaging for a computing application, allowing it to be run in an <em>isolated environment</em> in a <em>standard</em> way.</li>
-<li><code>Isolated environment</code>: Operating System features are used to separate an application from its environment and other computing workloads. Workload isolation provides security and resource governance.</li>
-<li><code>Orchestration</code>: Automating software deployment, scaling, and management.</li>
-</ul>
-<h3 id="technology-trajectory">Technology Trajectory</h3>
-<p>Kubernetes was developed within Google, and was donated as a seed technology to the Cloud Native Computing Foundation (CNCF).</p>
-<p>A range of interrelated systems and standards underpin and extend Kubernetes that promote compatibility, providing consistency and reliability.</p>
-<p>The CNCF has a large eco-system of technologies that complement and rely on kubernetes.</p>
-<h2 id="concepts">Concepts</h2>
-<h3 id="promise-theory">Promise theory</h3>
-<ul>
-<li>The design of kubernetes relies on the <strong>Promise Theory</strong> analysis methodology.</li>
-<li>Promise Theory in kubernetes allows a resource to be modelled as voluntarily and autonomously co-operating with other resources in the kubernetes system</li>
-<li>The use of declarative specification follows in the form of the publishing of a <strong>Promise</strong> to the kubernetes system in the form of a resource definition</li>
-<li>Resource definitions are loaded via the kubernetes API</li>
-<li>The kubernetes API is used to interact with the kubernetes system, and the objects deployed in the system.</li>
-</ul>
-<h3 id="clustering">Clustering</h3>
-<p>Clustering provides a layer of abstraction for computing resources, spanning virtual or physical machines.</p>
-<p>In a single machine instance the processes and applications interact with the machine's operating system apis.</p>
-<p>In a cluster the processes and applications interact with the cluster system's apis.</p>
-<div class="highlight"><pre><span></span><code>---
-title: Example of Computing resources of a machine instance
----
-graph LR
-
-OS1[Operating System APIs] --&gt; OS2[Machine Resources]
-
-subgraph OS2[Machine Resources]
-  subgraph  RAM
-    subgraph 16 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 4 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</code></pre></div>
-<h3 id="clustered-resources">Clustered Resources</h3>
-<div class="highlight"><pre><span></span><code>---
-title: Computing resources of a machine cluster
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph Machine 1
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 2
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 3
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-end
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>---
-title: Abstracted Resources
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph  RAM
-    subgraph 48 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 12 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</code></pre></div>
-<h2 id="references">References</h2>
-<ul>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation">https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Promise_theory">https://en.wikipedia.org/wiki/Promise_theory</a></p>
-</li>
+<li>REGISTRY_NAME=registry-1.docker.io and REPOSITORY_NAME=bitnamicharts.</li>
+<li><code>helm install my-release oci://REGISTRY_NAME/REPOSITORY_NAME/redmine</code>
+<code>helm install my-release oci://REGISTRY_NAME/REPOSITORY_NAME/redmine --set databaseType=postgresql</code></li>
+<li><a href="https://github.com/bitnami/charts/tree/main/bitnami/redmine/">https://github.com/bitnami/charts/tree/main/bitnami/redmine/</a></li>
+<li><code>helm install --namespace projects --create-namespace  projects-01 oci://registry-1.docker.io/bitnamicharts/redmine --values values-projects.yaml</code></li>
 </ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalRedmine/" class="btn btn-neutral float-left" title="Redmine"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalCluster/" class="btn btn-neutral float-right" title="Implementation Notes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technicalIoT/" class="btn btn-neutral float-left" title="Rust on the uNode embedded controller development board"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalKubernetes/" class="btn btn-neutral float-right" title="Kubernetes">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -355,10 +194,10 @@ end
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalRedmine/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../technicalIoT/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../technicalCluster/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../technicalKubernetes/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

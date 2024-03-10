@@ -75,6 +75,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
               <ul>
@@ -89,6 +91,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
                   </li>
@@ -125,7 +129,17 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#virtualisation">Virtualisation</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#web-assembly">Web Assembly</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloud-init">Cloud-init</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#operators">Operators</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#observability">Observability</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#kubernetes">Kubernetes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#authentication-and-authorisation">Authentication and Authorisation</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#storage">Storage</a>
     </li>
@@ -244,6 +258,38 @@
 <li><a href="https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software">https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software</a></li>
 <li><a href="https://linuxcontainers.org/incus/">https://linuxcontainers.org/incus/</a></li>
 <li><a href="https://linuxcontainers.org/incus/try-it/">https://linuxcontainers.org/incus/try-it/</a></li>
+<li><a href="https://katacontainers.io/docs/">https://katacontainers.io/docs/</a></li>
+<li><a href="https://github.com/kata-containers/kata-containers/tree/main/docs/install">https://github.com/kata-containers/kata-containers/tree/main/docs/install</a></li>
+</ul>
+<h2 id="web-assembly">Web Assembly</h2>
+<ul>
+<li><a href="https://blog.unity.com/engine-platform/webassembly-is-here">https://blog.unity.com/engine-platform/webassembly-is-here</a></li>
+</ul>
+<h2 id="cloud-init">Cloud-init</h2>
+<ul>
+<li><a href="https://cloudinit.readthedocs.io/en/latest/tutorial/qemu.html">https://cloudinit.readthedocs.io/en/latest/tutorial/qemu.html</a></li>
+</ul>
+<h2 id="operators">Operators</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/extend-kubernetes/operator/">https://kubernetes.io/docs/concepts/extend-kubernetes/operator/</a></li>
+<li><a href="https://juju.is/model-driven-operations-manifesto">https://juju.is/model-driven-operations-manifesto</a></li>
+<li><a href="https://ubuntu.com/kubernetes/charmed-k8s">https://ubuntu.com/kubernetes/charmed-k8s</a></li>
+<li><a href="https://operatorhub.io/">https://operatorhub.io/</a></li>
+</ul>
+<h2 id="observability">Observability</h2>
+<ul>
+<li><a href="https://github.com/canonical/microk8s-core-addons/issues/125">https://github.com/canonical/microk8s-core-addons/issues/125</a></li>
+<li><a href="https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml">https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml</a></li>
+<li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack</a></li>
+<li><a href="https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-metrics/">https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-metrics/</a></li>
+<li><a href="https://prometheus.io/docs/prometheus/latest/getting_started/">https://prometheus.io/docs/prometheus/latest/getting_started/</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/">https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/</a></li>
+<li><a href="https://github.com/prometheus/node_exporter">https://github.com/prometheus/node_exporter</a></li>
+<li><a href="https://github.com/kubernetes-sigs/prometheus-adapter">https://github.com/kubernetes-sigs/prometheus-adapter</a></li>
+<li><a href="https://prometheus.io/docs/introduction/overview/">https://prometheus.io/docs/introduction/overview/</a></li>
+<li><a href="https://microk8s.io/docs/multi-user">https://microk8s.io/docs/multi-user</a></li>
+<li><a href="https://raw.githubusercontent.com/bibinwilson/kubernetes-prometheus/master/config-map.yaml">https://raw.githubusercontent.com/bibinwilson/kubernetes-prometheus/master/config-map.yaml</a></li>
+<li><a href="https://betterprogramming.pub/observability-with-microk8s-14c1f0ff5183">https://betterprogramming.pub/observability-with-microk8s-14c1f0ff5183</a></li>
 </ul>
 <h2 id="kubernetes">Kubernetes</h2>
 <ul>
@@ -430,6 +476,21 @@
 <li><a href="https://www.getambassador.io/docs/edge-stack/latest/howtos/cert-manager">https://www.getambassador.io/docs/edge-stack/latest/howtos/cert-manager</a></li>
 <li><a href="https://www.wiz.io/blog/from-pod-security-policies-to-pod-security-standards-a-migration-guide">https://www.wiz.io/blog/from-pod-security-policies-to-pod-security-standards-a-migration-guide</a>  </li>
 <li><a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/">https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/</a></li>
+<li><a href="https://discuss.kubernetes.io/t/how-to-manage-addons/23799">https://discuss.kubernetes.io/t/how-to-manage-addons/23799</a></li>
+<li><a href="https://github.com/canonical/microk8s-core-addons">https://github.com/canonical/microk8s-core-addons</a></li>
+</ul>
+<h2 id="authentication-and-authorisation">Authentication and Authorisation</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/">https://kubernetes.io/docs/reference/access-authn-authz/authentication/</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/">https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/</a></li>
+<li><a href="https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow">https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow</a></li>
+<li><a href="https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#considering-cross-repository-access">https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#considering-cross-repository-access</a></li>
+<li><a href="https://microk8s.io/docs/services-and-ports#heading--auth">https://microk8s.io/docs/services-and-ports#heading--auth</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies">https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies</a></li>
+<li><a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/">https://kubernetes.io/docs/reference/access-authn-authz/rbac/</a></li>
+<li><a href="https://stackoverflow.com/questions/71182935/microk8s-generating-auth-certificates">https://stackoverflow.com/questions/71182935/microk8s-generating-auth-certificates</a></li>
+<li><a href="https://kubernetes.io/docs/tasks/administer-cluster/certificates/">https://kubernetes.io/docs/tasks/administer-cluster/certificates/</a></li>
+<li><a href="https://microk8s.io/docs/multi-user">https://microk8s.io/docs/multi-user</a></li>
 </ul>
 <h2 id="storage">Storage</h2>
 <ul>
@@ -509,6 +570,9 @@
 <li><a href="https://spdk.io/">https://spdk.io/</a></li>
 <li><a href="https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/">https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/</a></li>
 <li><a href="https://www.mirantis.com/blog/object-storage-openstack-cloud-swift-ceph/">https://www.mirantis.com/blog/object-storage-openstack-cloud-swift-ceph/</a></li>
+<li><a href="https://docs.ceph.com/en/latest/mgr/dashboard/">https://docs.ceph.com/en/latest/mgr/dashboard/</a></li>
+<li><a href="https://docs.ceph.com/en/latest/mgr/prometheus/">https://docs.ceph.com/en/latest/mgr/prometheus/</a></li>
+<li><a href="https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-alerts/">https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-alerts/</a></li>
 </ul>
 <h2 id="helm">Helm</h2>
 <ul>

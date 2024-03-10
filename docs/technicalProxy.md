@@ -59,6 +59,10 @@ k8s10{{norham04}}
 
 ### Sample config file
 
+### Rudolfensis Apache configuration file
+
+ServerName north.podzone.net
+
 <VirtualHost *:443>
   SSLProxyEngine on
   SSLProxyVerify none
@@ -66,48 +70,195 @@ k8s10{{norham04}}
   ProxyPass /  https://192.168.1.220/
   ProxyPassReverse /  https://192.168.1.220/
   ProxyRequests Off
-  ServerName blog.podzone.org
-  Include /etc/letsencrypt/options-ssl-apache.conf
-  ServerAlias central.podzone.net
-  ServerAlias   
-  ServerAlias dev.podzone.net
-  ServerAlias prod.podzone.net
-  ServerAlias docs.podzone.net
-  ServerAlias gymyc.podzone.net
-  ServerAlias musings.thruhere.net
-  ServerAlias north.podzone.net
-  ServerAlias northern.podzone.net
-  ServerAlias wordpress.podzone.org
-  ServerAlias adam.blog.podzone.org
-  ServerAlias charles.blog.podzone.org
-  ServerAlias motttt.blog.podzone.org
-  ServerAlias dbgui.dev.podzone.net
-  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
-  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+ServerAlias blog.podzone.org
+Include /etc/letsencrypt/options-ssl-apache.conf
+ServerAlias central.podzone.net
+ServerAlias control.podzone.net
+ServerAlias dev.podzone.net
+ServerAlias prod.podzone.net
+ServerAlias docs.podzone.net
+ServerAlias gymyc.podzone.net
+ServerAlias musings.thruhere.net
+ServerAlias north.podzone.net
+ServerAlias northern.podzone.net
+ServerAlias wordpress.podzone.org
+ServerAlias adam.blog.podzone.org
+ServerAlias charles.blog.podzone.org
+ServerAlias motttt.blog.podzone.org
+ServerAlias dbgui.dev.podzone.net
+ServerAlias norma.blog.podzone.org
+ServerAlias uktoday.blogsite.org
+ServerAlias uktoday.thruhere.net
+ServerAlias uktoday.podzone.org
+ServerAlias uktoday.podzone.net
+ServerAlias uktoday.blog.podzone.org
+ServerAlias ceph.northern.podzone.net
+SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
 </VirtualHost>
 <VirtualHost *:80>
   ProxyPreserveHost on
   ProxyPass /  http://192.168.1.220/
   ProxyPassReverse /  http://192.168.1.220/
   ProxyRequests Off
+ServerAlias blog.podzone.org
+ServerAlias central.podzone.net
+ServerAlias control.podzone.net
+ServerAlias dev.podzone.net
+ServerAlias prod.podzone.net
+ServerAlias docs.podzone.net
+ServerAlias gymyc.podzone.net
+ServerAlias musings.thruhere.net
+ServerAlias north.podzone.net
+ServerAlias northern.podzone.net
+ServerAlias wordpress.podzone.org
+ServerAlias adam.blog.podzone.org
+ServerAlias charles.blog.podzone.org
+ServerAlias motttt.blog.podzone.org
+ServerAlias dbgui.dev.podzone.net
+ServerAlias norma.blog.podzone.org
+ServerAlias uktoday.blogsite.org
+ServerAlias uktoday.thruhere.net
+ServerAlias uktoday.podzone.org
+ServerAlias uktoday.podzone.net
+ServerAlias uktoday.blog.podzone.org
+
+#RewriteEngine on
+#RewriteCond %{SERVER_NAME} =musings.thruhere.net [OR]
+#RewriteCond %{SERVER_NAME} =blog.podzone.org [OR]
+#RewriteCond %{SERVER_NAME} =gymyc.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =northern.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =dev.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =prod.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =central.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =docs.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =wordpress.podzone.org [OR]
+#RewriteCond %{SERVER_NAME} =motttt.blog.podzone.org [OR]
+#RewriteCond %{SERVER_NAME} =north.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =adam.blog.podzone.org [OR]
+#RewriteCond %{SERVER_NAME} =control.podzone.net [OR]
+#RewriteCond %{SERVER_NAME} =charles.blog.podzone.org [OR]
+#RewriteCond %{SERVER_NAME} =dbgui.dev.podzone.net
+#RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =central.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =control.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =uktoday.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =uktoday.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =wordpress.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =gymyc.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =uktoday.blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =dev.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =charles.blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =prod.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =northern.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =uktoday.blogsite.org [OR]
+RewriteCond %{SERVER_NAME} =adam.blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =norma.blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =north.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =dbgui.dev.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =docs.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =motttt.blog.podzone.org [OR]
+RewriteCond %{SERVER_NAME} =ceph.northern.podzone.net [OR]
+RewriteCond %{SERVER_NAME} =uktoday.thruhere.net [OR]
+RewriteCond %{SERVER_NAME} =musings.thruhere.net
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+</VirtualHost>
+
+### Reconfigured Virtual Hosts
+
+<VirtualHost *:443>
+  ServerName north.podzone.net
+  ServerAlias adam.blog.podzone.org
+  ServerAlias charles.blog.podzone.org
+  ServerAlias motttt.blog.podzone.org
+  ServerAlias dbgui.dev.podzone.net
+  ServerAlias norma.blog.podzone.org
+  ServerAlias uktoday.blogsite.org
+  ServerAlias uktoday.thruhere.net
+  ServerAlias uktoday.podzone.org
+  ServerAlias uktoday.podzone.net
+  ServerAlias uktoday.blog.podzone.org
+  ServerAlias central.podzone.net
+  ServerAlias control.podzone.net
+  ServerAlias dev.podzone.net
+  ServerAlias prod.podzone.net
+  ServerAlias docs.podzone.net
+  ServerAlias blog.podzone.org
+  ServerAlias musings.thruhere.net
+  SSLProxyEngine on
+  SSLProxyVerify none
+  ProxyPreserveHost on
+  ProxyPass /  https://192.168.1.220/
+  ProxyPassReverse /  https://192.168.1.220/
+  ProxyRequests Off
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+</VirtualHost>
+<VirtualHost *:80>
+  ServerName north.podzone.net
+  ServerAlias adam.blog.podzone.org
+  ServerAlias charles.blog.podzone.org
+  ServerAlias motttt.blog.podzone.org
+  ServerAlias dbgui.dev.podzone.net
+  ServerAlias norma.blog.podzone.org
+  ServerAlias uktoday.blogsite.org
+  ServerAlias uktoday.thruhere.net
+  ServerAlias uktoday.podzone.org
+  ServerAlias uktoday.podzone.net
+  ServerAlias uktoday.blog.podzone.org
+  ServerAlias central.podzone.net
+  ServerAlias control.podzone.net
+  ServerAlias dev.podzone.net
+  ServerAlias prod.podzone.net
+  ServerAlias docs.podzone.net
+  ServerAlias blog.podzone.org
+  ServerAlias musings.thruhere.net
+  ProxyPreserveHost on
+  ProxyPass /  http://192.168.1.220/
+  ProxyPassReverse /  http://192.168.1.220/
+  ProxyRequests Off
+</VirtualHost>
+<VirtualHost *:443>
+  ServerName northern.podzone.net
+  ServerAlias ceph.northern.podzone.net
+  SSLProxyEngine on
+  SSLProxyVerify none
+  <Proxy balancer://ceph>
+    BalancerMember http://192.168.1.112:8080/
+    BalancerMember http://192.168.1.113:8080/
+    BalancerMember http://192.168.1.117:8080/
+    ProxySet lbmethod=bytraffic
+  </Proxy>
+  ProxyPreserveHost on
+  ProxyPass /  "balancer://ceph/"
+  ProxyPassReverse /  "balancer://ceph/"
+  ProxyRequests Off
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+</VirtualHost>
+<VirtualHost *:80>
+  ServerName northern.podzone.net
+  ServerAlias ceph.northern.podzone.net
   RewriteEngine on
-  RewriteCond %{SERVER_NAME} =musings.thruhere.net [OR]
-  RewriteCond %{SERVER_NAME} =blog.podzone.org [OR]
-  RewriteCond %{SERVER_NAME} =gymyc.podzone.net [OR]
   RewriteCond %{SERVER_NAME} =northern.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =dev.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =prod.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =central.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =docs.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =wordpress.podzone.org [OR]
-  RewriteCond %{SERVER_NAME} =motttt.blog.podzone.org [OR]
-  RewriteCond %{SERVER_NAME} =north.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =adam.blog.podzone.org [OR]
-  RewriteCond %{SERVER_NAME} =control.podzone.net [OR]
-  RewriteCond %{SERVER_NAME} =charles.blog.podzone.org [OR]
-  RewriteCond %{SERVER_NAME} =dbgui.dev.podzone.net
+  RewriteCond %{SERVER_NAME} =ceph.northern.podzone.net
   RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
+
+  ServerAlias gymyc.podzone.net
+  ServerAlias north.podzone.net
+  ServerAlias northern.podzone.net
+  ServerAlias wordpress.podzone.org
+  ServerAlias ceph.northern.podzone.net
+
+  ProxyPreserveHost on
+  ProxyPass /  http://192.168.1.113:8080/
+  ProxyPassReverse /  http://192.168.1.113:8080/
+  ProxyRequests Off
 
 ## Adding a domain
 

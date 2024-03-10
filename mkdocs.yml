@@ -32,6 +32,7 @@ nav:
     - technicalWordpress.md
     - technicalApplication.md
     - technicalIoT.md
+    - technicalRedmine.md
   - 'Substrate':
     - technicalKubernetes.md
     - technicalCluster.md

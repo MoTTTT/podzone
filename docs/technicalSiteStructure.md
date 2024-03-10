@@ -24,3 +24,12 @@ A microsite with the writings of various members of the family.
 
 ### Wordpress instances
 
+- UK Today
+- Organisation Phycologist Questionnaire front end: <https://norma.blog.podzone.org/>
+- Project Management Client
+- Various personal instances: <https://*.blog.podzone.org>
+
+### Admin
+
+- Ceph Dashboard <https://ceph.northern.podzone.net/>
+- Kubernetes API <https://control.podzone.net>

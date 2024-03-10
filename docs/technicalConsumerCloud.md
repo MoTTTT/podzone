@@ -5,7 +5,7 @@
 [HG Insights](https://hginsights.com/) defines **Consumer Cloud** in their Glossary as follows:
 
 ```text
-Cloud computing  offerings  targeted toward  individuals  for personal  use, 
+Cloud computing  offerings  targeted toward  individuals for personal use, 
 such as Dropbox or iCloud. End users interact with consumer  cloud’s through 
 highly  interactive  applications. When you store  photos or documents in an
 app like Dropbox, you are interacting  with their cloud, hence the  consumer

@@ -82,6 +82,38 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://en.wikipedia.org/wiki/Comparison_of_platform_virtualization_software>
 - <https://linuxcontainers.org/incus/>
 - <https://linuxcontainers.org/incus/try-it/>
+- <https://katacontainers.io/docs/>
+- <https://github.com/kata-containers/kata-containers/tree/main/docs/install>
+
+## Web Assembly
+
+- <https://blog.unity.com/engine-platform/webassembly-is-here>
+
+## Cloud-init
+
+- <https://cloudinit.readthedocs.io/en/latest/tutorial/qemu.html>
+
+## Operators
+
+- <https://kubernetes.io/docs/concepts/extend-kubernetes/operator/>
+- <https://juju.is/model-driven-operations-manifesto>
+- <https://ubuntu.com/kubernetes/charmed-k8s>
+- <https://operatorhub.io/>
+
+## Observability
+
+- <https://github.com/canonical/microk8s-core-addons/issues/125>
+- <https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml>
+- <https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack>
+- <https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-metrics/>
+- <https://prometheus.io/docs/prometheus/latest/getting_started/>
+- <https://kubernetes.io/docs/concepts/cluster-administration/system-metrics/>
+- <https://github.com/prometheus/node_exporter>
+- <https://github.com/kubernetes-sigs/prometheus-adapter>
+- <https://prometheus.io/docs/introduction/overview/>
+- <https://microk8s.io/docs/multi-user>
+- <https://raw.githubusercontent.com/bibinwilson/kubernetes-prometheus/master/config-map.yaml>
+- <https://betterprogramming.pub/observability-with-microk8s-14c1f0ff5183>
 
 ## Kubernetes
 
@@ -268,6 +300,21 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://www.getambassador.io/docs/edge-stack/latest/howtos/cert-manager>
 - <https://www.wiz.io/blog/from-pod-security-policies-to-pod-security-standards-a-migration-guide>  
 - <https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>
+- <https://discuss.kubernetes.io/t/how-to-manage-addons/23799>
+- <https://github.com/canonical/microk8s-core-addons>
+
+## Authentication and Authorisation
+
+- <https://kubernetes.io/docs/reference/access-authn-authz/authentication/>
+- <https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/>
+- <https://docs.github.com/en/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow>
+- <https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#considering-cross-repository-access>
+- <https://microk8s.io/docs/services-and-ports#heading--auth>
+- <https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies>
+- <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>
+- <https://stackoverflow.com/questions/71182935/microk8s-generating-auth-certificates>
+- <https://kubernetes.io/docs/tasks/administer-cluster/certificates/>
+- <https://microk8s.io/docs/multi-user>
 
 ## Storage
 
@@ -347,6 +394,10 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://spdk.io/>
 - <https://www.cyberciti.biz/faq/apple-mac-osx-nfs-mount-command-tutorial/>
 - <https://www.mirantis.com/blog/object-storage-openstack-cloud-swift-ceph/>
+- <https://docs.ceph.com/en/latest/mgr/dashboard/>
+- <https://docs.ceph.com/en/latest/mgr/prometheus/>
+- <https://canonical-microceph.readthedocs-hosted.com/en/reef-stable/how-to/enable-alerts/>
+- 
 
 ## Helm
 

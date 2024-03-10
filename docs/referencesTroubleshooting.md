@@ -204,3 +204,5 @@
 - <https://github.com/canonical/microceph/issues/145>
 - <https://github.com/canonical/microceph/issues/251>
 - <https://github.com/canonical/microceph/issues>
+- <https://stackoverflow.com/questions/63781025/microk8s-remote-with-kubectl-you-must-be-logged-in-to-the-server-unauthorized>
+- <https://github.com/helm/helm/issues/3134>

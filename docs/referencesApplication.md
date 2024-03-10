@@ -2,6 +2,21 @@
 
 These references are related to the build of the workload: Serving Web, Zope, Postgres, and Plone, and Internet access to these resources.
 
+## APIs
+
+- <https://operatorhub.io/operator/api-operator>
+- <https://operatorhub.io/>
+- <https://linuxsuren.github.io/api-testing/>
+- <https://operatorhub.io/operator/app-director-operator>
+- <https://operatorhub.io/operator/argocd-operator>
+- <https://operatorhub.io/operator/argocd-operator-helm>
+- <https://operatorhub.io/operator/ceph-s3-operator>
+- <https://operatorhub.io/operator/postgresql>
+- <https://operatorhub.io/operator/elastic-cloud-eck>
+- <https://kubernetes.io/docs/concepts/extend-kubernetes/operator/>
+- <https://operatorframework.io/>
+
+
 ## Applications
 
 - <https://3.docs.plone.org/manage/deploying/backup.html>
@@ -131,6 +146,10 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://sourceforge.net/projects/ddclient/>
 - <https://platform9.com/learn/v1.0/tutorials/nginix-controller-via-yaml>
 - <https://www.datree.io/helm-chart/ddns-updater-truecharts>
+- <https://discuss.kubernetes.io/t/addon-ingress/11259/31>
+- <https://discuss.kubernetes.io/t/addon-ingress/11259/35>
+- <https://github.com/canonical/microk8s-core-addons/blob/main/addons/ingress/ingress.yaml>
+- 
 
 ## Wordpress
 

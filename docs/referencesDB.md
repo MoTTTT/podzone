@@ -9,3 +9,4 @@
 - <https://www.geekbench.com/download/linux/>
 - <https://microk8s.io/docs/registry-images>
 - <https://kubernetes.io/docs/reference/access-authn-authz/rbac/>
+- <https://www.2ndquadrant.com/en/blog/local-persistent-volumes-and-postgresql-usage-in-kubernetes/>

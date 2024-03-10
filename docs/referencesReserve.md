@@ -14,6 +14,8 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://photostructure.com/>
 - <https://www.inkandswitch.com/local-first/>
 - <https://news.ycombinator.com/item?id=35031109>
+- <https://serverworks.es/>
+- <https://serverworks.es/posts/running-my-cloud/>
 
 ## Kubernetes Repositories,Management platforms, Security and Governance
 

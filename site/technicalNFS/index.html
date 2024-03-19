@@ -171,13 +171,13 @@ microk8s helm3 repo update</code></li>
 <li><code>chown -R nobody:nogroup /srv/nfs</code></li>
 <li>Add volumes into /etc/exports:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
+<pre><code class="language-text">/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 /srv/nfs/k8s  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 /srv/nfs/mac  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 /srv/nfs/apachesites  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 /srv/nfs/db  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 /srv/nfs/backup  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-</code></pre></div>
+</code></pre>
 <p>The following file in the config/ directory creates a general purpose storage class <code>nfs-csi</code>, and one specifically for the web site <code>apache-storage-class</code>:  <code>podzone-pc-nfs.yaml</code></p>
               
             </div>

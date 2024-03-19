@@ -222,8 +222,8 @@
 <h2 id="infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</h2>
 <p>An installation of static-site, with default configuration (musings):</p>
 <p>NOTE: WAN port forwarding to the metallb IP address is required for certificates to be issued.</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w">  </span>install<span class="w"> </span>musings-01<span class="w"> </span>--debug<span class="w">  </span>--namespace<span class="w"> </span>musings<span class="w"> </span>--create-namespace<span class="w"> </span>static-site<span class="w"> </span>--repo<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/&#39;</span>
-</code></pre></div>
+<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
+</code></pre>
 <p>This install tests the following cluster capabilities:</p>
 <ul>
 <li>L2 load balancer</li>
@@ -231,8 +231,8 @@
 <li>Certificate Manager</li>
 </ul>
 <p>To install podzone docs:</p>
-<div class="highlight"><pre><span></span><code>helm<span class="w">  </span>install<span class="w"> </span>podzone-01<span class="w"> </span>--debug<span class="w">  </span>--namespace<span class="w"> </span>podzone<span class="w"> </span>--create-namespace<span class="w"> </span>static-site<span class="w"> </span>--repo<span class="w"> </span><span class="s1">&#39;https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/&#39;</span><span class="w"> </span>--values<span class="w"> </span>valuespodzone.yaml
-</code></pre></div>
+<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
+</code></pre>
 <h2 id="ceph-configuration">Ceph configuration</h2>
 <ul>
 <li><code>microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>

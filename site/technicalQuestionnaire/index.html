@@ -475,18 +475,18 @@ input {vertical-align: top;}</p>
 <li>Naming convention: underscore to separate words in names</li>
 </ul>
 <p>Sample:</p>
-<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">CONTACTME</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="n">ID</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
-<span class="w">    </span><span class="n">APPLICATION</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">NAME</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">EMAIL</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">SUBJECT</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">MESSAGE</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">400</span><span class="p">),</span>
-<span class="w">    </span><span class="n">COMPANY</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">ADDRESS</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="n">CONTACT</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
-<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="p">));</span>
-</code></pre></div>
+<pre><code class="language-sql">CREATE table CONTACTME (
+    ID int AUTO_INCREMENT,
+    APPLICATION varchar(100),
+    NAME varchar(100),
+    EMAIL varchar(100),
+    SUBJECT varchar(100),
+    MESSAGE varchar(400),
+    COMPANY varchar(100),
+    ADDRESS varchar(100),
+    CONTACT varchar(100),
+    PRIMARY KEY (ID));
+</code></pre>
 <p>DROP TABLE IF EXISTS "CUSTOMER";
 CREATE TABLE "norma"."customer" (
     "id" integer NOT NULL PRIMARY K,

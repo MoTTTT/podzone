@@ -276,22 +276,22 @@ sudo lsof -i @james</p>
 <p>export QAPPS_PASSWORD="<password>"
 envsubst &lt; podzone-db.yaml | kubectl apply -f -</p>
 <h2 id="manual-site-updates">Manual site updates</h2>
-<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
-mkdocs<span class="w"> </span>build
-<span class="nv">apachepod</span><span class="o">=</span><span class="sb">`</span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="p">|</span>jq<span class="w"> </span>-r<span class="w"> </span>.items<span class="o">[]</span>.metadata.name<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>apache<span class="sb">`</span>
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>-R<span class="w"> </span>/var/www/html/podzone
-kubectl<span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span>cp<span class="w"> </span>~/workspace/podzone/site/<span class="w"> </span><span class="nv">$apachepod</span>:/tmp/podzone/
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>nobody:nogroup<span class="w">  </span>/tmp/podzone/
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-n<span class="w"> </span>default<span class="w"> </span><span class="nv">$apachepod</span><span class="w"> </span>--<span class="w"> </span>mv<span class="w"> </span>/tmp/podzone<span class="w">  </span>/var/www/html
+<pre><code class="language-bash">#!/bin/bash
+mkdocs build
+apachepod=`kubectl get pods -n default -o json |jq -r .items[].metadata.name | grep apache`
+kubectl exec -n default $apachepod -- rm -R /var/www/html/podzone
+kubectl -n default cp ~/workspace/podzone/site/ $apachepod:/tmp/podzone/
+kubectl exec -n default $apachepod -- chown -R nobody:nogroup  /tmp/podzone/
+kubectl exec -n default $apachepod -- mv /tmp/podzone  /var/www/html
 
 
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>rm<span class="w"> </span>-R<span class="w"> </span>/var/www/html/telling
-kubectl<span class="w"> </span>cp<span class="w"> </span>~/workspace/telling/site/<span class="w"> </span>apache-bf4996969-qnmqf:/tmp/telling/
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>nobody:nogroup<span class="w">  </span>/tmp/telling/
-kubectl<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>apache-bf4996969-qnmqf<span class="w"> </span>--<span class="w"> </span>mv<span class="w"> </span>/tmp/telling<span class="w">  </span>/var/www/html
+kubectl exec apache-bf4996969-qnmqf -- rm -R /var/www/html/telling
+kubectl cp ~/workspace/telling/site/ apache-bf4996969-qnmqf:/tmp/telling/
+kubectl exec apache-bf4996969-qnmqf -- chown -R nobody:nogroup  /tmp/telling/
+kubectl exec apache-bf4996969-qnmqf -- mv /tmp/telling  /var/www/html
 
-kubectl<span class="w"> </span>cp<span class="w"> </span>~/workspace/QApps/sites/index.html<span class="w"> </span>apache-bf4996969-qnmqf:/var/www.html/
-</code></pre></div>
+kubectl cp ~/workspace/QApps/sites/index.html apache-bf4996969-qnmqf:/var/www.html/
+</code></pre>
 <h2 id="command-line-completion">Command line completion</h2>
 <p>source &lt;(kubectl completion bash)
 echo "source &lt;(kubectl completion bash)" &gt;&gt; ~/.bashrc</p>
@@ -390,12 +390,14 @@ sudo sysctl --system</p>
 <li><code>/var/snap/microk8s/current/args/cni-network/cni.yaml</code></li>
 <li>edit <code>/var/snap/microk8s/current/args/kube-apiserver</code> and setting the following arguments:</li>
 </ul>
-<p><div class="highlight"><pre><span></span><code># /var/snap/microk8s/current/args/kube-apiserver
+<pre><code class="language-text"># /var/snap/microk8s/current/args/kube-apiserver
 --advertise-address=10.10.10.10
 --bind-address=0.0.0.0
 --secure-port=16443
-</code></pre></div>
-- CNI Pulgin: Calico, using 192.168.1.0/16: <code>kubeadm init --pod-network-cidr=192.168.1.0/16</code></p>
+</code></pre>
+<ul>
+<li>CNI Pulgin: Calico, using 192.168.1.0/16: <code>kubeadm init --pod-network-cidr=192.168.1.0/16</code></li>
+</ul>
 <h3 id="k8s-installation">k8s installation</h3>
 <ul>
 <li>[X] bukit and james: Install kubeadm and kubelet: <code>sudo apt-get install -y kubelet kubeadm</code></li>
@@ -435,14 +437,14 @@ sudo sysctl --system</p>
 <li>Configure k8s sandbox image</li>
 </ul>
 <p>The following achieves this:</p>
-<div class="highlight"><pre><span></span><code>cat &gt; /etc/containerd/config.toml &lt;&lt;EOF
+<pre><code class="language-text">cat &gt; /etc/containerd/config.toml &lt;&lt;EOF
 [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes.runc]
   [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes.runc.options]
     SystemdCgroup = true
 [plugins.&quot;io.containerd.grpc.v1.cri&quot;]
   sandbox_image = &quot;registry.k8s.io/pause:3.9&quot;
 EOF
-</code></pre></div>
+</code></pre>
 <p>Restart containerd: <code>systemctl restart containerd</code></p>
 <h2 id="kubeadm-installation-and-configuration">kubeadm installation and configuration</h2>
 <ul>
@@ -452,7 +454,7 @@ EOF
 <li>Set systemd as the cgroup driver</li>
 <li>Since the config file option to init is required for cgroup driver, create a config file for all options:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>kind: ClusterConfiguration
+<pre><code class="language-text">kind: ClusterConfiguration
 apiVersion: kubeadm.k8s.io/v1beta3
 kubernetesVersion: v1.28.2
 networking:
@@ -465,7 +467,7 @@ clusterName: &quot;qapps-cluster&quot;
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 cgroupDriver: systemd
-</code></pre></div>
+</code></pre>
 <ul>
 <li>Init command: kubeadm init --config kubeadm-config.yaml</li>
 </ul>

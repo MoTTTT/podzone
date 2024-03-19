@@ -181,30 +181,30 @@
 <li><code>cd pokey</code></li>
 <li>Add rust lines to <code>BBLAYERS</code> in <code>conf/bblayers.conf</code>:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>  /mnt/data/tmp/meta-openembedded/meta-oe \
+<pre><code class="language-text">  /mnt/data/tmp/meta-openembedded/meta-oe \
   /mnt/data/tmp/meta-rust \`
-</code></pre></div>
+</code></pre>
 <ul>
 <li>Add <code>rust-hello-world</code> file to build directory:</li>
 </ul>
-<div class="highlight"><pre><span></span><code><span class="n">inherit</span><span class="w"> </span><span class="n">cargo</span>
+<pre><code class="language-rust">inherit cargo
 
-<span class="n">SRC_URI</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;git://github.com/meta-rust/rust-hello-world.git;protocol=https;branch=master&quot;</span>
-<span class="n">SRCREV</span><span class="o">=</span><span class="s">&quot;e0fa23f1a3cb1eb1407165bd2fc36d2f6e6ad728&quot;</span>
-<span class="n">LIC_FILES_CHKSUM</span><span class="o">=</span><span class="s">&quot;file://COPYRIGHT;md5=e6b2207ac3740d2d01141c49208c2147&quot;</span>
+SRC_URI = &quot;git://github.com/meta-rust/rust-hello-world.git;protocol=https;branch=master&quot;
+SRCREV=&quot;e0fa23f1a3cb1eb1407165bd2fc36d2f6e6ad728&quot;
+LIC_FILES_CHKSUM=&quot;file://COPYRIGHT;md5=e6b2207ac3740d2d01141c49208c2147&quot;
 
-<span class="n">SRC_URI</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot;\</span>
-<span class="s">    file://0001-enable-LTO.patch \</span>
-<span class="s">    &quot;</span>
+SRC_URI += &quot;\
+    file://0001-enable-LTO.patch \
+    &quot;
 
-<span class="n">SUMMARY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World by Cargo for Rust&quot;</span>
-<span class="n">HOMEPAGE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://github.com/meta-rust/rust-hello-world&quot;</span>
-<span class="n">LICENSE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MIT | Apache-2.0&quot;</span>
+SUMMARY = &quot;Hello World by Cargo for Rust&quot;
+HOMEPAGE = &quot;https://github.com/meta-rust/rust-hello-world&quot;
+LICENSE = &quot;MIT | Apache-2.0&quot;
 
-<span class="n">S</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;${WORKDIR}/git&quot;</span>
+S = &quot;${WORKDIR}/git&quot;
 
-<span class="n">BBCLASSEXTEND</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;native&quot;</span>
-</code></pre></div>
+BBCLASSEXTEND = &quot;native&quot;
+</code></pre>
 <ul>
 <li><code>bitbake rust-hello-world</code></li>
 <li>Initial run reported missing toolchain dependencies: <code>sudo apt install chrpath diffstat liblz4-tool</code></li>

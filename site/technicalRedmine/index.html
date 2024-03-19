@@ -160,11 +160,9 @@
               
                 <h1 id="redmine">Redmine</h1>
 <ul>
-<li>REGISTRY_NAME=registry-1.docker.io and REPOSITORY_NAME=bitnamicharts.</li>
-<li><code>helm install my-release oci://REGISTRY_NAME/REPOSITORY_NAME/redmine</code>
-<code>helm install my-release oci://REGISTRY_NAME/REPOSITORY_NAME/redmine --set databaseType=postgresql</code></li>
 <li><a href="https://github.com/bitnami/charts/tree/main/bitnami/redmine/">https://github.com/bitnami/charts/tree/main/bitnami/redmine/</a></li>
-<li><code>helm install --namespace projects --create-namespace  projects-01 oci://registry-1.docker.io/bitnamicharts/redmine --values values-projects.yaml</code></li>
+<li><code>helm install --namespace projects --create-namespace  projects-02 bitnami/redmine --values values-projects.yaml</code></li>
+<li>POV implemented at: <a href="https://central.podzone.net/">https://central.podzone.net/</a></li>
 </ul>
               
             </div>

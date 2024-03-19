@@ -1,5 +1,10 @@
 # Command line snippets
 
+## Flux
+
+flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal
+
+
 ## microk8s
 
 - sudo snap install microk8s --channel=1.28/stable --classic
@@ -46,6 +51,8 @@
 - `ansible devcluster -m ping -i inventory.yaml`
 
 ## apache
+
+- enable site: a2ensite radio
 
 - sudo systemctl restart apache2
 - sudo apachectl configtest
@@ -304,31 +311,6 @@ sudo sysctl --system
 - CNI Pulgin: Calico, using 192.168.1.0/16: ```kubeadm init --pod-network-cidr=192.168.1.0/16```
 
 
-### k8s installation
-- [X] bukit and james: Install kubeadm and kubelet: ```sudo apt-get install -y kubelet kubeadm```
-- [X] bukit: Swap settings for kubeadm (sudo swapoff -a; comment out /swapfile in /etc/fstab)
-- [X] bukit: Configure kubeadm for containerd  (create kubeadm-config.yaml)
-- [ ] bukit: kubeadm init  --config kubeadm-config.yaml
-- [ ] dolmen: Install kubectl
-- [ ] Add third cluster node (virtual box on )
-### Tasks: Cleanup to retry kubeadm init
-### Tasks: Cleanup initial
-- [X] james: snap cleanup
-- [X] bukit: ```snap remove kube-apiserver kubectl```
-- [X] james: Remove docker, kubectl, and k8s components
-- [X] bukit: Remove docker, kubectl, and k8s components
-- [X] bukit and james: Clean up k8s files (/var/lib/kubelet/; /etc/kubernetes/)
-- [X] bukit and james: Clean up docker installation files ```rm -rf /var/lib/containerd``` and  ```rm -rf /var/lib/docker```
-- [X] bukit and james: Clean up etcd files ```rm -rf /var/lib/etcd```
-- [ ] bukit: ~/.kube and ~/.microk8s
-### Tasks: Prep for k8s installation
-- [X] bukit, dolmen and james: /etc/hosts file configs for james and bukit /private/etc/hosts for dolmen
-- [X] james: Install containerd
-- [X] bukit: Install containerd
-- [X] james: Configure containerd (/etc/containerd/config.toml)
-- [X] bukit: Configure containerd (/etc/containerd/config.toml)
-## Containerd installation and configuration
-
 Full docker stack, packaged by docker: ```sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin```
 
 Just runc and containerd, packaged by ubuntu: ```apt-get -y install containerd```
@@ -353,29 +335,6 @@ EOF
 
 Restart containerd: ```systemctl restart containerd```
 
-## kubeadm installation and configuration
-
-- Set Pod subnet (--pod-network-cidr): 192.168.1.0/24
-- Set Service subnet 192.168.0.0/24
-- Set --control-plane-endpoint bukit
-- Set systemd as the cgroup driver
-- Since the config file option to init is required for cgroup driver, create a config file for all options:
-
-```text
-kind: ClusterConfiguration
-apiVersion: kubeadm.k8s.io/v1beta3
-kubernetesVersion: v1.28.2
-networking:
-  serviceSubnet: "192.168.0.0/24"
-  podSubnet: "192.168.1.0/24"
-  dnsDomain: "cluster.local"
-controlPlaneEndpoint: "bukit"
-clusterName: "qapps-cluster"
----
-kind: KubeletConfiguration
-apiVersion: kubelet.config.k8s.io/v1beta1
-cgroupDriver: systemd
-```
 
 - Init command: kubeadm init --config kubeadm-config.yaml
 

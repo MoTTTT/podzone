@@ -180,7 +180,7 @@
               
                 <h1 id="issues">Issues</h1>
 <h2 id="ddclient">ddclient</h2>
-<div class="highlight"><pre><span></span><code>[migrations] started
+<pre><code class="language-text">[migrations] started
 [migrations] no migrations found
 usermod: no changes
 ───────────────────────────────────────
@@ -212,7 +212,8 @@ Watches established.
 [ls.io-init] done.
 /run/s6/basedir/scripts/rc.init: line 76: -f /etc/ddclient/ddclient.conf: not found
 Stream closed EOF for ddclient/ddclient01-76c5bc7c6d-5p922 (ddclient)
-</code></pre></div>
+
+</code></pre>
 <h2 id="zope">Zope</h2>
 <ul>
 <li>Currently (and since before the 2016 install) zope comes bundled with plone</li>
@@ -232,14 +233,14 @@ Stream closed EOF for ddclient/ddclient01-76c5bc7c6d-5p922 (ddclient)
 <li>Tested with fluentd (microk8s enable community first)</li>
 </ul>
 <h3 id="levant-architecture">Levant architecture</h3>
-<div class="highlight"><pre><span></span><code>Fatal glibc error: This version of Amazon Linux requires a newer ARM64 processor compliant with at least ARM architecture 8.2-a with cryptographic extensions. 
+<pre><code class="language-text">Fatal glibc error: This version of Amazon Linux requires a newer ARM64 processor compliant with at least ARM architecture 8.2-a with cryptographic extensions. 
 On EC2 this is Graviton 2 or later.
-</code></pre></div>
+</code></pre>
 <ul>
 <li>Prevent pod scheduling onto Levant <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
 </ul>
 <h3 id="persistent-storage-permissions">Persistent Storage permissions</h3>
-<div class="highlight"><pre><span></span><code>Name:          cephfs-pvc-registry
+<pre><code class="language-text">Name:          cephfs-pvc-registry
 Namespace:     admin
 StorageClass:  rook-cephfs
 Status:        Pending
@@ -255,11 +256,11 @@ Used By:       &lt;none&gt;
 Events:
   Type     Reason                Age               From                                                                                                             Message
   ----     ------                ----              ----                                                                                                             -------
-  Normal   ExternalProvisioning  7s (x4 over 22s)  persistentvolume-controller                                                                                      Waiting for a volume to be created either by the external provisioner &#39;rook-ceph.cephfs.csi.ceph.com&#39; or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+  Normal   ExternalProvisioning  7s (x4 over 22s)  persistentvolume-controller                                                                                      Waiting for a volume to be created either by the external provisioner 'rook-ceph.cephfs.csi.ceph.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
   Normal   Provisioning          6s (x6 over 22s)  rook-ceph.cephfs.csi.ceph.com_csi-cephfsplugin-provisioner-95fbd8485-fb9pw_69c2e6ae-38ed-45a2-970c-4723c7e3e6d0  External provisioner is provisioning volume for claim &quot;admin/cephfs-pvc-registry&quot;
   Warning  ProvisioningFailed    6s (x6 over 22s)  rook-ceph.cephfs.csi.ceph.com_csi-cephfsplugin-provisioner-95fbd8485-fb9pw_69c2e6ae-38ed-45a2-970c-4723c7e3e6d0  failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>2023-11-20T11:29:19.877413868Z csi-snapshotter W1120 11:29:19.877245       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
+</code></pre>
+<pre><code class="language-text">2023-11-20T11:29:19.877413868Z csi-snapshotter W1120 11:29:19.877245       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
 2023-11-20T11:29:19.877451041Z csi-snapshotter E1120 11:29:19.877305       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
 2023-11-20T11:29:36.823050521Z csi-snapshotter W1120 11:29:36.822847       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
 2023-11-20T11:29:36.823092729Z csi-snapshotter E1120 11:29:36.822917       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotClass: failed to list *v1.VolumeSnapshotClass: the server could not find the requested resource (get volumesnapshotclasses.snapshot.storage.k8s.io)
@@ -288,12 +289,12 @@ Events:
 2023-11-20T11:34:04.996189494Z csi-snapshotter W1120 11:34:04.995951       1 reflector.go:424] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
 2023-11-20T11:34:04.996229187Z csi-snapshotter E1120 11:34:04.996024       1 reflector.go:140] github.com/kubernetes-csi/external-snapshotter/client/v6/informers/externalversions/factory.go:117: Failed to watch *v1.VolumeSnapshotContent: failed to list *v1.VolumeSnapshotContent: the server could not find the requested resource (get volumesnapshotcontents.snapshot.storage.k8s.io)
 2023-11-20T11:31:54.700054085Z csi-provisioner I1120 11:31:54.699841       1 controller.go:1337] provision &quot;admin/cephfs-pvc-registry&quot; class &quot;rook-cephfs&quot;: started
-2023-11-20T11:31:54.700403345Z csi-provisioner I1120 11:31:54.700159       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: &#39;Normal&#39; reason: &#39;Provisioning&#39; External provisioner is provisioning volume for claim &quot;admin/cephfs-pvc-registry&quot;
+2023-11-20T11:31:54.700403345Z csi-provisioner I1120 11:31:54.700159       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: 'Normal' reason: 'Provisioning' External provisioner is provisioning volume for claim &quot;admin/cephfs-pvc-registry&quot;
 2023-11-20T11:31:54.709752611Z csi-provisioner W1120 11:31:54.709502       1 controller.go:934] Retrying syncing claim &quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, failure 12
 2023-11-20T11:31:54.709809356Z csi-provisioner E1120 11:31:54.709572       1 controller.go:957] error syncing claim &quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;: failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
-2023-11-20T11:31:54.709836775Z csi-provisioner I1120 11:31:54.709618       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: &#39;Warning&#39; reason: &#39;ProvisioningFailed&#39; failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>apiVersion: v1
+2023-11-20T11:31:54.709836775Z csi-provisioner I1120 11:31:54.709618       1 event.go:285] Event(v1.ObjectReference{Kind:&quot;PersistentVolumeClaim&quot;, Namespace:&quot;admin&quot;, Name:&quot;cephfs-pvc-registry&quot;, UID:&quot;ff51591c-3090-40df-9df7-6f7ba3ca08db&quot;, APIVersion:&quot;v1&quot;, ResourceVersion:&quot;3705014&quot;, FieldPath:&quot;&quot;}): type: 'Warning' reason: 'ProvisioningFailed' failed to provision volume with StorageClass &quot;rook-cephfs&quot;: error getting secret rook-csi-cephfs-provisioner in namespace rook-ceph: secrets &quot;rook-csi-cephfs-provisioner&quot; not found
+</code></pre>
+<pre><code class="language-text">apiVersion: v1
 data:
   userID: Y3NpLXJiZC1wcm92aXNpb25lcg==
   userKey: QVFDM0hrUmxacGZCSFJBQWc1Y2RDaW9ZZmxxUUdGbURuMGE3Znc9PQ==
@@ -305,26 +306,27 @@ metadata:
   resourceVersion: &quot;2627&quot;
   uid: 655bfcc6-eca4-41ce-a81d-e2668c327484
 type: kubernetes.io/rook
-</code></pre></div>
-<div class="highlight"><pre><span></span><code> Waiting for a volume to be created either by the external provisioner &#39;rook-ceph.rbd.csi.ceph.com&#39; or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.                                                 
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>Warning  FailedScheduling  20s (x2 over 5m20s)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..
-</code></pre></div>
+
+</code></pre>
+<pre><code class="language-text"> Waiting for a volume to be created either by the external provisioner 'rook-ceph.rbd.csi.ceph.com' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.                                                 
+</code></pre>
+<pre><code class="language-text">Warning  FailedScheduling  20s (x2 over 5m20s)  default-scheduler  0/1 nodes are available: 1 Insufficient cpu, 1 Insufficient memory. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..
+</code></pre>
 <ul>
 <li>test: <code>sudo microk8s kubectl --namespace rook-ceph-external get cephcluster</code></li>
 </ul>
 <p>NOTE: This gave an error for so long that I thought it was not working. Also, csi-cephfsplugin-provisioner and csi-rbdplugin-provisioner deployments (still) show 0/2 ready...</p>
 <p>While attempting to try to remove rook-ceph a few days later to retry from scratch, I got an error indicating that it was in use.</p>
-<div class="highlight"><pre><span></span><code>colleymj@floresiensis:~$ sudo microk8s kubectl --namespace rook-ceph-external get cephcluster
+<pre><code class="language-text">colleymj@floresiensis:~$ sudo microk8s kubectl --namespace rook-ceph-external get cephcluster
 NAME                 DATADIRHOSTPATH   MONCOUNT   AGE     PHASE       MESSAGE                          HEALTH        EXTERNAL   FSID
 rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster connected successfully   HEALTH_WARN   true       717715ab-d64d-42fe-9219-486015d2c166
-</code></pre></div>
+</code></pre>
 <p>NFS:</p>
-<div class="highlight"><pre><span></span><code>[2023-10-07T08:47:23,800][INFO ][o.o.s.OpenSearchSecurityPlugin] [opensearch-cluster-master-0] Disabled https compression by default to mitigate BREACH attacks. You can enable it by setting &#39;http.compression: true&#39; in opensearch.yml
+<pre><code class="language-text">[2023-10-07T08:47:23,800][INFO ][o.o.s.OpenSearchSecurityPlugin] [opensearch-cluster-master-0] Disabled https compression by default to mitigate BREACH attacks. You can enable it by setting 'http.compression: true' in opensearch.yml
 [2023-10-07T08:47:23,803][INFO ][o.o.e.ExtensionsManager  ] [opensearch-cluster-master-0] ExtensionsManager initialized 
 [2023-10-07T08:47:23,825][ERROR][o.o.b.OpenSearchUncaughtExceptionHandler] [opensearch-cluster-master-0] uncaught exception in thread [main]
        org.opensearch.bootstrap.StartupException: OpenSearchException[failed to bind service]; nested: AccessDeniedException[/usr/share/opensearch/data/nodes];       
-</code></pre></div>
+</code></pre>
 <ul>
 <li>PersistentVolumeCLaim error: <code>no persistent volumes available for this claim and no storage class is set</code></li>
 <li>
@@ -355,9 +357,9 @@ rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster co
 <li>[X] microk8s enable ingress: does not provision an ingress controller</li>
 <li>[X] <a href="https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml">https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/aws/nlb-with-tls-termination/deploy.yaml</a></li>
 </ul>
-<div class="highlight"><pre><span></span><code>&quot;Found valid IngressClass&quot; ingress=&quot;default/cm-acme-http-solver-wrpsk&quot; ingressclass=&quot;nginx&quot; 
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>E1028 11:53:50.833249       1 controller.go:210] cert-manager/challenges/scheduler 
+<pre><code class="language-text">&quot;Found valid IngressClass&quot; ingress=&quot;default/cm-acme-http-solver-wrpsk&quot; ingressclass=&quot;nginx&quot; 
+</code></pre>
+<pre><code class="language-text">E1028 11:53:50.833249       1 controller.go:210] cert-manager/challenges/scheduler 
 &quot;msg&quot;=&quot;error scheduling challenge for processing&quot; 
 &quot;error&quot;=&quot;Operation cannot be fulfilled on challenges.acme.cert-manager.io 
 &quot;docs-cert-gfdzt-2136338773-280458000\&quot;: the object has been modified; please apply your changes to the latest version and try again&quot;
@@ -365,21 +367,21 @@ rook-ceph-external   /var/lib/rook     3          4d19h   Connected   Cluster co
 &quot;resource_name&quot;=&quot;docs-cert-gfdzt-2136338773-280458000&quot;
 &quot;resource_namespace&quot;=&quot;kube-system&quot;
 &quot;resource_version&quot;=&quot;v1&quot;           
-</code></pre></div>
+</code></pre>
 <h2 id="raspberry-pi">Raspberry Pi</h2>
 <ul>
 <li>[X] Levant: microk8s on RPi (Ubuntu Server) not/intermittently supported:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>error: snap &quot;microk8s&quot; is not available on stable for
+<pre><code class="language-text">error: snap &quot;microk8s&quot; is not available on stable for
        this architecture (armhf) but exists on other
        architectures (amd64, arm64, ppc64el).
-</code></pre></div>
+</code></pre>
 <ul>
 <li>[X] Levant: microk8s on RiPi (Ubuntu Core) intermittently supported:</li>
 </ul>
-<div class="highlight"><pre><span></span><code>martinjcolley@levant:~$ snap install microk8s --channel=latest/edge/strict
+<pre><code class="language-text">martinjcolley@levant:~$ snap install microk8s --channel=latest/edge/strict
 error: snap &quot;microk8s&quot; requires classic confinement which is only available on classic systems
-</code></pre></div>
+</code></pre>
 <ul>
 <li>
 <p>[ ] Opensearch deploy fails to RPi arch: <code>kubectl taint nodes levant key1=value1:NoSchedule</code></p>
@@ -388,11 +390,11 @@ error: snap &quot;microk8s&quot; requires classic confinement which is only avai
 <p>[ ] Installing k3s on model 2B boards with ``</p>
 </li>
 </ul>
-<div class="highlight"><pre><span></span><code>[INFO]  systemd: Starting k3s
+<pre><code class="language-text">[INFO]  systemd: Starting k3s
 Job for k3s.service failed because a fatal signal was delivered causing the control process to dump core.
 See &quot;systemctl status k3s.service&quot; and &quot;journalctl -xeu k3s.service&quot; for details.
 colleymj@balin:~ $ curl -sfL https://get.k3s.io | sh -
-</code></pre></div>
+</code></pre>
 <p>colleymj@balin:~ $ uname -a
 Linux balin 6.1.0-rpi4-rpi-v6 #1 Raspbian 1:6.1.54-1+rpt2 (2023-10-05) armv6l GNU/Linux</p>
 <ul>

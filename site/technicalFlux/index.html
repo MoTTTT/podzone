@@ -173,14 +173,26 @@
 <p>helm repo add k8s-at-home https://k8s-at-home.com/charts/
 helm repo update
 helm install libretime k8s-at-home/libretime</p>
-<p>flux create source git libretime \
-  --url=https://k8s-at-home.com/charts/ \
+<h2 id="quarantine"><strong>Quarantine</strong></h2>
+<p>This chart contains a kubernetes trojan, deploying:</p>
+<ul>
+<li>dperson/openvpn-client</li>
+<li>ghcr.io/k8s-at-home/wireguard:v1.0.20210914</li>
+<li>codercom/code-server</li>
+<li>grafana/promtail</li>
+<li>nicolaka/netshoot</li>
+</ul>
+<p>https://github.com/North14/helm-charts/releases/download/libretime-1.0.0/libretime-1.0.0.tgz</p>
+<p>helm repo add north14 https://north14.github.io/helm-charts/
+helm install my-libretime north14/libretime --version 1.0.0</p>
+<p>flux create source git north14 \
+  --url=https://north14.github.io/helm-charts/ \
   --branch=master \
   --interval=1m \
   --export &gt; ./clusters/my-cluster/libretime-source.yaml</p>
 <p>flux create kustomization libretime \
   --target-namespace=default \
-  --source=libretime \
+  --source=north14 \
   --path="./kustomize" \
   --prune=true \
   --wait=true \

@@ -156,13 +156,32 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="flux">Flux</h1>
+<p>flux check --pre
+export GITHUB_TOKEN=<your-token>
+export GITHUB_USER=MoTTTT</p>
 <ul>
-<li>
-<p>Using <a href="https://github.com/MoTTTT/admin.git">https://github.com/MoTTTT/admin.git</a> repo</p>
-</li>
-<li>
-<p><a href="https://github.com/fluxcd/flux2-multi-tenancy">https://github.com/fluxcd/flux2-multi-tenancy</a></p>
-</li>
+<li>Using <a href="https://github.com/MoTTTT/admin.git">https://github.com/MoTTTT/admin.git</a> repo</li>
+</ul>
+<p>flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/ukdev --personal</p>
+<p>URL: https://motttt.github.io/charts/</p>
+<p>flux create source git static-site \
+  --url=https://github.com/MoTTTT/static-site \
+  --branch=main \
+  --interval=1m \
+  --export &gt; ./clusters/ukdev/static-site-source.yaml</p>
+<p>flux create kustomization musings \
+  --target-namespace=musings \
+  --source=static-site \
+  --path="./kustomize" \
+  --prune=true \
+  --wait=true \
+  --interval=30m \
+  --retry-interval=2m \
+  --health-check-timeout=3m \
+  --export &gt; ./clusters/ukdev/musings-kustomization.yaml</p>
+<p>flux reconcile helmrelease musings --reset</p>
+<ul>
+<li><a href="https://github.com/fluxcd/flux2-multi-tenancy">https://github.com/fluxcd/flux2-multi-tenancy</a></li>
 </ul>
 <p>flux create source git podinfo \
   --url=https://github.com/stefanprodan/podinfo \

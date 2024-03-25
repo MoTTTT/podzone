@@ -315,6 +315,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://stackoverflow.com/questions/71182935/microk8s-generating-auth-certificates>
 - <https://kubernetes.io/docs/tasks/administer-cluster/certificates/>
 - <https://microk8s.io/docs/multi-user>
+- <https://github.com/getsops/sops>
 
 ## Storage
 
@@ -408,6 +409,8 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://helm.sh/docs/helm/helm_upgrade/>
 - <https://helm.sh/docs/howto/charts_tips_and_tricks/>
 - <https://helm.sh/docs/intro/quickstart/>
+- <https://helm.sh/docs/chart_template_guide/getting_started/>
+- <https://v2.helm.sh/docs/developing_charts/>
 - <https://helm.sh/docs/topics/chart_repository/>
 - <https://helm.sh/docs/topics/charts/>
 - <https://helmfile.readthedocs.io/en/latest/>
@@ -416,3 +419,34 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://charts.helm.sh/stable/>
 - <https://wkrzywiec.medium.com/how-to-deploy-application-on-kubernetes-with-helm-39f545ad33b8>
 - <https://help.cloudsmith.io/docs/helm-chart-repository>
+- <https://medium.com/@mattiaperi/create-a-public-helm-chart-repository-with-github-pages-49b180dbb417>
+- <https://opensource.com/article/20/5/helm-charts>
+- <https://helm.sh/docs/topics/chart_repository/>
+- <https://help.cloudsmith.io/docs/helm-chart-repository>
+- <https://help.cloudsmith.io/docs/what-is-package-management>
+- <https://github.com/artifacthub/hub/blob/master/docs/metadata/artifacthub-repo.yml>
+- <https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site>
+- <https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site>
+- <https://www.opcito.com/blogs/creating-helm-repository-using-github-pages>
+- <https://helm.sh/docs/helm/helm_repo_index/>
+
+## Site abstraction: Flux etc
+
+- <https://fluxcd.io/flux/use-cases/karmada/>
+- <https://fluxcd.io/flux/use-cases/helm/>
+- <https://fluxcd.io/flux/components/helm/>
+- <https://fluxcd.io/flux/components/helm/options/>
+- <https://fluxcd.io/flux/components/helm/helmreleases/>
+- <https://fluxcd.io/flux/components/kustomize/api/v1/>
+- <https://fluxcd.io/flux/components/kustomize/kustomizations/>
+- <https://github.com/fluxcd/flux2-kustomize-helm-example>
+- <https://fluxcd.io/flux/components/source/gitrepositories/#sourceignore-file>
+- <https://fluxcd.io/flux/guides/helmreleases/>
+- <https://fluxcd.io/flux/components/source/helmrepositories/>
+- <https://fluxcd.io/blog/2023/12/flux-v2.2.0/>
+- <https://github.com/fluxcd/flux2/releases/tag/v2.2.0>
+- <https://fluxcd.io/flux/flux-e2e/>
+
+## Kustomize
+
+- <https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/>

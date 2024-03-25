@@ -1,6 +1,34 @@
 # Flux
 
+flux check --pre
+export GITHUB_TOKEN=<your-token>
+export GITHUB_USER=MoTTTT
+
+
 - Using <https://github.com/MoTTTT/admin.git> repo
+
+flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/ukdev --personal
+
+URL: https://motttt.github.io/charts/
+
+flux create source git static-site \
+  --url=https://github.com/MoTTTT/static-site \
+  --branch=main \
+  --interval=1m \
+  --export > ./clusters/ukdev/static-site-source.yaml
+
+flux create kustomization musings \
+  --target-namespace=musings \
+  --source=static-site \
+  --path="./kustomize" \
+  --prune=true \
+  --wait=true \
+  --interval=30m \
+  --retry-interval=2m \
+  --health-check-timeout=3m \
+  --export > ./clusters/ukdev/musings-kustomization.yaml
+
+ flux reconcile helmrelease musings --reset
 
 - <https://github.com/fluxcd/flux2-multi-tenancy>
 

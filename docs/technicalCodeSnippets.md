@@ -4,6 +4,9 @@
 
 flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal
 
+## git
+
+- Push cloned repo to personal account: $ git remote set-url origin http://github.com/YOU/YOUR_REPO
 
 ## microk8s
 

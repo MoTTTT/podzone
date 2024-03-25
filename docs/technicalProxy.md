@@ -24,9 +24,9 @@ graph TD
 
 Internet --145.40.190.159  --> router
 router --> dmz
-dmz ---> metallb1
-dmz ---> metallb2
-dmz ---> metallb3
+dmz -- 192.168.1.220 --> metallb1
+dmz -- 192.168.1.222 --> metallb2
+dmz -- 192.168.1.221 --> metallb3
 
 metallb1 --> k8s01
 metallb1 --> k8s02

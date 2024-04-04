@@ -74,3 +74,16 @@
 - [ ] Radio Directory listings
 - [ ] Site maintenance: DJ and Artist Bios
 
+# Community Radio
+
+## Tasklist
+
+- [ ] mp3 support
+- [ ] DJ client ingress
+- [ ] Security: override chart default passwords
+- [ ] Email address and Social Media accounts
+
+### Task Breakdown: DJ client ingress
+
+- <https://dj.radio.thruhere.net/>
+- <https://master

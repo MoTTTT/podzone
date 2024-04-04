@@ -88,7 +88,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">Deprecated</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
                   </li>
@@ -168,16 +168,13 @@
 </ul>
 <h2 id="helm">helm</h2>
 <ul>
-<li>helm repo add truecharts https://charts.truecharts.org/</li>
-<li>helm pull [chart URL | repo/chartname] [...] [flags]</li>
-<li>helm package static-site</li>
-<li>cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz</li>
-<li>helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'</li>
-<li>helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .</li>
-<li>helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml</li>
-<li>helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml</li>
-<li>helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'</li>
-<li>helm  install orange-base --debug  --namespace musings ./qapps</li>
+<li><code>helm repo add truecharts https://charts.truecharts.org/</code></li>
+<li><code>helm pull [chart URL | repo/chartname] [...] [flags]</code></li>
+<li><code>helm package static-site</code></li>
+<li><code>cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz</code></li>
+<li><code>helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'</code></li>
+<li><code>helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .</code></li>
+<li><code>helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml</code></li>
 </ul>
 <h2 id="ceph">ceph</h2>
 <ul>
@@ -198,6 +195,10 @@
 <li>kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c</li>
 <li>Aliases: <code>alias ka="kubectl apply -f "</code>; <code>alias kd="kubectl delete -f "</code></li>
 <li>kubectl api-resources</li>
+<li>Install bash completion on mac: brew install bash-completion</li>
+<li>source /opt/homebrew/etc/bash_completion</li>
+<li>source &lt;(kubectl completion bash) # set up autocomplete in bash into the current shell, bash-completion package should be installed first.</li>
+<li>echo "source &lt;(kubectl completion bash)" &gt;&gt; ~/.bashrc # add autocomplete permanently to your bash shell.</li>
 </ul>
 <h2 id="ansible">ansible</h2>
 <ul>
@@ -206,7 +207,13 @@
 <li><code>ansible-playbook -i inventory.yaml playbook.yaml</code></li>
 <li><code>ansible-inventory -i inventory.yaml --list</code></li>
 <li><code>ansible devcluster -m ping -i inventory.yaml</code></li>
+<li><code>ansible-playbook -i inventory.yaml playbook-install-nfsclient.yaml</code></li>
+<li></li>
 </ul>
+<pre><code class="language-text">- name: Install the package &quot;foo&quot;
+  ansible.builtin.apt:
+    name: foo
+</code></pre>
 <h2 id="apache">apache</h2>
 <ul>
 <li>

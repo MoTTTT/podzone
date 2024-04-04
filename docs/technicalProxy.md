@@ -263,6 +263,55 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
   ProxyRequests Off
 ```
 
+### radio reverse proxy
+
+```httpd.conf
+<VirtualHost *:443>
+  ServerName radio.thruhere.net
+  ProxyPreserveHost on
+  ProxyPass /  https://192.168.1.222/
+  ProxyPassReverse /  https://192.168.1.222/
+  ProxyRequests Off
+  SSLEngine on
+  SSLProxyEngine on
+  SSLProxyVerify none
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName radio.thruhere.net
+  ProxyPreserveHost on
+  ProxyPass /  http://192.168.1.222/
+  ProxyPassReverse /  http://192.168.1.222/
+  ProxyRequests Off
+</VirtualHost>
+
+<VirtualHost *:443>
+  ServerName console.thruhere.net
+  ProxyPreserveHost on
+  ProxyPass /  https://192.168.1.222/
+  ProxyPassReverse /  https://192.168.1.222/
+  ProxyRequests Off
+  SSLEngine on
+  SSLProxyEngine on
+  SSLProxyVerify none
+  Include /etc/letsencrypt/options-ssl-apache.conf
+  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
+  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName console.thruhere.net
+  ProxyPreserveHost on
+  ProxyPass /  http://192.168.1.222/
+  ProxyPassReverse /  http://192.168.1.222/
+  ProxyRequests Off
+</VirtualHost>
+```
+
+
 ### Ceph dashboard issues
 
 - Unsuccessful load balancer configuration, due to ceph redirect to active dashboard node
@@ -274,7 +323,7 @@ To add a domain, e.g. norma.blog.podzone.org, call certbot with the `--expand` o
 ### Current list
 
 ```bash
-certbot --expand -d blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net,norma.blog.podzone.org,uktoday.blogsite.org,uktoday.thruhere.net,uktoday.podzone.org,uktoday.podzone.net,uktoday.blog.podzone.org,ceph.northern.podzone.net,radio.thruhere.net
+certbot --expand -d blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net,norma.blog.podzone.org,uktoday.blogsite.org,uktoday.thruhere.net,uktoday.podzone.org,uktoday.podzone.net,uktoday.blog.podzone.org,ceph.northern.podzone.net,radio.thruhere.net,www.radio.thruhere.net,console.thruhere.net,dj.radio.thruhere.net,master.radio.thruhere.net
 ```
 
 ## Additional domains

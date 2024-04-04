@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalNFS/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Deprecated - Podzone</title>
+    <title>NFS storage - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Deprecated";
+        var mkdocs_page_name = "NFS storage";
         var mkdocs_page_input_path = "technicalNFS.md";
         var mkdocs_page_url = "/podzone/technicalNFS/";
       </script>
@@ -88,9 +88,23 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Deprecated</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">NFS storage</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#deprecated-nfs-storage">Deprecated: NFS storage</a>
+    <li class="toctree-l2"><a class="reference internal" href="#northern-site">Northern site</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#usecases">Usecases</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flux-install">flux install</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#helm-reference-instructions">Helm reference instructions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#deprecated-original-site">Deprecated: original site</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
     </ul>
                   </li>
@@ -151,7 +165,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Substrate</li>
-      <li class="breadcrumb-item active">Deprecated</li>
+      <li class="breadcrumb-item active">NFS storage</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -160,9 +174,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="deprecated">Deprecated</h1>
-<h2 id="deprecated-nfs-storage">Deprecated: NFS storage</h2>
-<p>A cluster-external NFS service is used to provide a Storage class for Persistent volume requirements, set up on sigiriya with access from <code>192.168.0.0/24</code>.</p>
+                <h1 id="nfs-storage">NFS storage</h1>
+<h2 id="northern-site">Northern site</h2>
+<h3 id="usecases">Usecases</h3>
+<ul>
+<li>radio</li>
+</ul>
+<h3 id="configuration">Configuration</h3>
+<ul>
+<li>dataserver: <code>sudo apt install nfs-kernel-server</code></li>
+<li>dataserver: <code>sudo mkdir /Data01/nfs</code></li>
+<li>dataserver: <code>sudo chmod go+w /Data01/nfs</code></li>
+<li>dataserver /etc/exports: <code>/Data01/nfs *(rw,sync,no_subtree_check)</code></li>
+<li>dataserver: <code>sudo exportfs -a</code></li>
+<li>rudolfensis (test): <code>sudo apt install nfs-common</code></li>
+<li>rudolfensis (test) /etc/hosts: <code>192.168.1.26 dataserver</code></li>
+<li>rudolfensis (test) /etc/fstab: <code>dataserver:/Data01/nfs /mnt/Data01-nfs nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
+<li>rudolfensis (test): <code>sudo mount -a</code></li>
+<li>rudolfensis (test): <code>df -H</code>: <em>dataserver:/Data01/nfs  2.1T  118G  1.8T   7% /mnt/Data01-nfs</em></li>
+<li>k8s nodes: use ansible to <code>sudo apt install nfs-common</code></li>
+<li>k8s cluster: use flux to install <code>csi-driver-nfs</code> helm chart</li>
+</ul>
+<h3 id="flux-install">flux install</h3>
+<ul>
+<li>helm chart source: <a href="https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts">https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</a></li>
+<li>helm chart: <code>csi-driver-nfs</code></li>
+<li>For <code>--set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code>, create a configmap</li>
+</ul>
+<h3 id="helm-reference-instructions">Helm reference instructions</h3>
+<ul>
+<li><code>microk8s helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</code></li>
+<li><code>microk8s helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
+</ul>
+<p>Issue:</p>
+<ul>
+<li>Pod describe reports: <code>Warning  FailedMount  3m32s (x448 over 14h)  kubelet  MountVolume.SetUp failed for volume "pvc-1c0b7728-5ebd-4bb0-85ba-0f0877ab9080" : rpc error: code = Internal desc = mkdir /var/snap: read-only file system</code></li>
+</ul>
+<p>Attempting dynamic provisioning...</p>
+<h2 id="deprecated-original-site">Deprecated: original site</h2>
 <ul>
 <li><code>helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
 microk8s helm3 repo update</code></li>
@@ -179,6 +228,20 @@ microk8s helm3 repo update</code></li>
 /srv/nfs/backup  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
 </code></pre>
 <p>The following file in the config/ directory creates a general purpose storage class <code>nfs-csi</code>, and one specifically for the web site <code>apache-storage-class</code>:  <code>podzone-pc-nfs.yaml</code></p>
+<p>A cluster-external NFS service is used to provide a Storage class for Persistent volume requirements, set up on sigiriya with access from <code>192.168.0.0/24</code>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial">https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial</a></li>
+<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
+<li><a href="https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31">https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31</a></li>
+<li><a href="https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/">https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/</a></li>
+<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
+<li><a href="https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html">https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">https://kubernetes.io/docs/concepts/storage/persistent-volumes/</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/">https://kubernetes.io/docs/concepts/storage/volumes/</a></li>
+<li><a href="https://ubuntu.com/server/docs/service-nfs">https://ubuntu.com/server/docs/service-nfs</a></li>
+<li></li>
+</ul>
               
             </div>
           </div><footer>

@@ -128,4 +128,7 @@ Turned down:
 192.168.1.141  norham02
 192.168.1.142  norham03
 192.168.1.143  norham04
+
+# Data Server
+192.168.1.26 dataserver
 ```

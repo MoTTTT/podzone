@@ -14,16 +14,13 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 
 ## helm
 
-- helm repo add truecharts https://charts.truecharts.org/
-- helm pull [chart URL | repo/chartname] [...] [flags]
-- helm package static-site
-- cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz
-- helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
-- helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .
-- helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml
-- helm upgrade --install <service> -f values.yaml <service>-9.0.xx.tgz --values <new file name>.yaml
-- helm  install orange-base --debug  --namespace musings qapps --repo 'https://dl.cloudsmith.io/public/q-solutions/qapps/helm/charts/'
-- helm  install orange-base --debug  --namespace musings ./qapps
+- `helm repo add truecharts https://charts.truecharts.org/`
+- `helm pull [chart URL | repo/chartname] [...] [flags]`
+- `helm package static-site`
+- `cloudsmith push helm q-solutions/static-site static-site-0.1.0.tgz`
+- `helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'`
+- `helm install podzone-01 --debug --namespace podzone --create-namespace --values valuespodzone.yaml .`
+- `helm  install podzone-01 --debug  --namespace podzone static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' -f values.yaml - --values valuespodzone.yaml`
 
 ## ceph
 
@@ -44,6 +41,10 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 - kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c
 - Aliases: `alias ka="kubectl apply -f "`; `alias kd="kubectl delete -f "`
 - kubectl api-resources
+- Install bash completion on mac: brew install bash-completion
+- source /opt/homebrew/etc/bash_completion
+- source <(kubectl completion bash) # set up autocomplete in bash into the current shell, bash-completion package should be installed first.
+- echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
 
 ## ansible
 
@@ -52,6 +53,13 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 - `ansible-playbook -i inventory.yaml playbook.yaml`
 - `ansible-inventory -i inventory.yaml --list`
 - `ansible devcluster -m ping -i inventory.yaml`
+- `ansible-playbook -i inventory.yaml playbook-install-nfsclient.yaml`
+- 
+```text
+- name: Install the package "foo"
+  ansible.builtin.apt:
+    name: foo
+```
 
 ## apache
 

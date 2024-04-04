@@ -446,7 +446,14 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://fluxcd.io/blog/2023/12/flux-v2.2.0/>
 - <https://github.com/fluxcd/flux2/releases/tag/v2.2.0>
 - <https://fluxcd.io/flux/flux-e2e/>
+- <https://fluxcd.io/community/>
+- <https://fluxcd.io/flux/cheatsheets/troubleshooting/>
+- <https://www.digitalocean.com/community/developer-center/implementing-gitops-using-flux-cd>
 
 ## Kustomize
 
 - <https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/>
+
+## Ansible
+
+- <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html>

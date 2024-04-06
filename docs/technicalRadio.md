@@ -33,7 +33,7 @@
 
 ### Test
 
-- [ ] Test: On-premise DJ streaming session from BUTT
+- [X] Test: On-premise DJ streaming session from BUTT
 - [ ] Test: On-premise DJ streaming session from MIXXX
 - [ ] Test: On-premise JD streaming during session slot
 - [ ] Test: Volume off-premise listening

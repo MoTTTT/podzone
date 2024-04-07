@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalRadio/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Community Radio - Podzone</title>
+    <title>ThruHere Community Radio - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Community Radio";
+        var mkdocs_page_name = "ThruHere Community Radio";
         var mkdocs_page_input_path = "technicalRadio.md";
         var mkdocs_page_url = "/podzone/technicalRadio/";
       </script>
@@ -62,14 +62,44 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Workload</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">ThruHere Community Radio</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#urls">URLS</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tasklist">Tasklist</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#station-build">Station Build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#system-build">System Build</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#test">Test</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#management">Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#paperwork">Paperwork</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ingress-for-master-and-dj">Ingress for Master and DJ</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
                   </li>
@@ -80,8 +110,6 @@
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
@@ -146,7 +174,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Community Radio</li>
+          <li class="breadcrumb-item">Workload</li>
+      <li class="breadcrumb-item active">ThruHere Community Radio</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -155,15 +184,126 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="community-radio">Community Radio</h1>
-<h2 id="tasklist">Tasklist</h2>
+                <h1 id="thruhere-community-radio">ThruHere Community Radio</h1>
+<h2 id="urls">URLS</h2>
 <ul>
-<li>[ ] mp3 support</li>
-<li>[ ] DJ client ingress</li>
+<li>Wordpress site: <a href="https://www.radio.thruhere.net">https://www.radio.thruhere.net</a></li>
+<li>Radio Station console: <a href="https://console.thruhere.net">https://console.thruhere.net</a></li>
+<li>Icecast Server console: <a href="https://radio.thruhere.net">https://radio.thruhere.net</a></li>
+<li>DJ Ingress: <a href="https://dj.radio.thruhere.net/">https://dj.radio.thruhere.net/</a></li>
+<li>Master Ingress: <a href="https://master.radio.thruhere.net/">https://master.radio.thruhere.net/</a></li>
+</ul>
+<h2 id="tasklist">Tasklist</h2>
+<h3 id="station-build">Station Build</h3>
+<ul>
+<li>[X] Library: 12" Vinyl {clean,sort}</li>
+<li>[X] Library: 7" Vinyl {clean,sort}</li>
+<li>[X] Turntables</li>
+<li>[X] Mixer</li>
+<li>[ ] Microphone</li>
+<li>[X] Audio Interface</li>
+<li>[X] Hardware: k8s cluster dev (devcluster)</li>
+<li>[X] Hardware: k8s cluster prod (norham)</li>
+<li>[X] Installation: Admin tools {kubectl,k8s}</li>
+<li>[X] Installation: DJ Tools: butt</li>
+<li>[X] Installation: DJ Tools: mixxx</li>
+</ul>
+<h3 id="system-build">System Build</h3>
+<ul>
+<li>[X] Flex radio system definition</li>
+<li>[X] Ingress for Radio Console</li>
+<li>[ ] Ingress for Media Upload</li>
+<li>[X] Ingress for Radio Listener</li>
+<li>[ ] Ingress for DJ client streaming {non-http}</li>
+<li>[ ] Configuration: ogg -&gt; mp3 stream</li>
+<li>[ ] Media kit</li>
+<li>[ ] Site Copy</li>
+<li>[ ] Bio Template</li>
+<li>[ ] About Us</li>
+<li>[ ] Build: Backup and restore</li>
+<li>[ ] Email address and Social Media accounts</li>
+<li>[ ] Security: override chart default passwords</li>
+</ul>
+<h3 id="test">Test</h3>
+<ul>
+<li>[X] Test: On-premise DJ streaming session from BUTT</li>
+<li>[ ] Test: On-premise DJ streaming session from MIXXX</li>
+<li>[ ] Test: On-premise JD streaming during session slot</li>
+<li>[ ] Test: Volume off-premise listening</li>
+<li>[ ] Test: Off-premise DJ streaming</li>
+<li>[ ] Backup and restore testing</li>
+<li>[X] Test: On premise audio file upload</li>
+<li>[X] Test: DJ Creation</li>
+<li>[X] Test: Playlist creation</li>
+<li>[X] Test: Session (repeat) creation</li>
+<li>[X] Test: On-premise listening</li>
+<li>[X] Test: Off-premise listening</li>
+<li>[X] Test: Mac browser listening</li>
+<li>[ ] Test: Windows browser listening</li>
+</ul>
+<h3 id="management">Management</h3>
+<ul>
+<li>[ ] Creative Brief for site structure, branding and content</li>
+<li>[ ] Domain and iconography specification</li>
+<li>[ ] Role Player: DJs</li>
+<li>[ ] Role Player: Technical Administrator</li>
+<li>[ ] Role Player: Field Support</li>
+<li>[ ] Role Player: Administrators {users, backups,tech support}</li>
+<li>[ ] Role Player: Program Managers</li>
+<li>[ ] Role Player: DJ Onboarding {djclient,bio,branding}</li>
+<li>[ ] Role Player: Radio Site Management</li>
+<li>[ ] Role Player: Program Managers</li>
+<li>[ ] Role Player: Campaign Manager</li>
+<li>[ ] Role Player: Sponsor</li>
+</ul>
+<h3 id="paperwork">Paperwork</h3>
+<ul>
+<li>[ ] DJ, Artist consent process</li>
+<li>[ ] DJ Onboarding process</li>
+<li>[ ] Station Scheduling process</li>
+<li>[ ] Broadcast Licencing commitments</li>
+<li>[ ] Collaborator agreements</li>
+<li>[ ] Radio Directory listings</li>
+<li>[ ] Site maintenance: DJ and Artist Bios</li>
+</ul>
+<h2 id="ingress-for-master-and-dj">Ingress for Master and DJ</h2>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  8001: &quot;radio/liquidsoap:8001&quot;
+  8002: &quot;radio/liquidsoap:8002&quot;
+</code></pre>
+<h3 id="example">Example</h3>
+<pre><code class="language-text">The next example shows how to expose the service example-go running in the namespace default in the port 8080 using the port 9000
+</code></pre>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  9000: &quot;default/example-go:8080&quot;
+</code></pre>
+<p>```Then, the config map should be added to the ingress controller’s deployment args.</p>
+<p>args:
+    - /nginx-ingress-controller
+    - --tcp-services-configmap=ingress-nginx/tcp-services
+```</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/">https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/</a></li>
+<li><a href="https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/">https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/</a></li>
 </ul>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../technicalWordpress/" class="btn btn-neutral float-left" title="Installing Wordpress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalApplication/" class="btn btn-neutral float-right" title="Application Build">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -185,6 +325,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../technicalWordpress/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../technicalApplication/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

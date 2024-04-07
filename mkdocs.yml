@@ -22,15 +22,16 @@ nav:
     - technicalTasklist1.md
     - technicalTasklist2.md
     - inventoryCosting.md
+    - technicalKubernetes.md
   - 'Workload':
     - technicalSiteStructure.md
     - technicalStaticSite.md
     - technicalWordpress.md
+    - technicalRadio.md
     - technicalApplication.md
     - technicalIoT.md
     - technicalRedmine.md
   - 'Substrate':
-    - technicalKubernetes.md
     - technicalCluster.md
     - technicalCeph.md
     - technicalIngress.md

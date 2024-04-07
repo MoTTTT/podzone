@@ -1,9 +1,16 @@
-# Community Radio
+# ThruHere Community Radio
+
+## URLS
+
+- Wordpress site: <https://www.radio.thruhere.net>
+- Radio Station console: <https://console.thruhere.net>
+- Icecast Server console: <https://radio.thruhere.net>
+- DJ Ingress: <https://dj.radio.thruhere.net/>
+- Master Ingress: <https://master.radio.thruhere.net/>
 
 ## Tasklist
 
-### Station Build 
-
+### Station Build
 
 - [X] Library: 12" Vinyl {clean,sort}
 - [X] Library: 7" Vinyl {clean,sort}
@@ -30,6 +37,8 @@
 - [ ] Bio Template
 - [ ] About Us
 - [ ] Build: Backup and restore
+- [ ] Email address and Social Media accounts
+- [ ] Security: override chart default passwords
 
 ### Test
 
@@ -50,9 +59,8 @@
 
 ### Management
 
-
 - [ ] Creative Brief for site structure, branding and content
-- [ ] Role Player: Guests
+- [ ] Domain and iconography specification
 - [ ] Role Player: DJs
 - [ ] Role Player: Technical Administrator
 - [ ] Role Player: Field Support
@@ -69,21 +77,48 @@
 - [ ] DJ, Artist consent process
 - [ ] DJ Onboarding process
 - [ ] Station Scheduling process
-- [ ] Broadcast Lisencing commitments
+- [ ] Broadcast Licencing commitments
 - [ ] Collaborator agreements
 - [ ] Radio Directory listings
 - [ ] Site maintenance: DJ and Artist Bios
 
-# Community Radio
+## Ingress for Master and DJ
 
-## Tasklist
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+```
 
-- [ ] mp3 support
-- [ ] DJ client ingress
-- [ ] Security: override chart default passwords
-- [ ] Email address and Social Media accounts
+### Example
 
-### Task Breakdown: DJ client ingress
+```text
+The next example shows how to expose the service example-go running in the namespace default in the port 8080 using the port 9000
+```
 
-- <https://dj.radio.thruhere.net/>
-- <https://master
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  9000: "default/example-go:8080"
+```
+
+```Then, the config map should be added to the ingress controller’s deployment args.
+
+args:
+    - /nginx-ingress-controller
+    - --tcp-services-configmap=ingress-nginx/tcp-services
+```
+
+## References
+
+- <https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/>
+- <https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/>

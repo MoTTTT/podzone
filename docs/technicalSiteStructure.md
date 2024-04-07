@@ -2,11 +2,16 @@
 
 ## Broadcast
 
-- Icecast: <https://radio.thruhere.net/listen>
-- Mopidy Iris: <https://radio.thruhere.net>
+- Wordpress site: <https://www.radio.thruhere.net>
+- Radio Station console: <https://console.thruhere.net>
+- Icecast Server console: <https://radio.thruhere.net>
+- DJ Ingress: <https://dj.radio.thruhere.net/>
+- Master Ingress: <https://master.radio.thruhere.net/>
 
 ## Wordpress instances
 
+- Torrell Bower: <https://www.dialplus44.com>
+- Radio site: <https://www.radio.thruhere.net>
 - UK Today uktoday.blogsite.org
 - Organisation Phycologist Questionnaire front end: <https://norma.blog.podzone.org/>
 - Project Management Client: <https://charles.blog.podzone.org>

@@ -16,7 +16,8 @@
 - [X] Library: 7" Vinyl {clean,sort}
 - [X] Turntables
 - [X] Mixer
-- [ ] Microphone
+- [X] Microphone
+- [ ] Microphone cable
 - [X] Audio Interface
 - [X] Hardware: k8s cluster dev (devcluster)
 - [X] Hardware: k8s cluster prod (norham)

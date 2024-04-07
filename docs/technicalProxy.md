@@ -23,7 +23,8 @@ title: northern.podzone.net Request routing
 graph TD
 
 Internet --145.40.190.159  --> router
-router --> dmz
+router -- 80\n443 --> dmz
+router -- 8001\n8002 --> metallb3
 dmz -- 192.168.1.220 --> metallb1
 dmz -- 192.168.1.222 --> metallb2
 dmz -- 192.168.1.221 --> metallb3
@@ -42,7 +43,7 @@ metallb3 --> k8s10
 metallb1[[prod]]
 metallb2[[dev]]
 metallb3[[norham]]
-router[[Router Port Forwarding]]
+router[[Router]]
 dmz{{rudolfensis}}
 k8s01{{habilis}}
 k8s02{{antecessor}}

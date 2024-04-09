@@ -60,7 +60,6 @@ client{{DJ}} --> input.jam.radio.fm
 browser2{{Listeners}} --> www.jam.radio.fm
 ```
 
-
 ## POV URLS
 
 - Wordpress site: <https://www.jam.radio.fm>
@@ -187,6 +186,15 @@ args:
     - /nginx-ingress-controller
     - --tcp-services-configmap=ingress-nginx/tcp-services
 ```
+
+--set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --set deployment.args="--inspect server.js" ...
+
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --reuse-values ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services  --namespace ingress-nginx
+
 
 ## References
 

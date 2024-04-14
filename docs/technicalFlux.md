@@ -1,59 +1,31 @@
 # Flux
 
-flux check --pre
-export GITHUB_TOKEN=<your-token>
-export GITHUB_USER=MoTTTT
+## Introduction
 
+Flux is a Kubernetes GitOps Operator. GitOps is the practice of using code repositories as the single source of truth for cluster and workload configuration.
 
-- Using <https://github.com/MoTTTT/admin.git> repo
+Flux was built by Weaveworks, and donated to the Cloud Native Computing Foundation (CNCF).
 
-flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/ukdev --personal
+Instrumenting a cluster with Flux requires the following:
 
-flux bootstrap github --context=dev --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/dev --token-auth
+- A git repo for the cluster definition, with its associated access username and token exported.
+- Installing the flux utility on a cluster administrator workstation (with kubectl context set for the target cluster).
+- Bootstrapping flux, specifying the git account, repo, branch and path.
 
-flux uninstall
+When the bootstrap process concludes, the GIT repo will contain the flux-system component manifests, and the target cluster will have flux-system namespace operator components installed. The flux operator with thereafter monitor the git repo for cluster configuration requirement changes, and apply the appropriate cluster adjustments.
 
-URL: https://motttt.github.io/charts/
+## Notes
 
-flux create source git static-site \
-  --url=https://github.com/MoTTTT/static-site \
-  --branch=main \
-  --interval=1m \
-  --export > ./clusters/ukdev/static-site-source.yaml
+- Mac OS flux Installation: `brew install fluxcd/tap/flux`
+- Create a GITHUB token, and export username and token: `export GITHUB_TOKEN=<token>`; `export GITHUB_USER=MoTTTT`
+- Check flux and cluster: `flux check --pre`
+- Bootstrap: `flux bootstrap github --context=dev --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/dev --token-auth`
 
-flux create kustomization musings \
-  --target-namespace=musings \
-  --source=static-site \
-  --path="./kustomize" \
-  --prune=true \
-  --wait=true \
-  --interval=30m \
-  --retry-interval=2m \
-  --health-check-timeout=3m \
-  --export > ./clusters/ukdev/musings-kustomization.yaml
-
- flux reconcile helmrelease musings --reset
-
-- <https://github.com/fluxcd/flux2-multi-tenancy>
-
-
-
-flux create source git podinfo \
-  --url=https://github.com/stefanprodan/podinfo \
-  --branch=master \
-  --interval=1m \
-  --export > ./clusters/my-cluster/podinfo-source.yaml
-
-
-  For libretime
-
-
-helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm repo update
-helm install libretime k8s-at-home/libretime
-
+```text
+??:
 brew tap weaveworks/tap
 brew install weaveworks/tap/gitops
+```
 
 ## Resources created by flux
 
@@ -99,52 +71,3 @@ Are you sure you want to delete Flux and its custom resource definitions: y
 ✔ Namespace/flux-system deleted 
 ✔ uninstall finished
 ```
-
-
-## **Quarantine**
-
-This chart contains a kubernetes trojan, deploying:
-
-- dperson/openvpn-client
-- ghcr.io/k8s-at-home/wireguard:v1.0.20210914
-- codercom/code-server
-- grafana/promtail
-- nicolaka/netshoot
-
-https://github.com/North14/helm-charts/releases/download/libretime-1.0.0/libretime-1.0.0.tgz
-
-helm repo add north14 https://north14.github.io/helm-charts/
-helm install my-libretime north14/libretime --version 1.0.0
-
-
-flux create source git north14 \
-  --url=https://north14.github.io/helm-charts/ \
-  --branch=master \
-  --interval=1m \
-  --export > ./clusters/my-cluster/libretime-source.yaml
-
-flux create kustomization libretime \
-  --target-namespace=default \
-  --source=north14 \
-  --path="./kustomize" \
-  --prune=true \
-  --wait=true \
-  --interval=30m \
-  --retry-interval=2m \
-  --health-check-timeout=3m \
-  --export > ./clusters/my-cluster/libretime-kustomization.yaml
-
-
-
-
-    patches:
-    - patch: |-
-        apiVersion: autoscaling/v2
-        kind: HorizontalPodAutoscaler
-        metadata:
-          name: podinfo
-        spec:
-          minReplicas: 3             
-      target:
-        name: podinfo
-        kind: HorizontalPodAutoscaler

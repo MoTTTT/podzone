@@ -1,5 +1,66 @@
 # Ingress
 
+## Northern Zone: Flux configuration
+
+- See <technicalProxy.md> for networking architecture of the second site.
+
+### Addition of non-http ingresses
+
+Non http-ingress is required for various use-cases. The first critical one is for off-site incoming streams for the radio. See technicalRadio.mds
+
+## Ingress for Master and DJ
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+```
+
+### Example
+
+```text
+The next example shows how to expose the service example-go running in the namespace default in the port 8080 using the port 9000
+```
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  9000: "default/example-go:8080"
+```
+
+```Then, the config map should be added to the ingress controller’s deployment args.
+
+args:
+    - /nginx-ingress-controller
+    - --tcp-services-configmap=ingress-nginx/tcp-services
+```
+
+--set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --set deployment.args="--inspect server.js" ...
+
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --reuse-values ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services  --namespace ingress-nginx
+
+
+## References
+
+- <https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/>
+- <https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/>
+
+
+## Southern Zone: manual configuration
+
 ```mermaid
 ---
 title: southern.podzone.net Request Routing

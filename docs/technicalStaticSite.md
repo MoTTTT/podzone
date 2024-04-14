@@ -1,4 +1,4 @@
-# Wrapping static site functionality into a helm chart
+# Helm Charts
 
 Kubernetes object specifications can be applied to the cluster manually using `kubectl`. However, as these objects increase in number, an abstraction above that of Kubernetes objects is useful, if not necessary. This is where helm plays a role, allowing sets of objects to be managed collectively, and provides a mechanism to externalise key aspects of configuration. This is achieved with a templating language, leaving the key configuration items isolated and aggregated. This in turn, together with a configuration value overriding facility, allows for the same package to be re-used with only the key configuration items requiring further management.
 

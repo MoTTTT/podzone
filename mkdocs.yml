@@ -15,6 +15,7 @@ nav:
     - requirementIntroduction.md
     - requirementBackground.md
     - requirementBusinessBrief.md
+    - requirementRadio.md
   - 'Analysis':
     - technicalConsumerCloud.md
     - technicalExternalServices.md
@@ -26,6 +27,7 @@ nav:
   - 'Workload':
     - technicalSiteStructure.md
     - technicalStaticSite.md
+    - technicalFlux.md
     - technicalWordpress.md
     - technicalRadio.md
     - technicalApplication.md

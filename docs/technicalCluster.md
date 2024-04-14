@@ -15,30 +15,26 @@
 - Fibre router: Port forwarding: 443 to k8s L2 load-balancer (As-is goes to dolmen)
 - Fibre router: Restrict DHCP IP allocation range for clients to `192.168.0.2 - 192.168.0.120`
 - MetalLB: IP address range: `192.168.0.131-192.168.0.140`
-- DynDns: Add wildcard routes for all internet hosts in inventory, e.g. ```*.southern.podzone.net```
 - DynDns: Update IP address using ddclient
 - To dev, test and debug ingress, add: qapps.does-it.net
 
-## Node installations
+## Cluster installation and configuration
 
-- Ubuntu Server and Desktop: `sudo snap install microk8s --channel=1.28/stable --classic`
-- Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
-- Set up user with sudo rights
+On each node, run `sudo snap install microk8s --channel=1.29/stable --classic`
 
-### For Raspberry Pi
+On the master node, run `sudo microk8s add-node` (once for each of the other node), and run the resulting join command on the other node.
+This can be automated with ansible.
 
-- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
-- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
-- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
-
-## Cluster configuration
+Then, on any node, run:
 
 - `sudo microk8s enable metrics-server`
 - `sudo microk8s enable rook-ceph`; See technicalCeph.md for more details
-- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd`
-- `sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd`
+- `sudo microk8s connect-external-ceph`; Run this on the same node that microceph running.
 - `sudo microk8s enable metallb`
 - `sudo microk8s enable cert-manager`
+
+The following has been migrated to flex, together with cluster infrastructure components:
+
 - `sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace`
 - NOTE: This gives `ingressClassName: nginx`
 
@@ -76,3 +72,10 @@ In order to upgrade the nodes of the cluster, take one node out of service at a 
 - Take a node out of service: `kubectl drain --ignore-daemonsets --delete-emptydir-data <node name>`
 - `--delete-emptydir-data` is required if use is made of local storage.
 - To bring the node back in to the cluster: `kubectl uncordon <node name>`
+
+### For Raspberry Pi
+
+- Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
+- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
+- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
+- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`

@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalDB/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/requirementsRadio/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Database implementation - Podzone</title>
+    <title>Radio Requirements - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Database implementation";
-        var mkdocs_page_input_path = "technicalDB.md";
-        var mkdocs_page_url = "/podzone/technicalDB/";
+        var mkdocs_page_name = "Radio Requirements";
+        var mkdocs_page_input_path = "requirementsRadio.md";
+        var mkdocs_page_url = "/podzone/requirementsRadio/";
       </script>
     
     <!--[if lt IE 9]>
@@ -152,7 +152,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Database implementation</li>
+      <li class="breadcrumb-item active">Radio Requirements</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -161,39 +161,102 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="database-implementation">Database implementation</h1>
-<h2 id="technology-selection">Technology selection</h2>
+                <h1 id="radio-requirements">Radio Requirements</h1>
+<p>Build a radio station on the kubernetes cluster. The Minimum Viable Product uses existing infrastructure, audio equipment and vinyl library.</p>
+<p>Minimum Viable Product use cases:</p>
 <ul>
-<li>kubernetes db install</li>
-<li>postgres</li>
-<li>Server side tooling: adminer</li>
-<li>internet ingres to db port</li>
+<li>[ ] Stream audio tracks from network file storage</li>
+<li>[ ] Schedule playlists of uploaded content</li>
+<li>[ ] Stream in for broadcast from a DJ installation - on-site</li>
+<li>[ ] Stream in for broadcast from a DJ installation - off-site</li>
+<li>[ ] View Radio Station web page with embedded playback and schedule</li>
+<li>[ ] DJ Installation with vinyl and microphone streaming to station - on-site</li>
+<li>[ ] DJ Installation with vinyl and microphone streaming to station - off-site</li>
+<li>[ ] Stream in for broadcast from a Master installation</li>
 </ul>
-<h2 id="poc">POC</h2>
+<p>Non-Functional Requirements</p>
 <ul>
-<li>Reference: <a href="https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc">https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc</a></li>
-<li>Methodology for POC: kubernetes resource definitions in <code>QAppsCluster</code> local directory</li>
-<li>Hostname: adminer dbgui.dev.podzone.net</li>
-<li>Hostname: db on db.dev.podzone.net</li>
-<li>namespace: postgres-dev</li>
+<li>[ ] Security: Administration access</li>
+<li>[ ] Radio: Domain registration and email forwarding: jam.radio.fm</li>
+<li>[ ] Social media registrations</li>
+<li>[ ] YouTube channel</li>
+<li>[ ] Website: DJ Profiles</li>
+<li>[ ] Website: Social media links</li>
 </ul>
-<h3 id="poc-notes">POC Notes</h3>
+<h2 id="tasklist">Tasklist</h2>
+<h3 id="station-build">Station Build</h3>
 <ul>
-<li>Workspace: Create k8s resources in ~/QAppsCluster/DB</li>
+<li>[X] Library: 12" Vinyl {clean,sort}</li>
+<li>[X] Library: 7" Vinyl {clean,sort}</li>
+<li>[X] Turntable 1</li>
+<li>[ ] Turntable 2</li>
+<li>[X] Mixer</li>
+<li>[X] Microphone</li>
+<li>[X] Microphone cable</li>
+<li>[X] Audio Interface</li>
+<li>[X] Hardware: k8s cluster dev (devcluster)</li>
+<li>[X] Hardware: k8s cluster prod (norham)</li>
+<li>[X] Installation: Admin tools {kubectl,k8s}</li>
+<li>[X] Installation: DJ Tools: butt</li>
+<li>[X] Installation: DJ Tools: mixxx</li>
 </ul>
-<h3 id="adminer">Adminer</h3>
+<h3 id="system-build">System Build</h3>
 <ul>
-<li><code>kubectl create namespace adminer</code></li>
-<li><code>kubectl apply --namespace adminer -f adminer-svc.yaml</code></li>
-<li><code>kubectl apply --namespace adminer -f adminer-deployment.yaml</code></li>
-<li><code>kubectl apply --namespace adminer -f adminer-ingress.yaml</code></li>
+<li>[X] Flex radio system definition</li>
+<li>[X] Ingress for Radio Console</li>
+<li>[ ] Ingress for Media Upload</li>
+<li>[X] Ingress for Radio Listener</li>
+<li>[ ] Ingress for DJ client streaming {non-http}</li>
+<li>[ ] Configuration: ogg -&gt; mp3 stream</li>
+<li>[ ] Media kit</li>
+<li>[ ] Site Copy</li>
+<li>[ ] Bio Template</li>
+<li>[ ] About Us</li>
+<li>[ ] Build: Backup and restore</li>
+<li>[ ] Email address and Social Media accounts</li>
+<li>[ ] Security: override chart default passwords</li>
 </ul>
-<h2 id="references">References</h2>
+<h3 id="test">Test</h3>
 <ul>
-<li><a href="https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc">https://jineshnagori.medium.com/ultimate-guide-to-setting-up-postgresql-in-kubernetes-with-statefulsets-adminer-dashboard-and-6232323cb4dc</a></li>
-<li><a href="https://artifacthub.io/packages/helm/bitnami/postgresql">https://artifacthub.io/packages/helm/bitnami/postgresql</a></li>
-<li><a href="https://github.com/bitnami/charts/tree/main/bitnami/postgresql-ha">https://github.com/bitnami/charts/tree/main/bitnami/postgresql-ha</a></li>
-<li><a href="https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/">https://www.cncf.io/blog/2023/09/29/recommended-architectures-for-postgresql-in-kubernetes/</a></li>
+<li>[X] Test: On-premise DJ streaming session from BUTT</li>
+<li>[ ] Test: On-premise DJ streaming session from MIXXX</li>
+<li>[ ] Test: On-premise JD streaming during session slot</li>
+<li>[ ] Test: Volume off-premise listening</li>
+<li>[ ] Test: Off-premise DJ streaming</li>
+<li>[ ] Backup and restore testing</li>
+<li>[X] Test: On premise audio file upload</li>
+<li>[X] Test: DJ Creation</li>
+<li>[X] Test: Playlist creation</li>
+<li>[X] Test: Session (repeat) creation</li>
+<li>[X] Test: On-premise listening</li>
+<li>[X] Test: Off-premise listening</li>
+<li>[X] Test: Mac browser listening</li>
+<li>[ ] Test: Windows browser listening</li>
+</ul>
+<h3 id="management">Management</h3>
+<ul>
+<li>[ ] Creative Brief for site structure, branding and content</li>
+<li>[ ] Domain and iconography specification</li>
+<li>[ ] Role Player: DJs</li>
+<li>[ ] Role Player: Technical Administrator</li>
+<li>[ ] Role Player: Field Support</li>
+<li>[ ] Role Player: Administrators {users, backups,tech support}</li>
+<li>[ ] Role Player: Program Managers</li>
+<li>[ ] Role Player: DJ Onboarding {djclient,bio,branding}</li>
+<li>[ ] Role Player: Radio Site Management</li>
+<li>[ ] Role Player: Program Managers</li>
+<li>[ ] Role Player: Campaign Manager</li>
+<li>[ ] Role Player: Sponsor</li>
+</ul>
+<h3 id="paperwork">Paperwork</h3>
+<ul>
+<li>[ ] DJ, Artist consent process</li>
+<li>[ ] DJ Onboarding process</li>
+<li>[ ] Station Scheduling process</li>
+<li>[ ] Broadcast Licencing commitments</li>
+<li>[ ] Collaborator agreements</li>
+<li>[ ] Radio Directory listings</li>
+<li>[ ] Site maintenance: DJ and Artist Bios</li>
 </ul>
               
             </div>

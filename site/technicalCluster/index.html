@@ -47,6 +47,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../requirementRadio.md">None</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Analysis</span></p>
               <ul>
@@ -69,7 +71,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
                   </li>
@@ -90,19 +94,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#network">Network</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#node-installations">Node installations</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#for-raspberry-pi">For Raspberry Pi</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cluster-configuration">Cluster configuration</a>
+    <li class="toctree-l2"><a class="reference internal" href="#cluster-installation-and-configuration">Cluster installation and configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ceph-configuration">Ceph configuration</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#rolling-maintenance">Rolling maintenance</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#for-raspberry-pi">For Raspberry Pi</a>
+    </li>
+        </ul>
     </li>
     </ul>
                   </li>
@@ -194,30 +196,23 @@
 <li>Fibre router: Port forwarding: 443 to k8s L2 load-balancer (As-is goes to dolmen)</li>
 <li>Fibre router: Restrict DHCP IP allocation range for clients to <code>192.168.0.2 - 192.168.0.120</code></li>
 <li>MetalLB: IP address range: <code>192.168.0.131-192.168.0.140</code></li>
-<li>DynDns: Add wildcard routes for all internet hosts in inventory, e.g. <code>*.southern.podzone.net</code></li>
 <li>DynDns: Update IP address using ddclient</li>
 <li>To dev, test and debug ingress, add: qapps.does-it.net</li>
 </ul>
-<h2 id="node-installations">Node installations</h2>
-<ul>
-<li>Ubuntu Server and Desktop: <code>sudo snap install microk8s --channel=1.28/stable --classic</code></li>
-<li>Ubuntu Core: <code>sudo snap install microk8s --channel=latest/edge/strict</code></li>
-<li>Set up user with sudo rights</li>
-</ul>
-<h3 id="for-raspberry-pi">For Raspberry Pi</h3>
-<ul>
-<li>For levant, to fix calico vxlan missing dependency: <code>sudo apt install linux-modules-extra-raspi</code></li>
-<li>For RiPi: Add to /boot/firmware/cmdline.txt: <code>cgroup_enable=memory cgroup_memory=1 net.ifnames=1</code></li>
-<li>If required to prevent deployment to RPi arch (e.g. Opensearch): <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
-</ul>
-<h2 id="cluster-configuration">Cluster configuration</h2>
+<h2 id="cluster-installation-and-configuration">Cluster installation and configuration</h2>
+<p>On each node, run <code>sudo snap install microk8s --channel=1.29/stable --classic</code></p>
+<p>On the master node, run <code>sudo microk8s add-node</code> (once for each of the other node), and run the resulting join command on the other node.
+This can be automated with ansible.</p>
+<p>Then, on any node, run:</p>
 <ul>
 <li><code>sudo microk8s enable metrics-server</code></li>
 <li><code>sudo microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
-<li><code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool dev_rbd</code></li>
-<li><code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool prod_rbd</code></li>
+<li><code>sudo microk8s connect-external-ceph</code>; Run this on the same node that microceph running.</li>
 <li><code>sudo microk8s enable metallb</code></li>
 <li><code>sudo microk8s enable cert-manager</code></li>
+</ul>
+<p>The following has been migrated to flex, together with cluster infrastructure components:</p>
+<ul>
 <li><code>sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace</code></li>
 <li>NOTE: This gives <code>ingressClassName: nginx</code></li>
 </ul>
@@ -246,6 +241,13 @@
 <li>Take a node out of service: <code>kubectl drain --ignore-daemonsets --delete-emptydir-data &lt;node name&gt;</code></li>
 <li><code>--delete-emptydir-data</code> is required if use is made of local storage.</li>
 <li>To bring the node back in to the cluster: <code>kubectl uncordon &lt;node name&gt;</code></li>
+</ul>
+<h3 id="for-raspberry-pi">For Raspberry Pi</h3>
+<ul>
+<li>Ubuntu Core: <code>sudo snap install microk8s --channel=latest/edge/strict</code></li>
+<li>For levant, to fix calico vxlan missing dependency: <code>sudo apt install linux-modules-extra-raspi</code></li>
+<li>For RiPi: Add to /boot/firmware/cmdline.txt: <code>cgroup_enable=memory cgroup_memory=1 net.ifnames=1</code></li>
+<li>If required to prevent deployment to RPi arch (e.g. Opensearch): <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
 </ul>
               
             </div>

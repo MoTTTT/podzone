@@ -43,6 +43,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
 </li>
+<li class="toctree-l1"><a class="" href="../requirementRadio.md">None</a>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
 <ul>
@@ -65,7 +67,9 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
 </li>
@@ -86,6 +90,18 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Ingress</a>
 <ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#northern-zone-flux-configuration">Northern Zone: Flux configuration</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#addition-of-non-http-ingresses">Addition of non-http ingresses</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ingress-for-master-and-dj">Ingress for Master and DJ</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#ingress-configuration">Ingress configuration</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#l2-load-balancer">L2 Load Balancer</a>
@@ -166,7 +182,57 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="ingress">Ingress</h1>
-<div class="mermaid">---
+<h2 id="northern-zone-flux-configuration">Northern Zone: Flux configuration</h2>
+<ul>
+<li>See <technicalproxy.md> for networking architecture of the second site.</technicalproxy.md></li>
+</ul>
+<h3 id="addition-of-non-http-ingresses">Addition of non-http ingresses</h3>
+<p>Non http-ingress is required for various use-cases. The first critical one is for off-site incoming streams for the radio. See technicalRadio.mds</p>
+<h2 id="ingress-for-master-and-dj">Ingress for Master and DJ</h2>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+</code></pre>
+<h3 id="example">Example</h3>
+<pre><code class="language-text">The next example shows how to expose the service example-go running in the namespace default in the port 8080 using the port 9000
+</code></pre>
+<pre><code class="language-yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tcp-services
+  namespace: ingress-nginx
+data:
+  9000: "default/example-go:8080"
+</code></pre>
+<p>```Then, the config map should be added to the ingress controller’s deployment args.</p>
+<p>args:
+    - /nginx-ingress-controller
+    - --tcp-services-configmap=ingress-nginx/tcp-services</p>
+<pre><code>
+--set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --set deployment.args="--inspect server.js" ...
+
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services
+
+helm upgrade --reuse-values ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --set tcp-services-configmap=ingress-nginx/tcp-services  --namespace ingress-nginx
+
+
+## References
+
+- &lt;https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/&gt;
+- &lt;https://docs.nginx.com/nginx-ingress-controller/configuration/global-configuration/command-line-arguments/&gt;
+
+
+## Southern Zone: manual configuration
+
+```mermaid
+---
 title: southern.podzone.net Request Routing
 ---
 graph TD
@@ -198,7 +264,7 @@ ingress --&gt;|dashboard.southern.podzone.net| app3
     app3(k8s dashboard)
 
   end
-</div>
+</code></pre>
 <h2 id="ingress-configuration">Ingress configuration</h2>
 <h3 id="l2-load-balancer">L2 Load Balancer</h3>
 <p>MetalLB is used to implement an L2 load balancer. The metallb microk8s add-on is required:</p>
@@ -260,6 +326,5 @@ ingress --&gt;|dashboard.southern.podzone.net| app3
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script></body>
+</body>
 </html>

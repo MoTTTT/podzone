@@ -47,6 +47,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
                   </li>
+                  <li class="toctree-l1"><a class="" href="../requirementRadio.md">None</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Analysis</span></p>
               <ul>
@@ -66,10 +68,20 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Workload</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Wrapping static site functionality into a helm chart</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Flux</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#resources-created-by-flux">Resources created by flux</a>
+    </li>
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
                   </li>
@@ -148,6 +160,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Workload</li>
       <li class="breadcrumb-item active">Flux</li>
     <li class="wy-breadcrumbs-aside">
     </li>
@@ -158,46 +171,27 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="flux">Flux</h1>
-<p>flux check --pre
-export GITHUB_TOKEN=<your-token>
-export GITHUB_USER=MoTTTT</p>
+<h2 id="introduction">Introduction</h2>
+<p>Flux is a Kubernetes GitOps Operator. GitOps is the practice of using code repositories as the single source of truth for cluster and workload configuration.</p>
+<p>Flux was built by Weaveworks, and donated to the Cloud Native Computing Foundation (CNCF).</p>
+<p>Instrumenting a cluster with Flux requires the following:</p>
 <ul>
-<li>Using <a href="https://github.com/MoTTTT/admin.git">https://github.com/MoTTTT/admin.git</a> repo</li>
+<li>A git repo for the cluster definition, with its associated access username and token exported.</li>
+<li>Installing the flux utility on a cluster administrator workstation (with kubectl context set for the target cluster).</li>
+<li>Bootstrapping flux, specifying the git account, repo, branch and path.</li>
 </ul>
-<p>flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/ukdev --personal</p>
-<p>flux bootstrap github --context=dev --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/dev --token-auth</p>
-<p>flux uninstall</p>
-<p>URL: https://motttt.github.io/charts/</p>
-<p>flux create source git static-site \
-  --url=https://github.com/MoTTTT/static-site \
-  --branch=main \
-  --interval=1m \
-  --export &gt; ./clusters/ukdev/static-site-source.yaml</p>
-<p>flux create kustomization musings \
-  --target-namespace=musings \
-  --source=static-site \
-  --path="./kustomize" \
-  --prune=true \
-  --wait=true \
-  --interval=30m \
-  --retry-interval=2m \
-  --health-check-timeout=3m \
-  --export &gt; ./clusters/ukdev/musings-kustomization.yaml</p>
-<p>flux reconcile helmrelease musings --reset</p>
+<p>When the bootstrap process concludes, the GIT repo will contain the flux-system component manifests, and the target cluster will have flux-system namespace operator components installed. The flux operator with thereafter monitor the git repo for cluster configuration requirement changes, and apply the appropriate cluster adjustments.</p>
+<h2 id="notes">Notes</h2>
 <ul>
-<li><a href="https://github.com/fluxcd/flux2-multi-tenancy">https://github.com/fluxcd/flux2-multi-tenancy</a></li>
+<li>Mac OS flux Installation: <code>brew install fluxcd/tap/flux</code></li>
+<li>Create a GITHUB token, and export username and token: <code>export GITHUB_TOKEN=&lt;token&gt;</code>; <code>export GITHUB_USER=MoTTTT</code></li>
+<li>Check flux and cluster: <code>flux check --pre</code></li>
+<li>Bootstrap: <code>flux bootstrap github --context=dev --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/dev --token-auth</code></li>
 </ul>
-<p>flux create source git podinfo \
-  --url=https://github.com/stefanprodan/podinfo \
-  --branch=master \
-  --interval=1m \
-  --export &gt; ./clusters/my-cluster/podinfo-source.yaml</p>
-<p>For libretime</p>
-<p>helm repo add k8s-at-home https://k8s-at-home.com/charts/
-helm repo update
-helm install libretime k8s-at-home/libretime</p>
-<p>brew tap weaveworks/tap
-brew install weaveworks/tap/gitops</p>
+<pre><code class="language-text">??:
+brew tap weaveworks/tap
+brew install weaveworks/tap/gitops
+</code></pre>
 <h2 id="resources-created-by-flux">Resources created by flux</h2>
 <p>Can be seen on delete: <code>flux uninstall</code></p>
 <pre><code class="language-text">martincolley@Dolmen:~/workspace/admin/clusters/ukdev$ flux uninstall
@@ -239,48 +233,13 @@ Are you sure you want to delete Flux and its custom resource definitions: y
 ✔ Namespace/flux-system deleted 
 ✔ uninstall finished
 </code></pre>
-<h2 id="quarantine"><strong>Quarantine</strong></h2>
-<p>This chart contains a kubernetes trojan, deploying:</p>
-<ul>
-<li>dperson/openvpn-client</li>
-<li>ghcr.io/k8s-at-home/wireguard:v1.0.20210914</li>
-<li>codercom/code-server</li>
-<li>grafana/promtail</li>
-<li>nicolaka/netshoot</li>
-</ul>
-<p>https://github.com/North14/helm-charts/releases/download/libretime-1.0.0/libretime-1.0.0.tgz</p>
-<p>helm repo add north14 https://north14.github.io/helm-charts/
-helm install my-libretime north14/libretime --version 1.0.0</p>
-<p>flux create source git north14 \
-  --url=https://north14.github.io/helm-charts/ \
-  --branch=master \
-  --interval=1m \
-  --export &gt; ./clusters/my-cluster/libretime-source.yaml</p>
-<p>flux create kustomization libretime \
-  --target-namespace=default \
-  --source=north14 \
-  --path="./kustomize" \
-  --prune=true \
-  --wait=true \
-  --interval=30m \
-  --retry-interval=2m \
-  --health-check-timeout=3m \
-  --export &gt; ./clusters/my-cluster/libretime-kustomization.yaml</p>
-<pre><code>patches:
-- patch: |-
-    apiVersion: autoscaling/v2
-    kind: HorizontalPodAutoscaler
-    metadata:
-      name: podinfo
-    spec:
-      minReplicas: 3             
-  target:
-    name: podinfo
-    kind: HorizontalPodAutoscaler
-</code></pre>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../technicalStaticSite/" class="btn btn-neutral float-left" title="Helm Charts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technicalWordpress/" class="btn btn-neutral float-right" title="Installing Wordpress">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -302,6 +261,10 @@ helm install my-libretime north14/libretime --version 1.0.0</p>
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href="../technicalStaticSite/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../technicalWordpress/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

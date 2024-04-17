@@ -1,4 +1,4 @@
-# ThruHere Community Radio
+# Jam Radio FM Architecture
 
 ## Technical Architecture
 

@@ -449,10 +449,23 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://fluxcd.io/community/>
 - <https://fluxcd.io/flux/cheatsheets/troubleshooting/>
 - <https://www.digitalocean.com/community/developer-center/implementing-gitops-using-flux-cd>
+- <https://fluxcd.io/flux/installation/configuration/optional-components/>
+- <https://fluxcd.io/flux/installation/configuration/boostrap-customization/>
+- <https://fluxcd.io/flux/installation/configuration/vertical-scaling/>
+- <https://fluxcd.io/flux/installation/configuration/multitenancy/>
 
 ## Kustomize
 
+- <https://fluxcd.io/flux/installation/bootstrap/generic-git-server/>
 - <https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/>
+- <https://kubectl.docs.kubernetes.io/guides/extending_kustomize/>
+- <https://fluxcd.io/flux/components/kustomize/kustomizations/#patches>
+- <https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#patchjson6902>
+- <https://kubernetes.io/docs/reference/using-api/server-side-apply/>
+- <https://kubernetes.io/docs/reference/using-api/server-side-apply/#comparison-with-client-side-apply>
+- <https://github.com/kubernetes-sigs/kustomize/blob/master/examples/jsonpatch.md>
+- <https://kubectl.docs.kubernetes.io/references/kustomize/glossary/#patchstrategicmerge>
+- <https://github.com/kubernetes/community/blob/master/contributors/devel/sig-api-machinery/strategic-merge-patch.md>
 
 ## Ansible
 

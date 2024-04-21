@@ -1,5 +1,25 @@
 # Jam Radio FM Architecture
 
+## POV
+
+- Domain purchased for POV: jam.radio.fm
+- Build libretime chart, revised to remove non http ingress
+- Deploy to norham cluster, using flux, with values override
+
+## Post installation configuration
+
+### Libretime
+
+- log in as admin:admin
+- Set admin password
+- Set Station logo
+- Get player and schedule widget html for web site home page
+
+### Ingress modifications
+
+- `~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml`
+- edit *ingress-nginx-ingress-nginx-controller*: `    - --tcp-services-configmap=ingress-nginx/tcp-services`
+
 ## Technical Architecture
 
 ```mermaid
@@ -75,4 +95,3 @@ browser2{{Listeners}} --> www.jam.radio.fm
 - Icecast Server console: <https://radio.thruhere.net>
 - DJ Ingress: <https://dj.radio.thruhere.net/>
 - Master Ingress: <https://master.radio.thruhere.net/>
-

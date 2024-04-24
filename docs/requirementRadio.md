@@ -2,7 +2,7 @@
 
 Build a radio station on the kubernetes cluster. The Minimum Viable Product uses existing infrastructure, audio equipment and vinyl library.
 
-Minimum Viable Product use cases:
+## Minimum Viable Product use cases
 
 - [ ] Stream audio tracks from network file storage
 - [ ] Schedule playlists of uploaded content
@@ -13,15 +13,14 @@ Minimum Viable Product use cases:
 - [ ] DJ Installation with vinyl and microphone streaming to station - off-site
 - [ ] Stream in for broadcast from a Master installation
 
-Non-Functional Requirements
+## Non-Functional Requirements
 
 - [ ] Security: Administration access
-- [ ] Radio: Domain registration and email forwarding: jam.radio.fm
+- [X] Radio: Domain registration and email forwarding: jam.radio.fm
 - [ ] Social media registrations
 - [ ] YouTube channel
 - [ ] Website: DJ Profiles
 - [ ] Website: Social media links
-
 
 ## Tasklist
 
@@ -32,7 +31,7 @@ Non-Functional Requirements
 - [X] Turntable 1
 - [ ] Turntable 2
 - [X] Mixer
-- [X] Microphone
+- [ ] Microphone
 - [X] Microphone cable
 - [X] Audio Interface
 - [X] Hardware: k8s cluster dev (devcluster)
@@ -40,6 +39,7 @@ Non-Functional Requirements
 - [X] Installation: Admin tools {kubectl,k8s}
 - [X] Installation: DJ Tools: butt
 - [X] Installation: DJ Tools: mixxx
+- [ ] Integration: Pioneer Console
 
 ### System Build
 
@@ -47,8 +47,8 @@ Non-Functional Requirements
 - [X] Ingress for Radio Console
 - [ ] Ingress for Media Upload
 - [X] Ingress for Radio Listener
-- [ ] Ingress for DJ client streaming {non-http}
-- [ ] Configuration: ogg -> mp3 stream
+- [X] Ingress for DJ client streaming {non-http}
+- [X] Configuration: ogg -> mp3 stream
 - [ ] Media kit
 - [ ] Site Copy
 - [ ] Bio Template
@@ -59,35 +59,54 @@ Non-Functional Requirements
 
 ### Test
 
-- [X] Test: On-premise DJ streaming session from BUTT
-- [ ] Test: On-premise DJ streaming session from MIXXX
-- [ ] Test: On-premise JD streaming during session slot
-- [ ] Test: Volume off-premise listening
-- [ ] Test: Off-premise DJ streaming
-- [ ] Backup and restore testing
-- [X] Test: On premise audio file upload
-- [X] Test: DJ Creation
-- [X] Test: Playlist creation
-- [X] Test: Session (repeat) creation
-- [X] Test: On-premise listening
-- [X] Test: Off-premise listening
-- [X] Test: Mac browser listening
-- [ ] Test: Windows browser listening
+- [X] DJ Creation
+- [X] Playlist creation
+- [X] Session (repeat) creation
+- [X] Streaming session from BUTT
+- [X] Streaming session from MIXXX
+- [ ] Streaming session from Pioneer Console
+- [ ] Off-premise session streaming
+- [ ] Streaming authentication and cut-over
+- [ ] Audio file upload
+- [X] DJ Creation
+- [X] Playlist creation
+- [X] Session (repeat) creation
+- [X] Listening client: Mac browser
+- [X] Listening client: Windows browser
+- [X] Listening client: iPhone browser
+- [ ] Listening client: Android browser
+- [ ] Backup and restore: Station
+- [ ] Backup and restore: Media
+- [ ] Backup and restore: Website
+- [ ] Listening load and soak
 
 ### Management
 
-- [ ] Creative Brief for site structure, branding and content
-- [ ] Domain and iconography specification
-- [ ] Role Player: DJs
-- [ ] Role Player: Technical Administrator
-- [ ] Role Player: Field Support
-- [ ] Role Player: Administrators {users, backups,tech support}
-- [ ] Role Player: Program Managers
+- [ ] Creative Brief for site structure, branding and content {Thandi}
+- [ ] Domain and iconography specification {All}
+- [ ] Role Player: DJs {Torrell, Knott, Amy, Sub Templa, Lash, Cal, Tommy Lewis}
+- [ ] Role Player: Technical Administrator {Jim, + protege}
+- [ ] Role Player: Station Administrator {Tom}
+- [ ] Role Player: Field Support {Max, Charles, Martin, Torrell}
+- [ ] Role Player: Administrators {users, backups, tech support}
+- [ ] Role Player: Program Managers {Stew, Torrell}
 - [ ] Role Player: DJ Onboarding {djclient,bio,branding}
 - [ ] Role Player: Radio Site Management
-- [ ] Role Player: Program Managers
-- [ ] Role Player: Campaign Manager
-- [ ] Role Player: Sponsor
+- [ ] Role Player: Campaign Manager {Gabby, Kanye}
+- [ ] Role Player: YouTube Channel {Kanye}
+- [ ] Role Player: Sponsor/Owner {Martin, Charles, Stew, Jay}
+- [ ] Role Player: Advertising sales {Kanye}
+
+### DJ Onboarding
+
+- Torrell
+- Gabby Palmer
+- Amy Willow
+- Stewart
+- Jonathan
+- Casa Luna
+- Nathan and Sarah
+- Michael - (heavy sessions)
 
 ### Paperwork
 

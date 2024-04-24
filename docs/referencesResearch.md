@@ -302,6 +302,9 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/>
 - <https://discuss.kubernetes.io/t/how-to-manage-addons/23799>
 - <https://github.com/canonical/microk8s-core-addons>
+- <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#recreate-deployment>
+- <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>
+- <https://stackoverflow.com/questions/62536939/how-to-perform-helm-update-on-deployment-with-pvc-and-initcontainer>
 
 ## Authentication and Authorisation
 
@@ -432,6 +435,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 
 ## Site abstraction: Flux etc
 
+- <https://fluxcd.io/flux/get-started/>
 - <https://fluxcd.io/flux/use-cases/karmada/>
 - <https://fluxcd.io/flux/use-cases/helm/>
 - <https://fluxcd.io/flux/components/helm/>
@@ -453,6 +457,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://fluxcd.io/flux/installation/configuration/boostrap-customization/>
 - <https://fluxcd.io/flux/installation/configuration/vertical-scaling/>
 - <https://fluxcd.io/flux/installation/configuration/multitenancy/>
+- <https://fluxcd.io/flux/faq/>
 
 ## Kustomize
 

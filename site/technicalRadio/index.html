@@ -75,6 +75,16 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Jam Radio FM Architecture</a>
 <ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#pov">POV</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#post-installation-configuration">Post installation configuration</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#libretime">Libretime</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ingress-modifications">Ingress modifications</a>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#technical-architecture">Technical Architecture</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pov-urls">POV URLS</a>
@@ -164,6 +174,25 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="jam-radio-fm-architecture">Jam Radio FM Architecture</h1>
+<h2 id="pov">POV</h2>
+<ul>
+<li>Domain purchased for POV: jam.radio.fm</li>
+<li>Build libretime chart, revised to remove non http ingress</li>
+<li>Deploy to norham cluster, using flux, with values override</li>
+</ul>
+<h2 id="post-installation-configuration">Post installation configuration</h2>
+<h3 id="libretime">Libretime</h3>
+<ul>
+<li>log in as admin:admin</li>
+<li>Set admin password</li>
+<li>Set Station logo</li>
+<li>Get player and schedule widget html for web site home page</li>
+</ul>
+<h3 id="ingress-modifications">Ingress modifications</h3>
+<ul>
+<li><code>~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml</code></li>
+<li>edit <em>ingress-nginx-ingress-nginx-controller</em>: <code>- --tcp-services-configmap=ingress-nginx/tcp-services</code></li>
+</ul>
 <h2 id="technical-architecture">Technical Architecture</h2>
 <div class="mermaid">---
 title: jam.radio.fm Request routing

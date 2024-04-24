@@ -49,6 +49,10 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Radio Requirements</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#minimum-viable-product-use-cases">Minimum Viable Product use cases</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#non-functional-requirements">Non-Functional Requirements</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#tasklist">Tasklist</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#station-build">Station Build</a>
@@ -58,6 +62,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#test">Test</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#management">Management</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#dj-onboarding">DJ Onboarding</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#paperwork">Paperwork</a>
     </li>
@@ -180,7 +186,7 @@
               
                 <h1 id="radio-requirements">Radio Requirements</h1>
 <p>Build a radio station on the kubernetes cluster. The Minimum Viable Product uses existing infrastructure, audio equipment and vinyl library.</p>
-<p>Minimum Viable Product use cases:</p>
+<h2 id="minimum-viable-product-use-cases">Minimum Viable Product use cases</h2>
 <ul>
 <li>[ ] Stream audio tracks from network file storage</li>
 <li>[ ] Schedule playlists of uploaded content</li>
@@ -191,10 +197,10 @@
 <li>[ ] DJ Installation with vinyl and microphone streaming to station - off-site</li>
 <li>[ ] Stream in for broadcast from a Master installation</li>
 </ul>
-<p>Non-Functional Requirements</p>
+<h2 id="non-functional-requirements">Non-Functional Requirements</h2>
 <ul>
 <li>[ ] Security: Administration access</li>
-<li>[ ] Radio: Domain registration and email forwarding: jam.radio.fm</li>
+<li>[X] Radio: Domain registration and email forwarding: jam.radio.fm</li>
 <li>[ ] Social media registrations</li>
 <li>[ ] YouTube channel</li>
 <li>[ ] Website: DJ Profiles</li>
@@ -208,7 +214,7 @@
 <li>[X] Turntable 1</li>
 <li>[ ] Turntable 2</li>
 <li>[X] Mixer</li>
-<li>[X] Microphone</li>
+<li>[ ] Microphone</li>
 <li>[X] Microphone cable</li>
 <li>[X] Audio Interface</li>
 <li>[X] Hardware: k8s cluster dev (devcluster)</li>
@@ -216,6 +222,7 @@
 <li>[X] Installation: Admin tools {kubectl,k8s}</li>
 <li>[X] Installation: DJ Tools: butt</li>
 <li>[X] Installation: DJ Tools: mixxx</li>
+<li>[ ] Integration: Pioneer Console</li>
 </ul>
 <h3 id="system-build">System Build</h3>
 <ul>
@@ -223,8 +230,8 @@
 <li>[X] Ingress for Radio Console</li>
 <li>[ ] Ingress for Media Upload</li>
 <li>[X] Ingress for Radio Listener</li>
-<li>[ ] Ingress for DJ client streaming {non-http}</li>
-<li>[ ] Configuration: ogg -&gt; mp3 stream</li>
+<li>[X] Ingress for DJ client streaming {non-http}</li>
+<li>[X] Configuration: ogg -&gt; mp3 stream</li>
 <li>[ ] Media kit</li>
 <li>[ ] Site Copy</li>
 <li>[ ] Bio Template</li>
@@ -235,35 +242,54 @@
 </ul>
 <h3 id="test">Test</h3>
 <ul>
-<li>[X] Test: On-premise DJ streaming session from BUTT</li>
-<li>[ ] Test: On-premise DJ streaming session from MIXXX</li>
-<li>[ ] Test: On-premise JD streaming during session slot</li>
-<li>[ ] Test: Volume off-premise listening</li>
-<li>[ ] Test: Off-premise DJ streaming</li>
-<li>[ ] Backup and restore testing</li>
-<li>[X] Test: On premise audio file upload</li>
-<li>[X] Test: DJ Creation</li>
-<li>[X] Test: Playlist creation</li>
-<li>[X] Test: Session (repeat) creation</li>
-<li>[X] Test: On-premise listening</li>
-<li>[X] Test: Off-premise listening</li>
-<li>[X] Test: Mac browser listening</li>
-<li>[ ] Test: Windows browser listening</li>
+<li>[X] DJ Creation</li>
+<li>[X] Playlist creation</li>
+<li>[X] Session (repeat) creation</li>
+<li>[X] Streaming session from BUTT</li>
+<li>[X] Streaming session from MIXXX</li>
+<li>[ ] Streaming session from Pioneer Console</li>
+<li>[ ] Off-premise session streaming</li>
+<li>[ ] Streaming authentication and cut-over</li>
+<li>[ ] Audio file upload</li>
+<li>[X] DJ Creation</li>
+<li>[X] Playlist creation</li>
+<li>[X] Session (repeat) creation</li>
+<li>[X] Listening client: Mac browser</li>
+<li>[X] Listening client: Windows browser</li>
+<li>[X] Listening client: iPhone browser</li>
+<li>[ ] Listening client: Android browser</li>
+<li>[ ] Backup and restore: Station</li>
+<li>[ ] Backup and restore: Media</li>
+<li>[ ] Backup and restore: Website</li>
+<li>[ ] Listening load and soak</li>
 </ul>
 <h3 id="management">Management</h3>
 <ul>
-<li>[ ] Creative Brief for site structure, branding and content</li>
-<li>[ ] Domain and iconography specification</li>
-<li>[ ] Role Player: DJs</li>
-<li>[ ] Role Player: Technical Administrator</li>
-<li>[ ] Role Player: Field Support</li>
-<li>[ ] Role Player: Administrators {users, backups,tech support}</li>
-<li>[ ] Role Player: Program Managers</li>
+<li>[ ] Creative Brief for site structure, branding and content {Thandi}</li>
+<li>[ ] Domain and iconography specification {All}</li>
+<li>[ ] Role Player: DJs {Torrell, Knott, Amy, Sub Templa, Lash, Cal, Tommy Lewis}</li>
+<li>[ ] Role Player: Technical Administrator {Jim, + protege}</li>
+<li>[ ] Role Player: Station Administrator {Tom}</li>
+<li>[ ] Role Player: Field Support {Max, Charles, Martin, Torrell}</li>
+<li>[ ] Role Player: Administrators {users, backups, tech support}</li>
+<li>[ ] Role Player: Program Managers {Stew, Torrell}</li>
 <li>[ ] Role Player: DJ Onboarding {djclient,bio,branding}</li>
 <li>[ ] Role Player: Radio Site Management</li>
-<li>[ ] Role Player: Program Managers</li>
-<li>[ ] Role Player: Campaign Manager</li>
-<li>[ ] Role Player: Sponsor</li>
+<li>[ ] Role Player: Campaign Manager {Gabby, Kanye}</li>
+<li>[ ] Role Player: YouTube Channel {Kanye}</li>
+<li>[ ] Role Player: Sponsor/Owner {Martin, Charles, Stew, Jay}</li>
+<li>[ ] Role Player: Advertising sales {Kanye}</li>
+</ul>
+<h3 id="dj-onboarding">DJ Onboarding</h3>
+<ul>
+<li>Torrell</li>
+<li>Gabby Palmer</li>
+<li>Amy Willow</li>
+<li>Stewart</li>
+<li>Jonathan</li>
+<li>Casa Luna</li>
+<li>Nathan and Sarah</li>
+<li>Michael - (heavy sessions)</li>
 </ul>
 <h3 id="paperwork">Paperwork</h3>
 <ul>

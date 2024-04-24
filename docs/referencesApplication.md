@@ -148,6 +148,8 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://discuss.kubernetes.io/t/addon-ingress/11259/31>
 - <https://discuss.kubernetes.io/t/addon-ingress/11259/35>
 - <https://github.com/canonical/microk8s-core-addons/blob/main/addons/ingress/ingress.yaml>
+- <https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/>
+- <https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/nginx-configuration/index.md>
 
 ## Wordpress
 

@@ -9,7 +9,6 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 1. Radio - Stream in from icecast source for broadcast from a DJ installation
 1. Listener - View Radio Station web page with embedded playback and schedule
 
-
 ---
 
 ### MVP Use cases
@@ -41,20 +40,19 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 
 ### Station Build
 
-- [X] Library: 12" Vinyl {clean,sort}
-- [X] Library: 7" Vinyl {clean,sort}
+- [X] Library: 12" Vinyl {clean, sort, select and record}
+- [X] Library: 7" Vinyl {clean, sort, select and record}
 - [X] CD Library: Select and dub
-- [X] Turntable 1
+- [X] Turntables
 - [X] Mixer
 - [X] Microphone
-- [X] Microphone cable
-- [X] Audio Interface
+- [X] Audio Interface: vinyl
+- [X] Audio Interface: live streaming
 - [X] Hardware: k8s cluster dev (devcluster)
 - [X] Hardware: k8s cluster prod (norham)
 - [X] Installation: Admin tools {kubectl,k8s}
-- [X] Installation: DJ Tools: butt
-- [X] Installation: DJ Tools: mixxx
-- [ ] Integration: Pioneer Console
+- [X] Installation: DJ Tools: butt {vinyl recording, live streaming}
+- [X] Installation: DJ Tools: mixxx {DJ session, with microphone}
 
 ### System Build
 
@@ -64,13 +62,39 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Ingress for Radio Listener
 - [X] Ingress for Field streaming client
 - [X] Configuration: ogg -> mp3 stream
+- [ ] Default schedule
+- [ ] Intros, Exits, and Jingles
 - [ ] Media kit
 - [ ] Site Copy
 - [ ] Bio Template
 - [ ] About Us
 - [ ] Build: Backup and restore
 - [ ] Email address and Social Media accounts
+- [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
+
+#### Default Schedule
+
+Build themed playlists for daily use (to fill the programme in POV phase), for example:
+
+- Blues
+- 60s
+- Class of '84
+- Favourite Females
+- Reggae
+- Rock
+- Jazz
+- Classical
+
+As collaborators come on line, starting in POV phase, substitute playlist slots with:
+
+- Live performances
+- Live DJ slots
+- Original Collections
+- Talk shows
+- Interviews {starting with DJs and Collaborators}
+
+Record these, where applicable for re-run purposes.
 
 ### Test
 
@@ -97,7 +121,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] Listening load and soak
 - [ ] Failover
 
-### Management
+### Operations and Management
 
 Interest gauged positive on all engagements checked.
 
@@ -119,6 +143,7 @@ Interest gauged positive on all engagements checked.
 ### DJ Onboarding
 
 - Torrell
+- Michael
 - Gabby Palmer
 - Amy Willow
 - Stewart
@@ -132,7 +157,7 @@ Interest gauged positive on all engagements checked.
 - [ ] DJ, Artist consent process
 - [ ] DJ Onboarding process
 - [ ] Station Scheduling process
-- [ ] Broadcast Licencing commitments
+- [X] Broadcast Licencing commitments
 - [ ] Collaborator agreements
 - [ ] Radio Directory listings
 - [ ] Site maintenance: DJ and Artist Bios

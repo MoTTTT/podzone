@@ -2,11 +2,11 @@
 
 ## Broadcast
 
-- Wordpress site: <https://www.radio.thruhere.net>
-- Radio Station console: <https://console.thruhere.net>
-- Icecast Server console: <https://radio.thruhere.net>
-- DJ Ingress: <https://dj.radio.thruhere.net/>
-- Master Ingress: <https://master.radio.thruhere.net/>
+- Wordpress site: <https://radio.muso.club>
+- Radio Station console: <https://console.muso.club>
+- Icecast Server console: <https://broadcast.muso.club>
+- DJ Ingress: <tcp://muso.club:8002>
+- Master Ingress: <tcp://muso.club:8001>
 
 ## Wordpress instances
 

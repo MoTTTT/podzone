@@ -2,36 +2,51 @@
 
 Build a radio station on the kubernetes cluster. The Minimum Viable Product uses existing infrastructure, audio equipment and vinyl library.
 
-## Minimum Viable Product use cases
+## Minimum Viable Product Themes
 
-- [ ] Stream audio tracks from network file storage
-- [ ] Schedule playlists of uploaded content
-- [ ] Stream in for broadcast from a DJ installation - on-site
-- [ ] Stream in for broadcast from a DJ installation - off-site
-- [ ] View Radio Station web page with embedded playback and schedule
-- [ ] DJ Installation with vinyl and microphone streaming to station - on-site
-- [ ] DJ Installation with vinyl and microphone streaming to station - off-site
-- [ ] Stream in for broadcast from a Master installation
+1. Icecast - Stream audio tracks from network file storage
+1. DJ - Schedule playlists of uploaded content
+1. Radio - Stream in from icecast source for broadcast from a DJ installation
+1. Listener - View Radio Station web page with embedded playback and schedule
+
+
+---
+
+### MVP Use cases
+
+- [ ] Admin: Create Programme Manager
+- [ ] Programme Manager: Create DJ user
+- [ ] Programme Manager: Create Show
+- [ ] DJ: Create Playlist
+- [ ] DJ: Upload tracks
+- [ ] DJ: Add track to playlist
+- [ ] DJ: Assign tracks and playlist to Show
 
 ## Non-Functional Requirements
 
 - [ ] Security: Administration access
-- [X] Radio: Domain registration and email forwarding: jam.radio.fm
+- [X] Radio: Domain registration and email forwarding: radio.muso.club
 - [ ] Social media registrations
 - [ ] YouTube channel
 - [ ] Website: DJ Profiles
 - [ ] Website: Social media links
+- [ ] Icecast: Configure for directory listing
+- [ ] Failover: Automated recovery on node failure
 
 ## Tasklist
+
+### Issues and bugs
+
+- [X] Media upload limited to 8MB - configure for 15MB
 
 ### Station Build
 
 - [X] Library: 12" Vinyl {clean,sort}
 - [X] Library: 7" Vinyl {clean,sort}
+- [X] CD Library: Select and dub
 - [X] Turntable 1
-- [ ] Turntable 2
 - [X] Mixer
-- [ ] Microphone
+- [X] Microphone
 - [X] Microphone cable
 - [X] Audio Interface
 - [X] Hardware: k8s cluster dev (devcluster)
@@ -45,9 +60,9 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 
 - [X] Flex radio system definition
 - [X] Ingress for Radio Console
-- [ ] Ingress for Media Upload
+- [X] Ingress for Media Upload
 - [X] Ingress for Radio Listener
-- [X] Ingress for DJ client streaming {non-http}
+- [X] Ingress for Field streaming client
 - [X] Configuration: ogg -> mp3 stream
 - [ ] Media kit
 - [ ] Site Copy
@@ -55,7 +70,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] About Us
 - [ ] Build: Backup and restore
 - [ ] Email address and Social Media accounts
-- [ ] Security: override chart default passwords
+- [X] Security: override chart default passwords
 
 ### Test
 
@@ -64,10 +79,11 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Session (repeat) creation
 - [X] Streaming session from BUTT
 - [X] Streaming session from MIXXX
-- [ ] Streaming session from Pioneer Console
-- [ ] Off-premise session streaming
-- [ ] Streaming authentication and cut-over
-- [ ] Audio file upload
+- [X] Streaming session from iziCast iPhone
+- [ ] Streaming session from Field Audio Interface
+- [X] Off-premise session streaming
+- [X] Streaming authentication and cut-over
+- [X] Audio file upload
 - [X] DJ Creation
 - [X] Playlist creation
 - [X] Session (repeat) creation
@@ -79,10 +95,13 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] Backup and restore: Media
 - [ ] Backup and restore: Website
 - [ ] Listening load and soak
+- [ ] Failover
 
 ### Management
 
-- [ ] Creative Brief for site structure, branding and content {Thandi}
+Interest gauged positive on all engagements checked.
+
+- [X] Creative Brief for site structure, branding and content {Thandi}
 - [ ] Domain and iconography specification {All}
 - [ ] Role Player: DJs {Torrell, Knott, Amy, Sub Templa, Lash, Cal, Tommy Lewis}
 - [ ] Role Player: Technical Administrator {Jim, + protege}

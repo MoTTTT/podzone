@@ -49,12 +49,18 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Radio Requirements</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#minimum-viable-product-use-cases">Minimum Viable Product use cases</a>
+    <li class="toctree-l2"><a class="reference internal" href="#minimum-viable-product-themes">Minimum Viable Product Themes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#mvp-use-cases">MVP Use cases</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#non-functional-requirements">Non-Functional Requirements</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tasklist">Tasklist</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#issues-and-bugs">Issues and bugs</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#station-build">Station Build</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#system-build">System Build</a>
@@ -99,7 +105,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Jam Radio FM Architecture</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio@Muso.Club Architecture</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
                   </li>
@@ -186,35 +192,48 @@
               
                 <h1 id="radio-requirements">Radio Requirements</h1>
 <p>Build a radio station on the kubernetes cluster. The Minimum Viable Product uses existing infrastructure, audio equipment and vinyl library.</p>
-<h2 id="minimum-viable-product-use-cases">Minimum Viable Product use cases</h2>
+<h2 id="minimum-viable-product-themes">Minimum Viable Product Themes</h2>
+<ol>
+<li>Icecast - Stream audio tracks from network file storage</li>
+<li>DJ - Schedule playlists of uploaded content</li>
+<li>Radio - Stream in from icecast source for broadcast from a DJ installation</li>
+<li>Listener - View Radio Station web page with embedded playback and schedule</li>
+</ol>
+<hr />
+<h3 id="mvp-use-cases">MVP Use cases</h3>
 <ul>
-<li>[ ] Stream audio tracks from network file storage</li>
-<li>[ ] Schedule playlists of uploaded content</li>
-<li>[ ] Stream in for broadcast from a DJ installation - on-site</li>
-<li>[ ] Stream in for broadcast from a DJ installation - off-site</li>
-<li>[ ] View Radio Station web page with embedded playback and schedule</li>
-<li>[ ] DJ Installation with vinyl and microphone streaming to station - on-site</li>
-<li>[ ] DJ Installation with vinyl and microphone streaming to station - off-site</li>
-<li>[ ] Stream in for broadcast from a Master installation</li>
+<li>[ ] Admin: Create Programme Manager</li>
+<li>[ ] Programme Manager: Create DJ user</li>
+<li>[ ] Programme Manager: Create Show</li>
+<li>[ ] DJ: Create Playlist</li>
+<li>[ ] DJ: Upload tracks</li>
+<li>[ ] DJ: Add track to playlist</li>
+<li>[ ] DJ: Assign tracks and playlist to Show</li>
 </ul>
 <h2 id="non-functional-requirements">Non-Functional Requirements</h2>
 <ul>
 <li>[ ] Security: Administration access</li>
-<li>[X] Radio: Domain registration and email forwarding: jam.radio.fm</li>
+<li>[X] Radio: Domain registration and email forwarding: radio.muso.club</li>
 <li>[ ] Social media registrations</li>
 <li>[ ] YouTube channel</li>
 <li>[ ] Website: DJ Profiles</li>
 <li>[ ] Website: Social media links</li>
+<li>[ ] Icecast: Configure for directory listing</li>
+<li>[ ] Failover: Automated recovery on node failure</li>
 </ul>
 <h2 id="tasklist">Tasklist</h2>
+<h3 id="issues-and-bugs">Issues and bugs</h3>
+<ul>
+<li>[X] Media upload limited to 8MB - configure for 15MB</li>
+</ul>
 <h3 id="station-build">Station Build</h3>
 <ul>
 <li>[X] Library: 12" Vinyl {clean,sort}</li>
 <li>[X] Library: 7" Vinyl {clean,sort}</li>
+<li>[X] CD Library: Select and dub</li>
 <li>[X] Turntable 1</li>
-<li>[ ] Turntable 2</li>
 <li>[X] Mixer</li>
-<li>[ ] Microphone</li>
+<li>[X] Microphone</li>
 <li>[X] Microphone cable</li>
 <li>[X] Audio Interface</li>
 <li>[X] Hardware: k8s cluster dev (devcluster)</li>
@@ -228,9 +247,9 @@
 <ul>
 <li>[X] Flex radio system definition</li>
 <li>[X] Ingress for Radio Console</li>
-<li>[ ] Ingress for Media Upload</li>
+<li>[X] Ingress for Media Upload</li>
 <li>[X] Ingress for Radio Listener</li>
-<li>[X] Ingress for DJ client streaming {non-http}</li>
+<li>[X] Ingress for Field streaming client</li>
 <li>[X] Configuration: ogg -&gt; mp3 stream</li>
 <li>[ ] Media kit</li>
 <li>[ ] Site Copy</li>
@@ -238,7 +257,7 @@
 <li>[ ] About Us</li>
 <li>[ ] Build: Backup and restore</li>
 <li>[ ] Email address and Social Media accounts</li>
-<li>[ ] Security: override chart default passwords</li>
+<li>[X] Security: override chart default passwords</li>
 </ul>
 <h3 id="test">Test</h3>
 <ul>
@@ -247,10 +266,11 @@
 <li>[X] Session (repeat) creation</li>
 <li>[X] Streaming session from BUTT</li>
 <li>[X] Streaming session from MIXXX</li>
-<li>[ ] Streaming session from Pioneer Console</li>
-<li>[ ] Off-premise session streaming</li>
-<li>[ ] Streaming authentication and cut-over</li>
-<li>[ ] Audio file upload</li>
+<li>[X] Streaming session from iziCast iPhone</li>
+<li>[ ] Streaming session from Field Audio Interface</li>
+<li>[X] Off-premise session streaming</li>
+<li>[X] Streaming authentication and cut-over</li>
+<li>[X] Audio file upload</li>
 <li>[X] DJ Creation</li>
 <li>[X] Playlist creation</li>
 <li>[X] Session (repeat) creation</li>
@@ -262,10 +282,12 @@
 <li>[ ] Backup and restore: Media</li>
 <li>[ ] Backup and restore: Website</li>
 <li>[ ] Listening load and soak</li>
+<li>[ ] Failover</li>
 </ul>
 <h3 id="management">Management</h3>
+<p>Interest gauged positive on all engagements checked.</p>
 <ul>
-<li>[ ] Creative Brief for site structure, branding and content {Thandi}</li>
+<li>[X] Creative Brief for site structure, branding and content {Thandi}</li>
 <li>[ ] Domain and iconography specification {All}</li>
 <li>[ ] Role Player: DJs {Torrell, Knott, Amy, Sub Templa, Lash, Cal, Tommy Lewis}</li>
 <li>[ ] Role Player: Technical Administrator {Jim, + protege}</li>

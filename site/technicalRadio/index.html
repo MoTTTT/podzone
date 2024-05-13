@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalRadio/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Jam Radio FM Architecture - Podzone</title>
+<title>Radio@Muso.Club Architecture - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Jam Radio FM Architecture";
+        var mkdocs_page_name = "Radio@Muso.Club Architecture";
         var mkdocs_page_input_path = "technicalRadio.md";
         var mkdocs_page_url = "/podzone/technicalRadio/";
       </script>
@@ -73,23 +73,55 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Jam Radio FM Architecture</a>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Radio@Muso.Club Architecture</a>
 <ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#pov">POV</a>
+<li class="toctree-l2"><a class="reference internal" href="#high-level-design">High Level Design</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-dj-schedule-playlists-of-uploaded-content">2: DJ - Schedule playlists of uploaded content</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-radio-stream-in-for-broadcast-from-a-dj-installation">3: Radio - Stream in for broadcast from a DJ installation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-listener-view-radio-station-web-page-with-embedded-playback-and-schedule">4: Listener - View Radio Station web page with embedded playback and schedule</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-browser-audio-player">Default browser audio player</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#radio-station-widget">Radio station widget</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wordpress-widget">WordPress widget</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-implementation">Technical Implementation</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pov-prep-and-fixes-from-poc">POV Prep, and fixes from POC</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#post-installation-configuration">Post installation configuration</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#libretime">Libretime</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ingress-modifications">Ingress modifications</a>
+<li class="toctree-l3"><a class="reference internal" href="#wordpress">Wordpress</a>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#technical-architecture">Technical Architecture</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration">Integration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#request-routing">Request routing</a>
+</li>
+</ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pov-urls">POV URLS</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#poc-urls">POC URLS</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -165,7 +197,7 @@
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
 <li class="breadcrumb-item">Workload</li>
-<li class="breadcrumb-item active">Jam Radio FM Architecture</li>
+<li class="breadcrumb-item active">Radio@Muso.Club Architecture</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -173,50 +205,116 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="jam-radio-fm-architecture">Jam Radio FM Architecture</h1>
-<h2 id="pov">POV</h2>
+<h1 id="radiomusoclub-architecture">Radio@Muso.Club Architecture</h1>
+<h2 id="high-level-design">High Level Design</h2>
+<p>For traceability, from requirements, we have the following MVP Themes</p>
+<ol>
+<li>Icecast - Stream audio tracks from network file storage</li>
+<li>DJ - Schedule playlists of uploaded content</li>
+<li>Radio - Stream in from icecast source for broadcast from a DJ installation</li>
+<li>Listener - View Radio Station web page with embedded playback and schedule</li>
+</ol>
+<p>These are to be implemented, using the LibreTime platform, as described in the following sections.</p>
+<h3 id="1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</h3>
+<p>Original content for featured artists loaded onto nfs://Data2/ to be streamed out continuously on a dedicated mount point.</p>
+<div class="mermaid">---
+title: Icecast - Stream audio tracks from network file storage
+---
+graph LR
+nfs1[(/Data2/dial+44)] --&gt; Icecast --&gt; https://broadcast.muso.club/dialplus44
+nfs2[(/Data2/Kholeho)] --&gt; Icecast --&gt; https://broadcast.muso.club/kholeo
+</div>
+<h3 id="2-dj-schedule-playlists-of-uploaded-content">2: DJ - Schedule playlists of uploaded content</h3>
+<p>Prerequisites:</p>
 <ul>
-<li>Domain purchased for POV: jam.radio.fm</li>
+<li>Admin: Create User on the radio console, with the role of DJ.</li>
+<li>Admin: Create Session on the radio console, and assign it to the created DJ.</li>
+</ul>
+<p>Process:</p>
+<ul>
+<li>DJ selects "Upload" on radio console, and adds music or voice tracks</li>
+<li>DJ selects "Calendar", clicks on session, selects "Schedule Tracks"</li>
+<li>DJ drags tracks from track list from panel on the left, to the session slot in the right hand panel.</li>
+</ul>
+<p>When the session starts, the selected tracks will be streamed in order.</p>
+<h3 id="3-radio-stream-in-for-broadcast-from-a-dj-installation">3: Radio - Stream in for broadcast from a DJ installation</h3>
+<p>A DJ (or live audio stream) to connect to the station, using dedicated credentials, to the main mount point, during sessions scheduled for the DJ in the radio schedule. A number of Icecast clients have been tested successfully, illustrated as examples of the stream source.</p>
+<div class="mermaid">---
+title: Radio - Stream in for broadcast from a DJ installation
+---
+graph LR
+source1(Mixxx) -- user1:password1 --&gt; station[muso.club:8002]
+station --&gt; libretime
+libretime[playout] --&gt; https://broadcast.muso.club/main
+source2(BUTT) -- user2:password2 --&gt; station
+source3(iziCast) -- user3:password3 --&gt; station
+actor1(Program Manager) -- Create a DJ user--&gt; console.muso.club
+actor1(Program Manager) -- schedule a session\n for the DJ --&gt; console.muso.club
+console.muso.club --&gt; libretime
+</div>
+<h3 id="4-listener-view-radio-station-web-page-with-embedded-playback-and-schedule">4: Listener - View Radio Station web page with embedded playback and schedule</h3>
+<p>A Listener is the Actor using the radio broadcast service. The streaming protocol chosen is MP3 to support the broadest range of devices.</p>
+<div class="mermaid">---
+title: View Radio Station web page with embedded playback and schedule
+---
+graph LR
+browser(listener) &lt;--&gt; https://radio.muso.club
+subgraph https://radio.muso.club
+    w1(LibreTime widget)
+    w2(WordPress audio block)
+    w3(WordPress widget)
+end
+browser(listener) &lt;--&gt; https://broadcast.muso.club/main
+</div>
+<h4 id="default-browser-audio-player">Default browser audio player</h4>
+<p>If the radio station broadcast URL <a href="https://broadcast.muso.club/main">https://broadcast.muso.club/main</a> is opened in a browser, the default behaviour is to display an audio player and start playing the broadcasted mp3 stream. This can be embedded in a website, or linked to from a QR code.</p>
+<h4 id="radio-station-widget">Radio station widget</h4>
+<p>LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For Radio@Muso.Club, the following can be added to a custom HTML block:</p>
+<pre><code class="language-html">&lt;iframe 
+  frameborder="0"
+  width="280"
+  height="216"
+  src="https://console.muso.club/embed/player?stream=auto&amp;title=Now Playing"
+&gt;&lt;/iframe&gt;
+</code></pre>
+<h3 id="wordpress-widget">WordPress widget</h3>
+<p>The standard audio block for WordPress displays a simple audio player. This can be used to build a player widget that suites the web site.</p>
+<h2 id="technical-implementation">Technical Implementation</h2>
+<ul>
+<li>Build a custom LibreTime chart, to match infrastructure ingress and storage class, and db StatefulSet.</li>
+<li>Create Flux apps/radio.muso.club kustomization with LibreTime source, and override values.</li>
+<li>Create Flux infrastructure/ingress-nginx kustomization to add TCP ports</li>
+<li>Create Flux apps/www.radio.muso.club kustomization with WordPress source, and override values.</li>
+</ul>
+<h2 id="pov-prep-and-fixes-from-poc">POV Prep, and fixes from POC</h2>
+<ul>
+<li>Domain purchased for POV: muso.club</li>
 <li>Build libretime chart, revised to remove non http ingress</li>
 <li>Deploy to norham cluster, using flux, with values override</li>
+<li>Configure ingress-nginx: deploy as chart, with values file for TCP ingress</li>
+<li>Configure db <em>StatefulSet</em> instead of <em>Deployment</em></li>
 </ul>
 <h2 id="post-installation-configuration">Post installation configuration</h2>
 <h3 id="libretime">Libretime</h3>
 <ul>
 <li>log in as admin:admin</li>
 <li>Set admin password</li>
-<li>Set Station logo</li>
+<li>Set Station logo, Name and Description</li>
 <li>Get player and schedule widget html for web site home page</li>
 </ul>
-<h3 id="ingress-modifications">Ingress modifications</h3>
+<h3 id="wordpress">Wordpress</h3>
 <ul>
-<li><code>~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml</code></li>
-<li>edit <em>ingress-nginx-ingress-nginx-controller</em>: <code>- --tcp-services-configmap=ingress-nginx/tcp-services</code></li>
+<li>log in as musoclub</li>
+<li>install and run Wordpress importer with latest export</li>
+<li>add image files to library</li>
+<li>edit pages and posts to replace missing images</li>
+<li>edit page header libretime player widget (if necessary)</li>
+<li>edit main page libretime schedule widget (if necessary)</li>
 </ul>
 <h2 id="technical-architecture">Technical Architecture</h2>
+<h3 id="integration">Integration</h3>
 <div class="mermaid">---
-title: jam.radio.fm Request routing
----
-graph LR
-
-Internet -- jam.radio.fm  --&gt; router
-router -- 80\n443 --&gt; dmz
-router -- 8001\n8002 --&gt; metallb3
-dmz -- 192.168.1.221 --&gt; metallb3
-metallb3 --&gt; k8s07
-metallb3 --&gt; k8s08
-metallb3 --&gt; k8s09
-metallb3 --&gt; k8s10
-metallb3[[norham]]
-router[[Router]]
-dmz{{rudolfensis}}
-k8s07{{norham01}}
-k8s08{{norham02}}
-k8s09{{norham03}}
-k8s10{{norham04}}
-</div>
-<div class="mermaid">---
-title: jam.radio.fm Component Diagram
+title: muso.club Integration
 ---
 graph LR
 subgraph Dataserver
@@ -233,28 +331,50 @@ subgraph Norham Cluster
   end
   WebSite
 end
-console.jam.radio.fm --&gt; WebGUI
-input.jam.radio.fm --&gt; Input
-www.jam.radio.fm --&gt; WebSite
+http://console.muso.club --&gt; WebGUI
+http://radio.muso.club --&gt; WebSite
 Input --&gt; Broadcast
 Library --&gt; Dataserver
 WebGUI --- Library
 WebGUI --- Schedule
 WebGUI --- Users
 Dataserver --&gt; Input
+client1{{DJ}} -- muso.club:8002 ----&gt; Input
+client2{{Master}} -- muso.club:8001 ----&gt; Input
 Library --&gt; Schedule --&gt; Input
 Broadcast --&gt; WebSite
-browser1{{Station User}} --&gt; console.jam.radio.fm
-client{{DJ}} --&gt; input.jam.radio.fm
-browser2{{Listeners}} --&gt; www.jam.radio.fm
+browser1{{Station User}} --&gt; http://console.muso.club
+browser2{{Listener Widget}} --&gt; http://radio.muso.club
+</div>
+<h3 id="request-routing">Request routing</h3>
+<div class="mermaid">---
+title: jam.radio.fm Request routing
+---
+graph LR
+
+Internet -- *.muso.club  --&gt; router
+router -- 80\n443 --&gt; dmz
+router -- 8001\n8002 --&gt; metallb3
+dmz -- 192.168.1.221 --&gt; metallb3
+metallb3 --&gt; k8s07
+metallb3 --&gt; k8s08
+metallb3 --&gt; k8s09
+metallb3 --&gt; k8s10
+metallb3[[norham]]
+router[[Router]]
+dmz{{rudolfensis}}
+k8s07{{norham01}}
+k8s08{{norham02}}
+k8s09{{norham03}}
+k8s10{{norham04}}
 </div>
 <h2 id="pov-urls">POV URLS</h2>
 <ul>
-<li>Wordpress site: <a href="https://www.jam.radio.fm">https://www.jam.radio.fm</a></li>
-<li>Radio Station console: <a href="https://console.jam.radio.fm">https://console.jam.radio.fm</a></li>
-<li>Icecast Server console: <a href="https://broadcast.jam.radio.fm">https://broadcast.jam.radio.fm</a></li>
-<li>DJ Ingress: input.radio.thruhere.net:8001</li>
-<li>Master Ingress: input.radio.thruhere.net:8002</li>
+<li>Wordpress site: <a href="https://radio.muso.club">https://radio.muso.club</a></li>
+<li>Radio Station console: <a href="https://console.muso.club">https://console.muso.club</a></li>
+<li>Icecast Server console: <a href="https://broadcast.muso.club">https://broadcast.muso.club</a></li>
+<li>DJ Ingress: muso.club:8001</li>
+<li>Master Ingress: muso.club:8002</li>
 </ul>
 <h2 id="poc-urls">POC URLS</h2>
 <ul>
@@ -263,6 +383,11 @@ browser2{{Listeners}} --&gt; www.jam.radio.fm
 <li>Icecast Server console: <a href="https://radio.thruhere.net">https://radio.thruhere.net</a></li>
 <li>DJ Ingress: <a href="https://dj.radio.thruhere.net/">https://dj.radio.thruhere.net/</a></li>
 <li>Master Ingress: <a href="https://master.radio.thruhere.net/">https://master.radio.thruhere.net/</a></li>
+</ul>
+<h3 id="applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</h3>
+<ul>
+<li><code>~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml</code></li>
+<li>edit <em>ingress-nginx-ingress-nginx-controller</em>: <code>- --tcp-services-configmap=ingress-nginx/tcp-services</code></li>
 </ul>
 </div>
 </div><footer>

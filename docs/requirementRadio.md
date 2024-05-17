@@ -11,23 +11,25 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 
 ---
 
+## Functional Breakdown
+
 ### MVP Use cases
 
-- [ ] Admin: Create Programme Manager
-- [ ] Programme Manager: Create DJ user
-- [ ] Programme Manager: Create Show
-- [ ] DJ: Create Playlist
-- [ ] DJ: Upload tracks
-- [ ] DJ: Add track to playlist
-- [ ] DJ: Assign tracks and playlist to Show
+- [X] Admin: Create Programme Manager
+- [X] Programme Manager: Create DJ user
+- [X] Programme Manager: Create Show
+- [X] DJ: Create Playlist
+- [X] DJ: Upload tracks
+- [X] DJ: Add track to playlist
+- [X] DJ: Assign tracks and playlist to Show
 
-## Non-Functional Requirements
+### Non-Functional Requirements
 
-- [ ] Security: Administration access
-- [X] Radio: Domain registration and email forwarding: radio.muso.club
+- [X] Security: Administration access
+- [X] Radio: Domain registration and email forwarding: <radio@muso.club>
 - [ ] Social media registrations
-- [ ] YouTube channel
-- [ ] Website: DJ Profiles
+- [X] YouTube channel
+- [X] Website: DJ Profiles
 - [ ] Website: Social media links
 - [ ] Icecast: Configure for directory listing
 - [ ] Failover: Automated recovery on node failure
@@ -37,6 +39,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 ### Issues and bugs
 
 - [X] Media upload limited to 8MB - configure for 15MB
+- [ ] Router: Losing port forwarding
 
 ### Station Build
 
@@ -62,14 +65,15 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Ingress for Radio Listener
 - [X] Ingress for Field streaming client
 - [X] Configuration: ogg -> mp3 stream
-- [ ] Default schedule
+- [X] Default schedule
 - [ ] Intros, Exits, and Jingles
 - [ ] Media kit
 - [ ] Site Copy
 - [ ] Bio Template
 - [ ] About Us
 - [ ] Build: Backup and restore
-- [ ] Email address and Social Media accounts
+- [X] Email address
+- [X] Social Media: YouTube
 - [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
 
@@ -77,14 +81,14 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 
 Build themed playlists for daily use (to fill the programme in POV phase), for example:
 
+- Classical
 - Blues
-- 60s
+- Jazz
 - Class of '84
+- 60s
 - Favourite Females
 - Reggae
 - Rock
-- Jazz
-- Classical
 
 As collaborators come on line, starting in POV phase, substitute playlist slots with:
 

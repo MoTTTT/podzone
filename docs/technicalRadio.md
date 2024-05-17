@@ -82,7 +82,7 @@ browser(listener) <--> https://broadcast.muso.club/main
 
 #### Radio station widget
 
-LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For Radio@Muso.Club, the following can be added to a custom HTML block:
+LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For <Radio@Muso.Club>, the following can be added to a custom HTML block:
 
 ```html
 <iframe 
@@ -120,6 +120,7 @@ The standard audio block for WordPress displays a simple audio player. This can 
 - Set admin password
 - Set Station logo, Name and Description
 - Get player and schedule widget html for web site home page
+- NOTE: Do not set Settings->Streams->Live Broadcast->Auto Switch Off/On until understood.
 
 ### Wordpress
 

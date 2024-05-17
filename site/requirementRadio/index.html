@@ -50,12 +50,14 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Radio Requirements</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#minimum-viable-product-themes">Minimum Viable Product Themes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#functional-breakdown">Functional Breakdown</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#mvp-use-cases">MVP Use cases</a>
     </li>
-        </ul>
+    <li class="toctree-l3"><a class="reference internal" href="#non-functional-requirements">Non-Functional Requirements</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#non-functional-requirements">Non-Functional Requirements</a>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#tasklist">Tasklist</a>
         <ul>
@@ -204,23 +206,24 @@
 <li>Listener - View Radio Station web page with embedded playback and schedule</li>
 </ol>
 <hr />
+<h2 id="functional-breakdown">Functional Breakdown</h2>
 <h3 id="mvp-use-cases">MVP Use cases</h3>
 <ul>
-<li>[ ] Admin: Create Programme Manager</li>
-<li>[ ] Programme Manager: Create DJ user</li>
-<li>[ ] Programme Manager: Create Show</li>
-<li>[ ] DJ: Create Playlist</li>
-<li>[ ] DJ: Upload tracks</li>
-<li>[ ] DJ: Add track to playlist</li>
-<li>[ ] DJ: Assign tracks and playlist to Show</li>
+<li>[X] Admin: Create Programme Manager</li>
+<li>[X] Programme Manager: Create DJ user</li>
+<li>[X] Programme Manager: Create Show</li>
+<li>[X] DJ: Create Playlist</li>
+<li>[X] DJ: Upload tracks</li>
+<li>[X] DJ: Add track to playlist</li>
+<li>[X] DJ: Assign tracks and playlist to Show</li>
 </ul>
-<h2 id="non-functional-requirements">Non-Functional Requirements</h2>
+<h3 id="non-functional-requirements">Non-Functional Requirements</h3>
 <ul>
-<li>[ ] Security: Administration access</li>
-<li>[X] Radio: Domain registration and email forwarding: radio.muso.club</li>
+<li>[X] Security: Administration access</li>
+<li>[X] Radio: Domain registration and email forwarding: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#114;&#97;&#100;&#105;&#111;&#64;&#109;&#117;&#115;&#111;&#46;&#99;&#108;&#117;&#98;">&#114;&#97;&#100;&#105;&#111;&#64;&#109;&#117;&#115;&#111;&#46;&#99;&#108;&#117;&#98;</a></li>
 <li>[ ] Social media registrations</li>
-<li>[ ] YouTube channel</li>
-<li>[ ] Website: DJ Profiles</li>
+<li>[X] YouTube channel</li>
+<li>[X] Website: DJ Profiles</li>
 <li>[ ] Website: Social media links</li>
 <li>[ ] Icecast: Configure for directory listing</li>
 <li>[ ] Failover: Automated recovery on node failure</li>
@@ -229,6 +232,7 @@
 <h3 id="issues-and-bugs">Issues and bugs</h3>
 <ul>
 <li>[X] Media upload limited to 8MB - configure for 15MB</li>
+<li>[ ] Router: Losing port forwarding</li>
 </ul>
 <h3 id="station-build">Station Build</h3>
 <ul>
@@ -254,28 +258,29 @@
 <li>[X] Ingress for Radio Listener</li>
 <li>[X] Ingress for Field streaming client</li>
 <li>[X] Configuration: ogg -&gt; mp3 stream</li>
-<li>[ ] Default schedule</li>
+<li>[X] Default schedule</li>
 <li>[ ] Intros, Exits, and Jingles</li>
 <li>[ ] Media kit</li>
 <li>[ ] Site Copy</li>
 <li>[ ] Bio Template</li>
 <li>[ ] About Us</li>
 <li>[ ] Build: Backup and restore</li>
-<li>[ ] Email address and Social Media accounts</li>
+<li>[X] Email address</li>
+<li>[X] Social Media: YouTube</li>
 <li>[ ] Paperwork (see below)</li>
 <li>[X] Security: override chart default passwords</li>
 </ul>
 <h4 id="default-schedule">Default Schedule</h4>
 <p>Build themed playlists for daily use (to fill the programme in POV phase), for example:</p>
 <ul>
+<li>Classical</li>
 <li>Blues</li>
-<li>60s</li>
+<li>Jazz</li>
 <li>Class of '84</li>
+<li>60s</li>
 <li>Favourite Females</li>
 <li>Reggae</li>
 <li>Rock</li>
-<li>Jazz</li>
-<li>Classical</li>
 </ul>
 <p>As collaborators come on line, starting in POV phase, substitute playlist slots with:</p>
 <ul>

@@ -93,23 +93,38 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 
 #### Radio@Muso.Club YouTube interviews
 
-Focus points (to keep it related to the music):
+Welcome to Music Club!
 
-- What is your first memory of music
-- What are your top 5 favourite genres
-- Any genre you prefer not to hear? For more than an hour?
+Today we're going to be interviewing <>
+
+Hi <>! Welcome to the Music Club.
+
+We're going to ask you a few questions for your biography on Radio@MusicClub.
+Are you ready to go?
+
+- In which month of the year were you born?
+- What is your first memory of music?
+- What music did your parents listen to?
+- What are your top 3 favourite genres?
+- Any genre you prefer not to hear?
 - What music do you most like to listen to at different times of the day?
 - - In the morning
 - - In the afternoon
 - - In the evening
 - - In the late evening
-- Do you ever need there to be no music? For how long?
-- What music do you most like making
+- Do you ever need there to be **no** music?
+- For how long can you handle silence?
+- What music do you most like making?
 - Favourite musical instrument to listen to?
-- Favourite musical instrument to play? Did you learn to play anything, or sing, as a kid?
-- Next five most favourite instruments to play?
-- Best gig? Worst gig?
+- Did you learn to play a musical instrument as a kid?
+- And sing?
+- Favourite musical instrument to play?
+- Next 3 most favourite instruments to play?
+- Do you have a **Best Gig**?
+- **Worst gig**?
 - Any upcoming gigs?
+- If you could jam with **any** artist, who would it be?
+- For your bio, which of the answers above would you most like included in a description of you?
 
 Interviews:
 

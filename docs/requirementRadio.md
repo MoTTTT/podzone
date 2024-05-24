@@ -71,8 +71,8 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] YouTube interviews
 - [ ] Intros, Exits, and Jingles
 - [ ] Media kit
-- [ ] Site Copy
-- [ ] Bio Template
+- [X] Site Copy
+- [X] Bio Template
 - [ ] About Us
 - [ ] Build: Backup and restore
 - [X] Email address
@@ -98,11 +98,12 @@ Focus points (to keep it related to the music):
 - What is your first memory of music
 - What are your top 5 favourite genres
 - Any genre you prefer not to hear? For more than an hour?
-- What music do you most like to listen to
+- What music do you most like to listen to at different times of the day?
 - - In the morning
 - - In the afternoon
 - - In the evening
 - - In the late evening
+- Do you ever need there to be no music? For how long?
 - What music do you most like making
 - Favourite musical instrument to listen to?
 - Favourite musical instrument to play? Did you learn to play anything, or sing, as a kid?
@@ -112,6 +113,7 @@ Focus points (to keep it related to the music):
 
 Interviews:
 
+- [ ] Niko: Musician Interviewer
 - [ ] Thandi: Creatives
 - [ ] Torrell: Featured Musician
 - [ ] Johnathan: Featured Musician

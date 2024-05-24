@@ -4,25 +4,44 @@
 
 For traceability, from requirements, we have the following MVP Themes
 
-1. Icecast - Stream audio tracks from network file storage
-1. DJ - Schedule playlists of uploaded content
-1. Radio - Stream in from icecast source for broadcast from a DJ installation
-1. Listener - View Radio Station web page with embedded playback and schedule
+1. Icecast - Stream audio tracks from network file storage during a scheduled session
+1. DJ - Schedule playlists of uploaded content for use in scheduled sessions
+1. Radio - Stream in from icecast source for broadcast from a DJ installation during scheduled sessions
+1. Listener - View Radio Station web page with embedded playback and listen to scheduled audio
 
 These are to be implemented, using the LibreTime platform, as described in the following sections.
 
 ### 1: Icecast - Stream audio tracks from network file storage
 
-Original content for featured artists loaded onto nfs://Data2/ to be streamed out continuously on a dedicated mount point.
+Original content for featured artists are loaded onto the dataserver, on Data02, and streamed from the icecast instance on dataserver on a dedicated mount point per track. This results in a local URL that can be configured as a "Webstream" in Libretime. The Webstream can be added directly to a scheduled session, or added to a playlist, for use in a scheduled session.
 
 ```mermaid
 ---
 title: Icecast - Stream audio tracks from network file storage
 ---
-graph LR
-nfs1[(/Data2/dial+44)] --> Icecast --> https://broadcast.muso.club/dialplus44
-nfs2[(/Data2/Kholeho)] --> Icecast --> https://broadcast.muso.club/kholeo
+
+graph TD
+
+subgraph dataserver
+  subgraph Data02
+    /webcast/Artist/Track.mp3
+  end
+  subgraph icecast
+    subgraph mounts
+      /Artist/Track.mp3
+    end
+  end
+end
+subgraph "radio.muso.club"
+  subgraph Webstream
+    T3[Artist Track]
+  end
+  T4[scheduled session]
+end
+/webcast/Artist/Track.mp3 --> /Artist/Track.mp3 --> T3 --> T4 --> https://radio.muso.club/main
 ```
+
+The diagram depicts an icecast instance with icecast.paths.webroot set to */Data02/webcast*
 
 ### 2: DJ - Schedule playlists of uploaded content
 
@@ -96,6 +115,40 @@ LibreTime has an embeddable player that can be displayed on a web page in an iFr
 ### WordPress widget
 
 The standard audio block for WordPress displays a simple audio player. This can be used to build a player widget that suites the web site.
+
+### Styling the audio player element using js, html, and css
+
+- Reference: <https://blog.shahednasser.com/how-to-style-an-audio-element/>
+
+### Libretime API
+
+As documented in <https://libretime.org/docs/user-manual/playout-history/>, the following API URLs return publicly accessible radio information, if enabled:
+
+- <https://console.muso.club/api/live-info/?callback>
+- <https://console.muso.club/api/week-info/?callback>
+
+In general, for authenticated APIs, the URL is of the form <https://console.muso.club/api/api-action/format/json/api_key/XXXXXX>
+
+Valid API actions:
+
+- on-air-light - return true if the station is on air
+- status - get the status of LibreTime components and resource usage
+- version - returns the version of LibreTime installed
+- get-files-without-silan-value - list files for which silence detection hasn't yet been performed
+- get-stream-setting - gets the settings of LibreTime output streams
+- get-stream-parameters - gets the parameters of LibreTime output streams
+
+Tested:
+
+- <https://console.muso.club/api/on-air-light/?callback>
+- <https://console.muso.club/api/status/?callback> : Returns HTTP status code *200 OK*, with ContentLength=0.
+- <https://console.muso.club/api/version/?callback> : Returns json with *airtime_version* and *api_version*.
+- <https://console.muso.club/api/get-stream-setting/?callback> : Returns HTTP status code *200 OK*, with ContentLength=0.
+- <https://console.muso.club/api/get-stream-parameters?callback>: Returns HTTP status code *200 OK*, with ContentLength=0.
+
+For test purposes, expose the api service to localhost with a k8s port forward on port 9001
+
+A version 2 API is also available. API documentation for the installation is available on the following URL: <https://console.muso.club/api/v2/schema/swagger-ui>
 
 ## Technical Implementation
 
@@ -195,6 +248,20 @@ k8s09{{norham03}}
 k8s10{{norham04}}
 ```
 
+## Icecast config for webstreams
+
+The following are available **on the local network**. The base URL is <http://192.168.1.26:8000>, so for the mount example below, the URL is <http://192.168.1.26:8000/Artist/Track.mp3>.
+
+```xml
+<mount type="normal">
+    <mount-name>/Artist/Track.mp3</mount-name>
+    <type>application/mp3</type>
+    <fallback-mount>/Artist/Track.mp3</fallback-mount>
+</mount>
+```
+
+This configuration is applied to the icecast instance on *dataserver*.
+
 ## POV URLS
 
 - Wordpress site: <https://radio.muso.club>
@@ -213,5 +280,22 @@ k8s10{{norham04}}
 
 ### Applying Ingress modifications for playout TCP ports
 
-- `~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml`
-- edit *ingress-nginx-ingress-nginx-controller*: `    - --tcp-services-configmap=ingress-nginx/tcp-services`
+To support non-HTTP TCP listener ports on the cluster, the cluster ingress-nginx installation is moved from a helm install at cluster build time, to a gitops installation. The following ingress-nginx chart values setting are used:
+
+```conf
+## ingress-nginx helm chart values to add support for radio ingress 
+controller:
+  configAnnotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+  service:
+    ports:
+      djinput: 8001
+      masterinput: 8002
+tcp:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+```
+
+Here, there are two additional listener ports being added to the ingress-nginx controller, and corresponding entries added to a tcp-services configmap, as documented here: <https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md>.
+
+Using a gitops installation for ingress-nginx also allows the file upload limit to be increased from the default easily, which is required by Libretime as well as WordPress.

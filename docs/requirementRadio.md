@@ -39,7 +39,9 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 ### Issues and bugs
 
 - [X] Media upload limited to 8MB - configure for 15MB
+- [ ] Media upload limited to 15MB - configure for +++MB
 - [ ] Router: Losing port forwarding
+- [ ] Buffer size gives 10s delay before a listener plays
 
 ### Station Build
 
@@ -66,6 +68,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Ingress for Field streaming client
 - [X] Configuration: ogg -> mp3 stream
 - [X] Default schedule
+- [ ] YouTube interviews
 - [ ] Intros, Exits, and Jingles
 - [ ] Media kit
 - [ ] Site Copy
@@ -76,6 +79,43 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Social Media: YouTube
 - [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
+
+#### Bio Template
+
+- Featured image
+- Logo
+- Contact details
+- YouTube interview
+- Free-form Bio paragraph
+- Regular or upcoming gigs
+- Social media links
+- Audio tracks
+
+#### Radio@Muso.Club YouTube interviews
+
+Focus points (to keep it related to the music):
+
+- What is your first memory of music
+- What are your top 5 favourite genres
+- Any genre you prefer not to hear? For more than an hour?
+- What music do you most like to listen to
+- - In the morning
+- - In the afternoon
+- - In the evening
+- - In the late evening
+- What music do you most like making
+- Favourite musical instrument to listen to?
+- Favourite musical instrument to play? Did you learn to play anything, or sing, as a kid?
+- Next five most favourite instruments to play?
+- Best gig? Worst gig?
+- Any upcoming gigs?
+
+Interviews:
+
+- [ ] Thandi: Creatives
+- [ ] Torrell: Featured Musician
+- [ ] Johnathan: Featured Musician
+- [ ] Kholeho: Featured Musician
 
 #### Default Schedule
 
@@ -108,7 +148,7 @@ Record these, where applicable for re-run purposes.
 - [X] Streaming session from BUTT
 - [X] Streaming session from MIXXX
 - [X] Streaming session from iziCast iPhone
-- [ ] Streaming session from Field Audio Interface
+- [X] Streaming session from Field Audio Interface
 - [X] Off-premise session streaming
 - [X] Streaming authentication and cut-over
 - [X] Audio file upload
@@ -122,7 +162,8 @@ Record these, where applicable for re-run purposes.
 - [ ] Backup and restore: Station
 - [ ] Backup and restore: Media
 - [ ] Backup and restore: Website
-- [ ] Listening load and soak
+- [X] Listening soak
+- [ ] Listening load
 - [ ] Failover
 
 ### Operations and Management

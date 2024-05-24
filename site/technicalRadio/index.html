@@ -93,6 +93,10 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#wordpress-widget">WordPress widget</a>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#styling-the-audio-player-element-using-js-html-and-css">Styling the audio player element using js, html, and css</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#libretime-api">Libretime API</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#technical-implementation">Technical Implementation</a>
@@ -114,6 +118,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#request-routing">Request routing</a>
 </li>
 </ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#icecast-config-for-webstreams">Icecast config for webstreams</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#pov-urls">POV URLS</a>
 </li>
@@ -209,21 +215,39 @@
 <h2 id="high-level-design">High Level Design</h2>
 <p>For traceability, from requirements, we have the following MVP Themes</p>
 <ol>
-<li>Icecast - Stream audio tracks from network file storage</li>
-<li>DJ - Schedule playlists of uploaded content</li>
-<li>Radio - Stream in from icecast source for broadcast from a DJ installation</li>
-<li>Listener - View Radio Station web page with embedded playback and schedule</li>
+<li>Icecast - Stream audio tracks from network file storage during a scheduled session</li>
+<li>DJ - Schedule playlists of uploaded content for use in scheduled sessions</li>
+<li>Radio - Stream in from icecast source for broadcast from a DJ installation during scheduled sessions</li>
+<li>Listener - View Radio Station web page with embedded playback and listen to scheduled audio</li>
 </ol>
 <p>These are to be implemented, using the LibreTime platform, as described in the following sections.</p>
 <h3 id="1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</h3>
-<p>Original content for featured artists loaded onto nfs://Data2/ to be streamed out continuously on a dedicated mount point.</p>
+<p>Original content for featured artists are loaded onto the dataserver, on Data02, and streamed from the icecast instance on dataserver on a dedicated mount point per track. This results in a local URL that can be configured as a "Webstream" in Libretime. The Webstream can be added directly to a scheduled session, or added to a playlist, for use in a scheduled session.</p>
 <div class="mermaid">---
 title: Icecast - Stream audio tracks from network file storage
 ---
-graph LR
-nfs1[(/Data2/dial+44)] --&gt; Icecast --&gt; https://broadcast.muso.club/dialplus44
-nfs2[(/Data2/Kholeho)] --&gt; Icecast --&gt; https://broadcast.muso.club/kholeo
+
+graph TD
+
+subgraph dataserver
+  subgraph Data02
+    /webcast/Artist/Track.mp3
+  end
+  subgraph icecast
+    subgraph mounts
+      /Artist/Track.mp3
+    end
+  end
+end
+subgraph "radio.muso.club"
+  subgraph Webstream
+    T3[Artist Track]
+  end
+  T4[scheduled session]
+end
+/webcast/Artist/Track.mp3 --&gt; /Artist/Track.mp3 --&gt; T3 --&gt; T4 --&gt; https://radio.muso.club/main
 </div>
+<p>The diagram depicts an icecast instance with icecast.paths.webroot set to <em>/Data02/webcast</em></p>
 <h3 id="2-dj-schedule-playlists-of-uploaded-content">2: DJ - Schedule playlists of uploaded content</h3>
 <p>Prerequisites:</p>
 <ul>
@@ -269,7 +293,7 @@ browser(listener) &lt;--&gt; https://broadcast.muso.club/main
 <h4 id="default-browser-audio-player">Default browser audio player</h4>
 <p>If the radio station broadcast URL <a href="https://broadcast.muso.club/main">https://broadcast.muso.club/main</a> is opened in a browser, the default behaviour is to display an audio player and start playing the broadcasted mp3 stream. This can be embedded in a website, or linked to from a QR code.</p>
 <h4 id="radio-station-widget">Radio station widget</h4>
-<p>LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For Radio@Muso.Club, the following can be added to a custom HTML block:</p>
+<p>LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For <a href="mailto:Radio@Muso.Club">Radio@Muso.Club</a>, the following can be added to a custom HTML block:</p>
 <pre><code class="language-html">&lt;iframe 
   frameborder="0"
   width="280"
@@ -279,6 +303,36 @@ browser(listener) &lt;--&gt; https://broadcast.muso.club/main
 </code></pre>
 <h3 id="wordpress-widget">WordPress widget</h3>
 <p>The standard audio block for WordPress displays a simple audio player. This can be used to build a player widget that suites the web site.</p>
+<h3 id="styling-the-audio-player-element-using-js-html-and-css">Styling the audio player element using js, html, and css</h3>
+<ul>
+<li>Reference: <a href="https://blog.shahednasser.com/how-to-style-an-audio-element/">https://blog.shahednasser.com/how-to-style-an-audio-element/</a></li>
+</ul>
+<h3 id="libretime-api">Libretime API</h3>
+<p>As documented in <a href="https://libretime.org/docs/user-manual/playout-history/">https://libretime.org/docs/user-manual/playout-history/</a>, the following API URLs return publicly accessible radio information, if enabled:</p>
+<ul>
+<li><a href="https://console.muso.club/api/live-info/?callback">https://console.muso.club/api/live-info/?callback</a></li>
+<li><a href="https://console.muso.club/api/week-info/?callback">https://console.muso.club/api/week-info/?callback</a></li>
+</ul>
+<p>In general, for authenticated APIs, the URL is of the form <a href="https://console.muso.club/api/api-action/format/json/api_key/XXXXXX">https://console.muso.club/api/api-action/format/json/api_key/XXXXXX</a></p>
+<p>Valid API actions:</p>
+<ul>
+<li>on-air-light - return true if the station is on air</li>
+<li>status - get the status of LibreTime components and resource usage</li>
+<li>version - returns the version of LibreTime installed</li>
+<li>get-files-without-silan-value - list files for which silence detection hasn't yet been performed</li>
+<li>get-stream-setting - gets the settings of LibreTime output streams</li>
+<li>get-stream-parameters - gets the parameters of LibreTime output streams</li>
+</ul>
+<p>Tested:</p>
+<ul>
+<li><a href="https://console.muso.club/api/on-air-light/?callback">https://console.muso.club/api/on-air-light/?callback</a></li>
+<li><a href="https://console.muso.club/api/status/?callback">https://console.muso.club/api/status/?callback</a> : Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+<li><a href="https://console.muso.club/api/version/?callback">https://console.muso.club/api/version/?callback</a> : Returns json with <em>airtime_version</em> and <em>api_version</em>.</li>
+<li><a href="https://console.muso.club/api/get-stream-setting/?callback">https://console.muso.club/api/get-stream-setting/?callback</a> : Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+<li><a href="https://console.muso.club/api/get-stream-parameters?callback">https://console.muso.club/api/get-stream-parameters?callback</a>: Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+</ul>
+<p>For test purposes, expose the api service to localhost with a k8s port forward on port 9001</p>
+<p>A version 2 API is also available. API documentation for the installation is available on the following URL: <a href="https://console.muso.club/api/v2/schema/swagger-ui">https://console.muso.club/api/v2/schema/swagger-ui</a></p>
 <h2 id="technical-implementation">Technical Implementation</h2>
 <ul>
 <li>Build a custom LibreTime chart, to match infrastructure ingress and storage class, and db StatefulSet.</li>
@@ -369,6 +423,15 @@ k8s08{{norham02}}
 k8s09{{norham03}}
 k8s10{{norham04}}
 </div>
+<h2 id="icecast-config-for-webstreams">Icecast config for webstreams</h2>
+<p>The following are available <strong>on the local network</strong>. The base URL is <a href="http://192.168.1.26:8000">http://192.168.1.26:8000</a>, so for the mount example below, the URL is <a href="http://192.168.1.26:8000/Artist/Track.mp3">http://192.168.1.26:8000/Artist/Track.mp3</a>.</p>
+<pre><code class="language-xml">&lt;mount type="normal"&gt;
+    &lt;mount-name&gt;/Artist/Track.mp3&lt;/mount-name&gt;
+    &lt;type&gt;application/mp3&lt;/type&gt;
+    &lt;fallback-mount&gt;/Artist/Track.mp3&lt;/fallback-mount&gt;
+&lt;/mount&gt;
+</code></pre>
+<p>This configuration is applied to the icecast instance on <em>dataserver</em>.</p>
 <h2 id="pov-urls">POV URLS</h2>
 <ul>
 <li>Wordpress site: <a href="https://radio.muso.club">https://radio.muso.club</a></li>
@@ -386,10 +449,21 @@ k8s10{{norham04}}
 <li>Master Ingress: <a href="https://master.radio.thruhere.net/">https://master.radio.thruhere.net/</a></li>
 </ul>
 <h3 id="applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</h3>
-<ul>
-<li><code>~/workspace/admin/working$ kubectl apply -f tcp-services-configmap.yaml</code></li>
-<li>edit <em>ingress-nginx-ingress-nginx-controller</em>: <code>- --tcp-services-configmap=ingress-nginx/tcp-services</code></li>
-</ul>
+<p>To support non-HTTP TCP listener ports on the cluster, the cluster ingress-nginx installation is moved from a helm install at cluster build time, to a gitops installation. The following ingress-nginx chart values setting are used:</p>
+<pre><code class="language-conf">## ingress-nginx helm chart values to add support for radio ingress 
+controller:
+  configAnnotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+  service:
+    ports:
+      djinput: 8001
+      masterinput: 8002
+tcp:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+</code></pre>
+<p>Here, there are two additional listener ports being added to the ingress-nginx controller, and corresponding entries added to a tcp-services configmap, as documented here: <a href="https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md">https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md</a>.</p>
+<p>Using a gitops installation for ingress-nginx also allows the file upload limit to be increased from the default easily, which is required by Libretime as well as WordPress.</p>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

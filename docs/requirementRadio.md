@@ -116,6 +116,7 @@ Are you ready to go?
 - For how long can you handle silence?
 - What music do you most like making?
 - Favourite musical instrument to listen to?
+- What is your favourite concert memory?
 - Did you learn to play a musical instrument as a kid?
 - And sing?
 - Favourite musical instrument to play?

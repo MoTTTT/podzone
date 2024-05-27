@@ -33,6 +33,8 @@ nav:
     - technicalApplication.md
     - technicalIoT.md
     - technicalRedmine.md
+  - 'Troubleshooting':
+    - technicalTroubleshooting.md
   - 'Substrate':
     - technicalCluster.md
     - technicalCeph.md

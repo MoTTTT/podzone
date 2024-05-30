@@ -109,6 +109,20 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#wordpress">Wordpress</a>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#track-ingestion">Track Ingestion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#ingestion-notes">Ingestion notes</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backup-and-restore">Backup and Restore</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#station-database">Station Database</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#media">Media</a>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#technical-architecture">Technical Architecture</a>
@@ -370,6 +384,66 @@ browser(listener) &lt;--&gt; https://broadcast.muso.club/main
 <li>edit pages and posts to replace missing images</li>
 <li>edit page header libretime player widget (if necessary)</li>
 <li>edit main page libretime schedule widget (if necessary)</li>
+</ul>
+<h3 id="track-ingestion">Track Ingestion</h3>
+<ul>
+<li>Host: dataserver</li>
+<li>Access controlled Samba on local network for workstation access.</li>
+<li>Samba writeable raw library directory: <code>/Data01/cdcollection</code></li>
+<li>Samba writeable ingestion directory: <code>/Data02/library-in</code></li>
+<li>Process: copy albums from <code>/Data01/cdcollection</code> to <code>/Data02/library-in</code></li>
+<li>Batch process, with clean-up, to <code>/Data02/library</code></li>
+<li>NFS access to <code>/Data02/library</code> for station batch upload</li>
+<li>NFS access to <code>/Data02/radio</code> for station media <code>/srv/libretime</code></li>
+<li>To be backed backed up in sync with station DB: <code>/srv/libretime</code></li>
+</ul>
+<h4 id="ingestion-notes">Ingestion notes</h4>
+<p><strong>Clean-up tool: Beets</strong></p>
+<p>Process:</p>
+<ul>
+<li>Use fre:ac for cd to <code>/cdcollection/</code></li>
+<li><code>ffmpeg -i filename.mpg</code> for metadata view</li>
+<li>Copy batches of directories from <code>/cdcollection/</code> to <code>/library-in/</code></li>
+<li>Run <code>beet import .</code> in <code>/library-in/</code>, and follow interactive process</li>
+<li>Images and other non-music files cleaned up periodically from /library-in</li>
+</ul>
+<p>Results:</p>
+<ul>
+<li>/cdcollection: 17G</li>
+<li>library: 15G</li>
+<li>library-fallout: 323M</li>
+</ul>
+<p>Beet config:</p>
+<pre><code class="language-conf">directory: /Data02/library/
+library: /Data02/librarydb/musiclibrary.db
+import:
+    move: yes
+</code></pre>
+<p>Fallout:</p>
+<pre><code class="language-txt">63M ./various artists - the bossa nova exciting jazz samba rhythms vol.1
+4.8M    ./1982 - beyond the realms of dub_dub me crazy pt.2
+48M ./Beasty Boys - Hello Nasty
+8.3M    ./aphex twin
+60M ./blade runner - soundtrack
+32M ./caves of kiev
+110M    ./electronica
+323M    .
+</code></pre>
+<h2 id="backup-and-restore">Backup and Restore</h2>
+<h3 id="station-database">Station Database</h3>
+<ul>
+<li>[X] Reference: <a href="https://libretime.org/docs/admin-manual/backup/">https://libretime.org/docs/admin-manual/backup/</a></li>
+<li>[X] DB front-end Adminer: <a href="https://db.muso.club/current/site?pgsql=postgres&amp;username=libretime&amp;db=libretime">https://db.muso.club/current/site?pgsql=postgres&amp;username=libretime&amp;db=libretime</a></li>
+<li>[X] Password: available by base64 decoding <code>radio/postgres-secret.data.POSTGRES_PASSWORD</code></li>
+<li>[X] Test export of station db run at 1am on 30th May - <code>libretime.sql.gz</code> - is 14.2MB.</li>
+<li>[ ] Test export after at least a few day's station run to get a picture of data growth.</li>
+<li>[ ] Test import into new station</li>
+<li>[ ] Test import to override current station</li>
+</ul>
+<h3 id="media">Media</h3>
+<ul>
+<li>[ ] Station NFS datastore</li>
+<li>[ ] Station Library</li>
 </ul>
 <h2 id="technical-architecture">Technical Architecture</h2>
 <h3 id="integration">Integration</h3>

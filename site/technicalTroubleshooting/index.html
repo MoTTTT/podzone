@@ -92,6 +92,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#issues">Issues</a>
         <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dead-air">Dead Air</a>
+    </li>
     <li class="toctree-l3"><a class="reference internal" href="#issue-notes">Issue notes</a>
     </li>
         </ul>
@@ -105,6 +107,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#reference-logs-for-default-program">Reference logs for default program</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
     </ul>
                   </li>
@@ -190,12 +194,20 @@
 <p>In addition, due to the nature of the failure, and it's impact on the default program, a test installation will be constructed for more extensive testing.</p>
 <h2 id="issues">Issues</h2>
 <ul>
+<li>Dead Air</li>
+</ul>
+<h3 id="dead-air">Dead Air</h3>
+<p>Switching from default program to DJ stream and back work seamlessly in unit testing. However, with field testing, two events failed with resulting silence being broadcast.</p>
+<ul>
 <li>[ ] Manual switch to stream via the gui required: automation of connect and disconnect was assumed to have caused previous streaming silence incident.</li>
 <li>[ ] Automated stream kick at the end of the session is not working.</li>
 <li>[ ] DJ source stream stop fallback to playlist failed</li>
 <li>[ ] Scheduled play-out the default radio program after dj session was complete, did not deliver audio (silence) to the broadcaster.</li>
 <li>[ ] Console controls for streaming incorrectly indicate stream status, and stream connection status.</li>
 </ul>
+<p>Failure scenario will not be easy to reproduce without impacting simultaneous testing.
+Dev environment with automated testing may trigger the failure.
+Good logging, i.e searchability, history, aggregation and log level flexibility, are also required.</p>
 <h3 id="issue-notes">Issue notes</h3>
 <ul>
 <li>Scheduled tracks and show changes ran as normal, but no audio.</li>
@@ -338,6 +350,13 @@ Stream closed EOF for radio/liquidsoap-playout-84d64f5d75-s6czn (liquidsoap)
 2024/05/27 18:43:21 [lang:3] Using message format 0
 2024-05-27 18:43:25,391 | INFO     | libretime_playout.notify.main:media:73 - Sending currently playing media id '12814'
 </code></pre>
+<h2 id="references">References</h2>
+<p>Libretime project kanban and issue boards:</p>
+<ul>
+<li>Work in progress <a href="https://github.com/libretime/libretime/projects/6">https://github.com/libretime/libretime/projects/6</a></li>
+<li>Bug triage <a href="https://github.com/libretime/libretime/projects/1">https://github.com/libretime/libretime/projects/1</a></li>
+<li>Issue list <a href="https://github.com/libretime/libretime/issues">https://github.com/libretime/libretime/issues</a></li>
+</ul>
               
             </div>
           </div><footer>

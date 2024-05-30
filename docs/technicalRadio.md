@@ -184,6 +184,74 @@ A version 2 API is also available. API documentation for the installation is ava
 - edit page header libretime player widget (if necessary)
 - edit main page libretime schedule widget (if necessary)
 
+### Track Ingestion
+
+- Host: dataserver
+- Access controlled Samba on local network for workstation access.
+- Samba writeable raw library directory: `/Data01/cdcollection`
+- Samba writeable ingestion directory: `/Data02/library-in`
+- Process: copy albums from `/Data01/cdcollection` to `/Data02/library-in`
+- Batch process, with clean-up, to `/Data02/library`
+- NFS access to `/Data02/library` for station batch upload
+- NFS access to `/Data02/radio` for station media `/srv/libretime`
+- To be backed backed up in sync with station DB: `/srv/libretime`
+
+#### Ingestion notes
+
+**Clean-up tool: Beets**
+
+Process:
+
+- Use fre:ac for cd to `/cdcollection/`
+- `ffmpeg -i filename.mpg` for metadata view
+- Copy batches of directories from `/cdcollection/` to `/library-in/`
+- Run `beet import .` in `/library-in/`, and follow interactive process
+- Images and other non-music files cleaned up periodically from /library-in
+
+Results:
+
+- /cdcollection: 17G
+- library: 15G
+- library-fallout: 323M
+
+Beet config:
+
+```conf
+directory: /Data02/library/
+library: /Data02/librarydb/musiclibrary.db
+import:
+    move: yes
+```
+Fallout:
+
+```txt
+63M	./various artists - the bossa nova exciting jazz samba rhythms vol.1
+4.8M	./1982 - beyond the realms of dub_dub me crazy pt.2
+48M	./Beasty Boys - Hello Nasty
+8.3M	./aphex twin
+60M	./blade runner - soundtrack
+32M	./caves of kiev
+110M	./electronica
+323M	.
+```
+
+## Backup and Restore
+
+### Station Database
+
+- [X] Reference: <https://libretime.org/docs/admin-manual/backup/>
+- [X] DB front-end Adminer: <https://db.muso.club/current/site?pgsql=postgres&username=libretime&db=libretime>
+- [X] Password: available by base64 decoding `radio/postgres-secret.data.POSTGRES_PASSWORD`
+- [X] Test export of station db run at 1am on 30th May - `libretime.sql.gz` - is 14.2MB.
+- [ ] Test export after at least a few day's station run to get a picture of data growth.
+- [ ] Test import into new station
+- [ ] Test import to override current station
+
+### Media
+
+- [ ] Station NFS datastore
+- [ ] Station Library
+
 ## Technical Architecture
 
 ### Integration

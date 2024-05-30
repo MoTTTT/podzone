@@ -6,11 +6,21 @@ In addition, due to the nature of the failure, and it's impact on the default pr
 
 ## Issues
 
+- Dead Air
+
+### Dead Air
+
+Switching from default program to DJ stream and back work seamlessly in unit testing. However, with field testing, two events failed with resulting silence being broadcast.
+
 - [ ] Manual switch to stream via the gui required: automation of connect and disconnect was assumed to have caused previous streaming silence incident.
 - [ ] Automated stream kick at the end of the session is not working.
 - [ ] DJ source stream stop fallback to playlist failed
 - [ ] Scheduled play-out the default radio program after dj session was complete, did not deliver audio (silence) to the broadcaster.
 - [ ] Console controls for streaming incorrectly indicate stream status, and stream connection status.
+
+Failure scenario will not be easy to reproduce without impacting simultaneous testing.
+Dev environment with automated testing may trigger the failure.
+Good logging, i.e searchability, history, aggregation and log level flexibility, are also required.
 
 ### Issue notes
 
@@ -164,3 +174,12 @@ Stream closed EOF for radio/liquidsoap-playout-84d64f5d75-s6czn (liquidsoap)
 2024/05/27 18:43:21 [lang:3] Using message format 0
 2024-05-27 18:43:25,391 | INFO     | libretime_playout.notify.main:media:73 - Sending currently playing media id '12814'
 ```
+
+## References
+
+Libretime project kanban and issue boards:
+
+- Work in progress <https://github.com/libretime/libretime/projects/6>
+- Bug triage <https://github.com/libretime/libretime/projects/1>
+- Issue list <https://github.com/libretime/libretime/issues>
+

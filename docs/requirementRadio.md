@@ -80,6 +80,12 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
 
+#### Jingles
+
+- Muso Club: Music is for playing. But you can listen to it.
+- Muso Club Radio: From the InterWeb, into your head!
+- Join the club. Radio@MusoClub
+
 #### Bio Template
 
 - Featured image
@@ -177,9 +183,12 @@ Record these, where applicable for re-run purposes.
 - [X] Listening client: Windows browser
 - [X] Listening client: iPhone browser
 - [ ] Listening client: Android browser
-- [ ] Backup and restore: Station
-- [ ] Backup and restore: Media
-- [ ] Backup and restore: Website
+- [X] Backup: Station
+- [ ] Backup: Media
+- [X] Backup: Website
+- [ ] Restore: Station
+- [ ] Restore: Media
+- [X] Restore: Website
 - [X] Listening soak
 - [ ] Listening load
 - [ ] Failover

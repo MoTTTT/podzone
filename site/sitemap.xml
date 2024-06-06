@@ -56,11 +56,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://musings.thruhere.net/podzone/referenceRadio/</loc>
-         <lastmod>2024-06-06</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://musings.thruhere.net/podzone/referencesApplication/</loc>
          <lastmod>2024-06-06</lastmod>
          <changefreq>daily</changefreq>
@@ -72,6 +67,11 @@
     </url>
     <url>
          <loc>https://musings.thruhere.net/podzone/referencesIoT/</loc>
+         <lastmod>2024-06-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://musings.thruhere.net/podzone/referencesRadio/</loc>
          <lastmod>2024-06-06</lastmod>
          <changefreq>daily</changefreq>
     </url>

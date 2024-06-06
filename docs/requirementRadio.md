@@ -42,6 +42,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] Media upload limited to 15MB - configure for +++MB
 - [ ] Router: Losing port forwarding
 - [ ] Buffer size gives 10s delay before a listener plays
+- [ ] Fix Radio incoming streaming sources
 
 ### Station Build
 
@@ -79,6 +80,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [X] Social Media: YouTube
 - [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
+- [ ] Bulk track upload
 
 #### Jingles
 

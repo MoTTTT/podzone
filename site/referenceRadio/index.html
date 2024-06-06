@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalCeph/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/referenceRadio/" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Persistent data - Podzone</title>
+    <title>Radio References - Podzone</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Persistent data";
-        var mkdocs_page_input_path = "technicalCeph.md";
-        var mkdocs_page_url = "/podzone/technicalCeph/";
+        var mkdocs_page_name = "Radio References";
+        var mkdocs_page_input_path = "referenceRadio.md";
+        var mkdocs_page_url = "/podzone/referenceRadio/";
       </script>
     
     <!--[if lt IE 9]>
@@ -97,26 +97,10 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Substrate</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Persistent data</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#installing-microceph">Installing microceph</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#installing-the-ceph-dashboard">Installing the ceph dashboard</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#connecting-microk8s-to-the-ceph-cluster">Connecting microk8s to the ceph cluster</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#some-ceph-cli-commands">Some ceph CLI commands</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ceph-references-for-fs">Ceph References for FS</a>
-    </li>
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
                   </li>
@@ -178,8 +162,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">Substrate</li>
-      <li class="breadcrumb-item active">Persistent data</li>
+      <li class="breadcrumb-item active">Radio References</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -188,90 +171,54 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="persistent-data">Persistent data</h1>
-<p>Original cluster external storage used an nfs server, which represents a single point of failure, and is replaced with a Ceph cluster. In addition, there are unsolved issues with postgres and Opensearch using NFS as a storage class, specifically failing on chown operations.</p>
-<p>We use the Canonical MicroSeph distribution of Ceph, and build a cluster using the hosts <code>sigiriya</code>, <code>james</code>, and <code>bukit</code>.</p>
-<p>Before starting, check that the ubuntu installations have allocate sufficient space for the root filesystem. I found that only 100G of a 2TB drive was assigned to the root logical volume, which caused ceph cluster failure because the OS disk was above 80%.</p>
-<h2 id="preparation">Preparation</h2>
-<p>To resize root partition to use all of the available space:</p>
+                <h1 id="radio-references">Radio References</h1>
+<h2 id="station-code">Station code</h2>
 <ul>
-<li>To display volume information: `sudo vgdisplay``</li>
-<li>To extend the logical volume for the root partition: <code>lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv</code></li>
-<li>To resize the root partition: <code>resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</code></li>
+<li><a href="https://github.com/teampalmtree/cloudcast-liquidsoap/blob/master/includes/radio.liq">https://github.com/teampalmtree/cloudcast-liquidsoap/blob/master/includes/radio.liq</a></li>
+<li>Reference: <a href="https://www.liquidsoap.info/doc-dev/quick_start.html">https://www.liquidsoap.info/doc-dev/quick_start.html</a></li>
 </ul>
-<h2 id="installing-microceph">Installing microceph</h2>
+<h2 id="tagging">Tagging</h2>
 <ul>
-<li>On all hosts in the cluster, install MicroCeph: <code>sudo snap install microceph</code></li>
-<li>On Sigiriya (the master), bootstrap: <code>sudo microceph cluster bootstrap</code></li>
-<li>To prep to add james: <code>sudo microceph cluster add james</code></li>
-<li>This provides a key to be used on James, where we run: <code>sudo microceph cluster join &lt;token&gt;</code></li>
-<li>Similarly, to add bukit, on Sigiriya, run: - <code>sudo microceph cluster add bukit</code></li>
-<li>On Bukit <code>sudo microceph cluster join &lt;token&gt;</code></li>
-<li>Next create (where using loopback volumes) and add disks</li>
-<li>To create a loopback disk:</li>
+<li><a href="https://beets.readthedocs.io/en/stable/plugins/chroma.html">https://beets.readthedocs.io/en/stable/plugins/chroma.html</a></li>
+<li><a href="https://beets.readthedocs.io/en/stable/guides/tagger.html">https://beets.readthedocs.io/en/stable/guides/tagger.html</a></li>
+<li><a href="https://beets.readthedocs.io/en/stable/guides/main.html">https://beets.readthedocs.io/en/stable/guides/main.html</a></li>
 </ul>
-<pre><code class="language-bash">  #!/bin/bash
-  loop_file=&quot;$(sudo mktemp -p /mnt XXXX.img)&quot;
-  sudo truncate -s 60G &quot;${loop_file}&quot;
-  loop_dev=&quot;$(sudo losetup --show -f &quot;${loop_file}&quot;)&quot;
-  minor=&quot;${loop_dev##/dev/loop}&quot;
-  sudo mknod -m 0660 &quot;/dev/sdib&quot; b 7 &quot;${minor}&quot;
-</code></pre>
+<h2 id="reviews-opinions">Reviews / opinions</h2>
 <ul>
-<li>Add a disk to each node in the cluster: <code>sudo microceph disk add --wipe "/dev/sdXX"</code></li>
+<li><a href="https://unix.stackexchange.com/questions/4961/which-mp3-tagging-tool-for-linux">https://unix.stackexchange.com/questions/4961/which-mp3-tagging-tool-for-linux</a></li>
+<li><a href="https://apple.stackexchange.com/questions/3585/is-there-a-good-command-line-id3-tool-for-os-x">https://apple.stackexchange.com/questions/3585/is-there-a-good-command-line-id3-tool-for-os-x</a></li>
+<li><a href="https://www.reddit.com/r/linux/comments/7fa5qt/application_to_edit_music_metadata/">https://www.reddit.com/r/linux/comments/7fa5qt/application_to_edit_music_metadata/</a></li>
+<li><a href="https://askubuntu.com/questions/8456/mass-re-tagging-of-music-files">https://askubuntu.com/questions/8456/mass-re-tagging-of-music-files</a></li>
+<li><a href="https://bbs.archlinux.org/viewtopic.php?id=115131">https://bbs.archlinux.org/viewtopic.php?id=115131</a></li>
 </ul>
-<p>Additional basic setups, for test cluster:</p>
+<h2 id="tools">Tools</h2>
 <ul>
-<li><code>sudo microceph.ceph config set global osd_pool_default_size 2</code></li>
-<li><code>sudo microceph.ceph config set mgr mgr_standby_modules false</code></li>
-<li><code>sudo microceph.ceph config set osd osd_crush_chooseleaf_type 0</code></li>
+<li><a href="https://mutagen.readthedocs.io/en/latest/man/mid3v2.html">https://mutagen.readthedocs.io/en/latest/man/mid3v2.html</a></li>
+<li><a href="https://beets.readthedocs.io/en/stable/plugins/chroma.html">https://beets.readthedocs.io/en/stable/plugins/chroma.html</a></li>
+<li><a href="https://beets.io/">https://beets.io/</a></li>
+<li><a href="https://wiki.musicbrainz.org/Main_Page">https://wiki.musicbrainz.org/Main_Page</a></li>
 </ul>
-<h3 id="installing-the-ceph-dashboard">Installing the ceph dashboard</h3>
+<h2 id="playout-flexibility">Playout flexibility</h2>
 <ul>
-<li>To expose the dashboard over https, use the prod k8s Certificate Manager to get a certificate from LetsEncrypt, and create secret <code>ceph-cert</code></li>
-<li>To extract it from k8s:</li>
-<li><code>kubectl get secret ceph-cert -o json | jq -r '.data.["tls.key"]' | base64 -d &gt;ceph.key</code></li>
-<li><code>kubectl get secret ceph-cert -o json | jq -r '.data.["tls.crt"]' | base64 -d &gt;ceph.crt</code></li>
-<li>To enable ceph dashboard: <code>sudo ceph mgr module enable dashboard</code></li>
-<li><code>sudo ceph dashboard set-ssl-certificate -i - &lt; /home/colleymj/ceph/ceph.crt</code></li>
-<li><code>sudo ceph dashboard set-ssl-certificate-key -i - &lt; /home/colleymj/ceph/ceph.key</code></li>
-<li>Add a user: <code>echo &lt;&gt; |sudo ceph dashboard ac-user-create colleymj -i - administrator</code></li>
-<li>Get endpoint dashboard ULR: <code>sudo ceph mgr services</code></li>
-<li>If there is an issue with the standard port: <code>sudo ceph config set mgr mgr/dashboard/ssl_server_port 8081</code></li>
-<li>Or the host: <code>ceph config set mgr mgr/dashboard/server_addr 192.168.0.6</code></li>
+<li><a href="https://github.com/LibreTime/libretime/issues/229">https://github.com/LibreTime/libretime/issues/229</a></li>
+<li><a href="https://discourse.libretime.org/t/custom-liquidsoap/40">https://discourse.libretime.org/t/custom-liquidsoap/40</a></li>
+<li><a href="https://github.com/LibreTime/libretime/issues/399">https://github.com/LibreTime/libretime/issues/399</a></li>
 </ul>
-<h2 id="connecting-microk8s-to-the-ceph-cluster">Connecting microk8s to the ceph cluster</h2>
+<h2 id="other-issues">Other issues</h2>
 <ul>
-<li>NOTE: A single node k8s cluster required 4GB RAM and 4 CPUs, else did not complete installation</li>
-<li>NOTE: "Before enabling the rook-ceph addon on a strictly confined MicroK8s, make sure the rbd kernel module is loaded with <code>sudo modprobe rbd</code>." :</li>
-<li>Configure microk8s cluster:<code>sudo microk8s enable rook-ceph</code></li>
-<li>We can now connect the k8s cluster to external storage</li>
-<li>We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: <code>/var/snap/microceph/current/conf</code></li>
-<li>Using config and key: <code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool southcluster_rbd</code></li>
+<li><a href="https://github.com/savonet/liquidsoap/issues/66">https://github.com/savonet/liquidsoap/issues/66</a></li>
+<li><a href="https://discourse.libretime.org/t/meta-data-on-tune-in/950">https://discourse.libretime.org/t/meta-data-on-tune-in/950</a></li>
+<li><a href="https://github.com/libretime/libretime/issues/1446">https://github.com/libretime/libretime/issues/1446</a></li>
+<li><a href="https://github.com/libretime/libretime/issues/232">https://github.com/libretime/libretime/issues/232</a></li>
+<li><a href="https://github.com/savonet/liquidsoap/issues/695">https://github.com/savonet/liquidsoap/issues/695</a></li>
 </ul>
-<h2 id="some-ceph-cli-commands">Some ceph CLI commands</h2>
+<h2 id="project-boards">Project Boards</h2>
 <ul>
-<li><code>sudo microceph status</code></li>
-<li><code>sudo microceph cluster config get cluster_network</code></li>
-<li><code>sudo microceph cluster config list</code></li>
-<li><code>sudo microceph cluster list</code></li>
-<li><code>sudo microceph disk list</code></li>
-<li><code>sudo microceph.ceph status</code></li>
-</ul>
-<h2 id="ceph-references-for-fs">Ceph References for FS</h2>
-<ul>
-<li><a href="https://docs.ceph.com/en/quincy/cephfs/createfs/">https://docs.ceph.com/en/quincy/cephfs/createfs/</a></li>
-<li><a href="https://github.com/rook/rook/blob/master/deploy/examples/filesystem.yaml">https://github.com/rook/rook/blob/master/deploy/examples/filesystem.yaml</a></li>
-<li><a href="https://rook.io/docs/rook/latest/CRDs/Cluster/external-cluster/">https://rook.io/docs/rook/latest/CRDs/Cluster/external-cluster/</a></li>
-<li><a href="https://rook.io/docs/rook/latest-release/Getting-Started/example-configurations/#shared-filesystem">https://rook.io/docs/rook/latest-release/Getting-Started/example-configurations/#shared-filesystem</a></li>
+<li><a href="https://github.com/libretime/libretime/projects/1">https://github.com/libretime/libretime/projects/1</a></li>
 </ul>
               
             </div>
           </div><footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../technicalCluster/" class="btn btn-neutral float-left" title="Implementation Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../technicalIngress/" class="btn btn-neutral float-right" title="Ingress">Next <span class="icon icon-circle-arrow-right"></span></a>
-    </div>
 
   <hr/>
 
@@ -293,10 +240,6 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../technicalCluster/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../technicalIngress/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

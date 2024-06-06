@@ -235,6 +235,11 @@ Fallout:
 323M	.
 ```
 
+#### Bulk track upload
+
+- Add `sudo -u libretime libretime-api bulk_import --path PATH_THE_DIRECTORY_TO_SCAN` to libretime startup
+- Path: dataserver
+
 ## Backup and Restore
 
 ### Station Database

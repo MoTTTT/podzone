@@ -86,22 +86,6 @@ Note that the http to https redirect that Certbot adds needs to be disabled, oth
 </VirtualHost>
 ```
 
-### Ceph dashboard issues
-
-- Unsuccessful load balancer configuration, due to ceph redirect to active dashboard node
-
-```xml
-  <Proxy balancer://ceph>
-    BalancerMember http://192.168.1.112:8080/
-    BalancerMember http://192.168.1.113:8080/
-    BalancerMember http://192.168.1.117:8080/
-    ProxySet lbmethod=bytraffic
-  </Proxy>
-  ProxyPreserveHost on
-  ProxyPass /  "balancer://ceph/"
-  ProxyPassReverse /  "balancer://ceph/"
-```
-
 ## Adding a domain
 
 To add a domain, e.g. norma.blog.podzone.org, call certbot with the `--expand` option.

@@ -20,6 +20,7 @@ When the bootstrap process concludes, the GIT repo will contain the flux-system 
 - Create a GITHUB token, and export username and token: `export GITHUB_TOKEN=<token>`; `export GITHUB_USER=MoTTTT`
 - Check flux and cluster: `flux check --pre`
 - Bootstrap: `flux bootstrap github --context=prod --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/prod --token-auth=true`
+- GitHub token expiry: Delete flux secret, and bootstrap again with new token in context.
 
 ```text
 ??:

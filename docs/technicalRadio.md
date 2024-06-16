@@ -242,6 +242,14 @@ Fallout:
 
 ## Backup and Restore
 
+### Automation
+
+- Create k8s CronJob `postgres-backup` in `radio` namespace
+- Use `postgres:16.2` image
+- Add nfs export from Dataserver for `/Data02/backups` for k8s `backup-storage` volume
+- Run pg_dump, store to nfs `backup-storage` volume mounted on `/mnt`
+- Run once daily at midnight `schedule: "0 0 * * *"`
+
 ### Station Database
 
 - [X] Reference: <https://libretime.org/docs/admin-manual/backup/>
@@ -254,7 +262,7 @@ Fallout:
 
 ### Media
 
-- [ ] Station NFS datastore
+- [ ] Libretime container NFS datastore: nfs://dataserver/Data02/radio
 - [ ] Station Library
 
 ## Technical Architecture
@@ -372,3 +380,14 @@ tcp:
 Here, there are two additional listener ports being added to the ingress-nginx controller, and corresponding entries added to a tcp-services configmap, as documented here: <https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md>.
 
 Using a gitops installation for ingress-nginx also allows the file upload limit to be increased from the default easily, which is required by Libretime as well as WordPress.
+
+## PodZone / QSolutions Helm chart
+
+- Based on clone of <https://github.com/unbelauscht/libretime-helm>
+- Source: https://github.com/MoTTTT/libretime-helm
+- Published on: <https://artifacthub.io/packages/helm/podzone-charts/libretime>
+- Security report: <https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report>:
+
+```text
+WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
+```

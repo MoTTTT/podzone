@@ -111,8 +111,21 @@ To add a domain, e.g. norma.blog.podzone.org, call certbot with the `--expand` o
 Add entries and check in before applying.
 
 ```bash
-certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,www.dialplus44.com,dialplus44.uk,dialplus44.com,www.dialplus44.uk,www.asazimusic.com,asazimusic.com,norma.blog.podzone.org,adam.blog.podzone.org,motttt.blog.podzone.org,projecttoolkit.co.uk,project-tech.co.uk,central.podzone.net,control.podzone.net,north.podzone.net
+certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org
 ```
+docs.podzone.net
+norma.blog.podzone.org
+central.podzone.net
+control.podzone.net
+musings.thruhere.net
+uk2day.online
+www.uk2day.online
+www.muso.club
+radio.muso.club
+muso.club
+console.muso.club
+broadcast.muso.club
+db.muso.club
 
 ### Domain evaluation 30 May 2024
 

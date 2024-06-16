@@ -47,6 +47,12 @@ For this solution, at least the MVP portion, this is acceptable.
 
 There is a parallel initiative to investigate cloud at the edge and IoT. As the run-time for this initiative is Embedded Linux, a tool-chain to build an OS image for specifically targeted hardware is required. The tool-chain needs to build an image including operating system kernel, only the required support software, and one or more run-time applications. A k3s layer, which provides a light weight cloud (kubernetes) distribution will also be installed. It would be interesting to investigate using this same tool-chain to target the hardware used for the IT component, thus avoiding the vendor ecosystems used in the IT MVP solution. More about this elsewhere.
 
+## Self Hosting Platforms
+
+It bears mentioning that there are a number of initiatives that provide infrastructure to remove barriers to entry for self-hosted IT at the Cloud level.
+
+Specifically, artefact hosting and aggregation platforms like Artifactory, and high level kubernetes management platforms like KubeApps <https://kubeapps.dev/> provide valuable resources that make kubernetes accessible to consumers.
+
 ## Technical implementation
 
 With the points above in mind, the following imperatives are listed in bullet point form to inform further decision making:

@@ -81,6 +81,7 @@ Build a radio station on the kubernetes cluster. The Minimum Viable Product uses
 - [ ] Paperwork (see below)
 - [X] Security: override chart default passwords
 - [ ] Bulk track upload
+- [ ] Fallback Icecast stream
 
 #### Jingles
 

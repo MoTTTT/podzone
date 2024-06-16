@@ -19,7 +19,7 @@ When the bootstrap process concludes, the GIT repo will contain the flux-system 
 - Mac OS flux Installation: `brew install fluxcd/tap/flux`
 - Create a GITHUB token, and export username and token: `export GITHUB_TOKEN=<token>`; `export GITHUB_USER=MoTTTT`
 - Check flux and cluster: `flux check --pre`
-- Bootstrap: `flux bootstrap github --context=dev --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/dev --token-auth`
+- Bootstrap: `flux bootstrap github --context=prod --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/prod --token-auth=true`
 
 ```text
 ??:

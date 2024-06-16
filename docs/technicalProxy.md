@@ -113,19 +113,6 @@ Add entries and check in before applying.
 ```bash
 certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org
 ```
-docs.podzone.net
-norma.blog.podzone.org
-central.podzone.net
-control.podzone.net
-musings.thruhere.net
-uk2day.online
-www.uk2day.online
-www.muso.club
-radio.muso.club
-muso.club
-console.muso.club
-broadcast.muso.club
-db.muso.club
 
 ### Domain evaluation 30 May 2024
 
@@ -133,89 +120,80 @@ db.muso.club
 
 ##### Prod
 
-- docs.podzone.net
-- musings.thruhere.net
-- uk2day.online
-- www.uk2day.online
+- <docs.podzone.net>
+- <musings.thruhere.net>
+- <uk2day.online>
+- <www.uk2day.online>
 
 ##### Muso Club
 
-- muso.club
-- db.muso.club
-- console.muso.club
-- broadcast.muso.club
-- radio.muso.club
-- www.muso.club
+- <muso.club>
+- <db.muso.club>
+- <console.muso.club>
+- <broadcast.muso.club>
+- <radio.muso.club>
+- <www.muso.club>
 
 ##### For non-prod radio
 
-- radio.thruhere.net
-- console.thruhere.net
+- <radio.thruhere.net>
+- <console.thruhere.net>
 
 ##### Wordpress instances
 
-- www.dialplus44.com
-- dialplus44.uk
-- dialplus44.com
-- www.dialplus44.uk
-- www.asazimusic.com
-- asazimusic.com
-- norma.blog.podzone.org
-- adam.blog.podzone.org
-- motttt.blog.podzone.org
-- projecttoolkit.co.uk
-- project-tech.co.uk
+- <www.dialplus44.com>
+- <dialplus44.uk>
+- <dialplus44.com>
+- <www.dialplus44.uk>
+- <www.asazimusic.com>
+- <asazimusic.com>
+- <norma.blog.podzone.org>
+- <adam.blog.podzone.org>
+- <motttt.blog.podzone.org>
+- <projecttoolkit.co.uk>
+- <project-tech.co.uk>
 
 ##### Fabric Ingress
 
-- central.podzone.net
-- control.podzone.net
-- north.podzone.net
-
-#### Certbot spec for Rudolfensis before clean-up {Domain evaluation 30 May 2024}
-
-```bash
-certbot --expand -d blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net,norma.blog.podzone.org,uktoday.blogsite.org,uktoday.thruhere.net,uktoday.podzone.org,uktoday.podzone.net,uktoday.blog.podzone.org,ceph.northern.podzone.net,radio.thruhere.net,www.radio.thruhere.net,console.thruhere.net,dj.radio.thruhere.net,master.radio.thruhere.net,www.radio.thruhere.net,console.thruhere.net,dj.radio.thruhere.net,master.radio.thruhere.net,www.asazimusic.com,asazimusic.com,dialplus44.com,www.dialplus44.com,dialplus44.uk,www.dialplus44.uk,projecttoolkit.co.uk,project-tech.co.uk,www.jam.radio.fm,jam.radio.fm,console.jam.radio.fm,broadcast.jam.radio.fm,uk2day.online,www.uk2day.online,muso.club,console.muso.club,broadcast.muso.club,www.muso.club,radio.muso.club,www.radio.muso.club,db.muso.club
-```
-
-## Additional domains
+- <central.podzone.net>
+- <control.podzone.net>
+- <north.podzone.net>
 
 ## Unused DynDns hosts
 
-- east.podzone.net
-- eastern.podzone.net
-- southern.podzone.net
-- west.podzone.net
-- western.podzone.net
-- colley.endoftheinternet.org
-- mottttspot.servegame.org
-- poc.endoftheinternet.org
-- qapps.does-it.net
-- qsolutions.endoftheinternet.org
-- www.radio.muso.club
-- gymyc.podzone.net
-- charles.blog.podzone.org
-- wordpress.podzone.org
-- blog.podzone.org
-- uktoday.blogsite.org
-- uktoday.thruhere.net
-- uktoday.podzone.org
-- uktoday.podzone.net
-- uktoday.blog.podzone.org
-- www.jam.radio.fm
-- jam.radio.fm
-- console.jam.radio.fm
-- broadcast.jam.radio.fm
-- dj.radio.thruhere.net
-- master.radio.thruhere.net
-- radio.thruhere.net
-- www.radio.thruhere.net
-- dev.podzone.net
-- prod.podzone.net
-- northern.podzone.net
-- ceph.northern.podzone.net
-- dbgui.dev.podzone.net
-
+- <east.podzone.net>
+- <eastern.podzone.net>
+- <southern.podzone.net>
+- <west.podzone.net>
+- <western.podzone.net>
+- <colley.endoftheinternet.org>
+- <mottttspot.servegame.org>
+- <poc.endoftheinternet.org>
+- <qapps.does-it.net>
+- <qsolutions.endoftheinternet.org>
+- <www.radio.muso.club>
+- <gymyc.podzone.net>
+- <charles.blog.podzone.org>
+- <wordpress.podzone.org>
+- <blog.podzone.org>
+- <uktoday.blogsite.org>
+- <uktoday.thruhere.net>
+- <uktoday.podzone.org>
+- <uktoday.podzone.net>
+- <uktoday.blog.podzone.org>
+- <www.jam.radio.fm>
+- <jam.radio.fm>
+- <console.jam.radio.fm>
+- <broadcast.jam.radio.fm>
+- <dj.radio.thruhere.net>
+- <master.radio.thruhere.net>
+- <radio.thruhere.net>
+- <www.radio.thruhere.net>
+- <dev.podzone.net>
+- <prod.podzone.net>
+- <northern.podzone.net>
+- <ceph.northern.podzone.net>
+- <dbgui.dev.podzone.net>
 
 ## References
 

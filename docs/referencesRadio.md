@@ -48,7 +48,7 @@
 ## Helm Charts
 
 - <https://artifacthub.io/packages/helm/north14/libretime>  Archived, North14 not active, k8s-at-home defunct
-- PodZone / QSolutions: <https://artifacthub.io/packages/helm/podzone-charts/libretime> 
+- PodZone / QSolutions: <https://artifacthub.io/packages/helm/podzone-charts/libretime>
 - PodZone / QSolutions NOTE security report: <https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report>
 WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
 

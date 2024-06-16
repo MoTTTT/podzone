@@ -114,8 +114,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#top-of-stack-reverse-proxy">Top of stack reverse proxy</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#ceph-dashboard-issues">Ceph dashboard issues</a>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-a-domain">Adding a domain</a>
@@ -126,13 +124,9 @@
 <ul>
 <li class="toctree-l4"><a class="reference internal" href="#domains-in-certbot-spec-that-are-used-currently-or-to-be-retained">Domains in certbot spec that are used currently or to be retained</a>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#certbot-spec-for-rudolfensis-before-clean-up-domain-evaluation-30-may-2024">Certbot spec for Rudolfensis before clean-up {Domain evaluation 30 May 2024}</a>
-</li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#additional-domains">Additional domains</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#unused-dyndns-hosts">Unused DynDns hosts</a>
 </li>
@@ -273,108 +267,91 @@ k8s10{{norham04}}
   #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 &lt;/VirtualHost&gt;
 </code></pre>
-<h3 id="ceph-dashboard-issues">Ceph dashboard issues</h3>
-<ul>
-<li>Unsuccessful load balancer configuration, due to ceph redirect to active dashboard node</li>
-</ul>
-<pre><code class="language-xml">  &lt;Proxy balancer://ceph&gt;
-    BalancerMember http://192.168.1.112:8080/
-    BalancerMember http://192.168.1.113:8080/
-    BalancerMember http://192.168.1.117:8080/
-    ProxySet lbmethod=bytraffic
-  &lt;/Proxy&gt;
-  ProxyPreserveHost on
-  ProxyPass /  "balancer://ceph/"
-  ProxyPassReverse /  "balancer://ceph/"
-</code></pre>
 <h2 id="adding-a-domain">Adding a domain</h2>
 <p>To add a domain, e.g. norma.blog.podzone.org, call certbot with the <code>--expand</code> option.</p>
 <h3 id="current-list">Current list</h3>
 <p>Add entries and check in before applying.</p>
-<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,www.dialplus44.com,dialplus44.uk,dialplus44.com,www.dialplus44.uk,www.asazimusic.com,asazimusic.com,norma.blog.podzone.org,adam.blog.podzone.org,motttt.blog.podzone.org,projecttoolkit.co.uk,project-tech.co.uk,central.podzone.net,control.podzone.net,north.podzone.net
+<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net
 </code></pre>
 <h3 id="domain-evaluation-30-may-2024">Domain evaluation 30 May 2024</h3>
 <h4 id="domains-in-certbot-spec-that-are-used-currently-or-to-be-retained">Domains in certbot spec that are used currently or to be retained</h4>
 <h5 id="prod">Prod</h5>
 <ul>
-<li>docs.podzone.net</li>
-<li>musings.thruhere.net</li>
-<li>uk2day.online</li>
-<li>www.uk2day.online</li>
+<li><docs.podzone.net></docs.podzone.net></li>
+<li><musings.thruhere.net></musings.thruhere.net></li>
+<li><uk2day.online></uk2day.online></li>
+<li><www.uk2day.online></www.uk2day.online></li>
 </ul>
 <h5 id="muso-club">Muso Club</h5>
 <ul>
-<li>muso.club</li>
-<li>db.muso.club</li>
-<li>console.muso.club</li>
-<li>broadcast.muso.club</li>
-<li>radio.muso.club</li>
-<li>www.muso.club</li>
+<li><muso.club></muso.club></li>
+<li><db.muso.club></db.muso.club></li>
+<li><console.muso.club></console.muso.club></li>
+<li><broadcast.muso.club></broadcast.muso.club></li>
+<li><radio.muso.club></radio.muso.club></li>
+<li><www.muso.club></www.muso.club></li>
 </ul>
 <h5 id="for-non-prod-radio">For non-prod radio</h5>
 <ul>
-<li>radio.thruhere.net</li>
-<li>console.thruhere.net</li>
+<li><radio.thruhere.net></radio.thruhere.net></li>
+<li><console.thruhere.net></console.thruhere.net></li>
 </ul>
 <h5 id="wordpress-instances">Wordpress instances</h5>
 <ul>
-<li>www.dialplus44.com</li>
-<li>dialplus44.uk</li>
-<li>dialplus44.com</li>
-<li>www.dialplus44.uk</li>
-<li>www.asazimusic.com</li>
-<li>asazimusic.com</li>
-<li>norma.blog.podzone.org</li>
-<li>adam.blog.podzone.org</li>
-<li>motttt.blog.podzone.org</li>
-<li>projecttoolkit.co.uk</li>
-<li>project-tech.co.uk</li>
+<li><www.dialplus44.com></www.dialplus44.com></li>
+<li><dialplus44.uk></dialplus44.uk></li>
+<li><dialplus44.com></dialplus44.com></li>
+<li><www.dialplus44.uk></www.dialplus44.uk></li>
+<li><www.asazimusic.com></www.asazimusic.com></li>
+<li><asazimusic.com></asazimusic.com></li>
+<li><norma.blog.podzone.org></norma.blog.podzone.org></li>
+<li><adam.blog.podzone.org></adam.blog.podzone.org></li>
+<li><motttt.blog.podzone.org></motttt.blog.podzone.org></li>
+<li><projecttoolkit.co.uk></projecttoolkit.co.uk></li>
+<li><project-tech.co.uk></project-tech.co.uk></li>
 </ul>
 <h5 id="fabric-ingress">Fabric Ingress</h5>
 <ul>
-<li>central.podzone.net</li>
-<li>control.podzone.net</li>
-<li>north.podzone.net</li>
+<li><content.podzone.net></content.podzone.net></li>
+<li><central.podzone.net></central.podzone.net></li>
+<li><control.podzone.net></control.podzone.net></li>
+<li><north.podzone.net></north.podzone.net></li>
 </ul>
-<h4 id="certbot-spec-for-rudolfensis-before-clean-up-domain-evaluation-30-may-2024">Certbot spec for Rudolfensis before clean-up {Domain evaluation 30 May 2024}</h4>
-<pre><code class="language-bash">certbot --expand -d blog.podzone.org,central.podzone.net,control.podzone.net,dev.podzone.net,prod.podzone.net,docs.podzone.net,gymyc.podzone.net,musings.thruhere.net,north.podzone.net,northern.podzone.net,wordpress.podzone.org,adam.blog.podzone.org,charles.blog.podzone.org,motttt.blog.podzone.org,dbgui.dev.podzone.net,norma.blog.podzone.org,uktoday.blogsite.org,uktoday.thruhere.net,uktoday.podzone.org,uktoday.podzone.net,uktoday.blog.podzone.org,ceph.northern.podzone.net,radio.thruhere.net,www.radio.thruhere.net,console.thruhere.net,dj.radio.thruhere.net,master.radio.thruhere.net,www.radio.thruhere.net,console.thruhere.net,dj.radio.thruhere.net,master.radio.thruhere.net,www.asazimusic.com,asazimusic.com,dialplus44.com,www.dialplus44.com,dialplus44.uk,www.dialplus44.uk,projecttoolkit.co.uk,project-tech.co.uk,www.jam.radio.fm,jam.radio.fm,console.jam.radio.fm,broadcast.jam.radio.fm,uk2day.online,www.uk2day.online,muso.club,console.muso.club,broadcast.muso.club,www.muso.club,radio.muso.club,www.radio.muso.club,db.muso.club
-</code></pre>
-<h2 id="additional-domains">Additional domains</h2>
 <h2 id="unused-dyndns-hosts">Unused DynDns hosts</h2>
 <ul>
-<li>east.podzone.net</li>
-<li>eastern.podzone.net</li>
-<li>southern.podzone.net</li>
-<li>west.podzone.net</li>
-<li>western.podzone.net</li>
-<li>colley.endoftheinternet.org</li>
-<li>mottttspot.servegame.org</li>
-<li>poc.endoftheinternet.org</li>
-<li>qapps.does-it.net</li>
-<li>qsolutions.endoftheinternet.org</li>
-<li>www.radio.muso.club</li>
-<li>gymyc.podzone.net</li>
-<li>charles.blog.podzone.org</li>
-<li>wordpress.podzone.org</li>
-<li>blog.podzone.org</li>
-<li>uktoday.blogsite.org</li>
-<li>uktoday.thruhere.net</li>
-<li>uktoday.podzone.org</li>
-<li>uktoday.podzone.net</li>
-<li>uktoday.blog.podzone.org</li>
-<li>www.jam.radio.fm</li>
-<li>jam.radio.fm</li>
-<li>console.jam.radio.fm</li>
-<li>broadcast.jam.radio.fm</li>
-<li>dj.radio.thruhere.net</li>
-<li>master.radio.thruhere.net</li>
-<li>radio.thruhere.net</li>
-<li>www.radio.thruhere.net</li>
-<li>dev.podzone.net</li>
-<li>prod.podzone.net</li>
-<li>northern.podzone.net</li>
-<li>ceph.northern.podzone.net</li>
-<li>dbgui.dev.podzone.net</li>
+<li><east.podzone.net></east.podzone.net></li>
+<li><eastern.podzone.net></eastern.podzone.net></li>
+<li><southern.podzone.net></southern.podzone.net></li>
+<li><west.podzone.net></west.podzone.net></li>
+<li><western.podzone.net></western.podzone.net></li>
+<li><colley.endoftheinternet.org></colley.endoftheinternet.org></li>
+<li><mottttspot.servegame.org></mottttspot.servegame.org></li>
+<li><poc.endoftheinternet.org></poc.endoftheinternet.org></li>
+<li><qapps.does-it.net></qapps.does-it.net></li>
+<li><qsolutions.endoftheinternet.org></qsolutions.endoftheinternet.org></li>
+<li><www.radio.muso.club></www.radio.muso.club></li>
+<li><gymyc.podzone.net></gymyc.podzone.net></li>
+<li><charles.blog.podzone.org></charles.blog.podzone.org></li>
+<li><wordpress.podzone.org></wordpress.podzone.org></li>
+<li><blog.podzone.org></blog.podzone.org></li>
+<li><uktoday.blogsite.org></uktoday.blogsite.org></li>
+<li><uktoday.thruhere.net></uktoday.thruhere.net></li>
+<li><uktoday.podzone.org></uktoday.podzone.org></li>
+<li><uktoday.podzone.net></uktoday.podzone.net></li>
+<li><uktoday.blog.podzone.org></uktoday.blog.podzone.org></li>
+<li><www.jam.radio.fm></www.jam.radio.fm></li>
+<li><jam.radio.fm></jam.radio.fm></li>
+<li><console.jam.radio.fm></console.jam.radio.fm></li>
+<li><broadcast.jam.radio.fm></broadcast.jam.radio.fm></li>
+<li><dj.radio.thruhere.net></dj.radio.thruhere.net></li>
+<li><master.radio.thruhere.net></master.radio.thruhere.net></li>
+<li><radio.thruhere.net></radio.thruhere.net></li>
+<li><www.radio.thruhere.net></www.radio.thruhere.net></li>
+<li><dev.podzone.net></dev.podzone.net></li>
+<li><prod.podzone.net></prod.podzone.net></li>
+<li><northern.podzone.net></northern.podzone.net></li>
+<li><ceph.northern.podzone.net></ceph.northern.podzone.net></li>
+<li><dbgui.dev.podzone.net></dbgui.dev.podzone.net></li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

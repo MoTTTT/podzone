@@ -87,6 +87,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#backup-and-restore">Backup and Restore</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#automation">Automation</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#station-database">Station Database</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#media">Media</a>
@@ -110,6 +112,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</a>
 </li>
 </ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#podzone-qsolutions-helm-chart">PodZone / QSolutions Helm chart</a>
 </li>
 </ul>
 </li>
@@ -442,6 +446,14 @@ import:
 <li>Path: dataserver</li>
 </ul>
 <h2 id="backup-and-restore">Backup and Restore</h2>
+<h3 id="automation">Automation</h3>
+<ul>
+<li>Create k8s CronJob <code>postgres-backup</code> in <code>radio</code> namespace</li>
+<li>Use <code>postgres:16.2</code> image</li>
+<li>Add nfs export from Dataserver for <code>/Data02/backups</code> for k8s <code>backup-storage</code> volume</li>
+<li>Run pg_dump, store to nfs <code>backup-storage</code> volume mounted on <code>/mnt</code></li>
+<li>Run once daily at midnight <code>schedule: "0 0 * * *"</code></li>
+</ul>
 <h3 id="station-database">Station Database</h3>
 <ul>
 <li>[X] Reference: <a href="https://libretime.org/docs/admin-manual/backup/">https://libretime.org/docs/admin-manual/backup/</a></li>
@@ -454,7 +466,7 @@ import:
 </ul>
 <h3 id="media">Media</h3>
 <ul>
-<li>[ ] Station NFS datastore</li>
+<li>[ ] Libretime container NFS datastore: nfs://dataserver/Data02/radio</li>
 <li>[ ] Station Library</li>
 </ul>
 <h2 id="technical-architecture">Technical Architecture</h2>
@@ -555,6 +567,15 @@ tcp:
 </code></pre>
 <p>Here, there are two additional listener ports being added to the ingress-nginx controller, and corresponding entries added to a tcp-services configmap, as documented here: <a href="https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md">https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md</a>.</p>
 <p>Using a gitops installation for ingress-nginx also allows the file upload limit to be increased from the default easily, which is required by Libretime as well as WordPress.</p>
+<h2 id="podzone-qsolutions-helm-chart">PodZone / QSolutions Helm chart</h2>
+<ul>
+<li>Based on clone of <a href="https://github.com/unbelauscht/libretime-helm">https://github.com/unbelauscht/libretime-helm</a></li>
+<li>Source: https://github.com/MoTTTT/libretime-helm</li>
+<li>Published on: <a href="https://artifacthub.io/packages/helm/podzone-charts/libretime">https://artifacthub.io/packages/helm/podzone-charts/libretime</a></li>
+<li>Security report: <a href="https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report">https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report</a>:</li>
+</ul>
+<pre><code class="language-text">WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
+</code></pre>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">

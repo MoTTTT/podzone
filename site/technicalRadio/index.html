@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalRadio/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Radio@Muso.Club Architecture - Podzone</title>
+<title>Radio implementations - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Radio@Muso.Club Architecture";
+        var mkdocs_page_name = "Radio implementations";
         var mkdocs_page_input_path = "technicalRadio.md";
         var mkdocs_page_url = "/podzone/technicalRadio/";
       </script>
@@ -39,9 +39,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Radio@Muso.Club Architecture</a>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Radio implementations</a>
 <ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#high-level-design">High Level Design</a>
+<li class="toctree-l2"><a class="reference internal" href="#testing-results-and-issues-to-resolve">Testing results and issues to resolve</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-high-level-design">Architecture: High Level Design</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</a>
 </li>
@@ -62,6 +64,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#styling-the-audio-player-element-using-js-html-and-css">Styling the audio player element using js, html, and css</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#libretime-api">Libretime API</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#baseline-libretime-artefact-extraction">Baseline libretime artefact extraction</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -114,6 +120,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#podzone-qsolutions-helm-chart">PodZone / QSolutions Helm chart</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nfs-preparation">NFS Preparation</a>
 </li>
 </ul>
 </li>
@@ -233,7 +241,7 @@
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
 <li class="breadcrumb-item">Radio</li>
-<li class="breadcrumb-item active">Radio@Muso.Club Architecture</li>
+<li class="breadcrumb-item active">Radio implementations</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -241,8 +249,15 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="radiomusoclub-architecture">Radio@Muso.Club Architecture</h1>
-<h2 id="high-level-design">High Level Design</h2>
+<h1 id="radio-implementations">Radio implementations</h1>
+<p>Muso Club and ThruHere are used as base domains for QA/Production and POC/Dev environments respectively.</p>
+<h2 id="testing-results-and-issues-to-resolve">Testing results and issues to resolve</h2>
+<ul>
+<li>Icecast log destinations</li>
+<li>Refactor chart vs flux inventories: Move library scan to flux</li>
+<li>Icecast xsl artefacts</li>
+</ul>
+<h2 id="architecture-high-level-design">Architecture: High Level Design</h2>
 <p>For traceability, from requirements, we have the following MVP Themes</p>
 <ol>
 <li>Icecast - Stream audio tracks from network file storage during a scheduled session</li>
@@ -363,6 +378,12 @@ browser(listener) &lt;--&gt; https://broadcast.muso.club/main
 </ul>
 <p>For test purposes, expose the api service to localhost with a k8s port forward on port 9001</p>
 <p>A version 2 API is also available. API documentation for the installation is available on the following URL: <a href="https://console.muso.club/api/v2/schema/swagger-ui">https://console.muso.club/api/v2/schema/swagger-ui</a></p>
+<h4 id="baseline-libretime-artefact-extraction">Baseline libretime artefact extraction</h4>
+<pre><code class="language-bash">curl -X 'GET' \
+  'https://console.thruhere.net/api/v2/playlists' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWRtaW4='
+</code></pre>
 <h2 id="technical-implementation">Technical Implementation</h2>
 <ul>
 <li>Build a custom LibreTime chart, to match infrastructure ingress and storage class, and db StatefulSet.</li>
@@ -575,6 +596,32 @@ tcp:
 <li>Security report: <a href="https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report">https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report</a>:</li>
 </ul>
 <pre><code class="language-text">WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
+</code></pre>
+<h2 id="nfs-preparation">NFS Preparation</h2>
+<ul>
+<li>NFS server: dataserver</li>
+<li>Allocation to instance, e.g. <code>thruhere</code> on /Data02</li>
+<li>NFS Export: Icecast log; /Data02/thruhere/icecast-log</li>
+<li>NFS Export: Icecast web; /Data02/thruhere/icecast-web</li>
+<li>NFS Export: Library; /Data02/thruhere/icecast-web</li>
+<li>NFS Export: Libretime; /Data02/thruhere/icecast-web</li>
+</ul>
+<pre><code class="language-bash">root@dataserver:/Data02/radio# 
+root@dataserver:/Data02# mkdir /Data02/thruhere
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-log
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-web
+root@dataserver:/Data02# mkdir /Data02/thruhere/library
+root@dataserver:/Data02# mkdir /Data02/thruhere/libretime
+root@dataserver:/Data02# chown -R nobody:nogroup /Data02/thruhere
+root@dataserver:/Data02# chmod -R og+w /Data02/thruhere
+root@dataserver:/Data02# ls -alr /Data02/thruhere/
+</code></pre>
+<pre><code class="language-text">drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 libretime
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 library
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 icecast-web
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:48 icecast-log
+drwxr-xr-x 12 root   root    4096 Jun 18 12:48 ..
+drwxrwxrwx  6 nobody nogroup 4096 Jun 18 12:49 .
 </code></pre>
 </div>
 </div><footer>

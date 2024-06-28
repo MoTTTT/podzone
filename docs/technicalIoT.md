@@ -57,7 +57,14 @@ BBCLASSEXTEND = "native"
 
 - `git clone --recurse-submodules https://github.com/ahcbb6/meta-raspberrypi-baremetal.git`
 
-### Main references
+## Microk8s on Raspberry Pi
+
+- Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
+- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
+- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
+- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
+
+## Main references
 
 - <https://michael2012z.medium.com/rust-with-yocto-eab41476cd7b>
 - <https://jaycarlson.net/embedded-linux/>

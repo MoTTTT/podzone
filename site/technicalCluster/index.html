@@ -43,7 +43,7 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio@Muso.Club Architecture</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
                   </li>
@@ -112,7 +112,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#rolling-maintenance">Rolling maintenance</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#for-raspberry-pi">For Raspberry Pi</a>
+    <li class="toctree-l3"><a class="reference internal" href="#cluster-substrate-maintenance">Cluster substrate maintenance</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#libretime-helm-chart-implications">Libretime Helm Chart implications</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</a>
     </li>
         </ul>
     </li>
@@ -252,13 +258,29 @@ This can be automated with ansible.</p>
 <li><code>--delete-emptydir-data</code> is required if use is made of local storage.</li>
 <li>To bring the node back in to the cluster: <code>kubectl uncordon &lt;node name&gt;</code></li>
 </ul>
-<h3 id="for-raspberry-pi">For Raspberry Pi</h3>
+<h3 id="cluster-substrate-maintenance">Cluster substrate maintenance</h3>
+<p><strong>Cluster substrate</strong> here refers to kubernetes distribution installation, in this case Canonical's <em>MicroK8s</em>, including any add-ons. <code>Canonical: Practically, as soon as the admin enables an addon he is expected to own its maintenance. We are offering new versions of the addon enable/disable scripts and in order to get them the admin would need to microk8s addons repo update &lt;repo&gt;</code> Reference: <a href="https://github.com/canonical/microk8s-core-addons/issues/255">https://github.com/canonical/microk8s-core-addons/issues/255</a>.</p>
+<h2 id="libretime-helm-chart-implications">Libretime Helm Chart implications</h2>
+<p>The following section is copied from Helm chart documentation, at <a href="https://github.com/MoTTTT/libretime-helm/blob/main/AnalysisNotes.md">https://github.com/MoTTTT/libretime-helm/blob/main/AnalysisNotes.md</a>, and should be read in the context of the libretime workload.</p>
+<p>The <strong>Cluster Substrate</strong> is an environmental dependency for the repeatable functioning of the libretime helm chart. Testing of the chart has been done on the following environment:</p>
 <ul>
-<li>Ubuntu Core: <code>sudo snap install microk8s --channel=latest/edge/strict</code></li>
-<li>For levant, to fix calico vxlan missing dependency: <code>sudo apt install linux-modules-extra-raspi</code></li>
-<li>For RiPi: Add to /boot/firmware/cmdline.txt: <code>cgroup_enable=memory cgroup_memory=1 net.ifnames=1</code></li>
-<li>If required to prevent deployment to RPi arch (e.g. Opensearch): <code>kubectl taint nodes levant key1=value1:NoSchedule</code></li>
+<li>Minimum server configuration: Single node k8s "cluster".</li>
+<li>Operating system: Ubuntu 22.04 minimised.</li>
+<li>Kubernetes storage volumes: MicroCeph. Used for the postgres database in the libretime use-case.</li>
+<li>NFS storage for media input, media storage, and database backups.</li>
+<li>Microk8s {channel 1.30/stable, channel 1.30/stable}, with the following add-ons enabled and configured:</li>
+<li><code>metrics-server</code>: For exposing cpu and ram usage metrics.</li>
+<li><code>cert-manager</code>: For providing https certificates to the cluster.</li>
+<li><code>metallb</code>: A cluster load balancer for traffic from the Internet, from a port forwarded on the Internet gateway.</li>
+<li><code>rook-ceph</code>: For supporting ceph storage to the cluster.</li>
+<li><code>connect-external-ceph</code>: This is a microk8s command that can be run once the <em>rook-ceph</em> add-on is enabled, to enable the consumption of the external Microceph volume for the database.</li>
+<li><code>ingress-nginx</code>: For supporting cluster level listeners for Internet traffic.</li>
 </ul>
+<h3 id="repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</h3>
+<p>The choice of repeatability of deployment from <em>Bare Metal</em> is driven by the interest in self-hosted solutions. With the growing acceptance of Kubernetes as a generalised computing substrate, coupled with support in the Kubernetes ecosystem for GitOps, there is opportunity for abstracting entire solutions into a single set of files, in a naturally change-controlled way.</p>
+<p>If the cluster is bootstrapped with a flex repo after a clean Microk8s install, all the above configuration can be managed using GitOps. For the dev environment build, the public repo at <a href="https://github.com/MoTTTT/podzonedev-gitops.git">https://github.com/MoTTTT/podzonedev-gitops.git</a> can be cloned and adjusted for local off cluster infrastructure dependencies before bootstrapping a cluster with flex.</p>
+<p>The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.</p>
+<p>Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.</p>
               
             </div>
           </div><footer>

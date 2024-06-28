@@ -322,6 +322,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 
 ## Storage
 
+- <https://www.disctech.com/Hard-Drives-Differences-between-NVMe-SAS-SATA-SSD-drive-interfaces>
 - <https://docs.ceph.com/en/latest/rbd/rbd-kubernetes/>
 - <https://blog.palark.com/kubernetes-storage-performance-linstor-ceph-mayastor-vitastor/>
 - <https://canonical-microceph.readthedocs-hosted.com/en/latest/>

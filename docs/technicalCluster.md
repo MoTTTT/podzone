@@ -73,9 +73,34 @@ In order to upgrade the nodes of the cluster, take one node out of service at a 
 - `--delete-emptydir-data` is required if use is made of local storage.
 - To bring the node back in to the cluster: `kubectl uncordon <node name>`
 
-### For Raspberry Pi
+### Cluster substrate maintenance
 
-- Ubuntu Core: `sudo snap install microk8s --channel=latest/edge/strict`
-- For levant, to fix calico vxlan missing dependency: `sudo apt install linux-modules-extra-raspi`
-- For RiPi: Add to /boot/firmware/cmdline.txt: `cgroup_enable=memory cgroup_memory=1 net.ifnames=1`
-- If required to prevent deployment to RPi arch (e.g. Opensearch): `kubectl taint nodes levant key1=value1:NoSchedule`
+**Cluster substrate** here refers to kubernetes distribution installation, in this case Canonical's *MicroK8s*, including any add-ons. `Canonical: Practically, as soon as the admin enables an addon he is expected to own its maintenance. We are offering new versions of the addon enable/disable scripts and in order to get them the admin would need to microk8s addons repo update <repo>` Reference: <https://github.com/canonical/microk8s-core-addons/issues/255>.
+
+## Libretime Helm Chart implications
+
+The following section is copied from Helm chart documentation, at <https://github.com/MoTTTT/libretime-helm/blob/main/AnalysisNotes.md>, and should be read in the context of the libretime workload.
+
+The **Cluster Substrate** is an environmental dependency for the repeatable functioning of the libretime helm chart. Testing of the chart has been done on the following environment:
+
+- Minimum server configuration: Single node k8s "cluster".
+- Operating system: Ubuntu 22.04 minimised.
+- Kubernetes storage volumes: MicroCeph. Used for the postgres database in the libretime use-case.
+- NFS storage for media input, media storage, and database backups.
+- Microk8s {channel 1.30/stable, channel 1.30/stable}, with the following add-ons enabled and configured:
+  - `metrics-server`: For exposing cpu and ram usage metrics.
+  - `cert-manager`: For providing https certificates to the cluster.
+  - `metallb`: A cluster load balancer for traffic from the Internet, from a port forwarded on the Internet gateway.
+  - `rook-ceph`: For supporting ceph storage to the cluster.
+  - `connect-external-ceph`: This is a microk8s command that can be run once the *rook-ceph* add-on is enabled, to enable the consumption of the external Microceph volume for the database.
+  - `ingress-nginx`: For supporting cluster level listeners for Internet traffic.
+
+### Repeatable automated build from Bare Metal on a unit scale
+
+The choice of repeatability of deployment from *Bare Metal* is driven by the interest in self-hosted solutions. With the growing acceptance of Kubernetes as a generalised computing substrate, coupled with support in the Kubernetes ecosystem for GitOps, there is opportunity for abstracting entire solutions into a single set of files, in a naturally change-controlled way.
+
+If the cluster is bootstrapped with a flex repo after a clean Microk8s install, all the above configuration can be managed using GitOps. For the dev environment build, the public repo at <https://github.com/MoTTTT/podzonedev-gitops.git> can be cloned and adjusted for local off cluster infrastructure dependencies before bootstrapping a cluster with flex.
+
+The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.
+
+Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.

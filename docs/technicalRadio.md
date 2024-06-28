@@ -1,6 +1,14 @@
-# Radio@Muso.Club Architecture
+# Radio implementations
 
-## High Level Design
+Muso Club and ThruHere are used as base domains for QA/Production and POC/Dev environments respectively.
+
+## Testing results and issues to resolve
+
+- Icecast log destinations
+- Refactor chart vs flux inventories: Move library scan to flux
+- Icecast xsl artefacts
+
+## Architecture: High Level Design
 
 For traceability, from requirements, we have the following MVP Themes
 
@@ -149,6 +157,15 @@ Tested:
 For test purposes, expose the api service to localhost with a k8s port forward on port 9001
 
 A version 2 API is also available. API documentation for the installation is available on the following URL: <https://console.muso.club/api/v2/schema/swagger-ui>
+
+#### Baseline libretime artefact extraction
+
+```bash
+curl -X 'GET' \
+  'https://console.thruhere.net/api/v2/playlists' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWRtaW4='
+```
 
 ## Technical Implementation
 
@@ -390,4 +407,34 @@ Using a gitops installation for ingress-nginx also allows the file upload limit 
 
 ```text
 WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
+```
+
+## NFS Preparation
+
+- NFS server: dataserver
+- Allocation to instance, e.g. `thruhere` on /Data02
+- NFS Export: Icecast log; /Data02/thruhere/icecast-log
+- NFS Export: Icecast web; /Data02/thruhere/icecast-web
+- NFS Export: Library; /Data02/thruhere/icecast-web
+- NFS Export: Libretime; /Data02/thruhere/icecast-web
+
+```bash
+root@dataserver:/Data02/radio# 
+root@dataserver:/Data02# mkdir /Data02/thruhere
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-log
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-web
+root@dataserver:/Data02# mkdir /Data02/thruhere/library
+root@dataserver:/Data02# mkdir /Data02/thruhere/libretime
+root@dataserver:/Data02# chown -R nobody:nogroup /Data02/thruhere
+root@dataserver:/Data02# chmod -R og+w /Data02/thruhere
+root@dataserver:/Data02# ls -alr /Data02/thruhere/
+```
+
+```text
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 libretime
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 library
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 icecast-web
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:48 icecast-log
+drwxr-xr-x 12 root   root    4096 Jun 18 12:48 ..
+drwxrwxrwx  6 nobody nogroup 4096 Jun 18 12:49 .
 ```

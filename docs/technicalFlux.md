@@ -14,6 +14,12 @@ Instrumenting a cluster with Flux requires the following:
 
 When the bootstrap process concludes, the GIT repo will contain the flux-system component manifests, and the target cluster will have flux-system namespace operator components installed. The flux operator with thereafter monitor the git repo for cluster configuration requirement changes, and apply the appropriate cluster adjustments.
 
+## dev environment bootstrap
+
+```sh
+flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-gitops --branch=main --personal --path=clusters/megalith --token-auth=true
+```
+
 ## Notes
 
 - Mac OS flux Installation: `brew install fluxcd/tap/flux`

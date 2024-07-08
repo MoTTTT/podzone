@@ -104,3 +104,34 @@ If the cluster is bootstrapped with a flex repo after a clean Microk8s install, 
 The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.
 
 Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.
+
+### Ubuntu unattended-updates
+
+Most of the time the unattended-updates feature in Ubuntu works well without evidence or artefacts.
+
+However, over the course of two phases of a project, microk8s nodes became broken to the extent that five out of ten nodes were not starting up, and off the network.
+
+Initial assumptions indicating SATA SSD failure (hardware tests failing, over-interpretation of M.2 module led colouring, etc), followed by motherboard failure (unable to boot a freshly installed OS on a new SSD) were wrong. False negatives due to DisplayPort behaviour over-interpretation added to the inaccuracy of these assumptions.
+
+With the assistance of the HP T630 BIOS diagnostics, unit level issues were eliminated, as were SSD and RAM. This also exposed DisplayPort inconsistent behaviour. Even cold start did not give consistent DisplayPort behaviour introduced during a failed boot.
+
+In any case the issue was identified to be apparent in a specific linux kernel that had been introduced during unattended-updates.
+
+#### Specifying linux kernel version on Ubuntu 22.04 Server minimised installation
+
+- To access the grub boot menu, press right-shift at power up.
+- You can at this stage try the current kernel in recovery mode, or a previous kernel.
+- Note that a previous kernel will not be an option on a fresh install, even from an old Ubuntu Server 22.04 USB drive, if the machine was on the network during install.
+- Note also that selecting `no` to using the latest installer, and also cancelling the update at the end of the installation only leaves the newest kernel in place.
+- However, if the kernel does boot in recovery mode of the only kernel, a known-good kernel for your hardware can be installed (together with the matching headers package).
+- Once you have a kernel that works (in all modes) installed, you can set grub up to boot to the last selected mode as follows:
+- Set the following in `/etc/default/grub`
+
+```
+GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+```
+
+- On a minimised install, you may need to install an editor, or use sed and echo to achieve these changes.
+- Reload grub: `sudo update-grub`
+- Reboot with grub menu, select preferred kernel, allow boot to finish, and then reboot as normal to test.

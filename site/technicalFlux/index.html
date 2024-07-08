@@ -84,6 +84,8 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
     </li>
+    <li class="toctree-l2"><a class="reference internal" href="#dev-environment-bootstrap">dev environment bootstrap</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#resources-created-by-flux">Resources created by flux</a>
@@ -191,6 +193,9 @@
 <li>Bootstrapping flux, specifying the git account, repo, branch and path.</li>
 </ul>
 <p>When the bootstrap process concludes, the GIT repo will contain the flux-system component manifests, and the target cluster will have flux-system namespace operator components installed. The flux operator with thereafter monitor the git repo for cluster configuration requirement changes, and apply the appropriate cluster adjustments.</p>
+<h2 id="dev-environment-bootstrap">dev environment bootstrap</h2>
+<pre><code class="language-sh">flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-gitops --branch=main --personal --path=clusters/megalith --token-auth=true
+</code></pre>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Mac OS flux Installation: <code>brew install fluxcd/tap/flux</code></li>

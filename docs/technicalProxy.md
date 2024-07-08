@@ -98,18 +98,18 @@ Add entries and check in before applying.
 certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com
 ```
 
-### Domain evaluation 30 May 2024
+## Domain evaluation 30 May 2024
 
-#### Domains in certbot spec that are used currently or to be retained
+Domains in certbot spec that are used currently or to be retained
 
-##### Prod
+### Prod
 
 - <docs.podzone.net>
 - <musings.thruhere.net>
 - <uk2day.online>
 - <www.uk2day.online>
 
-##### Muso Club
+### Muso Club
 
 - <muso.club>
 - <db.muso.club>
@@ -118,12 +118,12 @@ certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2d
 - <radio.muso.club>
 - <www.muso.club>
 
-##### For non-prod radio
+### For non-prod radio
 
 - <radio.thruhere.net>
 - <console.thruhere.net>
 
-##### Wordpress instances
+### Wordpress instances
 
 - <www.dialplus44.com>
 - <dialplus44.uk>
@@ -137,7 +137,7 @@ certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2d
 - <projecttoolkit.co.uk>
 - <project-tech.co.uk>
 
-##### Fabric Ingress
+### Fabric Ingress
 
 - <content.podzone.net>
 - <central.podzone.net>

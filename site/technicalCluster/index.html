@@ -120,6 +120,12 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ubuntu-unattended-updates">Ubuntu unattended-updates</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</a>
+    </li>
+        </ul>
+    </li>
         </ul>
     </li>
     </ul>
@@ -281,6 +287,30 @@ This can be automated with ansible.</p>
 <p>If the cluster is bootstrapped with a flex repo after a clean Microk8s install, all the above configuration can be managed using GitOps. For the dev environment build, the public repo at <a href="https://github.com/MoTTTT/podzonedev-gitops.git">https://github.com/MoTTTT/podzonedev-gitops.git</a> can be cloned and adjusted for local off cluster infrastructure dependencies before bootstrapping a cluster with flex.</p>
 <p>The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.</p>
 <p>Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.</p>
+<h3 id="ubuntu-unattended-updates">Ubuntu unattended-updates</h3>
+<p>Most of the time the unattended-updates feature in Ubuntu works well without evidence or artefacts.</p>
+<p>However, over the course of two phases of a project, microk8s nodes became broken to the extent that five out of ten nodes were not starting up, and off the network.</p>
+<p>Initial assumptions indicating SATA SSD failure (hardware tests failing, over-interpretation of M.2 module led colouring, etc), followed by motherboard failure (unable to boot a freshly installed OS on a new SSD) were wrong. False negatives due to DisplayPort behaviour over-interpretation added to the inaccuracy of these assumptions.</p>
+<p>With the assistance of the HP T630 BIOS diagnostics, unit level issues were eliminated, as were SSD and RAM. This also exposed DisplayPort inconsistent behaviour. Even cold start did not give consistent DisplayPort behaviour introduced during a failed boot.</p>
+<p>In any case the issue was identified to be apparent in a specific linux kernel that had been introduced during unattended-updates.</p>
+<h4 id="specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</h4>
+<ul>
+<li>To access the grub boot menu, press right-shift at power up.</li>
+<li>You can at this stage try the current kernel in recovery mode, or a previous kernel.</li>
+<li>Note that a previous kernel will not be an option on a fresh install, even from an old Ubuntu Server 22.04 USB drive, if the machine was on the network during install.</li>
+<li>Note also that selecting <code>no</code> to using the latest installer, and also cancelling the update at the end of the installation only leaves the newest kernel in place.</li>
+<li>However, if the kernel does boot in recovery mode of the only kernel, a known-good kernel for your hardware can be installed (together with the matching headers package).</li>
+<li>Once you have a kernel that works (in all modes) installed, you can set grub up to boot to the last selected mode as follows:</li>
+<li>Set the following in <code>/etc/default/grub</code></li>
+</ul>
+<pre><code>GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+</code></pre>
+<ul>
+<li>On a minimised install, you may need to install an editor, or use sed and echo to achieve these changes.</li>
+<li>Reload grub: <code>sudo update-grub</code></li>
+<li>Reboot with grub menu, select preferred kernel, allow boot to finish, and then reboot as normal to test.</li>
+</ul>
               
             </div>
           </div><footer>

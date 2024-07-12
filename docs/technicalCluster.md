@@ -105,7 +105,7 @@ The notion of bootstrapping the cluster for GitOps before any add-ons or configu
 
 Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.
 
-### Ubuntu unattended-updates
+## Ubuntu unattended-updates
 
 Most of the time the unattended-updates feature in Ubuntu works well without evidence or artefacts.
 
@@ -117,7 +117,7 @@ With the assistance of the HP T630 BIOS diagnostics, unit level issues were elim
 
 In any case the issue was identified to be apparent in a specific linux kernel that had been introduced during unattended-updates.
 
-#### Specifying linux kernel version on Ubuntu 22.04 Server minimised installation
+### Specifying linux kernel version on Ubuntu 22.04 Server minimised installation
 
 - To access the grub boot menu, press right-shift at power up.
 - You can at this stage try the current kernel in recovery mode, or a previous kernel.
@@ -135,3 +135,9 @@ GRUB_SAVEDEFAULT=true
 - On a minimised install, you may need to install an editor, or use sed and echo to achieve these changes.
 - Reload grub: `sudo update-grub`
 - Reboot with grub menu, select preferred kernel, allow boot to finish, and then reboot as normal to test.
+
+## OS Installation
+
+- USB Installer: Ubuntu Server Minimized 22.04.03
+- Use MoTTTT GitHub account to pull authorized_keys
+- Set time-zone: `sudo timedatectl set-timezone Europe/London`

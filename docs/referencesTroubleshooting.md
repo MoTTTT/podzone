@@ -1,5 +1,11 @@
 # Troubleshooting References
 
+## Troubleshooting
+
+- <https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs>
+
+## Discussions
+
 - <https://askubuntu.com/questions/1192923/is-it-possible-to-install-microk8s-on-ubuntu-core-18>
 - <https://askubuntu.com/questions/1455839/ubunto-core-22-04-raspberry-pi-linux-modules-extra-raspi>
 - <https://askubuntu.com/questions/178712/how-to-increase-swap-space>

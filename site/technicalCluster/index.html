@@ -73,6 +73,10 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Workload</span></p>
               <ul>
@@ -120,13 +124,15 @@
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ubuntu-unattended-updates">Ubuntu unattended-updates</a>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ubuntu-unattended-updates">Ubuntu unattended-updates</a>
         <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</a>
     </li>
         </ul>
     </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#os-installation">OS Installation</a>
     </li>
     </ul>
                   </li>
@@ -168,6 +174,8 @@
               <p class="caption"><span class="caption-text">References</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
                   </li>
@@ -287,13 +295,13 @@ This can be automated with ansible.</p>
 <p>If the cluster is bootstrapped with a flex repo after a clean Microk8s install, all the above configuration can be managed using GitOps. For the dev environment build, the public repo at <a href="https://github.com/MoTTTT/podzonedev-gitops.git">https://github.com/MoTTTT/podzonedev-gitops.git</a> can be cloned and adjusted for local off cluster infrastructure dependencies before bootstrapping a cluster with flex.</p>
 <p>The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.</p>
 <p>Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.</p>
-<h3 id="ubuntu-unattended-updates">Ubuntu unattended-updates</h3>
+<h2 id="ubuntu-unattended-updates">Ubuntu unattended-updates</h2>
 <p>Most of the time the unattended-updates feature in Ubuntu works well without evidence or artefacts.</p>
 <p>However, over the course of two phases of a project, microk8s nodes became broken to the extent that five out of ten nodes were not starting up, and off the network.</p>
 <p>Initial assumptions indicating SATA SSD failure (hardware tests failing, over-interpretation of M.2 module led colouring, etc), followed by motherboard failure (unable to boot a freshly installed OS on a new SSD) were wrong. False negatives due to DisplayPort behaviour over-interpretation added to the inaccuracy of these assumptions.</p>
 <p>With the assistance of the HP T630 BIOS diagnostics, unit level issues were eliminated, as were SSD and RAM. This also exposed DisplayPort inconsistent behaviour. Even cold start did not give consistent DisplayPort behaviour introduced during a failed boot.</p>
 <p>In any case the issue was identified to be apparent in a specific linux kernel that had been introduced during unattended-updates.</p>
-<h4 id="specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</h4>
+<h3 id="specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</h3>
 <ul>
 <li>To access the grub boot menu, press right-shift at power up.</li>
 <li>You can at this stage try the current kernel in recovery mode, or a previous kernel.</li>
@@ -310,6 +318,12 @@ GRUB_SAVEDEFAULT=true
 <li>On a minimised install, you may need to install an editor, or use sed and echo to achieve these changes.</li>
 <li>Reload grub: <code>sudo update-grub</code></li>
 <li>Reboot with grub menu, select preferred kernel, allow boot to finish, and then reboot as normal to test.</li>
+</ul>
+<h2 id="os-installation">OS Installation</h2>
+<ul>
+<li>USB Installer: Ubuntu Server Minimized 22.04.03</li>
+<li>Use MoTTTT GitHub account to pull authorized_keys</li>
+<li>Set time-zone: <code>sudo timedatectl set-timezone Europe/London</code></li>
 </ul>
               
             </div>

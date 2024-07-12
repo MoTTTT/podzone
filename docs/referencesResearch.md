@@ -305,6 +305,7 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#recreate-deployment>
 - <https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/>
 - <https://stackoverflow.com/questions/62536939/how-to-perform-helm-update-on-deployment-with-pvc-and-initcontainer>
+- <https://kind.sigs.k8s.io/>
 
 ## Authentication and Authorisation
 

@@ -165,3 +165,16 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 - <https://hub.docker.com/r/itzg/minecraft-server/>
 - <https://github.com/solarhess/kubernetes-minecraft-server>
 - <https://github.com/solarhess/kubernetes-minecraft-server/blob/master/helm/minecraft/templates/volume.yaml>
+
+## AI
+
+- <https://github.com/neuml/txtai>
+- <https://neuml.github.io/txtai/>
+- <https://github.com/neuml/txtai/blob/master/examples/39_Classic_Topic_Modeling_with_BM25.ipynb>
+- <https://neuml.github.io/txtai/examples/>
+- <https://medium.com/neuml/introducing-txtai-the-all-in-one-embeddings-database-c721f4ff91ad>
+
+## Collaboration and storage
+
+- <https://nextcloud.com/>
+- <https://github.com/nextcloud/all-in-one#nextcloud-all-in-one>

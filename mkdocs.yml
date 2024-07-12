@@ -27,6 +27,8 @@ nav:
     - technicalTasklist2.md
     - inventoryCosting.md
     - technicalKubernetes.md
+    - technicalSound.md
+    - technicalHardware.md
   - 'Workload':
     - technicalSiteStructure.md
     - technicalStaticSite.md
@@ -57,6 +59,7 @@ nav:
     - inventoryWorkstation.md
   - 'References':
     - referencesApplication.md
+    - referencesHardware.md
     - referencesIoT.md
     - referencesResearch.md
     - referencesReserve.md

@@ -110,19 +110,23 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">NFS storage</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#northern-site">Northern site</a>
+    <li class="toctree-l2"><a class="reference internal" href="#nfs-server">NFS Server</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#client-test-os-level">Client test (OS level)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#kubernetes-client">Kubernetes client</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#usecases">Usecases</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#flux-install">flux install</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#helm-reference-instructions">Helm reference instructions</a>
+    <li class="toctree-l3"><a class="reference internal" href="#dynamic-provisioning">Dynamic Provisioning</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#deprecated-original-site">Deprecated: original site</a>
+    <li class="toctree-l2"><a class="reference internal" href="#csi-driver-for-static-provisioning">CSI Driver for static provisioning</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#flux-install">flux install</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#issue">Issue</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
     </li>
@@ -197,25 +201,67 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="nfs-storage">NFS storage</h1>
-<h2 id="northern-site">Northern site</h2>
-<h3 id="usecases">Usecases</h3>
+<p>This section covers the setup and use of NFS volumes from a kubernetes cluster. Firstly an nfs server is set up, tested from a client, and then configured for ue in a kubernetes manifest.</p>
+<h2 id="nfs-server">NFS Server</h2>
+<p>To prepare the NFS server for use, using the exported directory <code>/Data01/nfs</code> as an example:</p>
 <ul>
-<li>radio</li>
+<li><code>apt install nfs-kernel-server</code></li>
+<li><code>mkdir /Data01/nfs</code></li>
+<li><code>chmod go+w /Data01/nfs</code></li>
+<li><code>chown -R nobody:nogroup /Data01/nfs</code></li>
+<li>Add entry to /etc/exports: <code>/Data01/nfs *(rw,sync,no_subtree_check)</code></li>
+<li><code>exportfs -a</code></li>
 </ul>
-<h3 id="configuration">Configuration</h3>
+<h2 id="client-test-os-level">Client test (OS level)</h2>
+<p>To test the NFS server, set up a client machine similar to a kubernetes node (assuming the dataserver has IP address 192.168.1.26):</p>
 <ul>
-<li>dataserver: <code>sudo apt install nfs-kernel-server</code></li>
-<li>dataserver: <code>sudo mkdir /Data01/nfs</code></li>
-<li>dataserver: <code>sudo chmod go+w /Data01/nfs</code></li>
-<li>dataserver /etc/exports: <code>/Data01/nfs *(rw,sync,no_subtree_check)</code></li>
-<li>dataserver: <code>sudo exportfs -a</code></li>
-<li>rudolfensis (test): <code>sudo apt install nfs-common</code></li>
-<li>rudolfensis (test) /etc/hosts: <code>192.168.1.26 dataserver</code></li>
-<li>rudolfensis (test) /etc/fstab: <code>dataserver:/Data01/nfs /mnt/Data01-nfs nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
-<li>rudolfensis (test): <code>sudo mount -a</code></li>
-<li>rudolfensis (test): <code>df -H</code>: <em>dataserver:/Data01/nfs  2.1T  118G  1.8T   7% /mnt/Data01-nfs</em></li>
+<li>Install client driver: <code>apt install nfs-common</code></li>
+<li>/etc/fstab: <code>192.168.1.26:/Data01/nfs /mnt/Data01-nfs nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
+<li>Mount all: <code>mount -a</code></li>
+<li>To examine the mounted volume, use <code>df -H</code>, which for the setup above would be something like: <code>*192.168.1.26:/Data01/nfs  2.1T  118G  1.8T   7% /mnt/Data01-nfs*</code></li>
+</ul>
+<h2 id="kubernetes-client">Kubernetes client</h2>
+<h3 id="dynamic-provisioning">Dynamic Provisioning</h3>
+<p>Static provisioning is discussed below, but I could only get success with dynamic provisioning. </p>
+<p>Dynamic Provisioning for NFS only requires the nfs-common package on k8s nodes: <code>sudo apt install nfs-common -y</code></p>
+<p>The following manifest snippet illustrates usage:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+...
+  template:
+...
+    spec:
+...
+      containers:
+        volumeMounts:
+        - mountPath: /web
+          name: radiovolume
+          subPath: icecastweb
+      initContainers:
+...
+        volumeMounts:
+        - mountPath: /mnt
+          name: radiovolume
+          subPath: icecastweb
+      volumes:
+      - name: radiovolume
+        nfs:
+          path: /Data02/musoclub
+          server: 192.168.1.26
+</code></pre>
+<h2 id="csi-driver-for-static-provisioning">CSI Driver for static provisioning</h2>
+<p>An NFS CSI driver was first attempted, but application had showstopper issues.</p>
+<ul>
 <li>k8s nodes: use ansible to <code>sudo apt install nfs-common</code></li>
 <li>k8s cluster: use flux to install <code>csi-driver-nfs</code> helm chart</li>
+<li><code>helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</code></li>
+<li><code>microk8s helm3 repo update</code></li>
+<li><code>helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
+<li><code>chmod -R 777 /srv/nfs</code></li>
+<li><code>chown -R nobody:nogroup /srv/nfs</code></li>
+<li>Add volumes into /etc/exports, e.g <code>/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)</code></li>
 </ul>
 <h3 id="flux-install">flux install</h3>
 <ul>
@@ -223,34 +269,11 @@
 <li>helm chart: <code>csi-driver-nfs</code></li>
 <li>For <code>--set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code>, create a configmap</li>
 </ul>
-<h3 id="helm-reference-instructions">Helm reference instructions</h3>
-<ul>
-<li><code>microk8s helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</code></li>
-<li><code>microk8s helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
-</ul>
-<p>Issue:</p>
+<h3 id="issue">Issue</h3>
 <ul>
 <li>Pod describe reports: <code>Warning  FailedMount  3m32s (x448 over 14h)  kubelet  MountVolume.SetUp failed for volume "pvc-1c0b7728-5ebd-4bb0-85ba-0f0877ab9080" : rpc error: code = Internal desc = mkdir /var/snap: read-only file system</code></li>
+<li>Attempting dynamic provisioning...</li>
 </ul>
-<p>Attempting dynamic provisioning...</p>
-<h2 id="deprecated-original-site">Deprecated: original site</h2>
-<ul>
-<li><code>helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-microk8s helm3 repo update</code></li>
-<li><code>helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
-<li><code>chmod -R 777 /srv/nfs</code></li>
-<li><code>chown -R nobody:nogroup /srv/nfs</code></li>
-<li>Add volumes into /etc/exports:</li>
-</ul>
-<pre><code class="language-text">/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-/srv/nfs/k8s  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-/srv/nfs/mac  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-/srv/nfs/apachesites  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-/srv/nfs/db  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-/srv/nfs/backup  192.168.0.0/24(rw,all_squash,sync,no_subtree_check)
-</code></pre>
-<p>The following file in the config/ directory creates a general purpose storage class <code>nfs-csi</code>, and one specifically for the web site <code>apache-storage-class</code>:  <code>podzone-pc-nfs.yaml</code></p>
-<p>A cluster-external NFS service is used to provide a Storage class for Persistent volume requirements, set up on sigiriya with access from <code>192.168.0.0/24</code>.</p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial">https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial</a></li>
@@ -262,7 +285,11 @@ microk8s helm3 repo update</code></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">https://kubernetes.io/docs/concepts/storage/persistent-volumes/</a></li>
 <li><a href="https://kubernetes.io/docs/concepts/storage/volumes/">https://kubernetes.io/docs/concepts/storage/volumes/</a></li>
 <li><a href="https://ubuntu.com/server/docs/service-nfs">https://ubuntu.com/server/docs/service-nfs</a></li>
-<li></li>
+<li><a href="https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29">https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29</a></li>
+<li><a href="https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner">https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner</a></li>
+<li><a href="https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md">https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md</a></li>
+<li><a href="https://microk8s.io/docs/addon-nfs">https://microk8s.io/docs/addon-nfs</a></li>
+<li><a href="https://microk8s.io/docs/how-to-nfs">https://microk8s.io/docs/how-to-nfs</a></li>
 </ul>
               
             </div>

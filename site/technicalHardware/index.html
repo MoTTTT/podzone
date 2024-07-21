@@ -78,11 +78,27 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware planning</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#hardware-categories">Hardware categories</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#enterprise-hardware">Enterprise hardware</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#enterprise-hardware">Enterprise hardware</a>
+    <li class="toctree-l3"><a class="reference internal" href="#pluto">Pluto</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#production-kubernetes-cluster">Production Kubernetes Cluster</a>
+    <li class="toctree-l3"><a class="reference internal" href="#backup-temporary-sas-storage-solution">Backup / temporary SAS storage solution</a>
     </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hardware-allocation">Hardware allocation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#network-architecture">Network Architecture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#storage-architecture">Storage Architecture</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#hypervisors">Hypervisors</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#idrac">IDRAC</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#consumer-hardware-kubernetes-cluster">Consumer hardware Kubernetes Cluster</a>
+        <ul>
     <li class="toctree-l3"><a class="reference internal" href="#it-development-devices">IT Development devices</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#workstations">Workstations</a>
@@ -203,10 +219,74 @@
 <li>Workstations</li>
 <li>IoT Devices</li>
 </ul>
-<h3 id="enterprise-hardware">Enterprise hardware</h3>
-<h3 id="production-kubernetes-cluster">Production Kubernetes Cluster</h3>
+<h2 id="enterprise-hardware">Enterprise hardware</h2>
+<h3 id="pluto">Pluto</h3>
 <ul>
-<li>3 X HP t360</li>
+<li>Dell PowerEdge R720</li>
+<li>16 X CPU cores: 2x Intel Xeon E5-2650 V1 @2.00GHz</li>
+<li>4 X 1GbE Ethernet Ports: (FM487 Quad Port Broadcom 5720 Network Card)</li>
+<li>8 x 8GB RAM</li>
+<li>8 X 147GB SAS 2.5" HDD Storage</li>
+</ul>
+<h3 id="backup-temporary-sas-storage-solution">Backup / temporary SAS storage solution</h3>
+<ul>
+<li>4x SEAGATE CONSTELLATION 3TB ES.3 ST3000NM0023 3.5" 6G SAS HDD</li>
+<li>2 X SAS Hard Disk Drive SFF-8482 Male To Female Extension Cable BS</li>
+</ul>
+<h3 id="hardware-allocation">Hardware allocation</h3>
+<ul>
+<li>CPU unit resource ratio: 1 Unit = {1 Core; 4 GB RAM; 73 GB OS Disk}</li>
+<li>Total 16 Units on Pluto</li>
+<li>4 X {1 Core; 4 GB RAM; 73 GB Disk}: ceph / gateway / tftp / dhcp</li>
+<li>4 X {2 Core; 8 GB RAM; 73 GB Disk}: k8s</li>
+<li>1 X {4 Core; 16 GB RAM; 147 GB Disk}</li>
+<li>4 X {73 GB Disk RAW}: Ceph / iSCSI</li>
+</ul>
+<h3 id="network-architecture">Network Architecture</h3>
+<ul>
+<li>FM487 Quad Port Broadcom 5720 Network Card</li>
+<li>4 X 1GbE Ethernet Ports</li>
+<li>Assignment: Ethernet Port 1 LAN 1</li>
+<li>Assignment: Ethernet Port 2 LAN 2</li>
+<li>Assignment: Ethernet Port 3 cluster network 1</li>
+<li>Assignment: Ethernet Port 4 cluster network 2</li>
+</ul>
+<h3 id="storage-architecture">Storage Architecture</h3>
+<ul>
+<li>Pluto: Using 8 X SAS 147GB HDDs in RAID0 configuration</li>
+</ul>
+<p>References:</p>
+<ul>
+<li><a href="https://ubuntu.com/server/docs/iscsi-initiator-or-client">https://ubuntu.com/server/docs/iscsi-initiator-or-client</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_RAID_levels">https://en.wikipedia.org/wiki/Standard_RAID_levels</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Non-standard_RAID_levels">https://en.wikipedia.org/wiki/Non-standard_RAID_levels</a></li>
+<li><a href="https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks">https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)</a></li>
+</ul>
+<h3 id="hypervisors">Hypervisors</h3>
+<ul>
+<li><a href="https://phoenixnap.com/kb/what-is-hypervisor-type-1-2">https://phoenixnap.com/kb/what-is-hypervisor-type-1-2</a></li>
+<li><a href="https://phoenixnap.com/kb/ubuntu-install-kvm">https://phoenixnap.com/kb/ubuntu-install-kvm</a></li>
+<li><a href="https://ubuntu.com/blog/kvm-hyphervisor">https://ubuntu.com/blog/kvm-hyphervisor</a></li>
+<li><a href="https://microstack.run/docs/single-node">https://microstack.run/docs/single-node</a></li>
+<li><a href="https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/">https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/</a></li>
+<li><a href="https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands">https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps">https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps</a></li>
+</ul>
+<h3 id="idrac">IDRAC</h3>
+<ul>
+<li><a href="https://docs.openstack.org/ironic/wallaby/admin/drivers/idrac.html">https://docs.openstack.org/ironic/wallaby/admin/drivers/idrac.html</a></li>
+<li><a href="https://www.dell.com/support/manuals/en-uk/idrac9-lifecycle-controller-v3.0-series/idrac_3.00.00.00_ug/idrac-licenses">https://www.dell.com/support/manuals/en-uk/idrac9-lifecycle-controller-v3.0-series/idrac_3.00.00.00_ug/idrac-licenses</a></li>
+<li><a href="https://snippets.bentasker.co.uk/page-1708021031-racadm-cheatsheet-for-Dell-iDRAC-BASH.html">https://snippets.bentasker.co.uk/page-1708021031-racadm-cheatsheet-for-Dell-iDRAC-BASH.html</a></li>
+<li><a href="https://github.com/Cizin/Idrac-cheat-sheet">https://github.com/Cizin/Idrac-cheat-sheet</a></li>
+<li><a href="https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf">https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf</a></li>
+<li><a href="https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/">https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/</a></li>
+</ul>
+<h2 id="consumer-hardware-kubernetes-cluster">Consumer hardware Kubernetes Cluster</h2>
+<ul>
+<li>10 X HP t360 {4 CPU, 24 GB RAM, 128 GB Disk (OS) + 256 GB Disk (Raw)}</li>
+<li>Even ratio unit = {1 CPU, 6 GB RAM, 32 GB Disk}</li>
+<li>Even ratio unit = {1 CPU, 6 GB RAM, 32 GB Disk}</li>
 <li>Reference, no storage?: <a href="https://support.hp.com/gb-en/document/c05240287">https://support.hp.com/gb-en/document/c05240287</a></li>
 <li>
 <p>Reference, has storage: <a href="https://support.hp.com/gb-en/document/c05847930">https://support.hp.com/gb-en/document/c05847930</a></p>

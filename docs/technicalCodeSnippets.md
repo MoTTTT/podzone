@@ -1,16 +1,48 @@
 # Command line snippets
 
+## Network port forwarding
+
+Port forwarding from the ISP router to a metallbr listener on a machine running behind a wifi ethernet extender was not functional. This required the `top-of-web` router - which reverse-proxies http/s traffic to the various clusters - to be moved to a wired connection on the ISP router. The non-http/s traffic (icecast etc) had similar issues, and port forwarding on the top-of-web router was therefore added.
+
+- Enable IP Forwarding: `net.ipv4.ip_forward = 1` in `/etc/sysctl.conf`, and apply changes: `sysctl -p`
+- Install IP Tables: `apt install iptables-persistent`
+
+- For rudolfensis, with ethernet port `enp1s0`, to route ports 8000 to 8002 to metallb listener `192.168.1.200`.
+
+```bash
+iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 8000 -j DNAT --to-destination 192.168.1.200:8000
+iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 8001 -j DNAT --to-destination 192.168.1.200:8001
+iptables -t nat -A PREROUTING -i enp1s0 -p tcp --dport 8002 -j DNAT --to-destination 192.168.1.200:8002
+iptables -t nat -A POSTROUTING -j MASQUERADE
+```
+
+- Save the rules: `iptables-save > /etc/iptables/rules.v4`
+- Check the rules: `iptables -t nat -nvL`
+
+### Notes
+
+- Port scanning reported the forwarded ports correctly, but browser requests timed out.
+- It is understood from hints in the documentation that port forwarding needs to be to a DHCP client of the router.
+- The wifi extender has it's own DHCP server, by default running in `auto` mode. Disabling the DHCP function in the management console did not change the behaviour, and new devices were still issued IPs by the wifi extender.
+
+### References
+
+- <https://chrisshennan.com/blog/using-iptables-to-forward-ports>
+
 ## Flux
 
-flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal
+`flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal`
 
 ## git
 
-- Push cloned repo to personal account: $ git remote set-url origin http://github.com/YOU/YOUR_REPO
+- Push cloned repo to personal account: `git remote set-url origin http://github.com/YOU/YOUR_REPO`
 
 ## microk8s
 
-- sudo snap install microk8s --channel=1.28/stable --classic
+- `sudo snap install microk8s --channel=1.28/stable --classic`
+- `sudo usermod -a -G microk8s $USER`
+- `mkdir -p ~/.kube`
+- `chmod 0700 ~/.kube`
 
 ## helm
 
@@ -24,27 +56,27 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 
 ## ceph
 
-- sudo ceph config set mgr mgr/prometheus/server_addr sigiriya
-- sudo ceph config set mgr mgr/prometheus/port 9090
+- `sudo ceph config set mgr mgr/prometheus/server_addr sigiriya`
+- `sudo ceph config set mgr mgr/prometheus/port 9090`
 - <https://docs.ceph.com/en/quincy/rados/operations/pools/#create-a-pool>
-- mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4
-- sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ
+- `mount.ceph name@07fe3187-00d9-42a3-814b-72a4d5e7d5be.fs_name=/ /mnt/mycephfs -o mon_addr=1.2.3.4`
+- `sudo pro attach C13Nfcn8of2NLX4ZQbpN3zkEcT3WJZ`
 - Mount apple volume - `./apfs-fuse /dev/sdb2 /mt/sdb1`
 
 ## kubectl
 
-- kubectl config set-context --current --namespace=<namespace-name>
-- kubectl config set-context --current --namespace=admin
-- kubectl drain --ignore-daemonsets <node name>
-- kubectl uncordon <node name>
-- kubectl get -n default serviceaccount kubeapps-operator -o yaml
-- kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c
+- `kubectl config set-context --current --namespace=<namespace-name>`
+- `kubectl config set-context --current --namespace=admin`
+- `kubectl drain --ignore-daemonsets <node name>`
+- `kubectl uncordon <node name>`
+- `kubectl get -n default serviceaccount kubeapps-operator -o yaml`
+- `kubectl get pods --all-namespaces -o jsonpath="{..image}" | tr -s '[[:space:]]' '\n' | sort | uniq -c`
 - Aliases: `alias ka="kubectl apply -f "`; `alias kd="kubectl delete -f "`
-- kubectl api-resources
-- Install bash completion on mac: brew install bash-completion
-- source /opt/homebrew/etc/bash_completion
-- source <(kubectl completion bash) # set up autocomplete in bash into the current shell, bash-completion package should be installed first.
-- echo "source <(kubectl completion bash)" >> ~/.bashrc # add autocomplete permanently to your bash shell.
+- `kubectl api-resources`
+- Install bash completion on mac: `brew install bash-completion`
+- `source /opt/homebrew/etc/bash_completion`
+- `source <(kubectl completion bash)` # set up autocomplete in bash into the current shell, bash-completion package should be installed first.
+- `echo "source <(kubectl completion bash)" >> ~/.bashrc` # add autocomplete permanently to your bash shell.
 
 ## ansible
 
@@ -54,7 +86,7 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 - `ansible-inventory -i inventory.yaml --list`
 - `ansible devcluster -m ping -i inventory.yaml`
 - `ansible-playbook -i inventory.yaml playbook-install-nfsclient.yaml`
-- 
+
 ```text
 - name: Install the package "foo"
   ansible.builtin.apt:
@@ -63,93 +95,74 @@ flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=ma
 
 ## apache
 
-- enable site: a2ensite radio
-
-- sudo systemctl restart apache2
-- sudo apachectl configtest
-- sudo apache2ctl -t
+- enable site: `a2ensite radio`
+- `sudo systemctl restart apache2`
+- `sudo apachectl configtest`
+- `sudo apache2ctl -t`
 
 ## plone
 
-- `/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf
-/usr/local/Plone/Python-2.7/bin/python`
+- `/usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/zdaemon-2.0.7-py2.7.egg/zdaemon/zdrun.py -S /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/zopeschema.xml -b 10 -d -s /usr/local/Plone/zinstance/var/instance/zopectlsock -x 0,2 -z /usr/local/Plone/zinstance/parts/instance /usr/local/Plone/Python-2.7/bin/python /usr/local/Plone/zinstance/parts/instance/bin/interpreter /usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf /usr/local/Plone/Python-2.7/bin/python`
 - `/usr/local/Plone/zinstance/parts/instance/bin/interpreter`
 - `/usr/local/Plone/buildout-cache/eggs/Zope2-2.13.24-py2.7.egg/Zope2/Startup/run.py -C /usr/local/Plone/zinstance/parts/instance/etc/zope.conf`
 - `docker pull robcast/legacy-zope`
 - `docker pull robcast/legacy-zope:2.13`
-
-sudo usermod -aG sudo c
+- `sudo usermod -aG sudo c`
 
 ## Vagrant
 
-vagrant init techchad2022/ubuntu2204
-vagrant up
-useradd -p <password> <username>
-vagrant destroy
-
-
-echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant
-echo colleymj ALL=NOPASSWD:ALL > /etc/sudoers.d/colleymj
-
-To allow IP to be assigned via DHCP simply use:
-config.vm.network "public_network"
-This way you don't need to deal with mac address, it will be generated on its own. If you need custom mac address attached to the network device then:
-config.vm.network "public_network", :mac=> "080027xxxxxx"
+- `vagrant init techchad2022/ubuntu2204`
+- `vagrant up`
+- `useradd -p <password> <username>`
+- `vagrant destroy`
+- `echo vagrant ALL=NOPASSWD:ALL > /etc/sudoers.d/vagrant`
+- `echo colleymj ALL=NOPASSWD:ALL > /etc/sudoers.d/colleymj`
+- To allow IP to be assigned via DHCP simply use: `config.vm.network "public_network"`
+- This way you don't need to deal with mac address, it will be generated on its own.
+- If you need custom mac address attached to the network device then: `config.vm.network "public_network", :mac=> "080027xxxxxx"`
 
 ## Network, wi-fi hot-spot
 
-sudo nmcli connection add type bridge con-name 'Bridge' ifname bridge0
-sudo nmcli connection add type ethernet slave-type bridge con-name 'Ethernet' ifname eth0 master bridge0
-sudo nmcli connection add con-name 'Hotspot' ifname wlan0 type wifi slave-type bridge master bridge0 wifi.mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk wifi-sec.proto rsn wifi-sec.pairwise ccmp wifi-sec.psk 61519400
-sudo nmcli connection add type ethernet slave-type bridge   con-name 'Ethernet' ifname eth0 master bridge0
-sudo nmcli connection add con-name 'Hotspot'  \
-   ifname wlan0 type wifi slave-type bridge master bridge0  \
-   wifi.mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk  \
-   wifi-sec.proto rsn wifi-sec.pairwise ccmp     wifi-sec.psk 61519400
-
-sudo nmcli device wifi hotspot ssid podzone password xxx11111
-
-sudo nmcli connection add con-name 'Hotspot' \
-    ifname wlan0 type wifi slave-type bridge master bridge0 \
-    wifi.mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk \
-    wifi-sec.proto rsn wifi-sec.pairwise ccmp \
-    wifi-sec.psk <hotspot-password>
+- `sudo nmcli connection add type bridge con-name 'Bridge' ifname bridge0`
+- `sudo nmcli connection add type ethernet slave-type bridge con-name 'Ethernet' ifname eth0 master bridge0`
+- `sudo nmcli connection add con-name 'Hotspot' ifname wlan0 type wifi slave-type bridge master bridge0 wifi mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk wifi-sec.proto rsn wifi-sec.pairwise ccmp wifi-sec.psk 61519400`
+- `sudo nmcli connection add type ethernet slave-type bridge   con-name 'Ethernet' ifname eth0 master bridge0`
+- `sudo nmcli connection add con-name 'Hotspot'  ifname wlan0 type wifi slave-type bridge master bridge0  wifi.mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk wifi-sec.proto rsn wifi-sec.pairwise ccmp wifi-sec.psk 61519400`
+- `sudo nmcli device wifi hotspot ssid podzone password xxx11111`
+- `sudo nmcli connection add con-name 'Hotspot' ifname wlan0 type wifi slave-type bridge master bridge0 wifi.mode ap wifi.ssid Hotspot wifi-sec.key-mgmt wpa-psk wifi-sec.proto rsn wifi-sec.pairwise ccmp wifi-sec.psk <hotspot-password>`
 
 ## Volume management
 
-Swap file: `dd if=/dev/zero of=/swapfile32G bs=1024 count=32M``
-chmod 0600 swapfile32G
-mkswap swapfile32G
+- Swap file: `dd if=/dev/zero of=/swapfile32G bs=1024 count=32M`
+- `chmod 0600 swapfile32G`
+- `mkswap swapfile32G`
+- `dmsetup ls`
+- `sudo lvdisplay`
+- `lsblk --output NAME,KNAME,TYPE,SIZE,MOUNTPOINT`
+- `sudo dmsetup info ubuntu--vg-ubuntu--lv`
+- `lvdisplay`
+- `pvdisplay`
 
-dmsetup ls
-sudo lvdisplay
-lsblk --output NAME,KNAME,TYPE,SIZE,MOUNTPOINT
-sudo dmsetup info ubuntu--vg-ubuntu--lv
-lvdisplay
-pvdisplay
+### raspberry pi set swapfile
 
-raspberry pi set swapfile
-sudo nano /etc/dphys-swapfile: set CONF_SWAPSIZE=2048
-sudo /etc/init.d/dphys-swapfile stop
-sudo /etc/init.d/dphys-swapfile start
+- `sudo nano /etc/dphys-swapfile: set CONF_SWAPSIZE=2048`
+- `sudo /etc/init.d/dphys-swapfile stop`
+- `sudo /etc/init.d/dphys-swapfile start`
 
 ## unix
 
-usermod -a -G sudo colleymj
-
-arp -n
-ip link show
-route
-ip route show
-
-ip link show
-ifconfig | grep -m 1 "^[a-z0-9]*:" | sed -e's/\(^[a-z0-9]*\):.*$/\1/' | xargs -I {} sh -c "ethtool {}"
-ifconfig | grep -m 1 "^[a-z0-9]*:" | sed -e's/\(^[a-z0-9]*\):.*$/\1/' | xargs -I {} sh -c "sudo tcpdump -i {}"
-
-ip address show
-ip route show
-ss -tunap
-sudo lsof -i @james
+- `usermod -a -G sudo colleymj`
+- `arp -n`
+- `ip link show`
+- `route`
+- `ip route show`
+- `ip link show`
+- `ifconfig | grep -m 1 "^[a-z0-9]*:" | sed -e's/\(^[a-z0-9]*\):.*$/\1/' | xargs -I {} sh -c "ethtool {}"`
+- `ifconfig | grep -m 1 "^[a-z0-9]*:" | sed -e's/\(^[a-z0-9]*\):.*$/\1/' | xargs -I {} sh -c "sudo tcpdump -i {}"`
+- `ip address show`
+- `ip route show`
+- `ss -tunap`
+- `sudo lsof -i @james`
 
 ## Postgres
 
@@ -169,20 +182,17 @@ kubectl exec -n default $apachepod -- rm -R /var/www/html/podzone
 kubectl -n default cp ~/workspace/podzone/site/ $apachepod:/tmp/podzone/
 kubectl exec -n default $apachepod -- chown -R nobody:nogroup  /tmp/podzone/
 kubectl exec -n default $apachepod -- mv /tmp/podzone  /var/www/html
-
-
 kubectl exec apache-bf4996969-qnmqf -- rm -R /var/www/html/telling
 kubectl cp ~/workspace/telling/site/ apache-bf4996969-qnmqf:/tmp/telling/
 kubectl exec apache-bf4996969-qnmqf -- chown -R nobody:nogroup  /tmp/telling/
 kubectl exec apache-bf4996969-qnmqf -- mv /tmp/telling  /var/www/html
-
 kubectl cp ~/workspace/QApps/sites/index.html apache-bf4996969-qnmqf:/var/www.html/
 ```
 
 ## Command line completion
 
-source <(kubectl completion bash)
-echo "source <(kubectl completion bash)" >> ~/.bashrc
+- `source <(kubectl completion bash)`
+- `echo "source <(kubectl completion bash)" >> ~/.bashrc`
 
 ## Jenkinsx
 

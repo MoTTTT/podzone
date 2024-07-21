@@ -2,6 +2,29 @@
 
 Muso Club and ThruHere are used as base domains for QA/Production and POC/Dev environments respectively.
 
+## Radio software options and selection
+
+### Options
+
+- Libretime: API based, remote controllable: <https://libretime.org/>
+- Airtime: SaaS Cloud Subscription: <https://www.sourcefabric.org/software/airtime>
+- Rivendell: In Studio, GUI app oriented: <https://www.rivendellaudio.org/>
+- XFB: GUI oriented, remote access in Beta: <https://github.com/netpack/XFB>
+- OpenBroadcaster: appliance oriented : <https://openbroadcaster.com/products/raspberry-pi-pyrate/>
+- Knobs: No movement for 4 years: <https://github.com/krisnova/knobs>
+
+### Selection
+
+Libretime <https://libretime.org/> for reasons:
+
+- Specific Open Source Licence
+- Active development community
+- Governance and COC
+- Stable and familiar components {postgres, rabbitmq, nginx}
+- API Based
+- Docker images available
+- Helm chart available as baseline
+
 ## Testing results and issues to resolve
 
 - Icecast log destinations
@@ -438,3 +461,4 @@ drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:48 icecast-log
 drwxr-xr-x 12 root   root    4096 Jun 18 12:48 ..
 drwxrwxrwx  6 nobody nogroup 4096 Jun 18 12:49 .
 ```
+

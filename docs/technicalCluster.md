@@ -20,7 +20,7 @@
 
 ## Cluster installation and configuration
 
-On each node, run `sudo snap install microk8s --channel=1.29/stable --classic`
+On each node, run `sudo snap install microk8s --channel=1.30/stable --classic`
 
 On the master node, run `sudo microk8s add-node` (once for each of the other node), and run the resulting join command on the other node.
 This can be automated with ansible.

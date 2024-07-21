@@ -104,24 +104,24 @@ Domains in certbot spec that are used currently or to be retained
 
 ### Prod
 
-- <docs.podzone.net>
-- <musings.thruhere.net>
-- <uk2day.online>
-- <www.uk2day.online>
+- docs.podzone.net
+- musings.thruhere.net
+- uk2day.online
+- www.uk2day.online
 
 ### Muso Club
 
-- <muso.club>
-- <db.muso.club>
-- <console.muso.club>
-- <broadcast.muso.club>
-- <radio.muso.club>
-- <www.muso.club>
+- muso.club
+- db.muso.club
+- console.muso.club
+- broadcast.muso.club
+- radio.muso.club
+- www.muso.club
 
 ### For non-prod radio
 
-- <radio.thruhere.net>
-- <console.thruhere.net>
+- radio.thruhere.net
+- console.thruhere.net
 
 ### Wordpress instances
 

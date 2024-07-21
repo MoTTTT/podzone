@@ -39,6 +39,18 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 
 ## Openstack, MicroCloud, juju, MAAS
 
+- <https://documentation.ubuntu.com/lxd/en/stable-5.0/authentication/>
+- <https://github.com/canonical/lxd-ui/wiki/Setup-local-LXD-cluster>
+- <https://github.com/canonical/lxd-ui/issues/542>
+- <https://ubuntu.com/blog/lxd_ui>
+- <https://github.com/canonical/lxd-ui>
+- <https://linuxcontainers.org/lxc/getting-started/>
+- <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-maas.html>
+- <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-openstack.html>
+- <https://discourse.ubuntu.com/t/tear-down-your-openstack-lab-environment/25078>
+- <https://askubuntu.com/questions/1483306/hangs-up-during-the-bootstrap-process-in-openstack>
+- <https://maas.io/docs/how-to-manage-ip-ranges>
+- <https://maas.io/docs/how-to-install-maas>
 - <https://www.openstack.org/>
 - <https://www.openstack.org/community>
 - <https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack>

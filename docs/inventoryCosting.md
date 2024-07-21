@@ -1,6 +1,18 @@
 # Costing
 
-## Production hardware
+## Enterprise hardware
+
+### Pluto
+
+- Dell PowerEdge R720 2x Intel Xeon E5-2650 V1 @2.00GHz 8x8GB RAM, No HDD. {£51}
+- 8 X Dell 147GB 2.5" 10K SAS Hard Disk Drives {£15}
+- 8 X Dell 2.5" Hard Drive Tray Caddy {£30}
+
+- 4x SEAGATE CONSTELLATION 3TB ES.3 ST3000NM0023 3.5" 6G SAS HDD {£16.00}
+- On its way: 2 X SAS Hard Disk Drive SFF-8482 Male To Female Extension Cable BS {£15}
+
+
+## Consumer hardware
 
 ### Hardware selection
 

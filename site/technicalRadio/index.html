@@ -41,6 +41,14 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Radio implementations</a>
 <ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#radio-software-options-and-selection">Radio software options and selection</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selection">Selection</a>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#testing-results-and-issues-to-resolve">Testing results and issues to resolve</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#architecture-high-level-design">Architecture: High Level Design</a>
@@ -257,6 +265,27 @@
 <div class="section" itemprop="articleBody">
 <h1 id="radio-implementations">Radio implementations</h1>
 <p>Muso Club and ThruHere are used as base domains for QA/Production and POC/Dev environments respectively.</p>
+<h2 id="radio-software-options-and-selection">Radio software options and selection</h2>
+<h3 id="options">Options</h3>
+<ul>
+<li>Libretime: API based, remote controllable: <a href="https://libretime.org/">https://libretime.org/</a></li>
+<li>Airtime: SaaS Cloud Subscription: <a href="https://www.sourcefabric.org/software/airtime">https://www.sourcefabric.org/software/airtime</a></li>
+<li>Rivendell: In Studio, GUI app oriented: <a href="https://www.rivendellaudio.org/">https://www.rivendellaudio.org/</a></li>
+<li>XFB: GUI oriented, remote access in Beta: <a href="https://github.com/netpack/XFB">https://github.com/netpack/XFB</a></li>
+<li>OpenBroadcaster: appliance oriented : <a href="https://openbroadcaster.com/products/raspberry-pi-pyrate/">https://openbroadcaster.com/products/raspberry-pi-pyrate/</a></li>
+<li>Knobs: No movement for 4 years: <a href="https://github.com/krisnova/knobs">https://github.com/krisnova/knobs</a></li>
+</ul>
+<h3 id="selection">Selection</h3>
+<p>Libretime <a href="https://libretime.org/">https://libretime.org/</a> for reasons:</p>
+<ul>
+<li>Specific Open Source Licence</li>
+<li>Active development community</li>
+<li>Governance and COC</li>
+<li>Stable and familiar components {postgres, rabbitmq, nginx}</li>
+<li>API Based</li>
+<li>Docker images available</li>
+<li>Helm chart available as baseline</li>
+</ul>
 <h2 id="testing-results-and-issues-to-resolve">Testing results and issues to resolve</h2>
 <ul>
 <li>Icecast log destinations</li>

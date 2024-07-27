@@ -104,6 +104,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
@@ -154,6 +156,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#sas">SAS</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#iscsi">ISCSI</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#nfs">NFS</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#hypervisors">Hypervisors</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#canonical-k8s">Canonical k8s</a>
     </li>
@@ -226,10 +234,31 @@
 <h2 id="iscsi">ISCSI</h2>
 <ul>
 <li><a href="https://ubuntu.com/server/docs/iscsi-initiator-or-client">https://ubuntu.com/server/docs/iscsi-initiator-or-client</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_RAID_levels">https://en.wikipedia.org/wiki/Standard_RAID_levels</a></li>
 <li><a href="https://en.wikipedia.org/wiki/ISCSI">https://en.wikipedia.org/wiki/ISCSI</a></li>
 <li><a href="https://github.com/kubernetes/examples/tree/master/volumes/iscsi">https://github.com/kubernetes/examples/tree/master/volumes/iscsi</a></li>
 <li><a href="https://www.reddit.com/r/kubernetes/comments/jjx0le/kubernetes_iscsi_storage_practices/">https://www.reddit.com/r/kubernetes/comments/jjx0le/kubernetes_iscsi_storage_practices/</a></li>
 <li><a href="https://www.hardill.me.uk/wordpress/2023/11/12/setting-up-iscsi-volumes-for-kubernetes/">https://www.hardill.me.uk/wordpress/2023/11/12/setting-up-iscsi-volumes-for-kubernetes/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Non-standard_RAID_levels">https://en.wikipedia.org/wiki/Non-standard_RAID_levels</a></li>
+<li><a href="https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks">https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)</a></li>
+<li><a href="https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/">https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/</a></li>
+</ul>
+<h2 id="nfs">NFS</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding">https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding</a></li>
+<li><a href="https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client">https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client</a></li>
+<li><a href="https://stackoverflow.com/questions/44204223/kubernetes-nfs-persistent-volumes-multiple-claims-on-same-volume-claim-stuck">https://stackoverflow.com/questions/44204223/kubernetes-nfs-persistent-volumes-multiple-claims-on-same-volume-claim-stuck</a></li>
+</ul>
+<h3 id="hypervisors">Hypervisors</h3>
+<ul>
+<li><a href="https://phoenixnap.com/kb/what-is-hypervisor-type-1-2">https://phoenixnap.com/kb/what-is-hypervisor-type-1-2</a></li>
+<li><a href="https://phoenixnap.com/kb/ubuntu-install-kvm">https://phoenixnap.com/kb/ubuntu-install-kvm</a></li>
+<li><a href="https://ubuntu.com/blog/kvm-hyphervisor">https://ubuntu.com/blog/kvm-hyphervisor</a></li>
+<li><a href="https://microstack.run/docs/single-node">https://microstack.run/docs/single-node</a></li>
+<li><a href="https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/">https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/</a></li>
+<li><a href="https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands">https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps">https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps</a></li>
 </ul>
 <h2 id="canonical-k8s">Canonical <code>k8s</code></h2>
 <ul>
@@ -250,13 +279,19 @@
 <li><a href="https://ubuntu.com/server/docs/network-file-system-nfs">https://ubuntu.com/server/docs/network-file-system-nfs</a></li>
 <li><a href="https://help.ubuntu.com/community/Installation/Netboot">https://help.ubuntu.com/community/Installation/Netboot</a></li>
 <li><a href="https://ubuntu.com/server/docs/how-to-netboot-the-server-installer-on-amd64">https://ubuntu.com/server/docs/how-to-netboot-the-server-installer-on-amd64</a></li>
-<li></li>
 </ul>
 <h2 id="network-configuration">Network configuration</h2>
 <ul>
 <li><a href="https://ubuntu.com/server/docs/configuring-networks">https://ubuntu.com/server/docs/configuring-networks</a></li>
 <li><a href="https://netplan.readthedocs.io/en/stable/netplan-tutorial/">https://netplan.readthedocs.io/en/stable/netplan-tutorial/</a></li>
 <li><a href="https://netplan.readthedocs.io/en/stable/">https://netplan.readthedocs.io/en/stable/</a></li>
+<li><a href="https://seanblanchfield.com/2023/05/bridge-networking-in-lxd">https://seanblanchfield.com/2023/05/bridge-networking-in-lxd</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_forwards/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_forwards/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_configure/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_configure/</a></li>
+<li><a href="https://ubuntu.com/blog/converting-eth0-to-br0-and-getting-all-your-lxc-or-lxd-onto-your-lan">https://ubuntu.com/blog/converting-eth0-to-br0-and-getting-all-your-lxc-or-lxd-onto-your-lan</a></li>
+<li><a href="https://stackoverflow.com/questions/65722807/my-persistentvolumeclaim-wont-bind-to-nfs-persistentvolume-what-am-i-doing-w">https://stackoverflow.com/questions/65722807/my-persistentvolumeclaim-wont-bind-to-nfs-persistentvolume-what-am-i-doing-w</a></li>
 </ul>
               
             </div>

@@ -178,3 +178,5 @@ These references are related to the build of the workload: Serving Web, Zope, Po
 
 - <https://nextcloud.com/>
 - <https://github.com/nextcloud/all-in-one#nextcloud-all-in-one>
+- <https://github.com/nextcloud/helm/blob/main/charts/nextcloud/README.md>
+- <https://github.com/nextcloud/helm>

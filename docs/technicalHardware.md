@@ -14,6 +14,7 @@
 
 - Dell PowerEdge R720
 - 16 X CPU cores: 2x Intel Xeon E5-2650 V1 @2.00GHz
+- With hyperthreading, OS reports 32 CPUs total
 - 4 X 1GbE Ethernet Ports: (FM487 Quad Port Broadcom 5720 Network Card)
 - 8 x 8GB RAM
 - 8 X 147GB SAS 2.5" HDD Storage
@@ -25,8 +26,11 @@
 
 ### Hardware allocation
 
-- CPU unit resource ratio: 1 Unit = {1 Core; 4 GB RAM; 73 GB OS Disk}
-- Total 16 Units on Pluto
+- Given 32 `CPUs`, 64GB RAM, and 1176 GB Disk (assuming RAID0) = 32 Units on Pluto
+- CPU unit resource ratio: 1 Unit = {1 Core; 2 GB RAM; 36 GB Disk}
+- With 128 GB RAM, unit is 1;4;36
+- Assumption: 1 Unit sufficient for container, 2 units required for VM
+- Assume largest VM requirement: 16 GB RAM = 8 units, with 8 CPUs and 288 GB disk.
 - 4 X {1 Core; 4 GB RAM; 73 GB Disk}: ceph / gateway / tftp / dhcp
 - 4 X {2 Core; 8 GB RAM; 73 GB Disk}: k8s
 - 1 X {4 Core; 16 GB RAM; 147 GB Disk}
@@ -44,34 +48,6 @@
 ### Storage Architecture
 
 - Pluto: Using 8 X SAS 147GB HDDs in RAID0 configuration
-
-References:
-
-- <https://ubuntu.com/server/docs/iscsi-initiator-or-client>
-- <https://en.wikipedia.org/wiki/Standard_RAID_levels>
-- <https://en.wikipedia.org/wiki/Non-standard_RAID_levels>
-- <https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks>
-- <https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)>
-- <https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/>
-
-### Hypervisors
-
-- <https://phoenixnap.com/kb/what-is-hypervisor-type-1-2>
-- <https://phoenixnap.com/kb/ubuntu-install-kvm>
-- <https://ubuntu.com/blog/kvm-hyphervisor>
-- <https://microstack.run/docs/single-node>
-- <https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/>
-- <https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands>
-- <https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps>
-
-### IDRAC
-
-- <https://docs.openstack.org/ironic/wallaby/admin/drivers/idrac.html>
-- <https://www.dell.com/support/manuals/en-uk/idrac9-lifecycle-controller-v3.0-series/idrac_3.00.00.00_ug/idrac-licenses>
-- <https://snippets.bentasker.co.uk/page-1708021031-racadm-cheatsheet-for-Dell-iDRAC-BASH.html>
-- <https://github.com/Cizin/Idrac-cheat-sheet>
-- <https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf>
-- <https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/>
 
 ## Consumer hardware Kubernetes Cluster
 

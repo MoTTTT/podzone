@@ -29,10 +29,31 @@
 ## ISCSI
 
 - <https://ubuntu.com/server/docs/iscsi-initiator-or-client>
+- <https://en.wikipedia.org/wiki/Standard_RAID_levels>
 - <https://en.wikipedia.org/wiki/ISCSI>
 - <https://github.com/kubernetes/examples/tree/master/volumes/iscsi>
 - <https://www.reddit.com/r/kubernetes/comments/jjx0le/kubernetes_iscsi_storage_practices/>
 - <https://www.hardill.me.uk/wordpress/2023/11/12/setting-up-iscsi-volumes-for-kubernetes/>
+- <https://en.wikipedia.org/wiki/Non-standard_RAID_levels>
+- <https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks>
+- <https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)>
+- <https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/>
+
+## NFS
+
+- <https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding>
+- <https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client>
+- <https://stackoverflow.com/questions/44204223/kubernetes-nfs-persistent-volumes-multiple-claims-on-same-volume-claim-stuck>
+
+### Hypervisors
+
+- <https://phoenixnap.com/kb/what-is-hypervisor-type-1-2>
+- <https://phoenixnap.com/kb/ubuntu-install-kvm>
+- <https://ubuntu.com/blog/kvm-hyphervisor>
+- <https://microstack.run/docs/single-node>
+- <https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/>
+- <https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands>
+- <https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps>
 
 ## Canonical `k8s`
 
@@ -53,10 +74,16 @@
 - <https://ubuntu.com/server/docs/network-file-system-nfs>
 - <https://help.ubuntu.com/community/Installation/Netboot>
 - <https://ubuntu.com/server/docs/how-to-netboot-the-server-installer-on-amd64>
-- 
 
 ## Network configuration
 
 - <https://ubuntu.com/server/docs/configuring-networks>
 - <https://netplan.readthedocs.io/en/stable/netplan-tutorial/>
 - <https://netplan.readthedocs.io/en/stable/>
+- <https://seanblanchfield.com/2023/05/bridge-networking-in-lxd>
+- <https://documentation.ubuntu.com/lxd/en/latest/howto/network_forwards/>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/>
+- <https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/>
+- <https://documentation.ubuntu.com/lxd/en/latest/howto/network_configure/>
+- <https://ubuntu.com/blog/converting-eth0-to-br0-and-getting-all-your-lxc-or-lxd-onto-your-lan>
+- <https://stackoverflow.com/questions/65722807/my-persistentvolumeclaim-wont-bind-to-nfs-persistentvolume-what-am-i-doing-w>

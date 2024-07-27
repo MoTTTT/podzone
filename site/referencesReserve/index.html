@@ -100,6 +100,8 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
@@ -151,7 +153,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#kubernetes-repositoriesmanagement-platforms-security-and-governance">Kubernetes Repositories,Management platforms, Security and Governance</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#openstack-microcloud-juju-maas">Openstack, MicroCloud, juju, MAAS</a>
+<li class="toctree-l2"><a class="reference internal" href="#networking-sdn">Networking / SDN</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lxd-lxc">LXD LXC</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#openstack-microcloud">Openstack, MicroCloud</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#juju">JUJU</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#maas">MAAS</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cloudinit">Cloudinit</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#networking">Networking</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#secret-management">Secret Management</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#unsorted">Unsorted</a>
 </li>
@@ -222,8 +238,39 @@
 <li><a href="https://keybase.io/">https://keybase.io/</a></li>
 <li><a href="https://github.com/alexellis/k3sup">https://github.com/alexellis/k3sup</a></li>
 </ul>
-<h2 id="openstack-microcloud-juju-maas">Openstack, MicroCloud, juju, MAAS</h2>
+<h2 id="networking-sdn">Networking / SDN</h2>
 <ul>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/</a></li>
+<li><a href="https://www.ovn.org/en/architecture/">https://www.ovn.org/en/architecture/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_macvlan/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_macvlan/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_sriov/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_sriov/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_physical">https://documentation.ubuntu.com/lxd/en/latest/reference/network_physical</a></li>
+<li><a href="https://wiki.ubuntu.com/FanNetworking">https://wiki.ubuntu.com/FanNetworking</a></li>
+<li><a href="https://ubuntu.com/blog/data-centre-networking-what-is-ovn">https://ubuntu.com/blog/data-centre-networking-what-is-ovn</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/</a></li>
+<li><a href="https://github.com/canonical/microovn">https://github.com/canonical/microovn</a></li>
+<li><a href="https://microk8s.io/docs/addon-kube-ovn">https://microk8s.io/docs/addon-kube-ovn</a></li>
+<li><a href="https://github.com/kubeovn/kube-ovn/tree/master/docs">https://github.com/kubeovn/kube-ovn/tree/master/docs</a></li>
+<li><a href="https://kubeovn.github.io/docs/stable/en/">https://kubeovn.github.io/docs/stable/en/</a></li>
+<li><a href="https://www.kube-ovn.io/">https://www.kube-ovn.io/</a></li>
+</ul>
+<h2 id="lxd-lxc">LXD LXC</h2>
+<ul>
+<li><a href="https://documentation.ubuntu.com/lxd/en/stable-5.0/authentication/">https://documentation.ubuntu.com/lxd/en/stable-5.0/authentication/</a></li>
+<li><a href="https://github.com/canonical/lxd-ui/wiki/Setup-local-LXD-cluster">https://github.com/canonical/lxd-ui/wiki/Setup-local-LXD-cluster</a></li>
+<li><a href="https://github.com/canonical/lxd-ui/issues/542">https://github.com/canonical/lxd-ui/issues/542</a></li>
+<li><a href="https://ubuntu.com/blog/lxd_ui">https://ubuntu.com/blog/lxd_ui</a></li>
+<li><a href="https://github.com/canonical/lxd-ui">https://github.com/canonical/lxd-ui</a></li>
+<li><a href="https://linuxcontainers.org/lxc/getting-started/">https://linuxcontainers.org/lxc/getting-started/</a></li>
+<li><a href="https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775">https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775</a></li>
+</ul>
+<h2 id="openstack-microcloud">Openstack, MicroCloud</h2>
+<ul>
+<li><a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-openstack.html">https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-openstack.html</a></li>
+<li><a href="https://discourse.ubuntu.com/t/tear-down-your-openstack-lab-environment/25078">https://discourse.ubuntu.com/t/tear-down-your-openstack-lab-environment/25078</a></li>
+<li><a href="https://askubuntu.com/questions/1483306/hangs-up-during-the-bootstrap-process-in-openstack">https://askubuntu.com/questions/1483306/hangs-up-during-the-bootstrap-process-in-openstack</a></li>
 <li><a href="https://www.openstack.org/">https://www.openstack.org/</a></li>
 <li><a href="https://www.openstack.org/community">https://www.openstack.org/community</a></li>
 <li><a href="https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack">https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack</a></li>
@@ -233,6 +280,9 @@
 <li><a href="https://microcloud.is/">https://microcloud.is/</a></li>
 <li><a href="https://microstack.run/docs/multi-node">https://microstack.run/docs/multi-node</a></li>
 <li><a href="https://microstack.run/docs">https://microstack.run/docs</a></li>
+</ul>
+<h2 id="juju">JUJU</h2>
+<ul>
 <li><a href="https://juju.is/">https://juju.is/</a></li>
 <li><a href="https://juju.is/docs/juju/configuration">https://juju.is/docs/juju/configuration</a></li>
 <li><a href="https://juju.is/docs/juju/integration">https://juju.is/docs/juju/integration</a></li>
@@ -243,6 +293,11 @@
 <li><a href="https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm">https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm</a></li>
 <li><a href="https://juju.is/docs/sdk">https://juju.is/docs/sdk</a></li>
 <li><a href="https://juju.is/model-driven-operations-manifesto">https://juju.is/model-driven-operations-manifesto</a></li>
+</ul>
+<h2 id="maas">MAAS</h2>
+<ul>
+<li><a href="https://maas.io/docs/how-to-manage-ip-ranges">https://maas.io/docs/how-to-manage-ip-ranges</a></li>
+<li><a href="https://maas.io/docs/how-to-install-maas">https://maas.io/docs/how-to-install-maas</a></li>
 <li><a href="https://maas.io/docs/about-cloud-networking">https://maas.io/docs/about-cloud-networking</a></li>
 <li><a href="https://maas.io/docs/about-dhcp">https://maas.io/docs/about-dhcp</a></li>
 <li><a href="https://maas.io/docs/about-maas-networks">https://maas.io/docs/about-maas-networks</a></li>
@@ -255,23 +310,39 @@
 <li><a href="https://maas.io/docs/overview-of-maas">https://maas.io/docs/overview-of-maas</a></li>
 <li><a href="https://maas.io/docs/reference">https://maas.io/docs/reference</a></li>
 <li><a href="https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview">https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview</a></li>
+<li><a href="https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-maas.html">https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-maas.html</a></li>
+<li><a href="https://launchpad.net/maas/+series">https://launchpad.net/maas/+series</a></li>
 </ul>
-<h2 id="unsorted">Unsorted</h2>
+<h2 id="cloudinit">Cloudinit</h2>
 <ul>
-<li><a href="https://airflow.apache.org/">https://airflow.apache.org/</a></li>
-<li><a href="https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3">https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3</a></li>
-<li><a href="https://book.kubebuilder.io/">https://book.kubebuilder.io/</a></li>
-<li><a href="https://book.kubebuilder.io/quick-start">https://book.kubebuilder.io/quick-start</a></li>
-<li><a href="https://charmhub.io/jupyter-ui">https://charmhub.io/jupyter-ui</a></li>
 <li><a href="https://cloud-init.io/">https://cloud-init.io/</a></li>
-<li><a href="https://cloud.redhat.com/blog/introducing-the-operator-framework">https://cloud.redhat.com/blog/introducing-the-operator-framework</a></li>
 <li><a href="https://cloudinit.readthedocs.io/en/latest/">https://cloudinit.readthedocs.io/en/latest/</a></li>
 <li><a href="https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html">https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html</a></li>
 <li><a href="https://cloudinit.readthedocs.io/en/latest/reference/examples.html">https://cloudinit.readthedocs.io/en/latest/reference/examples.html</a></li>
 <li><a href="https://cloudinit.readthedocs.io/en/latest/reference/modules.html">https://cloudinit.readthedocs.io/en/latest/reference/modules.html</a></li>
 <li><a href="https://cloudinit.readthedocs.io/en/latest/tutorial/lxd.html">https://cloudinit.readthedocs.io/en/latest/tutorial/lxd.html</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/cli/ansible-pull.html">https://docs.ansible.com/ansible/latest/cli/ansible-pull.html</a></li>
+</ul>
+<h2 id="networking">Networking</h2>
+<ul>
+<li><a href="https://ubuntu.com/core/docs/networkmanager/networkmanager-and-netplan">https://ubuntu.com/core/docs/networkmanager/networkmanager-and-netplan</a></li>
+<li><a href="https://help.ubuntu.com/community/NetworkManager">https://help.ubuntu.com/community/NetworkManager</a></li>
+<li><a href="https://people.ubuntu.com/~slyon/netplan-docs/examples/">https://people.ubuntu.com/~slyon/netplan-docs/examples/</a></li>
+</ul>
+<h2 id="secret-management">Secret Management</h2>
+<ul>
+<li><a href="https://fluxcd.io/flux/guides/mozilla-sops/">https://fluxcd.io/flux/guides/mozilla-sops/</a></li>
+<li><a href="https://github.com/getsops/sops">https://github.com/getsops/sops</a></li>
+</ul>
+<h2 id="unsorted">Unsorted</h2>
+<ul>
+<li><a href="https://cloud.redhat.com/blog/introducing-the-operator-framework">https://cloud.redhat.com/blog/introducing-the-operator-framework</a></li>
+<li><a href="https://airflow.apache.org/">https://airflow.apache.org/</a></li>
+<li><a href="https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3">https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3</a></li>
+<li><a href="https://book.kubebuilder.io/">https://book.kubebuilder.io/</a></li>
+<li><a href="https://book.kubebuilder.io/quick-start">https://book.kubebuilder.io/quick-start</a></li>
+<li><a href="https://charmhub.io/jupyter-ui">https://charmhub.io/jupyter-ui</a></li>
 <li><a href="https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity">https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity</a></li>
-<li><a href="https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775">https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775</a></li>
 <li><a href="https://docs.openstack.org/openstack-ansible-os_ironic/latest/">https://docs.openstack.org/openstack-ansible-os_ironic/latest/</a></li>
 <li><a href="https://docs.oracle.com/cd/E19683-01/816-5042/auto32/index.html">https://docs.oracle.com/cd/E19683-01/816-5042/auto32/index.html</a></li>
 <li><a href="https://en.wikipedia.org/wiki/1-Wire">https://en.wikipedia.org/wiki/1-Wire</a></li>

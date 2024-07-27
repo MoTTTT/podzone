@@ -91,10 +91,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#storage-architecture">Storage Architecture</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#hypervisors">Hypervisors</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#idrac">IDRAC</a>
-    </li>
         </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#consumer-hardware-kubernetes-cluster">Consumer hardware Kubernetes Cluster</a>
@@ -135,6 +131,8 @@
               <p class="caption"><span class="caption-text">Substrate</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
                   </li>
@@ -224,6 +222,7 @@
 <ul>
 <li>Dell PowerEdge R720</li>
 <li>16 X CPU cores: 2x Intel Xeon E5-2650 V1 @2.00GHz</li>
+<li>With hyperthreading, OS reports 32 CPUs total</li>
 <li>4 X 1GbE Ethernet Ports: (FM487 Quad Port Broadcom 5720 Network Card)</li>
 <li>8 x 8GB RAM</li>
 <li>8 X 147GB SAS 2.5" HDD Storage</li>
@@ -235,8 +234,11 @@
 </ul>
 <h3 id="hardware-allocation">Hardware allocation</h3>
 <ul>
-<li>CPU unit resource ratio: 1 Unit = {1 Core; 4 GB RAM; 73 GB OS Disk}</li>
-<li>Total 16 Units on Pluto</li>
+<li>Given 32 <code>CPUs</code>, 64GB RAM, and 1176 GB Disk (assuming RAID0) = 32 Units on Pluto</li>
+<li>CPU unit resource ratio: 1 Unit = {1 Core; 2 GB RAM; 36 GB Disk}</li>
+<li>With 128 GB RAM, unit is 1;4;36</li>
+<li>Assumption: 1 Unit sufficient for container, 2 units required for VM</li>
+<li>Assume largest VM requirement: 16 GB RAM = 8 units, with 8 CPUs and 288 GB disk.</li>
 <li>4 X {1 Core; 4 GB RAM; 73 GB Disk}: ceph / gateway / tftp / dhcp</li>
 <li>4 X {2 Core; 8 GB RAM; 73 GB Disk}: k8s</li>
 <li>1 X {4 Core; 16 GB RAM; 147 GB Disk}</li>
@@ -254,33 +256,6 @@
 <h3 id="storage-architecture">Storage Architecture</h3>
 <ul>
 <li>Pluto: Using 8 X SAS 147GB HDDs in RAID0 configuration</li>
-</ul>
-<p>References:</p>
-<ul>
-<li><a href="https://ubuntu.com/server/docs/iscsi-initiator-or-client">https://ubuntu.com/server/docs/iscsi-initiator-or-client</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Standard_RAID_levels">https://en.wikipedia.org/wiki/Standard_RAID_levels</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Non-standard_RAID_levels">https://en.wikipedia.org/wiki/Non-standard_RAID_levels</a></li>
-<li><a href="https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks">https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)</a></li>
-</ul>
-<h3 id="hypervisors">Hypervisors</h3>
-<ul>
-<li><a href="https://phoenixnap.com/kb/what-is-hypervisor-type-1-2">https://phoenixnap.com/kb/what-is-hypervisor-type-1-2</a></li>
-<li><a href="https://phoenixnap.com/kb/ubuntu-install-kvm">https://phoenixnap.com/kb/ubuntu-install-kvm</a></li>
-<li><a href="https://ubuntu.com/blog/kvm-hyphervisor">https://ubuntu.com/blog/kvm-hyphervisor</a></li>
-<li><a href="https://microstack.run/docs/single-node">https://microstack.run/docs/single-node</a></li>
-<li><a href="https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/">https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/</a></li>
-<li><a href="https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands">https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands</a></li>
-<li><a href="https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps">https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps</a></li>
-</ul>
-<h3 id="idrac">IDRAC</h3>
-<ul>
-<li><a href="https://docs.openstack.org/ironic/wallaby/admin/drivers/idrac.html">https://docs.openstack.org/ironic/wallaby/admin/drivers/idrac.html</a></li>
-<li><a href="https://www.dell.com/support/manuals/en-uk/idrac9-lifecycle-controller-v3.0-series/idrac_3.00.00.00_ug/idrac-licenses">https://www.dell.com/support/manuals/en-uk/idrac9-lifecycle-controller-v3.0-series/idrac_3.00.00.00_ug/idrac-licenses</a></li>
-<li><a href="https://snippets.bentasker.co.uk/page-1708021031-racadm-cheatsheet-for-Dell-iDRAC-BASH.html">https://snippets.bentasker.co.uk/page-1708021031-racadm-cheatsheet-for-Dell-iDRAC-BASH.html</a></li>
-<li><a href="https://github.com/Cizin/Idrac-cheat-sheet">https://github.com/Cizin/Idrac-cheat-sheet</a></li>
-<li><a href="https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf">https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf</a></li>
-<li><a href="https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/">https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/</a></li>
 </ul>
 <h2 id="consumer-hardware-kubernetes-cluster">Consumer hardware Kubernetes Cluster</h2>
 <ul>

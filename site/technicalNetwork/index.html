@@ -100,6 +100,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
@@ -110,6 +112,8 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#northern">Northern</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#enterprise-hardware-networking">Enterprise hardware networking</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#physical-network-components-and-interconnectivity">Physical network components and interconnectivity</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#sagecom-router">Sagecom router</a>
@@ -122,7 +126,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#southern">Southern</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References:</a>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
 </li>
 </ul>
 </li>
@@ -197,6 +201,19 @@ traffic, but is failing some tests indicating a router upgrade. Therefore more d
 and when the southern zone is re-constructed, will be supplemented.
 Physical network topologies do not include client devices not included in solution scope.</p>
 <h2 id="northern">Northern</h2>
+<h3 id="enterprise-hardware-networking">Enterprise hardware networking</h3>
+<ul>
+<li>Dell R720 Networking:  0FM487 Broadcom 5720 Quad Port 1GbE</li>
+<li>Ethernet devices on hypervisor host: eno1 (192.168.1.84/24) [pluto]; eno2 (192.168.1.85/24); en03; eno4</li>
+<li>Two bridge devices created: lxdbr0, lxdbr1</li>
+<li>VM Image template includes a device connected to each bridge: enp5s0, enp6s0</li>
+<li>Issued Bridge IP addresses: 10.81.249.177/24, 10.81.249.114/24, 10.81.249.15/24, 10.81.249.59/24 (maas)</li>
+<li>Port forward template: <code>lxc network forward port add [&lt;remote&gt;:]&lt;network&gt; &lt;listen_address&gt; &lt;protocol&gt; &lt;listen_port(s)&gt; &lt;target_address&gt; [&lt;target_port(s)&gt;] [flags]</code></li>
+<li>Create a forward template: <code>lxc network forward create &lt;network_name&gt; [&lt;listen_address&gt;] [--allocate=ipv{4,6}] [configuration_options...]</code></li>
+<li>Maas GUI: Port: 5240; IP: 10.81.249.59</li>
+<li>Create a forward for maas: <code>lxc network forward create lxdbr0 192.168.1.84</code></li>
+<li>Port forward traffic on <a href="http://pluto:5240">http://pluto:5240</a> to maas: <code>lxc network forward port add lxdbr0 192.168.1.84 tcp 5240 10.81.249.59 5240</code></li>
+</ul>
 <h3 id="physical-network-components-and-interconnectivity">Physical network components and interconnectivity</h3>
 <ul>
 <li>Static IP required, because of cgnat: This was issued efficiently over the phone, at the additional cost of £8 pm.</li>
@@ -256,9 +273,7 @@ k8s09{{norham03}}
 k8s10{{norham04}}
 </div>
 <h2 id="southern">Southern</h2>
-<ul>
-<li>Southern zone hardware </li>
-</ul>
+<p>Southern zone hardware</p>
 <div class="mermaid">---
 title: southern.podzone.net Network Topology
 ---
@@ -281,7 +296,7 @@ k8s2{{james}}
 k8s3{{rudolfensis}}
 k8s4{{ergaster}}
 </div>
-<h2 id="references">References:</h2>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://www.toob.co.uk/blog/ipv4-ipv6-and-cgnat-explained/">https://www.toob.co.uk/blog/ipv4-ipv6-and-cgnat-explained/</a></li>
 <li><a href="https://forums.thinkbroadband.com/otherisp/4675486-toob-fttp-in-southampton.html">https://forums.thinkbroadband.com/otherisp/4675486-toob-fttp-in-southampton.html</a></li>
@@ -290,6 +305,11 @@ k8s4{{ergaster}}
 <li><a href="https://www.toob.co.uk/linksys-router/">https://www.toob.co.uk/linksys-router/</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Wi-Fi_6">https://en.wikipedia.org/wiki/Wi-Fi_6</a></li>
 <li><a href="https://www.ispreview.co.uk/talk/threads/new-linksys-router-on-toob.40622/">https://www.ispreview.co.uk/talk/threads/new-linksys-router-on-toob.40622/</a></li>
+<li><a href="https://ubuntu.com/blog/data-centre-networking-what-is-ovn">https://ubuntu.com/blog/data-centre-networking-what-is-ovn</a></li>
+<li><a href="https://github.com/canonical/microovn">https://github.com/canonical/microovn</a></li>
+<li><a href="https://www.ovn.org/en/">https://www.ovn.org/en/</a></li>
+<li><a href="https://thesaitech.wordpress.com/2019/02/15/a-comparative-study-of-openstack-networking-architectures/">https://thesaitech.wordpress.com/2019/02/15/a-comparative-study-of-openstack-networking-architectures/</a></li>
+<li></li>
 </ul>
 </div>
 </div><footer>

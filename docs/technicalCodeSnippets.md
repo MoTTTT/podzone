@@ -1,6 +1,23 @@
 # Command line snippets
 
-## Network port forwarding
+## Network port forwarding - Hypervisor
+
+### Pluto
+
+- `lxc network forward create lxdbr0 192.168.1.84`
+- `sudo lxc network forward port add lxdbr0 192.168.1.84 tcp 2222 10.81.249.59 22`
+- `lxc network forward list lxdbr0`
+- `lxc network list`
+
+## maas
+
+- `sudo snap install --channel=3.5 maas`
+- `sudo snap install maas-test-db`
+- `sudo systemctl disable --now systemd-timesyncd`
+- `sudo maas init region+rack --database-uri maas-test-db:///`
+- `sudo maas createadmin --username=colleymj --email=martinjcolley@gmail.com`
+
+## Network port forwarding - bare metal host to bare metal host
 
 Port forwarding from the ISP router to a metallbr listener on a machine running behind a wifi ethernet extender was not functional. This required the `top-of-web` router - which reverse-proxies http/s traffic to the various clusters - to be moved to a wired connection on the ISP router. The non-http/s traffic (icecast etc) had similar issues, and port forwarding on the top-of-web router was therefore added.
 
@@ -28,6 +45,31 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 ### References
 
 - <https://chrisshennan.com/blog/using-iptables-to-forward-ports>
+
+## Timezones
+
+- To list timezones: `timedatectl list-timezones`
+- Set for UK: `timedatectl set-timezone Europe/London`
+
+## Squid proxy
+
+- On rudolfensis: `192.168.1.145:3128`
+- Install: `sudo apt-get install squid`
+- Add entries in `/etc/environment`, and `/etc/bash.bashrc`
+  
+```bash
+export https_proxy=http://192.168.1.145:3128
+export http_proxy=http://192.168.1.145:3128
+export ftp_proxy=ftp://192.168.1.145:3128
+```
+
+- In `/etc/apt/apt.conf`:
+
+```conf
+Acquire::http::proxy  "http://192.168.1.145:3128/";
+Acquire::ftp::proxy "ftp://192.168.1.145:3128/";
+Acquire::https::proxy "https://192.168.1.145:3128/";
+```
 
 ## Flux
 
@@ -163,6 +205,11 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 - `ip route show`
 - `ss -tunap`
 - `sudo lsof -i @james`
+
+## Temporary DNS failure
+
+- Error on apt operations: `Temporary failure resolving 'gb.archive.ubuntu.com'`
+- `echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null`
 
 ## Postgres
 

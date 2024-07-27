@@ -9,6 +9,19 @@ Physical network topologies do not include client devices not included in soluti
 
 ## Northern
 
+### Enterprise hardware networking
+
+- Dell R720 Networking:  0FM487 Broadcom 5720 Quad Port 1GbE
+- Ethernet devices on hypervisor host: eno1 (192.168.1.84/24) [pluto]; eno2 (192.168.1.85/24); en03; eno4
+- Two bridge devices created: lxdbr0, lxdbr1
+- VM Image template includes a device connected to each bridge: enp5s0, enp6s0
+- Issued Bridge IP addresses: 10.81.249.177/24, 10.81.249.114/24, 10.81.249.15/24, 10.81.249.59/24 (maas)
+- Port forward template: `lxc network forward port add [<remote>:]<network> <listen_address> <protocol> <listen_port(s)> <target_address> [<target_port(s)>] [flags]`
+- Create a forward template: `lxc network forward create <network_name> [<listen_address>] [--allocate=ipv{4,6}] [configuration_options...]`
+- Maas GUI: Port: 5240; IP: 10.81.249.59
+- Create a forward for maas: `lxc network forward create lxdbr0 192.168.1.84`
+- Port forward traffic on <http://pluto:5240> to maas: `lxc network forward port add lxdbr0 192.168.1.84 tcp 5240 10.81.249.59 5240`
+
 ### Physical network components and interconnectivity
 
 - Static IP required, because of cgnat: This was issued efficiently over the phone, at the additional cost of £8 pm.
@@ -71,9 +84,8 @@ k8s10{{norham04}}
 ```
 
 ## Southern
- 
-- Southern zone hardware 
 
+Southern zone hardware
 
 ```mermaid
 ---
@@ -99,10 +111,7 @@ k8s3{{rudolfensis}}
 k8s4{{ergaster}}
 ```
 
-
-
-
-## References:
+## References
 
 - <https://www.toob.co.uk/blog/ipv4-ipv6-and-cgnat-explained/>
 - <https://forums.thinkbroadband.com/otherisp/4675486-toob-fttp-in-southampton.html>
@@ -111,3 +120,8 @@ k8s4{{ergaster}}
 - <https://www.toob.co.uk/linksys-router/>
 - <https://en.wikipedia.org/wiki/Wi-Fi_6>
 - <https://www.ispreview.co.uk/talk/threads/new-linksys-router-on-toob.40622/>
+- <https://ubuntu.com/blog/data-centre-networking-what-is-ovn>
+- <https://github.com/canonical/microovn>
+- <https://www.ovn.org/en/>
+- <https://thesaitech.wordpress.com/2019/02/15/a-comparative-study-of-openstack-networking-architectures/>
+- 

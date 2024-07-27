@@ -37,7 +37,25 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://keybase.io/>
 - <https://github.com/alexellis/k3sup>
 
-## Openstack, MicroCloud, juju, MAAS
+## Networking / SDN
+
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/>
+- <https://www.ovn.org/en/architecture/>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_macvlan/>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_sriov/>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_ovn/>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_physical>
+- <https://wiki.ubuntu.com/FanNetworking>
+- <https://ubuntu.com/blog/data-centre-networking-what-is-ovn>
+- <https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/>
+- <https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/>
+- <https://github.com/canonical/microovn>
+- <https://microk8s.io/docs/addon-kube-ovn>
+- <https://github.com/kubeovn/kube-ovn/tree/master/docs>
+- <https://kubeovn.github.io/docs/stable/en/>
+- <https://www.kube-ovn.io/>
+
+## LXD LXC
 
 - <https://documentation.ubuntu.com/lxd/en/stable-5.0/authentication/>
 - <https://github.com/canonical/lxd-ui/wiki/Setup-local-LXD-cluster>
@@ -45,12 +63,13 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://ubuntu.com/blog/lxd_ui>
 - <https://github.com/canonical/lxd-ui>
 - <https://linuxcontainers.org/lxc/getting-started/>
-- <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-maas.html>
+- <https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775>
+
+## Openstack, MicroCloud
+
 - <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-openstack.html>
 - <https://discourse.ubuntu.com/t/tear-down-your-openstack-lab-environment/25078>
 - <https://askubuntu.com/questions/1483306/hangs-up-during-the-bootstrap-process-in-openstack>
-- <https://maas.io/docs/how-to-manage-ip-ranges>
-- <https://maas.io/docs/how-to-install-maas>
 - <https://www.openstack.org/>
 - <https://www.openstack.org/community>
 - <https://www.openstack.org/marketplace/distros/distribution/canonical/canonical-s-charmed-openstack>
@@ -60,6 +79,9 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://microcloud.is/>
 - <https://microstack.run/docs/multi-node>
 - <https://microstack.run/docs>
+
+## JUJU
+
 - <https://juju.is/>
 - <https://juju.is/docs/juju/configuration>
 - <https://juju.is/docs/juju/integration>
@@ -70,6 +92,11 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://juju.is/docs/sdk/build-and-deploy-minimal-machine-charm>
 - <https://juju.is/docs/sdk>
 - <https://juju.is/model-driven-operations-manifesto>
+
+## MAAS
+
+- <https://maas.io/docs/how-to-manage-ip-ranges>
+- <https://maas.io/docs/how-to-install-maas>
 - <https://maas.io/docs/about-cloud-networking>
 - <https://maas.io/docs/about-dhcp>
 - <https://maas.io/docs/about-maas-networks>
@@ -82,23 +109,39 @@ These links are not directly related to the PodZone project, or Kubernetes upski
 - <https://maas.io/docs/overview-of-maas>
 - <https://maas.io/docs/reference>
 - <https://maas.io/tutorials/build-a-maas-and-lxd-environment-in-30-minutes-with-multipass-on-ubuntu#1-overview>
+- <https://docs.openstack.org/project-deploy-guide/charm-deployment-guide/latest/install-maas.html>
+- <https://launchpad.net/maas/+series>
 
-## Unsorted
+## Cloudinit
 
-- <https://airflow.apache.org/>
-- <https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3>
-- <https://book.kubebuilder.io/>
-- <https://book.kubebuilder.io/quick-start>
-- <https://charmhub.io/jupyter-ui>
 - <https://cloud-init.io/>
-- <https://cloud.redhat.com/blog/introducing-the-operator-framework>
 - <https://cloudinit.readthedocs.io/en/latest/>
 - <https://cloudinit.readthedocs.io/en/latest/reference/datasources/nocloud.html>
 - <https://cloudinit.readthedocs.io/en/latest/reference/examples.html>
 - <https://cloudinit.readthedocs.io/en/latest/reference/modules.html>
 - <https://cloudinit.readthedocs.io/en/latest/tutorial/lxd.html>
+- <https://docs.ansible.com/ansible/latest/cli/ansible-pull.html>
+
+## Networking
+
+- <https://ubuntu.com/core/docs/networkmanager/networkmanager-and-netplan>
+- <https://help.ubuntu.com/community/NetworkManager>
+- <https://people.ubuntu.com/~slyon/netplan-docs/examples/>
+
+## Secret Management
+
+- <https://fluxcd.io/flux/guides/mozilla-sops/>
+- <https://github.com/getsops/sops>
+
+## Unsorted
+
+- <https://cloud.redhat.com/blog/introducing-the-operator-framework>
+- <https://airflow.apache.org/>
+- <https://blog.devgenius.io/setting-up-apache-airflow-on-kubernetes-with-gitsync-beaac2e397f3>
+- <https://book.kubebuilder.io/>
+- <https://book.kubebuilder.io/quick-start>
+- <https://charmhub.io/jupyter-ui>
 - <https://dansdatathoughts.substack.com/p/from-s3-to-r2-an-economic-opportunity>
-- <https://discuss.linuxcontainers.org/t/using-host-gateway-for-dhcp-for-lxc-containers/14775>
 - <https://docs.openstack.org/openstack-ansible-os_ironic/latest/>
 - <https://docs.oracle.com/cd/E19683-01/816-5042/auto32/index.html>
 - <https://en.wikipedia.org/wiki/1-Wire>

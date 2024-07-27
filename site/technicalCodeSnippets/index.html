@@ -104,6 +104,8 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
@@ -178,7 +180,23 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="command-line-snippets">Command line snippets</h1>
-<h2 id="network-port-forwarding">Network port forwarding</h2>
+<h2 id="network-port-forwarding-hypervisor">Network port forwarding - Hypervisor</h2>
+<h3 id="pluto">Pluto</h3>
+<ul>
+<li><code>lxc network forward create lxdbr0 192.168.1.84</code></li>
+<li><code>sudo lxc network forward port add lxdbr0 192.168.1.84 tcp 2222 10.81.249.59 22</code></li>
+<li><code>lxc network forward list lxdbr0</code></li>
+<li><code>lxc network list</code></li>
+</ul>
+<h2 id="maas">maas</h2>
+<ul>
+<li><code>sudo snap install --channel=3.5 maas</code></li>
+<li><code>sudo snap install maas-test-db</code></li>
+<li><code>sudo systemctl disable --now systemd-timesyncd</code></li>
+<li><code>sudo maas init region+rack --database-uri maas-test-db:///</code></li>
+<li><code>sudo maas createadmin --username=colleymj --email=martinjcolley@gmail.com</code></li>
+</ul>
+<h2 id="network-port-forwarding-bare-metal-host-to-bare-metal-host">Network port forwarding - bare metal host to bare metal host</h2>
 <p>Port forwarding from the ISP router to a metallbr listener on a machine running behind a wifi ethernet extender was not functional. This required the <code>top-of-web</code> router - which reverse-proxies http/s traffic to the various clusters - to be moved to a wired connection on the ISP router. The non-http/s traffic (icecast etc) had similar issues, and port forwarding on the top-of-web router was therefore added.</p>
 <ul>
 <li>Enable IP Forwarding: <code>net.ipv4.ip_forward = 1</code> in <code>/etc/sysctl.conf</code>, and apply changes: <code>sysctl -p</code></li>
@@ -208,6 +226,28 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 <ul>
 <li><a href="https://chrisshennan.com/blog/using-iptables-to-forward-ports">https://chrisshennan.com/blog/using-iptables-to-forward-ports</a></li>
 </ul>
+<h2 id="timezones">Timezones</h2>
+<ul>
+<li>To list timezones: <code>timedatectl list-timezones</code></li>
+<li>Set for UK: <code>timedatectl set-timezone Europe/London</code></li>
+</ul>
+<h2 id="squid-proxy">Squid proxy</h2>
+<ul>
+<li>On rudolfensis: <code>192.168.1.145:3128</code></li>
+<li>Install: <code>sudo apt-get install squid</code></li>
+<li>Add entries in <code>/etc/environment</code>, and <code>/etc/bash.bashrc</code></li>
+</ul>
+<pre><code class="language-bash">export https_proxy=http://192.168.1.145:3128
+export http_proxy=http://192.168.1.145:3128
+export ftp_proxy=ftp://192.168.1.145:3128
+</code></pre>
+<ul>
+<li>In <code>/etc/apt/apt.conf</code>:</li>
+</ul>
+<pre><code class="language-conf">Acquire::http::proxy  &quot;http://192.168.1.145:3128/&quot;;
+Acquire::ftp::proxy &quot;ftp://192.168.1.145:3128/&quot;;
+Acquire::https::proxy &quot;https://192.168.1.145:3128/&quot;;
+</code></pre>
 <h2 id="flux">Flux</h2>
 <p><code>flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal</code></p>
 <h2 id="git">git</h2>
@@ -338,6 +378,11 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 <li><code>ip route show</code></li>
 <li><code>ss -tunap</code></li>
 <li><code>sudo lsof -i @james</code></li>
+</ul>
+<h2 id="temporary-dns-failure">Temporary DNS failure</h2>
+<ul>
+<li>Error on apt operations: <code>Temporary failure resolving 'gb.archive.ubuntu.com'</code></li>
+<li><code>echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf &gt; /dev/null</code></li>
 </ul>
 <h2 id="postgres">Postgres</h2>
 <p>kubectl rollout status deployment/postgres

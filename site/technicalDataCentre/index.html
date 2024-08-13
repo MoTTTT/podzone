@@ -103,12 +103,12 @@
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Data Centre</a>
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#network-architecture">Network Architecture</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#platform-configuration">Platform configuration</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#dhcp-and-ip-allocation">DHCP and IP allocation</a>
 </li>
 </ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#platform-configuration">Platform configuration</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#netplan">NetPlan</a>
 </li>
@@ -208,8 +208,13 @@
 <h1 id="data-centre">Data Centre</h1>
 <p>Management considerations when scale and scope are encountered in technical implementation.</p>
 <h2 id="network-architecture">Network Architecture</h2>
+<h3 id="dhcp-and-ip-allocation">DHCP and IP allocation</h3>
+<ul>
+<li>Toob Network: 192.168.1.0/24</li>
+<li>PodZone IPs: 192.168.2.0/24</li>
+</ul>
 <div class="mermaid">---
-title: northern.podzone.net Request routing
+title: PodZone Request routing
 ---
 graph TD
 
@@ -220,30 +225,38 @@ router -- :80\n:443 --&gt; t360-02[t360\nrudolfensis\n192.168.1.145]
 t360-02 -- radio.muso.club\nbroadcast.muso.club\nconsole.muso.club --&gt; t360-01
 t360-02 -- nextcloud.muso.club --&gt; t360-03[t360\nnaledi\n192.168.1.151\n192.168.2.1]
 
-t360-03 -- :8006 --&gt; R720-01[R720\npluto\n192.168.2.50]
-t360-03 -- :8007-&gt;:8006 --&gt; R720-01[R720\nsaturn\n192.168.2.51]
-t360-03 -- :80\n:443 --&gt; VC-01[VC\nstyx\n192.168.2.60]
+t360-03 -- :8006 --&gt; R720-01
+t360-03 -- :8007-&gt;:8006 --&gt; R720-02
+t360-03 -- :80\n:443 --&gt; VC-01
 
-VC-01 -- nextcloud.muso.club --&gt; VC-02[VC\nnextcloud\n192.168.2.80]
-VC-01 -- radio.thruhere.net --&gt; LB-01[LB\nkubernetes\nmetallb\n192.168.2.61]
+VC-01 -- nextcloud.muso.club --&gt; VC-02
+VC-01 -- radio.thruhere.net --&gt; LB-01
+
+
+  subgraph  R720-01[R720\npluto\n192.168.2.50]
+    subgraph VC-01[VC\nstyx\n192.168.2.60]
+    end
+    subgraph VC-02[VC\nnextcloud\n192.168.2.80]
+    end
+    subgraph LB-01[LB\nkubernetes\nmetallb\n192.168.2.61]
+    end    
+  end
+  subgraph R720-02[R720\nsaturn\n192.168.2.51]
+    subgraph VM-01[VM\n????\n192.168.2.70]
+    end  
+  end
+
 
 </div>
 <h2 id="platform-configuration">Platform configuration</h2>
-<h3 id="dhcp-and-ip-allocation">DHCP and IP allocation</h3>
-<ul>
-<li>Network: 192.168.1.0/24</li>
-<li>ISP Router: .10 to .190</li>
-<li>WiFi extender: Disabled</li>
-<li>MAAS: 191 to 254</li>
-<li>pluto IPs: 192.168.1.88, 89, 90, 91</li>
-</ul>
 <h2 id="netplan">NetPlan</h2>
 <ul>
 <li>Modify <code>/etc/netplan/00-installer-config.yaml</code> for static IPs. See yaml below.</li>
 <li>Generate configuration: <code>sudo netplan generate</code></li>
 <li>Apply configuration: <code>sudo netplan apply</code></li>
 </ul>
-<pre><code class="language-yaml"># /etc/netplan/00-installer-config.yaml
+<pre><code class="language-yaml">
+# /etc/netplan/00-installer-config.yaml
 # Netplan for pluto
 network:
   ethernets:

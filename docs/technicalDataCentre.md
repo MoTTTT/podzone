@@ -4,9 +4,14 @@ Management considerations when scale and scope are encountered in technical impl
 
 ## Network Architecture
 
+### DHCP and IP allocation
+
+- Toob Network: 192.168.1.0/24
+- PodZone IPs: 192.168.2.0/24
+
 ```mermaid
 ---
-title: northern.podzone.net Request routing
+title: PodZone Request routing
 ---
 graph TD
 
@@ -17,33 +22,39 @@ router -- :80\n:443 --> t360-02[t360\nrudolfensis\n192.168.1.145]
 t360-02 -- radio.muso.club\nbroadcast.muso.club\nconsole.muso.club --> t360-01
 t360-02 -- nextcloud.muso.club --> t360-03[t360\nnaledi\n192.168.1.151\n192.168.2.1]
 
-t360-03 -- :8006 --> R720-01[R720\npluto\n192.168.2.50]
-t360-03 -- :8007->:8006 --> R720-01[R720\nsaturn\n192.168.2.51]
-t360-03 -- :80\n:443 --> VC-01[VC\nstyx\n192.168.2.60]
+t360-03 -- :8006 --> R720-01
+t360-03 -- :8007->:8006 --> R720-02
+t360-03 -- :80\n:443 --> VC-01
 
-VC-01 -- nextcloud.muso.club --> VC-02[VC\nnextcloud\n192.168.2.80]
-VC-01 -- radio.thruhere.net --> LB-01[LB\nkubernetes\nmetallb\n192.168.2.61]
+VC-01 -- nextcloud.muso.club --> VC-02
+VC-01 -- radio.thruhere.net --> LB-01
+
+
+  subgraph  R720-01[R720\npluto\n192.168.2.50]
+    subgraph VC-01[VC\nstyx\n192.168.2.60]
+    end
+    subgraph VC-02[VC\nnextcloud\n192.168.2.80]
+    end
+    subgraph LB-01[LB\nkubernetes\nmetallb\n192.168.2.61]
+    end    
+  end
+  subgraph R720-02[R720\nsaturn\n192.168.2.51]
+    subgraph VM-01[VM\n????\n192.168.2.70]
+    end  
+  end
+   
 
 ```
 
-
 ## Platform configuration
-
-### DHCP and IP allocation
-
-- Network: 192.168.1.0/24
-- ISP Router: .10 to .190
-- WiFi extender: Disabled
-- MAAS: 191 to 254
-- pluto IPs: 192.168.1.88, 89, 90, 91
 
 ## NetPlan
 
 - Modify `/etc/netplan/00-installer-config.yaml` for static IPs. See yaml below.
 - Generate configuration: `sudo netplan generate`
 - Apply configuration: `sudo netplan apply`
-
 ```yaml
+
 # /etc/netplan/00-installer-config.yaml
 # Netplan for pluto
 network:

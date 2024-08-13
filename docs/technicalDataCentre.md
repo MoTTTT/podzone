@@ -2,6 +2,31 @@
 
 Management considerations when scale and scope are encountered in technical implementation.
 
+## Network Architecture
+
+```mermaid
+---
+title: northern.podzone.net Request routing
+---
+graph TD
+
+Internet -- 145.40.190.159  --> router[toob-11641\n192.168.1.1]
+router -- :8000\n:8001\n:8002 --> t360-01[t360\nhabilis\n192.168.1.50]
+router -- :80\n:443 --> t360-02[t360\nrudolfensis\n192.168.1.145]
+
+t360-02 -- radio.muso.club\nbroadcast.muso.club\nconsole.muso.club --> t360-01
+t360-02 -- nextcloud.muso.club --> t360-03[t360\nnaledi\n192.168.1.151\n192.168.2.1]
+
+t360-03 -- :8006 --> R720-01[R720\npluto\n192.168.2.50]
+t360-03 -- :8007->:8006 --> R720-01[R720\nsaturn\n192.168.2.51]
+t360-03 -- :80\n:443 --> VC-01[VC\nstyx\n192.168.2.60]
+
+VC-01 -- nextcloud.muso.club --> VC-02[VC\nnextcloud\n192.168.2.80]
+VC-01 -- radio.thruhere.net --> LB-01[LB\nkubernetes\nmetallb\n192.168.2.61]
+
+```
+
+
 ## Platform configuration
 
 ### DHCP and IP allocation
@@ -107,8 +132,14 @@ snap set system proxy.https="http://192.168.1.145:3128"
 - Save changes to persistent tables: `sudo iptables-save > /etc/iptables/rules.v4`
 - For ssh: `iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 2222 -j DNAT --to-destination 192.168.2.1:22`
 - For maas: `iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 5240 -j DNAT --to-destination 192.168.2.1:5240`
+- For lxd: `iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8843 -j DNAT --to-destination 192.168.2.51:8843`
 - Check the rules: `iptables -t nat -nvL`
 - Save the rules: `iptables-save > /etc/iptables/rules.v4`
+
+## IPMI
+
+- Fan control: `sudo ipmitool raw 0x30 0x30 0x01 0x00`
+- Set fan speed: `sudo ipmitool raw 0x30 0x30 0x02 0xff 0x14`
 
 ## Config Method automation options
 
@@ -127,3 +158,11 @@ ansible:
     playbook_name: podnode.yaml
 ```
 
+## ProxMox ansible
+
+- Token: `d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac`
+
+## Proxmox cloudinit
+
+- `wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img` 
+- `qm create 9000 --memory 2048 --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci`

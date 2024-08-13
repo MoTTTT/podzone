@@ -26,7 +26,7 @@ To test the NFS server, set up a client machine similar to a kubernetes node (as
 
 ### Dynamic Provisioning
 
-Static provisioning is discussed below, but I could only get success with dynamic provisioning. 
+Static provisioning is discussed below, but I could only get success with dynamic provisioning.
 
 Dynamic Provisioning for NFS only requires the nfs-common package on k8s nodes: `sudo apt install nfs-common -y`
 

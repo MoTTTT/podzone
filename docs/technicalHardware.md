@@ -26,9 +26,14 @@
 
 ### Hardware allocation
 
-- Given 32 `CPUs`, 64GB RAM, and 1176 GB Disk (assuming RAID0) = 32 Units on Pluto
+- CPUs: 32 `CPUs`,
+- 256GB RAM
+- Disk: 4 X 174 GB + 4 X 600 GB Disk
+
+
+
 - CPU unit resource ratio: 1 Unit = {1 Core; 2 GB RAM; 36 GB Disk}
-- With 128 GB RAM, unit is 1;4;36
+- With 256 GB RAM, unit is 1;8;36
 - Assumption: 1 Unit sufficient for container, 2 units required for VM
 - Assume largest VM requirement: 16 GB RAM = 8 units, with 8 CPUs and 288 GB disk.
 - 4 X {1 Core; 4 GB RAM; 73 GB Disk}: ceph / gateway / tftp / dhcp

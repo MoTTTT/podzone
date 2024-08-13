@@ -1,6 +1,6 @@
 # Personality Questionnaire
 
-
+```xml
 <form action="/action_page.php">
   <fieldset>
     <legend>Personal Details:</legend>
@@ -315,6 +315,7 @@ label {
 }
 label + label {clear: none;}
 input {vertical-align: top;}
+```
 
 ## DB design
 
@@ -335,8 +336,6 @@ CREATE table CONTACTME (
     ADDRESS varchar(100),
     CONTACT varchar(100),
     PRIMARY KEY (ID));
-```
-
 
 DROP TABLE IF EXISTS "CUSTOMER";
 CREATE TABLE "norma"."customer" (
@@ -448,3 +447,4 @@ CREATE TABLE "norma"."interest_answers" (
     "Q95" boolean NOT NULL,
     "Q96" boolean NOT NULL
 ) WITH (oids = false);
+```

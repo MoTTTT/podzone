@@ -16,7 +16,7 @@ title: PodZone Request routing
 graph TD
 
 Internet -- 145.40.190.159  --> router[toob-11641\n192.168.1.1]
-router -- PF: :80 :443\nPF: :8000 :8001 :8002 --> t360-03
+router -- PF: :80 :443\nPF: :8000 :8001 :8002 --> t360-03[192.168.1.151\nnaledi\n192.168.2.1]
 
 t360-03 -- RP: proxmox.muso.club --> HV
 t360-03 -- RP: nextcloud.muso.club --> VC-02

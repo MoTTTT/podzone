@@ -188,6 +188,12 @@
 <li><code>lxc network forward list lxdbr0</code></li>
 <li><code>lxc network list</code></li>
 </ul>
+<h3 id="ip-address-management">IP Address management</h3>
+<ul>
+<li>DNS nameserver query: <code>cat /etc/resolv.conf</code></li>
+<li>Contains nameserver <code>127.0.0.53</code> (localhost), indicating use of <code>systemd-resolved</code>.</li>
+<li>To check active DNS nameserver behind <code>systemd-resolved</code>: <code>resolvectl status</code></li>
+</ul>
 <h2 id="maas">maas</h2>
 <ul>
 <li><code>sudo snap install --channel=3.5 maas</code></li>
@@ -214,7 +220,13 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 </code></pre>
 <ul>
 <li>Save the rules: <code>iptables-save &gt; /etc/iptables/rules.v4</code></li>
-<li>Check the rules: <code>iptables -t nat -nvL</code></li>
+<li>
+<p>Check the rules: <code>iptables -t nat -nvL</code></p>
+</li>
+<li>
+<p>Deleting, get line numbers: <code>iptables -t nat -L --line-numbers</code></p>
+</li>
+<li>Delete specific line, by number: <code>iptables -t nat -D PREROUTING 1</code></li>
 </ul>
 <h3 id="notes">Notes</h3>
 <ul>
@@ -234,9 +246,23 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 <h2 id="squid-proxy">Squid proxy</h2>
 <ul>
 <li>On rudolfensis: <code>192.168.1.145:3128</code></li>
+<li>On naledi: <code>192.168.2.1:3128</code></li>
 <li>Install: <code>sudo apt-get install squid</code></li>
 <li>Add entries in <code>/etc/environment</code>, and <code>/etc/bash.bashrc</code></li>
 </ul>
+<h3 id="for-proxy-on-naledi">For proxy on naledi</h3>
+<pre><code class="language-bash">export https_proxy=http://192.168.2.1:3128
+export http_proxy=http://192.168.2.1:3128
+export ftp_proxy=ftp://192.168.2.1:3128
+</code></pre>
+<ul>
+<li>In <code>/etc/apt/apt.conf</code>:</li>
+</ul>
+<pre><code class="language-conf">Acquire::http::proxy  &quot;http://192.168.2.1:3128/&quot;;
+Acquire::ftp::proxy &quot;ftp://192.168.2.1:3128/&quot;;
+Acquire::https::proxy &quot;http://192.168.2.1:3128/&quot;;
+</code></pre>
+<h3 id="for-proxy-on-rudolfensis">For proxy on rudolfensis</h3>
 <pre><code class="language-bash">export https_proxy=http://192.168.1.145:3128
 export http_proxy=http://192.168.1.145:3128
 export ftp_proxy=ftp://192.168.1.145:3128
@@ -246,7 +272,7 @@ export ftp_proxy=ftp://192.168.1.145:3128
 </ul>
 <pre><code class="language-conf">Acquire::http::proxy  &quot;http://192.168.1.145:3128/&quot;;
 Acquire::ftp::proxy &quot;ftp://192.168.1.145:3128/&quot;;
-Acquire::https::proxy &quot;https://192.168.1.145:3128/&quot;;
+Acquire::http::proxy &quot;https://192.168.1.145:3128/&quot;;
 </code></pre>
 <h2 id="flux">Flux</h2>
 <p><code>flux bootstrap github --token-auth --owner=MoTTTT --repository=admin --branch=main --path=clusters/my-cluster --personal</code></p>

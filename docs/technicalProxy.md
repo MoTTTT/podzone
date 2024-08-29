@@ -53,49 +53,65 @@ k8s09{{norham03}}
 k8s10{{norham04}}
 ```
 
-### Sample config file
+## Apache
 
-Note that the http to https redirect that Certbot adds needs to be disabled, otherwise certificate generation on the cluster will not work, as the listeners set up by Certificate Managers will not be reachable.
+- Install: `sudo apt install apache2`
+- Create a `VirtualHost` file in `/etc/apache2/sites-available`
+- Enable ssl: `sudo a2enmod ssl`
+- Enable proxy: `sudo a2enmod proxy`
+- Enable proxy_html: `sudo a2enmod proxy_html`
+- Enable proxy_http: `sudo a2enmod proxy_http`
+- Enable websocket proxy: `sudo a2enmod proxy_wstunnel`
+- sudo a2enmod proxy rewrite proxy_http proxy_wstunnel
+- sudo a2enmod rewrite  
+- Install certbot: `sudo snap install --classic certbot`
+- Configure certbot for apache: `sudo certbot --apache`
+- Create a `VirtualHost` file in `/etc/apache2/sites-available`, e.g. `proxmox.conf`
+- Enable site with `sudo a2ensite proxmox`
+- Add certbot sites with e.g. `certbot --expand -d nextcloud.muso.club`
+- NOTE: If forwarding to a k8s cluster with ingress certificate management: The http to https redirect that Certbot adds needs to be disabled, otherwise certificate generation on the cluster will not work, as the http listener set up by Certificate Issuer will not be reachable.
 
-### Top of stack reverse proxy
+### Sample virtual host config
 
 ```conf
+# Rudolfensis Apache configuration file for proxmox.muso.club
 <VirtualHost *:443>
   SSLProxyEngine on
   SSLProxyVerify none
   ProxyPreserveHost on
-  ProxyPass /  https://192.168.1.220/
-  ProxyPassReverse /  https://192.168.1.220/
+  ProxyPass /  https://192.168.2.51:8006/
+  ProxyPassReverse /  https://192.168.2.51:8006/
   ProxyRequests Off
-  Include /etc/letsencrypt/options-ssl-apache.conf
-  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
-  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
-  ServerName ...
-  ServerAlias ...
+  SSLProxyCheckPeerName off
+  ServerName proxmox.muso.club
+SSLCertificateFile /etc/letsencrypt/live/proxmox.muso.club/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/proxmox.muso.club/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
 </VirtualHost>
 <VirtualHost *:80>
+  ServerName proxmox.muso.club
   ProxyPreserveHost on
-  ProxyPass /  http://192.168.1.220/
-  ProxyPassReverse /  http://192.168.1.220/
+  ProxyPass /  http://192.168.2.51:8006/
+  ProxyPassReverse /  http://192.168.2.51:8006/
   ProxyRequests Off
-  ServerName ...
-  ServerAlias ...
-  #RewriteEngine on
-  #RewriteCond %{SERVER_NAME} =...
-  #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =proxmox.muso.club
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
 
-## Adding a domain
+### Naledi certbot
 
-To add a domain, e.g. norma.blog.podzone.org, call certbot with the `--expand` option.
+```bash
+certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com,nextcloud.muso.club,proxmox.muso.club
+```
 
-### Current list
+### Current aggregated list, for rudolfensis
 
 Add entries and check in before applying.
 
 ```bash
-certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com
+certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com,nextcloud.muso.club,proxmox.muso.club
 ```
 
 ## Domain evaluation 30 May 2024
@@ -104,81 +120,81 @@ Domains in certbot spec that are used currently or to be retained
 
 ### Prod
 
-- docs.podzone.net
-- musings.thruhere.net
-- uk2day.online
-- www.uk2day.online
+- `docs.podzone.net`
+- `musings.thruhere.net`
+- `uk2day.online`
+- `www.uk2day.online`
 
 ### Muso Club
 
-- muso.club
-- db.muso.club
-- console.muso.club
-- broadcast.muso.club
-- radio.muso.club
-- www.muso.club
+- `muso.club`
+- `db.muso.club`
+- `console.muso.club`
+- `broadcast.muso.club`
+- `radio.muso.club`
+- `www.muso.club`
 
 ### For non-prod radio
 
-- radio.thruhere.net
-- console.thruhere.net
+- `radio.thruhere.net`
+- `console.thruhere.net`
 
 ### Wordpress instances
 
-- <www.dialplus44.com>
-- <dialplus44.uk>
-- <dialplus44.com>
-- <www.dialplus44.uk>
-- <www.asazimusic.com>
-- <asazimusic.com>
-- <norma.blog.podzone.org>
-- <adam.blog.podzone.org>
-- <motttt.blog.podzone.org>
-- <projecttoolkit.co.uk>
-- <project-tech.co.uk>
+- `www.dialplus44.com`
+- `dialplus44.uk`
+- `dialplus44.com`
+- `www.dialplus44.uk`
+- `www.asazimusic.com`
+- `asazimusic.com`
+- `norma.blog.podzone.org`
+- `adam.blog.podzone.org`
+- `motttt.blog.podzone.org`
+- `projecttoolkit.co.uk`
+- `project-tech.co.uk`
 
 ### Fabric Ingress
 
-- <content.podzone.net>
-- <central.podzone.net>
-- <control.podzone.net>
-- <north.podzone.net>
+- `content.podzone.net`
+- `central.podzone.net`
+- `control.podzone.net`
+- `north.podzone.net`
 
 ## Unused DynDns hosts
 
-- <east.podzone.net>
-- <eastern.podzone.net>
-- <southern.podzone.net>
-- <west.podzone.net>
-- <western.podzone.net>
-- <colley.endoftheinternet.org>
-- <mottttspot.servegame.org>
-- <poc.endoftheinternet.org>
-- <qapps.does-it.net>
-- <qsolutions.endoftheinternet.org>
-- <www.radio.muso.club>
-- <gymyc.podzone.net>
-- <charles.blog.podzone.org>
-- <wordpress.podzone.org>
-- <blog.podzone.org>
-- <uktoday.blogsite.org>
-- <uktoday.thruhere.net>
-- <uktoday.podzone.org>
-- <uktoday.podzone.net>
-- <uktoday.blog.podzone.org>
-- <www.jam.radio.fm>
-- <jam.radio.fm>
-- <console.jam.radio.fm>
-- <broadcast.jam.radio.fm>
-- <dj.radio.thruhere.net>
-- <master.radio.thruhere.net>
-- <radio.thruhere.net>
-- <www.radio.thruhere.net>
-- <dev.podzone.net>
-- <prod.podzone.net>
-- <northern.podzone.net>
-- <ceph.northern.podzone.net>
-- <dbgui.dev.podzone.net>
+- `east.podzone.net`
+- `eastern.podzone.net`
+- `southern.podzone.net`
+- `west.podzone.net`
+- `western.podzone.net`
+- `colley.endoftheinternet.org`
+- `mottttspot.servegame.org`
+- `poc.endoftheinternet.org`
+- `qapps.does-it.net`
+- `qsolutions.endoftheinternet.org`
+- `www.radio.muso.club`
+- `gymyc.podzone.net`
+- `charles.blog.podzone.org`
+- `wordpress.podzone.org`
+- `blog.podzone.org`
+- `uktoday.blogsite.org`
+- `uktoday.thruhere.net`
+- `uktoday.podzone.org`
+- `uktoday.podzone.net`
+- `uktoday.blog.podzone.org`
+- `www.jam.radio.fm`
+- `jam.radio.fm`
+- `console.jam.radio.fm`
+- `broadcast.jam.radio.fm`
+- `dj.radio.thruhere.net`
+- `master.radio.thruhere.net`
+- `radio.thruhere.net`
+- `www.radio.thruhere.net`
+- `dev.podzone.net`
+- `prod.podzone.net`
+- `northern.podzone.net`
+- `ceph.northern.podzone.net`
+- `dbgui.dev.podzone.net`
 
 ## References
 

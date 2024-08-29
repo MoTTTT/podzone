@@ -115,16 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#certbot">Certbot</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#northern-request-routing">Northern request routing</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#apache">Apache</a>
 <ul>
-<li class="toctree-l3"><a class="reference internal" href="#sample-config-file">Sample config file</a>
+<li class="toctree-l3"><a class="reference internal" href="#sample-virtual-host-config">Sample virtual host config</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#top-of-stack-reverse-proxy">Top of stack reverse proxy</a>
+<li class="toctree-l3"><a class="reference internal" href="#naledi-certbot">Naledi certbot</a>
 </li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#adding-a-domain">Adding a domain</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#current-list">Current list</a>
+<li class="toctree-l3"><a class="reference internal" href="#current-aggregated-list-for-rudolfensis">Current aggregated list, for rudolfensis</a>
 </li>
 </ul>
 </li>
@@ -255,119 +253,136 @@ k8s08{{norham02}}
 k8s09{{norham03}}
 k8s10{{norham04}}
 </div>
-<h3 id="sample-config-file">Sample config file</h3>
-<p>Note that the http to https redirect that Certbot adds needs to be disabled, otherwise certificate generation on the cluster will not work, as the listeners set up by Certificate Managers will not be reachable.</p>
-<h3 id="top-of-stack-reverse-proxy">Top of stack reverse proxy</h3>
-<pre><code class="language-conf">&lt;VirtualHost *:443&gt;
+<h2 id="apache">Apache</h2>
+<ul>
+<li>Install: <code>sudo apt install apache2</code></li>
+<li>Create a <code>VirtualHost</code> file in <code>/etc/apache2/sites-available</code></li>
+<li>Enable ssl: <code>sudo a2enmod ssl</code></li>
+<li>Enable proxy: <code>sudo a2enmod proxy</code></li>
+<li>Enable proxy_html: <code>sudo a2enmod proxy_html</code></li>
+<li>Enable proxy_http: <code>sudo a2enmod proxy_http</code></li>
+<li>Enable websocket proxy: <code>sudo a2enmod proxy_wstunnel</code></li>
+<li>sudo a2enmod proxy rewrite proxy_http proxy_wstunnel</li>
+<li>sudo a2enmod rewrite  </li>
+<li>Install certbot: <code>sudo snap install --classic certbot</code></li>
+<li>Configure certbot for apache: <code>sudo certbot --apache</code></li>
+<li>Create a <code>VirtualHost</code> file in <code>/etc/apache2/sites-available</code>, e.g. <code>proxmox.conf</code></li>
+<li>Enable site with <code>sudo a2ensite proxmox</code></li>
+<li>Add certbot sites with e.g. <code>certbot --expand -d nextcloud.muso.club</code></li>
+<li>NOTE: If forwarding to a k8s cluster with ingress certificate management: The http to https redirect that Certbot adds needs to be disabled, otherwise certificate generation on the cluster will not work, as the http listener set up by Certificate Issuer will not be reachable.</li>
+</ul>
+<h3 id="sample-virtual-host-config">Sample virtual host config</h3>
+<pre><code class="language-conf"># Rudolfensis Apache configuration file for proxmox.muso.club
+&lt;VirtualHost *:443&gt;
   SSLProxyEngine on
   SSLProxyVerify none
   ProxyPreserveHost on
-  ProxyPass /  https://192.168.1.220/
-  ProxyPassReverse /  https://192.168.1.220/
+  ProxyPass /  https://192.168.2.51:8006/
+  ProxyPassReverse /  https://192.168.2.51:8006/
   ProxyRequests Off
-  Include /etc/letsencrypt/options-ssl-apache.conf
-  SSLCertificateFile /etc/letsencrypt/live/blog.podzone.org/fullchain.pem
-  SSLCertificateKeyFile /etc/letsencrypt/live/blog.podzone.org/privkey.pem
-  ServerName ...
-  ServerAlias ...
+  SSLProxyCheckPeerName off
+  ServerName proxmox.muso.club
+SSLCertificateFile /etc/letsencrypt/live/proxmox.muso.club/fullchain.pem
+SSLCertificateKeyFile /etc/letsencrypt/live/proxmox.muso.club/privkey.pem
+Include /etc/letsencrypt/options-ssl-apache.conf
 &lt;/VirtualHost&gt;
 &lt;VirtualHost *:80&gt;
+  ServerName proxmox.muso.club
   ProxyPreserveHost on
-  ProxyPass /  http://192.168.1.220/
-  ProxyPassReverse /  http://192.168.1.220/
+  ProxyPass /  http://192.168.2.51:8006/
+  ProxyPassReverse /  http://192.168.2.51:8006/
   ProxyRequests Off
-  ServerName ...
-  ServerAlias ...
-  #RewriteEngine on
-  #RewriteCond %{SERVER_NAME} =...
-  #RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+RewriteEngine on
+RewriteCond %{SERVER_NAME} =proxmox.muso.club
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 &lt;/VirtualHost&gt;
 </code></pre>
-<h2 id="adding-a-domain">Adding a domain</h2>
-<p>To add a domain, e.g. norma.blog.podzone.org, call certbot with the <code>--expand</code> option.</p>
-<h3 id="current-list">Current list</h3>
+<h3 id="naledi-certbot">Naledi certbot</h3>
+<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com,nextcloud.muso.club,proxmox.muso.club
+</code></pre>
+<h3 id="current-aggregated-list-for-rudolfensis">Current aggregated list, for rudolfensis</h3>
 <p>Add entries and check in before applying.</p>
-<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com
+<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,console.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com,nextcloud.muso.club,proxmox.muso.club
 </code></pre>
 <h2 id="domain-evaluation-30-may-2024">Domain evaluation 30 May 2024</h2>
 <p>Domains in certbot spec that are used currently or to be retained</p>
 <h3 id="prod">Prod</h3>
 <ul>
-<li>docs.podzone.net</li>
-<li>musings.thruhere.net</li>
-<li>uk2day.online</li>
-<li>www.uk2day.online</li>
+<li><code>docs.podzone.net</code></li>
+<li><code>musings.thruhere.net</code></li>
+<li><code>uk2day.online</code></li>
+<li><code>www.uk2day.online</code></li>
 </ul>
 <h3 id="muso-club">Muso Club</h3>
 <ul>
-<li>muso.club</li>
-<li>db.muso.club</li>
-<li>console.muso.club</li>
-<li>broadcast.muso.club</li>
-<li>radio.muso.club</li>
-<li>www.muso.club</li>
+<li><code>muso.club</code></li>
+<li><code>db.muso.club</code></li>
+<li><code>console.muso.club</code></li>
+<li><code>broadcast.muso.club</code></li>
+<li><code>radio.muso.club</code></li>
+<li><code>www.muso.club</code></li>
 </ul>
 <h3 id="for-non-prod-radio">For non-prod radio</h3>
 <ul>
-<li>radio.thruhere.net</li>
-<li>console.thruhere.net</li>
+<li><code>radio.thruhere.net</code></li>
+<li><code>console.thruhere.net</code></li>
 </ul>
 <h3 id="wordpress-instances">Wordpress instances</h3>
 <ul>
-<li><www.dialplus44.com></www.dialplus44.com></li>
-<li><dialplus44.uk></dialplus44.uk></li>
-<li><dialplus44.com></dialplus44.com></li>
-<li><www.dialplus44.uk></www.dialplus44.uk></li>
-<li><www.asazimusic.com></www.asazimusic.com></li>
-<li><asazimusic.com></asazimusic.com></li>
-<li><norma.blog.podzone.org></norma.blog.podzone.org></li>
-<li><adam.blog.podzone.org></adam.blog.podzone.org></li>
-<li><motttt.blog.podzone.org></motttt.blog.podzone.org></li>
-<li><projecttoolkit.co.uk></projecttoolkit.co.uk></li>
-<li><project-tech.co.uk></project-tech.co.uk></li>
+<li><code>www.dialplus44.com</code></li>
+<li><code>dialplus44.uk</code></li>
+<li><code>dialplus44.com</code></li>
+<li><code>www.dialplus44.uk</code></li>
+<li><code>www.asazimusic.com</code></li>
+<li><code>asazimusic.com</code></li>
+<li><code>norma.blog.podzone.org</code></li>
+<li><code>adam.blog.podzone.org</code></li>
+<li><code>motttt.blog.podzone.org</code></li>
+<li><code>projecttoolkit.co.uk</code></li>
+<li><code>project-tech.co.uk</code></li>
 </ul>
 <h3 id="fabric-ingress">Fabric Ingress</h3>
 <ul>
-<li><content.podzone.net></content.podzone.net></li>
-<li><central.podzone.net></central.podzone.net></li>
-<li><control.podzone.net></control.podzone.net></li>
-<li><north.podzone.net></north.podzone.net></li>
+<li><code>content.podzone.net</code></li>
+<li><code>central.podzone.net</code></li>
+<li><code>control.podzone.net</code></li>
+<li><code>north.podzone.net</code></li>
 </ul>
 <h2 id="unused-dyndns-hosts">Unused DynDns hosts</h2>
 <ul>
-<li><east.podzone.net></east.podzone.net></li>
-<li><eastern.podzone.net></eastern.podzone.net></li>
-<li><southern.podzone.net></southern.podzone.net></li>
-<li><west.podzone.net></west.podzone.net></li>
-<li><western.podzone.net></western.podzone.net></li>
-<li><colley.endoftheinternet.org></colley.endoftheinternet.org></li>
-<li><mottttspot.servegame.org></mottttspot.servegame.org></li>
-<li><poc.endoftheinternet.org></poc.endoftheinternet.org></li>
-<li><qapps.does-it.net></qapps.does-it.net></li>
-<li><qsolutions.endoftheinternet.org></qsolutions.endoftheinternet.org></li>
-<li><www.radio.muso.club></www.radio.muso.club></li>
-<li><gymyc.podzone.net></gymyc.podzone.net></li>
-<li><charles.blog.podzone.org></charles.blog.podzone.org></li>
-<li><wordpress.podzone.org></wordpress.podzone.org></li>
-<li><blog.podzone.org></blog.podzone.org></li>
-<li><uktoday.blogsite.org></uktoday.blogsite.org></li>
-<li><uktoday.thruhere.net></uktoday.thruhere.net></li>
-<li><uktoday.podzone.org></uktoday.podzone.org></li>
-<li><uktoday.podzone.net></uktoday.podzone.net></li>
-<li><uktoday.blog.podzone.org></uktoday.blog.podzone.org></li>
-<li><www.jam.radio.fm></www.jam.radio.fm></li>
-<li><jam.radio.fm></jam.radio.fm></li>
-<li><console.jam.radio.fm></console.jam.radio.fm></li>
-<li><broadcast.jam.radio.fm></broadcast.jam.radio.fm></li>
-<li><dj.radio.thruhere.net></dj.radio.thruhere.net></li>
-<li><master.radio.thruhere.net></master.radio.thruhere.net></li>
-<li><radio.thruhere.net></radio.thruhere.net></li>
-<li><www.radio.thruhere.net></www.radio.thruhere.net></li>
-<li><dev.podzone.net></dev.podzone.net></li>
-<li><prod.podzone.net></prod.podzone.net></li>
-<li><northern.podzone.net></northern.podzone.net></li>
-<li><ceph.northern.podzone.net></ceph.northern.podzone.net></li>
-<li><dbgui.dev.podzone.net></dbgui.dev.podzone.net></li>
+<li><code>east.podzone.net</code></li>
+<li><code>eastern.podzone.net</code></li>
+<li><code>southern.podzone.net</code></li>
+<li><code>west.podzone.net</code></li>
+<li><code>western.podzone.net</code></li>
+<li><code>colley.endoftheinternet.org</code></li>
+<li><code>mottttspot.servegame.org</code></li>
+<li><code>poc.endoftheinternet.org</code></li>
+<li><code>qapps.does-it.net</code></li>
+<li><code>qsolutions.endoftheinternet.org</code></li>
+<li><code>www.radio.muso.club</code></li>
+<li><code>gymyc.podzone.net</code></li>
+<li><code>charles.blog.podzone.org</code></li>
+<li><code>wordpress.podzone.org</code></li>
+<li><code>blog.podzone.org</code></li>
+<li><code>uktoday.blogsite.org</code></li>
+<li><code>uktoday.thruhere.net</code></li>
+<li><code>uktoday.podzone.org</code></li>
+<li><code>uktoday.podzone.net</code></li>
+<li><code>uktoday.blog.podzone.org</code></li>
+<li><code>www.jam.radio.fm</code></li>
+<li><code>jam.radio.fm</code></li>
+<li><code>console.jam.radio.fm</code></li>
+<li><code>broadcast.jam.radio.fm</code></li>
+<li><code>dj.radio.thruhere.net</code></li>
+<li><code>master.radio.thruhere.net</code></li>
+<li><code>radio.thruhere.net</code></li>
+<li><code>www.radio.thruhere.net</code></li>
+<li><code>dev.podzone.net</code></li>
+<li><code>prod.podzone.net</code></li>
+<li><code>northern.podzone.net</code></li>
+<li><code>ceph.northern.podzone.net</code></li>
+<li><code>dbgui.dev.podzone.net</code></li>
 </ul>
 <h2 id="references">References</h2>
 <ul>

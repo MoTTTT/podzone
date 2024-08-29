@@ -1,5 +1,16 @@
 # Troubleshooting References
 
+## Proxying WebSockets
+
+- <https://community.grafana.com/t/enable-websockets-behind-apache2-proxy/65756/3>
+- <https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel>
+- <https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel/49696076#49696076>
+- <https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server/18604082#18604082>
+- <https://forum.proxmox.com/threads/proxmox-ve-5-2-1-through-apache-2-4-25-proxy.44408/>
+- <https://forum.proxmox.com/threads/working-novnc-with-reverse-proxy-on-5-1.43644/>
+- <https://forum.proxmox.com/threads/proxying-proxmox-with-apache.95154/>
+
+
 ## Troubleshooting
 
 - <https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs>

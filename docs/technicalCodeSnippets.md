@@ -9,6 +9,12 @@
 - `lxc network forward list lxdbr0`
 - `lxc network list`
 
+### IP Address management
+
+- DNS nameserver query: `cat /etc/resolv.conf`
+- Contains nameserver `127.0.0.53 ` (localhost), indicating use of `systemd-resolved`.
+- To check active DNS nameserver behind `systemd-resolved`: `resolvectl status`
+
 ## maas
 
 - `sudo snap install --channel=3.5 maas`
@@ -36,6 +42,10 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 - Save the rules: `iptables-save > /etc/iptables/rules.v4`
 - Check the rules: `iptables -t nat -nvL`
 
+- Deleting, get line numbers: `iptables -t nat -L --line-numbers`
+- Delete specific line, by number: `iptables -t nat -D PREROUTING 1`
+
+
 ### Notes
 
 - Port scanning reported the forwarded ports correctly, but browser requests timed out.
@@ -54,9 +64,28 @@ iptables -t nat -A POSTROUTING -j MASQUERADE
 ## Squid proxy
 
 - On rudolfensis: `192.168.1.145:3128`
+- On naledi: `192.168.2.1:3128`
 - Install: `sudo apt-get install squid`
 - Add entries in `/etc/environment`, and `/etc/bash.bashrc`
-  
+
+### For proxy on naledi
+
+```bash
+export https_proxy=http://192.168.2.1:3128
+export http_proxy=http://192.168.2.1:3128
+export ftp_proxy=ftp://192.168.2.1:3128
+```
+
+- In `/etc/apt/apt.conf`:
+
+```conf
+Acquire::http::proxy  "http://192.168.2.1:3128/";
+Acquire::ftp::proxy "ftp://192.168.2.1:3128/";
+Acquire::https::proxy "http://192.168.2.1:3128/";
+```
+
+### For proxy on rudolfensis
+
 ```bash
 export https_proxy=http://192.168.1.145:3128
 export http_proxy=http://192.168.1.145:3128
@@ -68,7 +97,7 @@ export ftp_proxy=ftp://192.168.1.145:3128
 ```conf
 Acquire::http::proxy  "http://192.168.1.145:3128/";
 Acquire::ftp::proxy "ftp://192.168.1.145:3128/";
-Acquire::https::proxy "https://192.168.1.145:3128/";
+Acquire::http::proxy "https://192.168.1.145:3128/";
 ```
 
 ## Flux

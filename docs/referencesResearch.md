@@ -60,6 +60,10 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 ## Cloud-init
 
 - <https://cloudinit.readthedocs.io/en/latest/tutorial/qemu.html>
+- <https://raw.githubusercontent.com/openwhisk-blog/openwhisk.blog/master/content/post/kubernetes/microk8s-init.yaml>
+- <https://naledi:8006/pve-docs/chapter-qm.html#qm_cloud_init>
+- <https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs/blob/main/samples/ubuntu/ubuntu-noble-cloudinit%2Bnvidia%2Bruntime.sh>
+- <https://github.com/canonical/cloud-init/issues/2335>
 
 ## Operators
 
@@ -397,3 +401,9 @@ References on the topics of virtualisation, kubernetes, storage and helm.
 - <https://github.com/Cizin/Idrac-cheat-sheet>
 - <https://dl.dell.com/manuals/all-products/esuprt_software/esuprt_remote_ent_sys_mgmt/esuprt_rmte_ent_sys_rmte_access_cntrllr/integrated-dell-remote-access-cntrllr-7-v1.50.50_reference%20guide4_en-us.pdf>
 - <https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/>
+
+## Terraform OpenTofu
+
+- <https://opentofu.org/docs/intro/core-workflow/>
+- <https://github.com/opentofu/registry/tree/main/providers/d/dell>
+- 

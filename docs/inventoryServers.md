@@ -1,6 +1,10 @@
 # Server Inventory
 
-As cluster build-out has progressed, devices and their resource configuration have been standardised. Detail of the original development environments has since been refactored out of this documentation.
+As cluster build-out has progressed, devices and their resource configuration have evolved:
+
+- The original development environments comprised equipment on hand.
+- The next set of hardware selected for kubernetes and ceph cluster build-out are Thin Clients, with 4 CPUs; 25GB RAM; 128 + 256 GB SSD each. Fourteen of these were put into service.
+- The current set of hardware, for hyper-converged infrastructure are 2U rack servers, with varying configurations, with up to 48 CPUs, 256 GB RAM, and 4.8TB SAS Storage. There are currently six of these in various stages of procurement and provisioning.
 
 ## Cluster nodes
 

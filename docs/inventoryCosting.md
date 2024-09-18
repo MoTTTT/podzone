@@ -2,15 +2,40 @@
 
 ## Enterprise hardware
 
-### Pluto
+### Servers
 
-- Dell PowerEdge R720 2x Intel Xeon E5-2650 V1 @2.00GHz 8x8GB RAM, No HDD. {£51}
-- 8 X Dell 147GB 2.5" 10K SAS Hard Disk Drives {£15}
-- 8 X Dell 2.5" Hard Drive Tray Caddy {£30}
+- Pluto: Dell PowerEdge R720 2x Intel Xeon E5-2650 V1 @2.00GHz 8x8GB RAM, No HDD. {£51}
+- Saturn: Dell DR6000 2x E5-2695 V2 2.6Ghz No RAM DDR3 H710 1100W. {£59}
+- Mars: DELL PowerEdge R720 2 X Xeon E5-2650 V2 2x 1TB SAS {£70}
+- Mercury: Dell PowerEdge R720 16x SFF Storage Rack Server 2x Xeon CPU No RAM 2x 600gb Hdd {£88}
+- Venus: Dell PowerEdge R730 Xeon 2 x E5-2698 V3, 160GB RAM, H730 Mini {£104}
+- Neptune: Dell PowerEdge R720 Rack Mount Server (Xeon 5677, 24GB RAM, 6 Caddies, No HDDs) {£52}
+
+### Disks and caddies
 
 - 4x SEAGATE CONSTELLATION 3TB ES.3 ST3000NM0023 3.5" 6G SAS HDD {£16.00}
-- On its way: 2 X SAS Hard Disk Drive SFF-8482 Male To Female Extension Cable BS {£15}
+- 8 X Dell 147GB 2.5" 10K SAS HDD {£15}
+- 4 X HGST 600GB 10K RPM 2.5" SFF SAS HDD {£19}
+- 20 x Assorted 600GB 6Gbps 2.5" SAS HDD {£31}
+- 8 X Dell 2.5" Hard Drive Tray Caddy {£36}
+- 4 X Dell 2.5" Hard Drive Tray Caddy {£18}
+- 2 X SAS Hard Disk Drive SFF-8482 Male To Female Extension Cable BS {£15}
 
+### Memory
+
+- 24 x 16GB Hynix DDR3-1066MHz 4Rx4 {£51}}
+- 16 x 16GB Hynix DDR3-1066MHz 4R4 {£66}
+
+### Networking
+
+- Dell PowerConnect 5324 24xRJ-45 1G Managed Switch {£10}
+- 2m Optical Fibre Cable  Multi-Mode Duplex {£4}
+- SFP+ Optical Transceiver  Nokia 9.8GB {£1}
+- SFP Optical Transceiver Finisar 4GB {£5}
+- SFP Optical Transceiver Prolabs 10G {£4}
+- 2 X 1m OM4 Fibre Optic Patch Cable LC-LC Multi-Mode Network Lead UPC 50/125µm Duplex {£10}
+- 4 X 0.5m OM4 Fibre Optic Patch Cable LC-LC Multi-Mode Network Lead UPC 50/125µm Duplex {£20}
+- 7 x HP HPE 16Gb SW B-series SFP+ Fibre Channel Transceivers QK724A 656435-001 {£32}
 
 ## Consumer hardware
 

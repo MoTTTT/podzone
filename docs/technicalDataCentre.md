@@ -4,6 +4,14 @@ Management considerations when scale and scope are encountered in technical impl
 
 ## Network Architecture
 
+### Fibre networking
+
+- <https://www.omnitron-systems.com/blog/sfp-vs-sfp-what-s-the-difference>
+- <https://pve.proxmox.com/wiki/ISCSI_Multipath>
+- <https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi>
+- <https://www.seagate.com/gb/en/manuals/lyve-mobile-rackmount-receiver/iscsi-network-setup-linux-ubuntu-debian/>
+- 
+
 ### DHCP and IP allocation
 
 - Toob Network: 192.168.1.0/24
@@ -103,7 +111,6 @@ network:
 - Set time-zone: `sudo timedatectl set-timezone Europe/London`
 - For dynamic nfs provisioning: `sudo apt install nfs-common`
 
-
 ### Proxy
 
 - At scale, artefacts from the internet typically used in a unit build can be cached with obvious benefit. I addition, when evaluating software, uninstallation to get a known good state for re-install is very efficient when cached apt, vm and snap packages are used.
@@ -121,8 +128,6 @@ http_proxy=http://192.168.2.1:3128
 ftp_proxy=ftp://192.168.2.1:3128
 no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost
 ```
-
-
 
 For `/etc/bash.bashrc`:
 
@@ -146,6 +151,7 @@ Acquire::https::proxy "http://192.168.2.1:3128/";
 ```bash
 snap set system proxy.http="http://192.168.2.1:3128"
 snap set system proxy.https="http://192.168.2.1:3128"
+```
 
 ### For proxy on rudolfensis
 
@@ -225,7 +231,7 @@ ansible:
 ### ProxMox configuration
 
 - Configure `no-subscription` repositories
-- 
+- Update templates" `pveam update`
 
 ## ProxMox ansible
 
@@ -268,13 +274,13 @@ runcmd:
 EOF
 ```
 
+
 - `qm set 8001 --cicustom "vendor=local:snippets/vendor.yaml"`
 - `qm set 8001 --tags ubuntu-template,22.04,cloudinit`
 - `qm set 8001 --ciuser colleymj`
 - `qm set 8001 --cipassword <>`
 - `qm set 8001 --sshkeys ~/.ssh/authorized_keys`
 - `qm template 8001`
-
 
 ## Cluster management
 
@@ -291,11 +297,122 @@ EOF
 
 ## Storage
 
+### Storage: Kubernetes storage class
+
+- ProxMox managed MicroCeph 7630s
 - Stateful persistent Dynamically provisioned storage volumes for Kubernetes: <https://github.com/openebs/openebs>
 - <https://spdk.io/doc/blob.html>
+
+### Storage: File Server
+
+- Deployed to LXC container **enceladus**
+- WebDAV (CGI): <https://192.168.2.83>
+- Webmin: <https://192.168.2.83:12321>
+- SMB/CIFS: <\\192.168.2.83 (ports 139/445)>
+- FTP/FTPS: <root@192.168.2.83 (port 21)>
+- SSH/SFTP: <root@192.168.2.83 (port 22)>
+
+### VPN
+
+- OpenVPN:    server port 1194 (UDP)
+- Web:        https://192.168.2.80
+- Web shell:  https://192.168.2.80:12320
+- Webmin:     https://192.168.2.80:12321
+- SSH/SFTP:   root@192.168.2.80 (port 22)
+
+- <https://www.turnkeylinux.org/openvpn>
 
 ## Tools for  storage, ingress, observability and gitops.
 
 - metallb
 - ingress-nginx
 - external-dns <https://github.com/kubernetes-sigs/external-dns>; <https://coredns.io/>
+
+## Manually created VMs and LXD containers
+
+- Next entry in <https://science.nasa.gov/saturn/moons/>
+
+## Server LAN IP Address management
+
+## Ranges
+
+| Address       | Allocation           |
+|---------------|----------------------|
+| 192.168.2.0X  | t630 Gateway, proxy  |
+| 192.168.2.4X  | Rx70 iDRAC Port      |
+| 192.168.2.5X  | R7X0 Main Ports      |
+| 192.168.2.6X  | k8s Cluster LBRs     |
+| 192.168.2.7X  | Prod k8s nodes       |
+| 192.168.2.8X  | Appliances           |
+| 192.168.2.9X  | R7X0 iDRAC USB NIC   |
+| 192.168.2.10X | t630 nodes           |
+| 192.168.2.20X | Workstations         |
+
+## Assignments
+
+## Prod Installation: Infrastructure
+
+| Address       | hostname     | Machine | Purpose        |
+|---------------|--------------|---------|----------------|
+| 192.168.2.1   | naledi       | t630    | Gateway, proxy |
+| 192.168.2.50  | pluto        | R720    | Hypervisor     |
+| 192.168.2.51  | saturn       | R720    | Hypervisor     |
+| 192.168.2.52  | mercury      | R720    | Hypervisor     |
+| 192.168.2.53  | venus        | R730    | Hypervisor     |
+| 192.168.2.101 | norham01     | t630    | Storage        |
+| 192.168.2.102 | norham02     | t630    | Storage        |
+| 192.168.2.103 | norham03     | t630    | Storage        |
+| 192.168.2.104 | norham04     | t630    | Storage        |
+| 192.168.2.105 | erectus      | t630    | Storage        |
+| 192.168.2.106 | floresiensis | t630    | Storage        |
+
+## Prod Installation: Kubernetes VMs
+
+| Address       | hostname   | Machine     | Purpose         |
+|---------------|------------|-------------|-----------------|
+| 192.168.2.70  | titan      | VM: saturn  | kubernetes node |
+| 192.168.2.71  | europa     | VM: saturn  | kubernetes node |
+| 192.168.2.72  | ganymede   | VM: saturn  | kubernetes node |
+
+## Prod Installation: Application VMs and LXC containers
+
+| Address       | hostname   | Machine     | Purpose         |
+|---------------|------------|-------------|-----------------|
+| 192.168.2.80  | mimas      | CT: venus   | OpenVPN         |
+| 192.168.2.81  | tarvos     | VM: saturn  | NFS - deprecate |
+| 192.168.2.82  | dione      | CT: saturn  | NextCloud       |
+| 192.168.2.83  | enceladus  | VM: saturn  | File Server     |
+| 192.168.2.84  | tethys     | VM: saturn  | Prometheus      |
+
+## Prod Installation: Workstations
+
+| Address       | hostname   | Machine     | Purpose         |
+|---------------|------------|-------------|-----------------|
+| 192.168.2.200 | dolmen     | Macbook Pro | Management      |
+
+## List of unused moons
+
+```list
+Mimas
+Enceladus
+Tethys
+Dione
+Rhea
+Titan
+Hyperion
+Iapetus
+Phoebe
+Janus
+Epimetheus
+Helene
+Telesto
+Calypso
+Atlas
+Prometheus
+Pandora
+Pan
+Ymir
+Paaliaq
+Tarvos
+Ijiraq
+```

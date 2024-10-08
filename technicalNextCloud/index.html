@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalNextCloud/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>NextCloud - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "NextCloud";
+        var mkdocs_page_input_path = "technicalNextCloud.md";
+        var mkdocs_page_url = "/podzone/technicalNextCloud/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">NextCloud</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="nextcloud">NextCloud</h1>
+<h2 id="access-to-container-listeners">Access to container listeners</h2>
+<ul>
+<li>Web:        http://192.168.2.82</li>
+<li>Webmin:     https://192.168.2.82:12321</li>
+<li>Adminer:    https://192.168.2.82:12322</li>
+<li>
+<p>SSH/SFTP:   root@192.168.2.82 (port 22)</p>
+</li>
+<li>
+<p><a href="https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md#apache">https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md#apache</a></p>
+</li>
+<li><a href="https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md#adapting-the-sample-web-server-configurations-below">https://github.com/nextcloud/all-in-one/blob/main/reverse-proxy.md#adapting-the-sample-web-server-configurations-below</a></li>
+</ul>
+<h2 id="homelittlecantonone">home.littlecanton.one</h2>
+<ul>
+<li>Web:        http://192.168.3.100 </li>
+<li>Webmin:     https://192.168.3.100:12321</li>
+<li>Adminer:    https://192.168.3.100:12322</li>
+<li>SSH/SFTP:   root@192.168.3.100 (port 22)</li>
+<li>TKLBAM (Backup and Migration):  NOT INITIALIZED</li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

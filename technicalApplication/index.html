@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalApplication/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Application Build - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Application Build";
+        var mkdocs_page_input_path = "technicalApplication.md";
+        var mkdocs_page_url = "/podzone/technicalApplication/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Application Build</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#platform-requirement">Platform requirement</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#migration">Migration</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#importing-vm-on-james">Importing VM on james</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dyn-dns">Dyn DNS</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-take-on">Data take-on</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation">Implementation</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#zope">Zope</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#postgres">Postgres</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Workload</li>
+<li class="breadcrumb-item active">Application Build</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="application-build">Application Build</h1>
+<h2 id="platform-requirement">Platform requirement</h2>
+<ul>
+<li>Zope Python based Application server</li>
+<li>Python Postgress driver</li>
+<li>Zope Postgres driver wrapper</li>
+<li>Postgress Database</li>
+<li>Database GUI</li>
+</ul>
+<h2 id="migration">Migration</h2>
+<p>Move ularu VM from bukit (to be recovered) to antecessor</p>
+<ol>
+<li>Export VM in .ova format</li>
+<li>Test on james (final target server)</li>
+</ol>
+<h3 id="importing-vm-on-james">Importing VM on james</h3>
+<p>VBoxManage import UbuntuAppServerClean202401.ova --dry-run</p>
+<p>VBoxManage import UbuntuAppServerClean202401.ova</p>
+<p>VBoxManage list vms</p>
+<p>VBoxManage startvm "Ubuntu App Server" --type headless</p>
+<pre><code class="language-text">Waiting for VM "Ubuntu App Server" to power on...
+VBoxManage: error: Nonexistent host networking interface, name 'enp3s0f0' (VERR_INTERNAL_ERROR)
+VBoxManage: error: Details: code NS_ERROR_FAILURE (0x80004005), component ConsoleWrap, interface IConsole
+</code></pre>
+<p>ip address show | grep enp</p>
+<pre><code class="language-text">2: enp1s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 192.168.0.14/24 metric 100 brd 192.168.0.255 scope global enp1s0
+</code></pre>
+<p>VBoxManage showvminfo "Ubuntu App Server"</p>
+<p>VBoxManage modifyvm "Ubuntu App Server" --nic2 bridged --bridgeadapter1 enp1s0</p>
+<p>Did not work, needed to change <code>&lt;BridgedInterface name="enp1s0"/&gt;</code> in /home/colleymj/VirtualBox VMs/Ubuntu App Server/Ubuntu App Server.vbox</p>
+<pre><code class="language-text">VBoxManage: error: AMD-V is disabled in the BIOS (or by the host OS) (VERR_SVM_DISABLED)
+</code></pre>
+<p>VBoxManage modifyvm "Ubuntu App Server" --cpus 1</p>
+<p>VBoxManage modifyvm "Ubuntu App Server" --paravirtprovider none</p>
+<h2 id="dyn-dns">Dyn DNS</h2>
+<ul>
+<li>sudo apt install ddclient</li>
+<li>user; qapps</li>
+<li>hosts: southern.podzone.net,musings.thruhere.net,qsolutions.endoftheinternet.org,docs.podzone.net,mottttspot.servegame.org,poc.endoftheinternet.org</li>
+</ul>
+<h2 id="data-take-on">Data take-on</h2>
+<ul>
+<li>Postgress export from legacy implementation</li>
+<li>Import into new Postgress instance</li>
+</ul>
+<h2 id="implementation">Implementation</h2>
+<h3 id="zope">Zope</h3>
+<ul>
+<li>Initial install of Plone, provides Zope 4, which is not backward compatable with the Zope 2 applications, so use a legacy zope image.</li>
+<li>
+<p>Legacy Zope image selected: <code>robcast/legacy-zope:2.13</code></p>
+</li>
+<li>
+<p>Zope volume mounts: ./var/filestorage; ./var/blobstorage; ./products</p>
+</li>
+</ul>
+<h3 id="postgres">Postgres</h3>
+<ul>
+<li>nfs not working for postgres volume, issues with chmod (as with OpenSearch)</li>
+<li>Use cluster-internal db GUI tool to avoid requirement to provide ingress for a database port.</li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalWordpress/" title="Installing Wordpress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalIoT/" title="Rust on the uNode embedded controller development board">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalWordpress/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalIoT/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

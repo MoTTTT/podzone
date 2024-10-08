@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/referencesTroubleshooting/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Troubleshooting References - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Troubleshooting References";
+        var mkdocs_page_input_path = "referencesTroubleshooting.md";
+        var mkdocs_page_url = "/podzone/referencesTroubleshooting/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Troubleshooting References</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#proxying-websockets">Proxying WebSockets</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discussions">Discussions</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">References</li>
+<li class="breadcrumb-item active">Troubleshooting References</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="troubleshooting-references">Troubleshooting References</h1>
+<h2 id="proxying-websockets">Proxying WebSockets</h2>
+<ul>
+<li><a href="https://community.grafana.com/t/enable-websockets-behind-apache2-proxy/65756/3">https://community.grafana.com/t/enable-websockets-behind-apache2-proxy/65756/3</a></li>
+<li><a href="https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel">https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel</a></li>
+<li><a href="https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel/49696076#49696076">https://stackoverflow.com/questions/27526281/websockets-and-apache-proxy-how-to-configure-mod-proxy-wstunnel/49696076#49696076</a></li>
+<li><a href="https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server/18604082#18604082">https://stackoverflow.com/questions/9831594/apache-and-node-js-on-the-same-server/18604082#18604082</a></li>
+<li><a href="https://forum.proxmox.com/threads/proxmox-ve-5-2-1-through-apache-2-4-25-proxy.44408/">https://forum.proxmox.com/threads/proxmox-ve-5-2-1-through-apache-2-4-25-proxy.44408/</a></li>
+<li><a href="https://forum.proxmox.com/threads/working-novnc-with-reverse-proxy-on-5-1.43644/">https://forum.proxmox.com/threads/working-novnc-with-reverse-proxy-on-5-1.43644/</a></li>
+<li><a href="https://forum.proxmox.com/threads/proxying-proxmox-with-apache.95154/">https://forum.proxmox.com/threads/proxying-proxmox-with-apache.95154/</a></li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs">https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs</a></li>
+</ul>
+<h2 id="discussions">Discussions</h2>
+<ul>
+<li><a href="https://askubuntu.com/questions/1192923/is-it-possible-to-install-microk8s-on-ubuntu-core-18">https://askubuntu.com/questions/1192923/is-it-possible-to-install-microk8s-on-ubuntu-core-18</a></li>
+<li><a href="https://askubuntu.com/questions/1455839/ubunto-core-22-04-raspberry-pi-linux-modules-extra-raspi">https://askubuntu.com/questions/1455839/ubunto-core-22-04-raspberry-pi-linux-modules-extra-raspi</a></li>
+<li><a href="https://askubuntu.com/questions/178712/how-to-increase-swap-space">https://askubuntu.com/questions/178712/how-to-increase-swap-space</a></li>
+<li><a href="https://askubuntu.com/questions/778392/install-second-network-interface-on-virtualized-ubuntu-server">https://askubuntu.com/questions/778392/install-second-network-interface-on-virtualized-ubuntu-server</a></li>
+<li><a href="https://blog.kubovy.eu/2020/05/16/retrieve-tls-certificates-from-kubernetes/">https://blog.kubovy.eu/2020/05/16/retrieve-tls-certificates-from-kubernetes/</a></li>
+<li><a href="https://cert-manager.io/docs/troubleshooting/">https://cert-manager.io/docs/troubleshooting/</a></li>
+<li><a href="https://cert-manager.io/docs/troubleshooting/acme/">https://cert-manager.io/docs/troubleshooting/acme/</a></li>
+<li><a href="https://discuss.elastic.co/t/filebeat-not-able-to-find-logs-on-microk8/182023">https://discuss.elastic.co/t/filebeat-not-able-to-find-logs-on-microk8/182023</a></li>
+<li><a href="https://discuss.hashicorp.com/t/0-3-nodes-are-available-pod-has-unbound-immediate-persistentvolumeclaims/51642">https://discuss.hashicorp.com/t/0-3-nodes-are-available-pod-has-unbound-immediate-persistentvolumeclaims/51642</a></li>
+<li><a href="https://discuss.hashicorp.com/t/vagrant-multiple-vms-with-unique-ip-address-on-public-network-using-dhcp/36374">https://discuss.hashicorp.com/t/vagrant-multiple-vms-with-unique-ip-address-on-public-network-using-dhcp/36374</a></li>
+<li><a href="https://forum.opensearch.org/t/3-node-opensearch-cluster-not-able-initialized/13934">https://forum.opensearch.org/t/3-node-opensearch-cluster-not-able-initialized/13934</a></li>
+<li><a href="https://forum.opensearch.org/t/config-changes-not-applying/14547">https://forum.opensearch.org/t/config-changes-not-applying/14547</a></li>
+<li><a href="https://forum.opensearch.org/t/kubernetes-opensearch-deployment-persistentvolume-controller-no-persistent-volumes-available-for-this-claim-and-no-storage-class-is-set/8876">https://forum.opensearch.org/t/kubernetes-opensearch-deployment-persistentvolume-controller-no-persistent-volumes-available-for-this-claim-and-no-storage-class-is-set/8876</a></li>
+<li><a href="https://forum.opensearch.org/t/opensearch-dashboards-server-is-not-ready-yet/12970/2">https://forum.opensearch.org/t/opensearch-dashboards-server-is-not-ready-yet/12970/2</a></li>
+<li><a href="https://forum.snapcraft.io/t/cloud-init-with-netplan/1301/2">https://forum.snapcraft.io/t/cloud-init-with-netplan/1301/2</a></li>
+<li><a href="https://forum.snapcraft.io/t/data-locations/24905">https://forum.snapcraft.io/t/data-locations/24905</a></li>
+<li><a href="https://forum.snapcraft.io/t/how-to-preconfigure-custom-image/4154">https://forum.snapcraft.io/t/how-to-preconfigure-custom-image/4154</a></li>
+<li><a href="https://forum.snapcraft.io/t/preconfigure-ubuntu-core-image-that-does-not-require-store-account-login-on-first-boot/7994">https://forum.snapcraft.io/t/preconfigure-ubuntu-core-image-that-does-not-require-store-account-login-on-first-boot/7994</a></li>
+<li><a href="https://forum.snapcraft.io/t/quickstart-guide/3876">https://forum.snapcraft.io/t/quickstart-guide/3876</a></li>
+<li><a href="https://forum.snapcraft.io/t/the-snap-format/698">https://forum.snapcraft.io/t/the-snap-format/698</a></li>
+<li><a href="https://github.com/kubernetes/dashboard/issues/3322">https://github.com/kubernetes/dashboard/issues/3322</a></li>
+<li><a href="https://saturncloud.io/blog/solving-the-pod-has-unbound-immediate-persistentvolumeclaims-issue-in-kubernetes-nfs-volume/">https://saturncloud.io/blog/solving-the-pod-has-unbound-immediate-persistentvolumeclaims-issue-in-kubernetes-nfs-volume/</a></li>
+<li><a href="https://serverfault.com/questions/870483/nfs-and-all-squash-confusions">https://serverfault.com/questions/870483/nfs-and-all-squash-confusions</a></li>
+<li><a href="https://serverfault.com/questions/906083/how-to-mount-volume-with-specific-uid-in-kubernetes-pod">https://serverfault.com/questions/906083/how-to-mount-volume-with-specific-uid-in-kubernetes-pod</a></li>
+<li><a href="https://spacelift.io/blog/restart-kubernetes-pods-with-kubectl">https://spacelift.io/blog/restart-kubernetes-pods-with-kubectl</a></li>
+<li><a href="https://stackoverflow.com/questions/12538162/setting-a-vms-mac-address-in-vagrant">https://stackoverflow.com/questions/12538162/setting-a-vms-mac-address-in-vagrant</a></li>
+<li><a href="https://stackoverflow.com/questions/20819786/nfsnobody-user-privileges">https://stackoverflow.com/questions/20819786/nfsnobody-user-privileges</a></li>
+<li><a href="https://stackoverflow.com/questions/41325087/what-is-the-difference-between-a-pod-and-a-deployment">https://stackoverflow.com/questions/41325087/what-is-the-difference-between-a-pod-and-a-deployment</a></li>
+<li><a href="https://stackoverflow.com/questions/42793382/exec-commands-on-kubernetes-pods-with-root-access">https://stackoverflow.com/questions/42793382/exec-commands-on-kubernetes-pods-with-root-access</a></li>
+<li><a href="https://stackoverflow.com/questions/43544370/kubernetes-how-to-set-volumemount-user-group-and-file-permissions">https://stackoverflow.com/questions/43544370/kubernetes-how-to-set-volumemount-user-group-and-file-permissions</a></li>
+<li><a href="https://stackoverflow.com/questions/46351051/permission-denied-when-chown-on-elasticsearch-data-directory-in-kubernetes-state">https://stackoverflow.com/questions/46351051/permission-denied-when-chown-on-elasticsearch-data-directory-in-kubernetes-state</a></li>
+<li><a href="https://stackoverflow.com/questions/51358856/kubernetes-cant-delete-persistentvolumeclaim-pvc">https://stackoverflow.com/questions/51358856/kubernetes-cant-delete-persistentvolumeclaim-pvc</a></li>
+<li><a href="https://stackoverflow.com/questions/51445846/elasticsearch-max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-inc">https://stackoverflow.com/questions/51445846/elasticsearch-max-virtual-memory-areas-vm-max-map-count-65530-is-too-low-inc</a></li>
+<li><a href="https://stackoverflow.com/questions/51657271/passing-in-environment-variables-into-docker-running-in-kubernetes">https://stackoverflow.com/questions/51657271/passing-in-environment-variables-into-docker-running-in-kubernetes</a></li>
+<li><a href="https://stackoverflow.com/questions/55780083/error-no-persistent-volumes-available-for-this-claim-and-no-storage-class-is-se">https://stackoverflow.com/questions/55780083/error-no-persistent-volumes-available-for-this-claim-and-no-storage-class-is-se</a></li>
+<li><a href="https://stackoverflow.com/questions/57683206/what-is-the-reverse-of-kubectl-apply">https://stackoverflow.com/questions/57683206/what-is-the-reverse-of-kubectl-apply</a></li>
+<li><a href="https://stackoverflow.com/questions/62049953/microk8s-ingress-or-loadbalancer-not-working-in-local-single-node-cluster">https://stackoverflow.com/questions/62049953/microk8s-ingress-or-loadbalancer-not-working-in-local-single-node-cluster</a></li>
+<li><a href="https://stackoverflow.com/questions/63346728/issuing-certificate-as-secret-does-not-exist">https://stackoverflow.com/questions/63346728/issuing-certificate-as-secret-does-not-exist</a></li>
+<li><a href="https://superuser.com/questions/878807/how-to-boot-apple-mac-via-pxe-custom-mini-linux">https://superuser.com/questions/878807/how-to-boot-apple-mac-via-pxe-custom-mini-linux</a></li>
+<li><a href="https://techoverflow.net/2020/04/18/how-to-fix-elasticsearch-docker-accessdeniedexception-usr-share-elasticsearch-data-nodes/">https://techoverflow.net/2020/04/18/how-to-fix-elasticsearch-docker-accessdeniedexception-usr-share-elasticsearch-data-nodes/</a></li>
+<li><a href="https://unix.stackexchange.com/questions/106304/route-add-no-longer-works-when-i-connected-to-vpn-via-cisco-anyconnect-client/501094#501094">https://unix.stackexchange.com/questions/106304/route-add-no-longer-works-when-i-connected-to-vpn-via-cisco-anyconnect-client/501094#501094</a></li>
+<li><a href="https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Enabling-network-NFS-shares-in-Mac-OS-X.html">https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/Enabling-network-NFS-shares-in-Mac-OS-X.html</a></li>
+<li><a href="https://www.datree.io/resources/kubernetes-troubleshooting-fixing-persistentvolumeclaims-error">https://www.datree.io/resources/kubernetes-troubleshooting-fixing-persistentvolumeclaims-error</a></li>
+<li><a href="https://komodor.com/learn/how-to-fix-crashloopbackoff-kubernetes-error/">https://komodor.com/learn/how-to-fix-crashloopbackoff-kubernetes-error/</a></li>
+<li><a href="https://medium.com/@olivier.gaumond/why-am-i-able-to-bind-a-privileged-port-in-my-container-without-the-net-bind-service-capability-60972a4d5496">https://medium.com/@olivier.gaumond/why-am-i-able-to-bind-a-privileged-port-in-my-container-without-the-net-bind-service-capability-60972a4d5496</a></li>
+<li><a href="https://saturncloud.io/blog/how-to-log-in-to-the-microk8s-kubernetes-dashboard-a-guide-for-data-scientists/">https://saturncloud.io/blog/how-to-log-in-to-the-microk8s-kubernetes-dashboard-a-guide-for-data-scientists/</a></li>
+<li><a href="https://saturncloud.io/blog/solving-kubernetes-nfs-persistent-volumes-permission-denied-a-guide/">https://saturncloud.io/blog/solving-kubernetes-nfs-persistent-volumes-permission-denied-a-guide/</a></li>
+<li><a href="https://saturncloud.io/blog/solving-the-pod-has-unbound-immediate-persistentvolumeclaims-issue-in-kubernetes-nfs-volume/">https://saturncloud.io/blog/solving-the-pod-has-unbound-immediate-persistentvolumeclaims-issue-in-kubernetes-nfs-volume/</a></li>
+<li><a href="https://serverfault.com/questions/870483/nfs-and-all-squash-confusions">https://serverfault.com/questions/870483/nfs-and-all-squash-confusions</a></li>
+<li><a href="https://serverfault.com/questions/906083/how-to-mount-volume-with-specific-uid-in-kubernetes-pod">https://serverfault.com/questions/906083/how-to-mount-volume-with-specific-uid-in-kubernetes-pod</a></li>
+<li><a href="https://unix.stackexchange.com/questions/106304/route-add-no-longer-works-when-i-connected-to-vpn-via-cisco-anyconnect-client/501094#501094">https://unix.stackexchange.com/questions/106304/route-add-no-longer-works-when-i-connected-to-vpn-via-cisco-anyconnect-client/501094#501094</a></li>
+<li><a href="https://github.com/canonical/microk8s/issues/2108">https://github.com/canonical/microk8s/issues/2108</a></li>
+<li><a href="https://github.com/canonical/microk8s/issues/276">https://github.com/canonical/microk8s/issues/276</a></li>
+<li><a href="https://github.com/canonical/microk8s/issues/4041">https://github.com/canonical/microk8s/issues/4041</a></li>
+<li><a href="https://github.com/elastic/helm-charts/issues/137">https://github.com/elastic/helm-charts/issues/137</a></li>
+<li><a href="https://github.com/hashicorp/vagrant/issues/9200">https://github.com/hashicorp/vagrant/issues/9200</a></li>
+<li><a href="https://github.com/pires/kubernetes-elasticsearch-cluster/issues/205">https://github.com/pires/kubernetes-elasticsearch-cluster/issues/205</a></li>
+<li><a href="https://stackoverflow.com/questions/23396679/vagrant-setting-a-vms-mac-address-in-a-private-network-hostonly">https://stackoverflow.com/questions/23396679/vagrant-setting-a-vms-mac-address-in-a-private-network-hostonly</a></li>
+<li><a href="https://stackoverflow.com/questions/12538162/setting-a-vms-mac-address-in-vagrant">https://stackoverflow.com/questions/12538162/setting-a-vms-mac-address-in-vagrant</a></li>
+<li><a href="https://stackoverflow.com/questions/26246840/how-to-set-eth0-mac-address-in-vagrant-with-the-vmware-provisioner">https://stackoverflow.com/questions/26246840/how-to-set-eth0-mac-address-in-vagrant-with-the-vmware-provisioner</a></li>
+<li><a href="https://stackoverflow.com/questions/39655478/update-vms-bridged-mac-address-with-vagrant">https://stackoverflow.com/questions/39655478/update-vms-bridged-mac-address-with-vagrant</a></li>
+<li><a href="https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings#config-vm-base_mac">https://developer.hashicorp.com/vagrant/docs/vagrantfile/machine_settings#config-vm-base_mac</a></li>
+<li><a href="https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443">https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443</a></li>
+<li><a href="https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner">https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner</a></li>
+<li><a href="https://stackoverflow.com/questions/33250304/how-to-automatically-select-bridged-network-interfaces-in-vagrant">https://stackoverflow.com/questions/33250304/how-to-automatically-select-bridged-network-interfaces-in-vagrant</a></li>
+<li><a href="https://linux.die.net/man/8/useradd">https://linux.die.net/man/8/useradd</a></li>
+<li><a href="https://stackoverflow.com/questions/30075461/how-do-i-add-my-own-public-key-to-vagrant-vm">https://stackoverflow.com/questions/30075461/how-do-i-add-my-own-public-key-to-vagrant-vm</a></li>
+<li><a href="https://stackoverflow.com/questions/29450404/is-there-a-default-password-to-connect-to-vagrant-when-using-homestead-ssh-for">https://stackoverflow.com/questions/29450404/is-there-a-default-password-to-connect-to-vagrant-when-using-homestead-ssh-for</a></li>
+<li><a href="https://github.com/MicrosoftEdge/dev.microsoftedge.com-vms/issues/21">https://github.com/MicrosoftEdge/dev.microsoftedge.com-vms/issues/21</a></li>
+<li><a href="https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner">https://stackoverflow.com/questions/19648088/pass-environment-variables-to-vagrant-shell-provisioner</a></li>
+<li><a href="https://github.com/hashicorp/vagrant/issues/7015">https://github.com/hashicorp/vagrant/issues/7015</a></li>
+<li><a href="https://unix.stackexchange.com/questions/52313/how-to-get-execution-time-of-a-script-effectively">https://unix.stackexchange.com/questions/52313/how-to-get-execution-time-of-a-script-effectively</a></li>
+<li><a href="https://serverfault.com/questions/628989/how-to-set-default-ansible-username-password-for-ssh-connection">https://serverfault.com/questions/628989/how-to-set-default-ansible-username-password-for-ssh-connection</a></li>
+<li><a href="https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443">https://stackoverflow.com/questions/56243121/can-i-set-custom-ports-for-a-kubernetes-ingress-to-listen-on-besides-80-443</a></li>
+<li><a href="https://stackoverflow.com/questions/37434598/ansible-sudo-without-password">https://stackoverflow.com/questions/37434598/ansible-sudo-without-password</a></li>
+<li><a href="https://medium.com/programmers-journey/dead-simple-include-env-variables-in-kubernetes-deployment-yaml-1c0e8f859fde">https://medium.com/programmers-journey/dead-simple-include-env-variables-in-kubernetes-deployment-yaml-1c0e8f859fde</a></li>
+<li><a href="https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg">https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg</a></li>
+<li><a href="https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/">https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/</a></li>
+<li><a href="https://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker">https://stackoverflow.com/questions/24288616/permission-denied-on-accessing-host-directory-in-docker</a></li>
+<li><a href="https://stackoverflow.com/questions/51000791/how-to-mount-hostpath-volume-in-kubernetes-with-selinux/51026623#51026623">https://stackoverflow.com/questions/51000791/how-to-mount-hostpath-volume-in-kubernetes-with-selinux/51026623#51026623</a></li>
+<li><a href="https://www.thegeekstuff.com/2017/07/chcon-command-examples/">https://www.thegeekstuff.com/2017/07/chcon-command-examples/</a></li>
+<li><a href="https://github.com/docker-library/postgres/issues/116">https://github.com/docker-library/postgres/issues/116</a></li>
+<li><a href="https://forums.rancher.com/t/statefulset-postgres-chmod-changing-permissions-of-var-run-postgresql-operation-not-permitted-chown-changing-ownership-of-var-lib-postgresql-data-pgdata-operation-not-permitted/21080">https://forums.rancher.com/t/statefulset-postgres-chmod-changing-permissions-of-var-run-postgresql-operation-not-permitted-chown-changing-ownership-of-var-lib-postgresql-data-pgdata-operation-not-permitted/21080</a></li>
+<li><a href="https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/">https://www.itwonderlab.com/postgres-kubernetes-nfs-volume/</a></li>
+<li><a href="https://gist.github.com/FarooqKhan/7a81b1aa8167f1a927b82731ec435872">https://gist.github.com/FarooqKhan/7a81b1aa8167f1a927b82731ec435872</a></li>
+<li><a href="https://www.crunchydata.com/blog/stateful-postgres-storage-using-kubernetes">https://www.crunchydata.com/blog/stateful-postgres-storage-using-kubernetes</a></li>
+<li><a href="https://stackoverflow.com/questions/65046709/what-is-the-correct-way-to-manage-kubernetes-nfs-pv-permissions-for-postgres">https://stackoverflow.com/questions/65046709/what-is-the-correct-way-to-manage-kubernetes-nfs-pv-permissions-for-postgres</a></li>
+<li><a href="https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg">https://stackoverflow.com/questions/44637996/docker-compose-up-postgresql-error-chown-changing-ownership-of-var-lib-postg</a></li>
+<li><a href="https://medium.com/@panda1100/solutions-for-operation-not-permitted-error-when-postgresql-is-running-on-docker-using-vagrants-3db360ca2c03">https://medium.com/@panda1100/solutions-for-operation-not-permitted-error-when-postgresql-is-running-on-docker-using-vagrants-3db360ca2c03</a></li>
+<li><a href="https://github.com/docker-library/postgres/issues/361">https://github.com/docker-library/postgres/issues/361</a></li>
+<li><a href="https://stackoverflow.com/questions/63602827/rookio-ceph-cluster-mon-c-is-low-on-available-space-message">https://stackoverflow.com/questions/63602827/rookio-ceph-cluster-mon-c-is-low-on-available-space-message</a></li>
+<li><a href="https://superuser.com/questions/131519/what-is-this-dm-0-device/131520">https://superuser.com/questions/131519/what-is-this-dm-0-device/131520</a></li>
+<li><a href="https://askubuntu.com/questions/1406697/extend-lvm-size">https://askubuntu.com/questions/1406697/extend-lvm-size</a></li>
+<li><a href="https://packetpushers.net/ubuntu-extend-your-default-lvm-space/">https://packetpushers.net/ubuntu-extend-your-default-lvm-space/</a></li>
+<li><a href="https://www.baeldung.com/linux/apfs-partition-mount">https://www.baeldung.com/linux/apfs-partition-mount</a></li>
+<li><a href="https://packages.fedoraproject.org/pkgs/apfs-fuse/apfs-fuse/">https://packages.fedoraproject.org/pkgs/apfs-fuse/apfs-fuse/</a></li>
+<li><a href="https://linuxconfig.org/how-to-install-g-the-c-compiler-on-ubuntu-22-04-lts-jammy-jellyfish-linux">https://linuxconfig.org/how-to-install-g-the-c-compiler-on-ubuntu-22-04-lts-jammy-jellyfish-linux</a></li>
+<li><a href="https://linuxnewbieguide.org/how-to-mount-macos-apfs-disk-volumes-in-linux/">https://linuxnewbieguide.org/how-to-mount-macos-apfs-disk-volumes-in-linux/</a></li>
+<li><a href="https://github.com/libyal/libfvde/wiki/Mounting">https://github.com/libyal/libfvde/wiki/Mounting</a></li>
+<li><a href="https://askubuntu.com/questions/1148390/mount-macbook-partition-on-ubuntu-unknown-filesystem-hfs-apfs">https://askubuntu.com/questions/1148390/mount-macbook-partition-on-ubuntu-unknown-filesystem-hfs-apfs</a></li>
+<li><a href="https://packetpushers.net/ubuntu-extend-your-default-lvm-space/">https://packetpushers.net/ubuntu-extend-your-default-lvm-space/</a></li>
+<li><a href="https://github.com/canonical/microk8s/issues/885">https://github.com/canonical/microk8s/issues/885</a></li>
+<li><a href="https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user">https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user</a></li>
+<li><a href="https://stackoverflow.com/questions/57570423/net-http-request-canceled-while-waiting-for-connection-client-timeout-exceeded">https://stackoverflow.com/questions/57570423/net-http-request-canceled-while-waiting-for-connection-client-timeout-exceeded</a></li>
+<li><a href="https://stackoverflow.com/questions/51963258/unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon">https://stackoverflow.com/questions/51963258/unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon</a></li>
+<li><a href="https://github.com/rook/rook/issues/3595">https://github.com/rook/rook/issues/3595</a></li>
+<li><a href="https://github.com/rook/rook/issues/11521">https://github.com/rook/rook/issues/11521</a></li>
+<li><a href="https://forum.proxmox.com/threads/ceph-mirroring-unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon.128066/">https://forum.proxmox.com/threads/ceph-mirroring-unable-to-get-monitor-info-from-dns-srv-with-service-name-ceph-mon.128066/</a></li>
+<li><a href="https://superuser.com/questions/1306167/how-is-passwordless-sudo-achieved-for-the-vagrant-user">https://superuser.com/questions/1306167/how-is-passwordless-sudo-achieved-for-the-vagrant-user</a></li>
+<li><a href="https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user">https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user</a></li>
+<li><a href="https://superuser.com/questions/1623376/how-can-i-make-my-own-account-a-sudoers-on-virtualbox">https://superuser.com/questions/1623376/how-can-i-make-my-own-account-a-sudoers-on-virtualbox</a></li>
+<li><a href="https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user">https://askubuntu.com/questions/406787/best-way-add-nopasswd-vagrant-user</a></li>
+<li><a href="https://stackoverflow.com/questions/44315842/execute-a-command-by-switching-to-root-user-in-ansible">https://stackoverflow.com/questions/44315842/execute-a-command-by-switching-to-root-user-in-ansible</a></li>
+<li><a href="https://stackoverflow.com/questions/39522326/how-do-i-append-a-large-amount-of-text-to-a-file-using-ansible">https://stackoverflow.com/questions/39522326/how-do-i-append-a-large-amount-of-text-to-a-file-using-ansible</a></li>
+<li><a href="https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/">https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html">https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html</a></li>
+<li><a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html">https://docs.ansible.com/ansible/latest/collections/ansible/builtin/blockinfile_module.html</a></li>
+<li><a href="https://www.lakshminp.com/installing-microk8s-using-ansible/">https://www.lakshminp.com/installing-microk8s-using-ansible/</a></li>
+<li><a href="https://fabianlee.org/2021/07/25/kubernetes-microk8s-cluster-on-ubuntu-using-ansible/">https://fabianlee.org/2021/07/25/kubernetes-microk8s-cluster-on-ubuntu-using-ansible/</a></li>
+<li><a href="https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/">https://www.reddit.com/r/ansible/comments/sn9l9d/microk8s_join_cluster_with_ansible/</a></li>
+<li><a href="https://stackoverflow.com/questions/30226113/ansible-ssh-prompt-known-hosts-issue">https://stackoverflow.com/questions/30226113/ansible-ssh-prompt-known-hosts-issue</a></li>
+<li><a href="https://www.freekb.net/Article?id=2986">https://www.freekb.net/Article?id=2986</a></li>
+<li><a href="https://serverfault.com/questions/537060/how-to-see-stdout-of-ansible-commands">https://serverfault.com/questions/537060/how-to-see-stdout-of-ansible-commands</a></li>
+<li><a href="https://serverfault.com/questions/1108319/checking-missing-nodes-in-microk8s-cluster-with-ansible">https://serverfault.com/questions/1108319/checking-missing-nodes-in-microk8s-cluster-with-ansible</a></li>
+<li><a href="https://stackoverflow.com/questions/39769560/cant-change-base-memory-in-virtualbox">https://stackoverflow.com/questions/39769560/cant-change-base-memory-in-virtualbox</a></li>
+<li><a href="https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration">https://developer.hashicorp.com/vagrant/docs/providers/virtualbox/configuration</a></li>
+<li><a href="https://stackoverflow.com/questions/12308149/how-do-i-increase-the-ram-and-set-up-host-only-networking-in-vagrant">https://stackoverflow.com/questions/12308149/how-do-i-increase-the-ram-and-set-up-host-only-networking-in-vagrant</a></li>
+<li><a href="https://www.thisprogrammingthing.com/2021/Vagrant-Development-Environment-Customizing-The-Amount-of-RAM/">https://www.thisprogrammingthing.com/2021/Vagrant-Development-Environment-Customizing-The-Amount-of-RAM/</a></li>
+<li><a href="https://www.virtualbox.org/manual/ch12.html">https://www.virtualbox.org/manual/ch12.html</a></li>
+<li><a href="https://documentation.suse.com/ses/7.1/html/ses-all/bp-troubleshooting-dashboard.html">https://documentation.suse.com/ses/7.1/html/ses-all/bp-troubleshooting-dashboard.html</a></li>
+<li><a href="https://discuss.linuxcontainers.org/t/introducing-microceph/15457/42">https://discuss.linuxcontainers.org/t/introducing-microceph/15457/42</a></li>
+<li><a href="https://stackoverflow.com/questions/69322849/rook-ceph-provisioning-issue">https://stackoverflow.com/questions/69322849/rook-ceph-provisioning-issue</a></li>
+<li><a href="https://github.com/rook/rook/issues/11464">https://github.com/rook/rook/issues/11464</a></li>
+<li><a href="https://lists.ceph.io/hyperkitty/list/ceph-users@ceph.io/thread/ZJIAEWGCAFAMNAPOXFW7FIKJVLYWHZPG/">https://lists.ceph.io/hyperkitty/list/ceph-users@ceph.io/thread/ZJIAEWGCAFAMNAPOXFW7FIKJVLYWHZPG/</a></li>
+<li><a href="https://forum.proxmox.com/threads/ceph-pacific-issue.127987/">https://forum.proxmox.com/threads/ceph-pacific-issue.127987/</a></li>
+<li><a href="https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/">https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/</a></li>
+<li><a href="https://stackoverflow.com/questions/65593899/ceph-health-warn-degraded-data-redundancy-pgs-undersized-after-reweighting">https://stackoverflow.com/questions/65593899/ceph-health-warn-degraded-data-redundancy-pgs-undersized-after-reweighting</a></li>
+<li><a href="https://github.com/rook/rook/issues/8749">https://github.com/rook/rook/issues/8749</a></li>
+<li><a href="https://github.com/rook/rook/issues/8696">https://github.com/rook/rook/issues/8696</a></li>
+<li><a href="https://github.com/rook/rook/issues/8727">https://github.com/rook/rook/issues/8727</a></li>
+<li><a href="https://stackoverflow.com/questions/63974879/microk8s-metallb-ingress-nginx-how-to-route-external-traffic">https://stackoverflow.com/questions/63974879/microk8s-metallb-ingress-nginx-how-to-route-external-traffic</a></li>
+<li><a href="https://stackoverflow.com/questions/43941772/get-yaml-for-deployed-kubernetes-services">https://stackoverflow.com/questions/43941772/get-yaml-for-deployed-kubernetes-services</a></li>
+<li><a href="https://stackoverflow.com/questions/69048829/need-support-on-using-git-sync-and-persistent-volumes">https://stackoverflow.com/questions/69048829/need-support-on-using-git-sync-and-persistent-volumes</a></li>
+<li><a href="https://github.com/kubernetes/kubernetes/issues/20466">https://github.com/kubernetes/kubernetes/issues/20466</a></li>
+<li>
+<p><a href="https://stackoverflow.com/questions/51317681/how-to-mount-the-sub-path-of-pvc-to-the-specific-path-in-container">https://stackoverflow.com/questions/51317681/how-to-mount-the-sub-path-of-pvc-to-the-specific-path-in-container</a></p>
+</li>
+<li>
+<p><a href="https://kubernetes.github.io/ingress-nginx/examples/rewrite/#app-root">https://kubernetes.github.io/ingress-nginx/examples/rewrite/#app-root</a></p>
+</li>
+<li><a href="https://v0-3-0--metallb.netlify.app/tutorial/arp/">https://v0-3-0--metallb.netlify.app/tutorial/arp/</a></li>
+<li><a href="https://metallb.universe.tf/troubleshooting/">https://metallb.universe.tf/troubleshooting/</a></li>
+<li><a href="https://github.com/kubernetes-sigs/kind/issues/1449">https://github.com/kubernetes-sigs/kind/issues/1449</a></li>
+<li><a href="https://community.temporal.io/t/deadline-exceeded-error-with-helm-charts-deployment/3636/9">https://community.temporal.io/t/deadline-exceeded-error-with-helm-charts-deployment/3636/9</a></li>
+<li>
+<p><a href="https://github.com/cert-manager/cert-manager/issues/2517">https://github.com/cert-manager/cert-manager/issues/2517</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/75546753/ceph-fix-activeundersizeddegraded-pgs-after-removing-an-osd">https://stackoverflow.com/questions/75546753/ceph-fix-activeundersizeddegraded-pgs-after-removing-an-osd</a></p>
+</li>
+<li><a href="https://www.reddit.com/r/ceph/comments/11ehf6u/pgs_stuck_in_undersized_mode_for_a_long_time/">https://www.reddit.com/r/ceph/comments/11ehf6u/pgs_stuck_in_undersized_mode_for_a_long_time/</a></li>
+<li><a href="https://ceph-users.ceph.narkive.com/GfJL0JTk/pg-status-is-active-undersized-degraded">https://ceph-users.ceph.narkive.com/GfJL0JTk/pg-status-is-active-undersized-degraded</a></li>
+<li><a href="https://forum.proxmox.com/threads/change-num-replicas-on-ceph-rool-online.25904/">https://forum.proxmox.com/threads/change-num-replicas-on-ceph-rool-online.25904/</a></li>
+<li><a href="https://forum.proxmox.com/threads/please-help-ceph-pool-stuck-at-undersized-degraded-remapped-backfill_toofull-peered.121690/">https://forum.proxmox.com/threads/please-help-ceph-pool-stuck-at-undersized-degraded-remapped-backfill_toofull-peered.121690/</a></li>
+<li><a href="https://forum.proxmox.com/threads/ceph-pool-created-using-mgr.120226/">https://forum.proxmox.com/threads/ceph-pool-created-using-mgr.120226/</a></li>
+<li><a href="https://stackoverflow.com/questions/63456581/1-pg-undersized-health-warn-in-rook-ceph-on-single-node-clusterminikube?rq=3">https://stackoverflow.com/questions/63456581/1-pg-undersized-health-warn-in-rook-ceph-on-single-node-clusterminikube?rq=3</a></li>
+<li><a href="https://h30434.www3.hp.com/t5/Desktop-Hardware-and-Upgrade-Questions/HP-t630-Thin-Client-will-it-accept-SSD-M-2-SATA-storage/td-p/8833395">https://h30434.www3.hp.com/t5/Desktop-Hardware-and-Upgrade-Questions/HP-t630-Thin-Client-will-it-accept-SSD-M-2-SATA-storage/td-p/8833395</a></li>
+<li><a href="https://forums.servethehome.com/index.php?threads/does-hp-thin-client-t630-support-nvme.28141/">https://forums.servethehome.com/index.php?threads/does-hp-thin-client-t630-support-nvme.28141/</a></li>
+<li><a href="https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/">https://rook.io/docs/rook/v1.12/Troubleshooting/ceph-common-issues/</a></li>
+<li><a href="https://discuss.linuxcontainers.org/t/microceph-with-more-than-3-nodes/17469">https://discuss.linuxcontainers.org/t/microceph-with-more-than-3-nodes/17469</a></li>
+<li><a href="https://docs.ceph.com/en/latest/mgr/orchestrator_modules/">https://docs.ceph.com/en/latest/mgr/orchestrator_modules/</a></li>
+<li><a href="https://stackoverflow.com/questions/38959525/hide-git-directory-or-file-with-apache">https://stackoverflow.com/questions/38959525/hide-git-directory-or-file-with-apache</a></li>
+<li><a href="https://tecadmin.net/block-git-directory-in-apache-nginx/">https://tecadmin.net/block-git-directory-in-apache-nginx/</a></li>
+<li><a href="https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory">https://serverfault.com/questions/128069/how-do-i-prevent-apache-from-serving-the-git-directory</a></li>
+<li><a href="https://helm.sh/docs/helm/helm_uninstall/">https://helm.sh/docs/helm/helm_uninstall/</a></li>
+<li><a href="https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/">https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/</a></li>
+<li><a href="https://microcloud.is/">https://microcloud.is/</a></li>
+<li><a href="https://ubuntu.com/blog/one_command_micro_cloud">https://ubuntu.com/blog/one_command_micro_cloud</a></li>
+<li><a href="https://stackoverflow.com/questions/51718202/helm-how-to-define-release-name-value">https://stackoverflow.com/questions/51718202/helm-how-to-define-release-name-value</a></li>
+<li><a href="https://github.com/helm/helm/issues/6992">https://github.com/helm/helm/issues/6992</a></li>
+<li><a href="https://stackoverflow.com/questions/51783651/how-to-create-a-namespace-if-it-doesnt-exists-from-helm-templates">https://stackoverflow.com/questions/51783651/how-to-create-a-namespace-if-it-doesnt-exists-from-helm-templates</a></li>
+<li><a href="https://stackoverflow.com/questions/52636571/how-to-pass-dynamic-arguments-to-a-helm-chart-that-runs-a-job">https://stackoverflow.com/questions/52636571/how-to-pass-dynamic-arguments-to-a-helm-chart-that-runs-a-job</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath">https://kubernetes.io/docs/concepts/storage/volumes/#using-subpath</a></li>
+<li><a href="https://stackoverflow.com/questions/65399714/what-is-the-difference-between-subpath-and-mountpath-in-kubernetes">https://stackoverflow.com/questions/65399714/what-is-the-difference-between-subpath-and-mountpath-in-kubernetes</a></li>
+<li><a href="https://multipass.run/docs/authenticating-clients">https://multipass.run/docs/authenticating-clients</a></li>
+<li><a href="https://github.com/canonical/multipass/issues/1714">https://github.com/canonical/multipass/issues/1714</a></li>
+<li><a href="https://github.com/canonical/multipass/issues/973">https://github.com/canonical/multipass/issues/973</a></li>
+<li><a href="https://bugs.launchpad.net/juju/+bug/1892389">https://bugs.launchpad.net/juju/+bug/1892389</a></li>
+<li><a href="https://stackoverflow.com/questions/61069841/helm-template-debug-or-helm-install-dry-run-debug-which-is-best">https://stackoverflow.com/questions/61069841/helm-template-debug-or-helm-install-dry-run-debug-which-is-best</a></li>
+<li><a href="https://helm.sh/docs/chart_template_guide/debugging/">https://helm.sh/docs/chart_template_guide/debugging/</a></li>
+<li><a href="https://github.com/helm/helm/issues/4574">https://github.com/helm/helm/issues/4574</a></li>
+<li><a href="https://github.com/bitnami/charts/issues/2720">https://github.com/bitnami/charts/issues/2720</a></li>
+<li><a href="https://serverfault.com/questions/356493/apache2-why-limitexcept-parameter-results-deny-not-allowed-here-error-in-vi">https://serverfault.com/questions/356493/apache2-why-limitexcept-parameter-results-deny-not-allowed-here-error-in-vi</a></li>
+<li><a href="https://kodekloud.com/blog/debug-crashloopbackoff/">https://kodekloud.com/blog/debug-crashloopbackoff/</a></li>
+<li><a href="https://discuss.elastic.co/t/filebeat-not-able-to-find-logs-on-microk8/182023">https://discuss.elastic.co/t/filebeat-not-able-to-find-logs-on-microk8/182023</a></li>
+<li><a href="https://discuss.hashicorp.com/t/0-3-nodes-are-available-pod-has-unbound-immediate-persistentvolumeclaims/51642">https://discuss.hashicorp.com/t/0-3-nodes-are-available-pod-has-unbound-immediate-persistentvolumeclaims/51642</a></li>
+<li><a href="https://stackoverflow.com/questions/33415913/whats-the-best-way-to-share-mount-one-file-into-a-pod/43404857#43404857">https://stackoverflow.com/questions/33415913/whats-the-best-way-to-share-mount-one-file-into-a-pod/43404857#43404857</a></li>
+<li><a href="https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible">https://stackoverflow.com/questions/47305658/install-snap-packages-with-ansible</a></li>
+<li><a href="https://stackoverflow.com/questions/73421967/how-to-use-git-sync-image-as-a-sidecar-in-kubernetes-that-git-pulls-periodically">https://stackoverflow.com/questions/73421967/how-to-use-git-sync-image-as-a-sidecar-in-kubernetes-that-git-pulls-periodically</a></li>
+<li><a href="https://release.com/blog/kubernetes-how-to-debug-crashloopbackoff-in-a-container">https://release.com/blog/kubernetes-how-to-debug-crashloopbackoff-in-a-container</a></li>
+<li><a href="https://askubuntu.com/questions/1482503/ubuntu-server-22-04-3-lts-system-has-been-minimized">https://askubuntu.com/questions/1482503/ubuntu-server-22-04-3-lts-system-has-been-minimized</a></li>
+<li><a href="https://ansiblepilot.medium.com/ansible-troubleshooting-error-no-module-named-markupsafe-8c9f45dae5b5">https://ansiblepilot.medium.com/ansible-troubleshooting-error-no-module-named-markupsafe-8c9f45dae5b5</a></li>
+<li><a href="https://askubuntu.com/questions/1379866/not-showing-available-ram">https://askubuntu.com/questions/1379866/not-showing-available-ram</a></li>
+<li><a href="https://www.reddit.com/r/kubernetes/comments/ypfi4l/how_to_create_readwritemany_persistent_volumes/">https://www.reddit.com/r/kubernetes/comments/ypfi4l/how_to_create_readwritemany_persistent_volumes/</a></li>
+<li><a href="https://github.com/rook/rook/issues/5936">https://github.com/rook/rook/issues/5936</a></li>
+<li><a href="https://github.com/rook/rook/issues/4209">https://github.com/rook/rook/issues/4209</a></li>
+<li><a href="https://github.com/canonical/microceph/issues/23">https://github.com/canonical/microceph/issues/23</a></li>
+<li><a href="https://github.com/canonical/microceph/issues/145">https://github.com/canonical/microceph/issues/145</a></li>
+<li><a href="https://github.com/canonical/microceph/issues/251">https://github.com/canonical/microceph/issues/251</a></li>
+<li><a href="https://github.com/canonical/microceph/issues">https://github.com/canonical/microceph/issues</a></li>
+<li><a href="https://stackoverflow.com/questions/63781025/microk8s-remote-with-kubectl-you-must-be-logged-in-to-the-server-unauthorized">https://stackoverflow.com/questions/63781025/microk8s-remote-with-kubectl-you-must-be-logged-in-to-the-server-unauthorized</a></li>
+<li><a href="https://github.com/helm/helm/issues/3134">https://github.com/helm/helm/issues/3134</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../referencesReserve/" title="Reserve References"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../referencesReserve/" style="color: #fcfcfc">« Previous</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

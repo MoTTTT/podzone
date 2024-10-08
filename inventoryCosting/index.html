@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/inventoryCosting/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Costing - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Costing";
+        var mkdocs_page_input_path = "inventoryCosting.md";
+        var mkdocs_page_url = "/podzone/inventoryCosting/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Costing</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#enterprise-hardware">Enterprise hardware</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#servers">Servers</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#disks-and-caddies">Disks and caddies</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#memory">Memory</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#networking">Networking</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#consumer-hardware">Consumer hardware</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-selection">Hardware selection</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#drives">Drives</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#drive-issues">Drive issues</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ram">RAM</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-pricing-sa">Example Pricing: SA</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-pricing-uk">Example Pricing: UK</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ssd-pricing">SSD pricing</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#m2-sata">m.2 SATA</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#m2-nvme">m.2 nvme</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hardware-purchase-reconciliation">Hardware purchase reconciliation</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#q-solutions">Q Solutions</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#norham">Norham</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Analysis</li>
+<li class="breadcrumb-item active">Costing</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="costing">Costing</h1>
+<h2 id="enterprise-hardware">Enterprise hardware</h2>
+<h3 id="servers">Servers</h3>
+<ul>
+<li>Pluto: Dell PowerEdge R720 2x Intel Xeon E5-2650 V1 @2.00GHz 8x8GB RAM, No HDD. {£51}</li>
+<li>Saturn: Dell DR6000 2x E5-2695 V2 2.6Ghz No RAM DDR3 H710 1100W. {£59}</li>
+<li>Mercury: Dell PowerEdge R720 16x SFF Storage Rack Server 2x Xeon CPU No RAM 2x 600gb Hdd {£88}</li>
+<li>Venus: Dell PowerEdge R730 Xeon 2 x E5-2698 V3, 160GB RAM, H730 Mini {£104}</li>
+<li>
+<p>Mars: DELL PowerEdge R720 2 X Xeon E5-2650 V2 2x 1TB SAS {£70}</p>
+</li>
+<li>
+<p>Neptune: Dell PowerEdge R720 {actually an R710} Rack Mount Server (Xeon 5677, 24GB RAM, 6 Caddies, No HDDs) {£52} - Attempting return</p>
+</li>
+</ul>
+<h3 id="disks-and-caddies">Disks and caddies</h3>
+<ul>
+<li>4x SEAGATE CONSTELLATION 3TB ES.3 ST3000NM0023 3.5" 6G SAS HDD {£16.00}</li>
+<li>8 X Dell 147GB 2.5" 10K SAS HDD {£15}</li>
+<li>4 X HGST 600GB 10K RPM 2.5" SFF SAS HDD {£19}</li>
+<li>20 x Assorted 600GB 6Gbps 2.5" SAS HDD {£31}</li>
+<li>8 X Dell 2.5" Hard Drive Tray Caddy {£36}</li>
+<li>4 X Dell 2.5" Hard Drive Tray Caddy {£18}</li>
+<li>2 X SAS Hard Disk Drive SFF-8482 Male To Female Extension Cable BS {£15}</li>
+</ul>
+<h3 id="memory">Memory</h3>
+<ul>
+<li>24 x 16GB Hynix DDR3-1066MHz 4Rx4 {£51}}</li>
+<li>16 x 16GB Hynix DDR3-1066MHz 4R4 {£66}</li>
+</ul>
+<h3 id="networking">Networking</h3>
+<ul>
+<li>Dell PowerConnect 5324 24xRJ-45 1G Managed Switch {£10}</li>
+<li>2m Optical Fibre Cable  Multi-Mode Duplex {£4}</li>
+<li>SFP+ Optical Transceiver  Nokia 9.8GB {£1}</li>
+<li>SFP Optical Transceiver Finisar 4GB {£5}</li>
+<li>SFP Optical Transceiver Prolabs 10G {£4}</li>
+<li>2 X 1m OM4 Fibre Optic Patch Cable LC-LC Multi-Mode Network Lead UPC 50/125µm Duplex {£10}</li>
+<li>4 X 0.5m OM4 Fibre Optic Patch Cable LC-LC Multi-Mode Network Lead UPC 50/125µm Duplex {£20}</li>
+<li>7 x HP HPE 16Gb SW B-series SFP+ Fibre Channel Transceivers QK724A 656435-001 {£32}</li>
+</ul>
+<h2 id="consumer-hardware">Consumer hardware</h2>
+<h3 id="hardware-selection">Hardware selection</h3>
+<p>The following criteria were used to short-list potential hardware:</p>
+<ul>
+<li>DDR4 RAM capacity</li>
+<li>No of CPU Cores, and processor speed</li>
+<li>SSD module capacity</li>
+<li>Recovered or second hand hardware</li>
+<li>Small form factor</li>
+<li>Low noise</li>
+</ul>
+<p>The HP t630 meets these requirements, although has a limitation of only supporting SATA SSDs. At the time of this project there are many units available, as they were popular for scaled call centre and office use. These varied widely in price. Those without power supply and cable are not of use, so check before ordering.</p>
+<p>The t630s purchased for build of cluster nodes have the following capacities:</p>
+<ul>
+<li>4 X 2.2GHz CPU cores (AMD GX-420GI)</li>
+<li>2 X SODIMM DDR4 RAM slots (Max capacity 64GB RAM)</li>
+<li>2 X M.2 SATA SSD slots (1 X 2242 max modules, 1 X 2280 max modules)</li>
+</ul>
+<h2 id="drives">Drives</h2>
+<p>The t630 has two M.2 SATA slots:</p>
+<ul>
+<li>Primary module slot: Up to size 2242 modules. The devices purchased were populated with 32GB modules.</li>
+<li>Secondary module slot: Up to size 2280 modules</li>
+</ul>
+<p>Secondary modules of 256GB were purchased for dedicated ceph disks.</p>
+<p>Once operating system, kubernetes and ceph were installed, ceph gave space threshold warnings for the boot device, so 32GB proved too small for the boot device.  With Ubuntu Server 22.04 minimised, microk8s and ceph installed and configured and the baseline application workload deployed, ceph <em>MON_DISK_LOW</em> health checks were failing. Primary modules were therefore upgraded to 128GB.</p>
+<p>With 256GB allocated to each ceph node, with 3 replicas of each object stored, safe cluster size is 170GB.</p>
+<h3 id="drive-issues">Drive issues</h3>
+<ol>
+<li>Availability of M.2 SATA SSDs is limited. M.2 NVME SSDs, which are more easily available than the SATAs are not supported.</li>
+<li>Availability of M.2 size 2242 M.2 modules is limited, the 2280 size modules being more easily available.</li>
+<li>Some of the t630s devices did not support adjusting the BIOS to boot from the secondary module slot, requiring a 2242 size boot device module.</li>
+<li>Stock of each of the modules is limited. Online ordering cancellations due to availability happened more than once.</li>
+</ol>
+<p>As a result of these constraints, some modules were over specified for their purpose, but for all devices, at least 128GB was assigned to the boot SSD.</p>
+<p>NOTE: The UK refurbished / second hand parts online market is easy, quick and reliable. Ebay would be good to have in SA.</p>
+<h3 id="ram">RAM</h3>
+<p>The t630 has two DDR4 RAM slots. The devices purchased were populated with one 8GB module.</p>
+<p>An additional 16GB module was purchased to make up for a total of 24 GB.</p>
+<p>A minimum of 256 MB RAM is allocated to GPU. BIOS configuration reduced this from the default of 1 GB.</p>
+<p>Scaling up would be easy while DDR4 RAM is available, first replacing the 8GB modules with e.g. 32GB modules.</p>
+<p>Maximum supported RAM for a three node cluster would be 191GB, once dedicated GPU RAM is considered.</p>
+<h2 id="example-pricing-sa">Example Pricing: SA</h2>
+<ul>
+<li>t630 unit price: R900</li>
+<li>M.2 SATA 256GB SSD: R469</li>
+<li>M.2 SATA 128GB SSD: R339</li>
+<li>16GB DDR4 RAM: R899</li>
+<li>Node cost: R2607 == £116</li>
+</ul>
+<h2 id="example-pricing-uk">Example Pricing: UK</h2>
+<ul>
+<li>t630 unit price: £35 (1 ordered)</li>
+<li>M.2 SATA 2242 256GB SSD: £18.66 (3 ordered)</li>
+<li>M.2 SATA 2280 128GB SSD: £13.95 (3 ordered)</li>
+<li>16GB DDR4 RAM: £19.99 (3 ordered)</li>
+<li>Node cost: £88 == R2125</li>
+</ul>
+<h2 id="ssd-pricing">SSD pricing</h2>
+<h3 id="m2-sata">m.2 SATA</h3>
+<ul>
+<li>128GB £14 : £112/TB</li>
+<li>256GB £20 : £80/TB</li>
+<li>512GB £30 : £60/TB</li>
+<li>1TB £55   : £55/TB</li>
+<li>2TB £100  : £50/TB</li>
+</ul>
+<h3 id="m2-nvme">m.2 nvme</h3>
+<ul>
+<li>215 GB £25 : 100</li>
+<li>1 TB £53</li>
+<li>2 TB £120 : 60</li>
+<li>4 TB £233 : 58</li>
+</ul>
+<h2 id="hardware-purchase-reconciliation">Hardware purchase reconciliation</h2>
+<h3 id="q-solutions">Q Solutions</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Vendor</th>
+<th>Component</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21/01/2024</td>
+<td>Ebay</td>
+<td>HP T630</td>
+<td>34,99</td>
+<td>1</td>
+<td>34,99</td>
+</tr>
+<tr>
+<td>21/01/2024</td>
+<td>EBay</td>
+<td>2280 M.2 SATA 128GB</td>
+<td>7,99</td>
+<td>3</td>
+<td>23,97</td>
+</tr>
+<tr>
+<td>21/01/2024</td>
+<td>Ebay</td>
+<td>2242 M.2 SATA 256GB</td>
+<td>17,09</td>
+<td>3</td>
+<td>55,98</td>
+</tr>
+<tr>
+<td>21/01/2024</td>
+<td>Ebay</td>
+<td>DDR4 16GB RAM</td>
+<td>19,98</td>
+<td>3</td>
+<td>59,94</td>
+</tr>
+<tr>
+<td>24/01/2024</td>
+<td>Ebay</td>
+<td>HP T630</td>
+<td>33,64</td>
+<td>1</td>
+<td>33,64</td>
+</tr>
+<tr>
+<td>24/01/2024</td>
+<td>Ebay</td>
+<td>HP T520</td>
+<td>29,00</td>
+<td>1</td>
+<td>29,99</td>
+</tr>
+<tr>
+<td>14/02/2024</td>
+<td>Ebay</td>
+<td>.5 m Cat 6 Cable</td>
+<td>2,29</td>
+<td>5</td>
+<td>11,45</td>
+</tr>
+<tr>
+<td>14/02/2024</td>
+<td>Ebay</td>
+<td>1.5 m Cat 6 Cable</td>
+<td>2,29</td>
+<td>3</td>
+<td>7,77</td>
+</tr>
+<tr>
+<td>13/03/2024</td>
+<td>Ebay</td>
+<td>Dell PowerEdge R720</td>
+<td>51,00</td>
+<td>1</td>
+<td>51,00</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Total</td>
+<td></td>
+<td></td>
+<td>£308,73</td>
+</tr>
+</tbody>
+</table>
+<h3 id="norham">Norham</h3>
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Vendor</th>
+<th>Component</th>
+<th>Unit Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>28/01/2024</td>
+<td>Ebay</td>
+<td>HP T630</td>
+<td>32,80</td>
+<td>5</td>
+<td>164,00</td>
+</tr>
+<tr>
+<td>28/01/2024</td>
+<td>Ebay</td>
+<td>DDR4 16GB RAM</td>
+<td>19,99</td>
+<td>5</td>
+<td>99,95</td>
+</tr>
+<tr>
+<td>28/01/2024</td>
+<td>Ebay</td>
+<td>2242 M.2 SATA 256GB</td>
+<td>19,49</td>
+<td>1</td>
+<td>19,49</td>
+</tr>
+<tr>
+<td>04/02/2024</td>
+<td>Ebay</td>
+<td>2280 M.2 SATA 2TB</td>
+<td>99,99</td>
+<td>1</td>
+<td>99,99</td>
+</tr>
+<tr>
+<td>04/02/2024</td>
+<td>Amazon</td>
+<td>8 Port GB Switch</td>
+<td>14,99</td>
+<td>1</td>
+<td>14,99</td>
+</tr>
+<tr>
+<td>07/02/2024</td>
+<td>Ebay</td>
+<td>2242 M.2 SATA 256GB</td>
+<td>18,06</td>
+<td>4</td>
+<td>72,20</td>
+</tr>
+<tr>
+<td>07/02/2024</td>
+<td>Ebay</td>
+<td>PCIe &gt; M.2 NVMe SATA</td>
+<td>5,93</td>
+<td>1</td>
+<td>5,93</td>
+</tr>
+<tr>
+<td>07/02/2024</td>
+<td>Ebay</td>
+<td>2280 M.2 SATA 128GB</td>
+<td>11,99</td>
+<td>5</td>
+<td>59,95</td>
+</tr>
+<tr>
+<td>07/02/2024</td>
+<td>Ebay</td>
+<td>.5 m Cat 6 Cable</td>
+<td>2,29</td>
+<td>5</td>
+<td>11,45</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>Total</td>
+<td></td>
+<td></td>
+<td>£547,95</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li>HP t630 specs: <a href="https://support.hp.com/za-en/document/c05240287">https://support.hp.com/za-en/document/c05240287</a></li>
+<li>Ceph storage capacity calculator: <a href="https://florian.ca/ceph-calculator/">https://florian.ca/ceph-calculator/</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalTasklist2/" title="Task List: northern.podzone.net"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalKubernetes/" title="Kubernetes">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalTasklist2/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalKubernetes/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

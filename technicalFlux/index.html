@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalFlux/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Flux - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Flux";
+        var mkdocs_page_input_path = "technicalFlux.md";
+        var mkdocs_page_url = "/podzone/technicalFlux/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Flux</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#dev-environment-bootstrap">dev environment bootstrap</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#resources-created-by-flux">Resources created by flux</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Workload</li>
+<li class="breadcrumb-item active">Flux</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="flux">Flux</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Flux is a Kubernetes GitOps Operator. GitOps is the practice of using code repositories as the single source of truth for cluster and workload configuration.</p>
+<p>Flux was built by Weaveworks, and donated to the Cloud Native Computing Foundation (CNCF).</p>
+<p>Instrumenting a cluster with Flux requires the following:</p>
+<ul>
+<li>A git repo for the cluster definition, with its associated access username and token exported.</li>
+<li>Installing the flux utility on a cluster administrator workstation (with kubectl context set for the target cluster).</li>
+<li>Bootstrapping flux, specifying the git account, repo, branch and path.</li>
+</ul>
+<p>When the bootstrap process concludes, the GIT repo will contain the flux-system component manifests, and the target cluster will have flux-system namespace operator components installed. The flux operator with thereafter monitor the git repo for cluster configuration requirement changes, and apply the appropriate cluster adjustments.</p>
+<h2 id="dev-environment-bootstrap">dev environment bootstrap</h2>
+<pre><code class="language-sh">flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-gitops --branch=main --personal --path=clusters/megalith --token-auth=true
+</code></pre>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Mac OS flux Installation: <code>brew install fluxcd/tap/flux</code></li>
+<li>Create a GITHUB token, and export username and token: <code>export GITHUB_TOKEN=&lt;token&gt;</code>; <code>export GITHUB_USER=MoTTTT</code></li>
+<li>Check flux and cluster: <code>flux check --pre</code></li>
+<li>Bootstrap: <code>flux bootstrap github --context=prod --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/prod --token-auth=true</code></li>
+<li>GitHub token expiry: Delete flux secret, and bootstrap again with new token in context.</li>
+</ul>
+<pre><code class="language-text">??:
+brew tap weaveworks/tap
+brew install weaveworks/tap/gitops
+</code></pre>
+<h2 id="resources-created-by-flux">Resources created by flux</h2>
+<p>Can be seen on delete: <code>flux uninstall</code></p>
+<pre><code class="language-text">martincolley@Dolmen:~/workspace/admin/clusters/ukdev$ flux uninstall
+Are you sure you want to delete Flux and its custom resource definitions: y
+► deleting components in flux-system namespace
+✔ Deployment/flux-system/helm-controller deleted 
+✔ Deployment/flux-system/kustomize-controller deleted 
+✔ Deployment/flux-system/notification-controller deleted 
+✔ Deployment/flux-system/source-controller deleted 
+✔ Service/flux-system/notification-controller deleted 
+✔ Service/flux-system/source-controller deleted 
+✔ Service/flux-system/webhook-receiver deleted 
+✔ NetworkPolicy/flux-system/allow-egress deleted 
+✔ NetworkPolicy/flux-system/allow-scraping deleted 
+✔ NetworkPolicy/flux-system/allow-webhooks deleted 
+✔ ServiceAccount/flux-system/helm-controller deleted 
+✔ ServiceAccount/flux-system/kustomize-controller deleted 
+✔ ServiceAccount/flux-system/notification-controller deleted 
+✔ ServiceAccount/flux-system/source-controller deleted 
+✔ ClusterRole/crd-controller-flux-system deleted 
+✔ ClusterRole/flux-edit-flux-system deleted 
+✔ ClusterRole/flux-view-flux-system deleted 
+✔ ClusterRoleBinding/cluster-reconciler-flux-system deleted 
+✔ ClusterRoleBinding/crd-controller-flux-system deleted 
+► deleting toolkit.fluxcd.io finalizers in all namespaces
+✔ GitRepository/flux-system/flux-system finalizers deleted 
+✔ Kustomization/flux-system/flux-system finalizers deleted 
+► deleting toolkit.fluxcd.io custom resource definitions
+✔ CustomResourceDefinition/alerts.notification.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/buckets.source.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/gitrepositories.source.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/helmcharts.source.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/helmreleases.helm.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/helmrepositories.source.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/kustomizations.kustomize.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/ocirepositories.source.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/providers.notification.toolkit.fluxcd.io deleted 
+✔ CustomResourceDefinition/receivers.notification.toolkit.fluxcd.io deleted 
+✔ Namespace/flux-system deleted 
+✔ uninstall finished
+</code></pre>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalStaticSite/" title="Helm Charts"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalWordpress/" title="Installing Wordpress">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalStaticSite/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalWordpress/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

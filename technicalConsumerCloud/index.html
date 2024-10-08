@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalConsumerCloud/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Consumer Cloud - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Consumer Cloud";
+        var mkdocs_page_input_path = "technicalConsumerCloud.md";
+        var mkdocs_page_url = "/podzone/technicalConsumerCloud/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Consumer Cloud</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#definition">Definition</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#consumer-built-and-managed-cloud-service">Consumer built and managed Cloud Service</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#alternatives">Alternatives</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#self-hosting-platforms">Self Hosting Platforms</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-implementation">Technical implementation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Analysis</li>
+<li class="breadcrumb-item active">Consumer Cloud</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="consumer-cloud">Consumer Cloud</h1>
+<h2 id="definition">Definition</h2>
+<p><a href="https://hginsights.com/">HG Insights</a> defines <strong>Consumer Cloud</strong> in their Glossary as follows:</p>
+<pre><code class="language-text">Cloud computing  offerings  targeted toward  individuals for personal use, 
+such as Dropbox or iCloud. End users interact with consumer  cloud’s through 
+highly  interactive  applications. When you store  photos or documents in an
+app like Dropbox, you are interacting  with their cloud, hence the  consumer
+cloud. Consumer clouds are composed no differently from other cloud systems.
+The only  difference is the B2C nature of their delivery. Most  applications
+that  interact  directly  with  the  customer  can be  classified as using a 
+consumer cloud.
+</code></pre>
+<p>In this sense, the term "Consumer Cloud" refers to Cloud service offerings targeting Consumers, as opposed to Business or Enterprise Cloud service provider customers.</p>
+<p>The definition of "Cloud Consumer" is consistently along the lines of "a consumer of cloud services".</p>
+<p>I am not aware of a formal definition for a <strong>Consumer built and managed Cloud Service</strong>. However this is the sense in which I would like to use the term.</p>
+<h2 id="consumer-built-and-managed-cloud-service">Consumer built and managed Cloud Service</h2>
+<p>Since I have the skill-set to set up and manage server hardware, and the hardware necessary to suite the workload, I have always preferred self-hosting from my residential network, rather than to make use of hosting or cloud services. The relative costs of hosting and cloud services have been investigated on occasion over time, and not found suitable for this set of use-cases.</p>
+<p>Further, the inclination to own the computing fabric, rather than to rent capacity is strong, for the same reasons that owning property for my family's accommodation rather than renting property is preferable.</p>
+<p>Lastly, I have a personal professional interest in hardware and computing, and am prepared to develop this skill set in the re-architecture of the solution as an on-premise solution, using current cloud technologies.</p>
+<h2 id="alternatives">Alternatives</h2>
+<p>While this definition of <em>Consumer Cloud</em> has a level of engineering skill required, it is easy to envision a future scenario where the components are commoditised to the extent that this is no longer the case.</p>
+<p>While this project's scope is focused on a set of <em>Information Technology</em> requirements such as file mail and application services, pre-built consumer grade appliances that come close to fulfilling the requirement are already available. These however invariably have a component of their offering that includes one or more <em>vendor ecosystems</em>. These typically require registering with and using, at run-time, Service Provider cloud services available only via the Internet to configure and manage the solution.</p>
+<p>So in a sense <em>Consumer Cloud</em> is already an offering on the market, if one understands the <em>build</em> part to refer to sourcing and installing an appliance, and one is not to fussy about committing to a dependency on vendor eco-systems.</p>
+<p>There are also a few platforms that play some role in empowering consumers - some positioned to support large organisations as well - to manage on-premise services and solutions without the vendor eco-system. These range from solutions focusing on putting a user's data back in their own sphere of influence - for reasons relating to Data Sovereignty - to solutions supporting home technicians and hobbyists get up and running with pre-packaged solutions for media servers, blog sites and the like.</p>
+<p>With the <em>build</em> part being relevant to me, and an aversion to committing to vendor ecosystems where avoidable, none of these solutions were a good fit for my set of use-cases.</p>
+<p>There is a sense in which vendor ecosystems are hard to avoid, if one includes the many middle-men in the software provisioning pipeline. This includes operating system release solutions, and the package management that runs on top of these.</p>
+<p>For this solution, at least the MVP portion, this is acceptable.</p>
+<p>There is a parallel initiative to investigate cloud at the edge and IoT. As the run-time for this initiative is Embedded Linux, a tool-chain to build an OS image for specifically targeted hardware is required. The tool-chain needs to build an image including operating system kernel, only the required support software, and one or more run-time applications. A k3s layer, which provides a light weight cloud (kubernetes) distribution will also be installed. It would be interesting to investigate using this same tool-chain to target the hardware used for the IT component, thus avoiding the vendor ecosystems used in the IT MVP solution. More about this elsewhere.</p>
+<h2 id="self-hosting-platforms">Self Hosting Platforms</h2>
+<p>It bears mentioning that there are a number of initiatives that provide infrastructure to remove barriers to entry for self-hosted IT at the Cloud level.</p>
+<p>Specifically, artefact hosting and aggregation platforms like Artifactory, and high level kubernetes management platforms like KubeApps <a href="https://kubeapps.dev/">https://kubeapps.dev/</a> provide valuable resources that make kubernetes accessible to consumers.</p>
+<h2 id="technical-implementation">Technical implementation</h2>
+<p>With the points above in mind, the following imperatives are listed in bullet point form to inform further decision making:</p>
+<ul>
+<li>No public cloud runtime (day 1, day 2) dependencies</li>
+<li>Use of Consumer (commodity) components:</li>
+<li>Computing resources</li>
+<li>Networking</li>
+<li>Internet access</li>
+<li>Off grid (Internet disconnected) viability for services</li>
+</ul>
+<p>Of note are the remaining day zero dependencies. These include off-premise file, code and component storage, as well as domain serving and certificate issuing services. Once the envisaged multi-site solution is complete at least the storage solutions will be considered, for example replacing GitHub with the self-hosted solution Gitea, which I have implemented with success in an enterprise on-premise setting.</p>
+<p>For this specific initiative, procuring additional hardware to support a multi-site implementation is required. Second hand end-user hardware, with upgrades to RAM and storage will be used, as circumstances dictate.</p>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../requirementBusinessBrief/" title="QApps Business Brief"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalExternalServices/" title="External Services">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../requirementBusinessBrief/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalExternalServices/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

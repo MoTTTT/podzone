@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/referencesHardware/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Hardware References - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Hardware References";
+        var mkdocs_page_input_path = "referencesHardware.md";
+        var mkdocs_page_url = "/podzone/referencesHardware/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Hardware References</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#openstack">Openstack</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox">Proxmox</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#r720">R720</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#sas">SAS</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iscsi">ISCSI</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nfs">NFS</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#hypervisors">Hypervisors</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#canonical-k8s">Canonical k8s</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-root-and-boot">Network root and boot</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network-configuration">Network configuration</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">References</li>
+<li class="breadcrumb-item active">Hardware References</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="hardware-references">Hardware References</h1>
+<h2 id="openstack">Openstack</h2>
+<ul>
+<li><a href="https://ubuntu.com/openstack">https://ubuntu.com/openstack</a></li>
+<li><a href="https://ubuntu.com/tutorials/explore-openstack-components-and-set-up-an-openstack-client#1-overview">https://ubuntu.com/tutorials/explore-openstack-components-and-set-up-an-openstack-client#1-overview</a></li>
+<li><a href="https://ubuntu.com/tutorials/install-openstack-on-your-workstation-and-launch-your-first-instance#1-overview">https://ubuntu.com/tutorials/install-openstack-on-your-workstation-and-launch-your-first-instance#1-overview</a></li>
+<li><a href="https://microstack.run/">https://microstack.run/</a></li>
+<li><a href="https://ubuntu.com/openstack/install">https://ubuntu.com/openstack/install</a></li>
+</ul>
+<h2 id="proxmox">Proxmox</h2>
+<ul>
+<li><a href="https://www.proxmox.com/images/download/pve/docs/Proxmox-VE-8.2-datasheet.pdf">https://www.proxmox.com/images/download/pve/docs/Proxmox-VE-8.2-datasheet.pdf</a></li>
+</ul>
+<h2 id="r720">R720</h2>
+<ul>
+<li><a href="https://www.reddit.com/r/homelab/comments/l6is2g/ram_configuration_challenge_dell_r720/">https://www.reddit.com/r/homelab/comments/l6is2g/ram_configuration_challenge_dell_r720/</a></li>
+<li><a href="https://www.reddit.com/r/homelab/comments/osykf8/dell_r720_or_r730/">https://www.reddit.com/r/homelab/comments/osykf8/dell_r720_or_r730/</a></li>
+<li><a href="https://www.adn.de/fileadmin/user_upload/Hersteller/Dell/Datenblaetter/Poweredge_Easy_Matrix_19_A4_3.1_PRESS.pdf">https://www.adn.de/fileadmin/user_upload/Hersteller/Dell/Datenblaetter/Poweredge_Easy_Matrix_19_A4_3.1_PRESS.pdf</a></li>
+<li><a href="https://www.reddit.com/r/homelab/comments/5lni2w/thoughts_on_these_dell_poweredge_r430r630/">https://www.reddit.com/r/homelab/comments/5lni2w/thoughts_on_these_dell_poweredge_r430r630/</a></li>
+<li><a href="https://www.dell.com/support/kbdoc/en-uk/000177212/dell-poweredge-how-to-configure-the-idrac9-and-the-lifecycle-controller-network-ip">https://www.dell.com/support/kbdoc/en-uk/000177212/dell-poweredge-how-to-configure-the-idrac9-and-the-lifecycle-controller-network-ip</a></li>
+</ul>
+<h2 id="sas">SAS</h2>
+<ul>
+<li><a href="https://www.tape-drive-repair.com/sas-connector-guide/">https://www.tape-drive-repair.com/sas-connector-guide/</a></li>
+<li><a href="https://www.seagate.com/www-content/product-content/constellation-fam/constellation-es/constellation-es-3/en-us/docs/100671510b.pdf">https://www.seagate.com/www-content/product-content/constellation-fam/constellation-es/constellation-es-3/en-us/docs/100671510b.pdf</a></li>
+<li><a href="https://www.seagate.com/www-content/product-content/constellation-fam/constellation-es/constellation-es-3/en-us/docs/constellation-es-3-data-sheet-ds1769-1-1210us.pdf">https://www.seagate.com/www-content/product-content/constellation-fam/constellation-es/constellation-es-3/en-us/docs/constellation-es-3-data-sheet-ds1769-1-1210us.pdf</a></li>
+</ul>
+<h2 id="iscsi">ISCSI</h2>
+<ul>
+<li><a href="https://ubuntu.com/server/docs/iscsi-initiator-or-client">https://ubuntu.com/server/docs/iscsi-initiator-or-client</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Standard_RAID_levels">https://en.wikipedia.org/wiki/Standard_RAID_levels</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ISCSI">https://en.wikipedia.org/wiki/ISCSI</a></li>
+<li><a href="https://github.com/kubernetes/examples/tree/master/volumes/iscsi">https://github.com/kubernetes/examples/tree/master/volumes/iscsi</a></li>
+<li><a href="https://www.reddit.com/r/kubernetes/comments/jjx0le/kubernetes_iscsi_storage_practices/">https://www.reddit.com/r/kubernetes/comments/jjx0le/kubernetes_iscsi_storage_practices/</a></li>
+<li><a href="https://www.hardill.me.uk/wordpress/2023/11/12/setting-up-iscsi-volumes-for-kubernetes/">https://www.hardill.me.uk/wordpress/2023/11/12/setting-up-iscsi-volumes-for-kubernetes/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Non-standard_RAID_levels">https://en.wikipedia.org/wiki/Non-standard_RAID_levels</a></li>
+<li><a href="https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks">https://www.techtarget.com/searchstorage/definition/RAID-10-redundant-array-of-independent-disks</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)</a></li>
+<li><a href="https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/">https://jonamiki.com/2015/01/23/view-create-delete-virtual-raid-volumes-with-racadm-on-an-r720-server-dell-12g/</a></li>
+</ul>
+<h2 id="nfs">NFS</h2>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding">https://kubernetes.io/docs/concepts/storage/persistent-volumes/#binding</a></li>
+<li><a href="https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client">https://github.com/kubernetes-retired/external-storage/tree/master/nfs-client</a></li>
+<li><a href="https://stackoverflow.com/questions/44204223/kubernetes-nfs-persistent-volumes-multiple-claims-on-same-volume-claim-stuck">https://stackoverflow.com/questions/44204223/kubernetes-nfs-persistent-volumes-multiple-claims-on-same-volume-claim-stuck</a></li>
+</ul>
+<h3 id="hypervisors">Hypervisors</h3>
+<ul>
+<li><a href="https://phoenixnap.com/kb/what-is-hypervisor-type-1-2">https://phoenixnap.com/kb/what-is-hypervisor-type-1-2</a></li>
+<li><a href="https://phoenixnap.com/kb/ubuntu-install-kvm">https://phoenixnap.com/kb/ubuntu-install-kvm</a></li>
+<li><a href="https://ubuntu.com/blog/kvm-hyphervisor">https://ubuntu.com/blog/kvm-hyphervisor</a></li>
+<li><a href="https://microstack.run/docs/single-node">https://microstack.run/docs/single-node</a></li>
+<li><a href="https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/">https://www.linuxtechi.com/how-to-install-kvm-on-ubuntu-22-04/</a></li>
+<li><a href="https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands">https://canonical-microcloud.readthedocs-hosted.com/en/latest/how-to/commands/#howto-commands</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps">https://documentation.ubuntu.com/lxd/en/latest/tutorial/first_steps</a></li>
+</ul>
+<h2 id="canonical-k8s">Canonical <code>k8s</code></h2>
+<ul>
+<li>Note: no mention of Canonical <code>k8s</code>: <a href="https://ubuntu.com/kubernetes">https://ubuntu.com/kubernetes</a></li>
+<li>Canonical <code>k8s</code>: <a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/snap/tutorial/getting-started/">https://documentation.ubuntu.com/canonical-kubernetes/latest/snap/tutorial/getting-started/</a></li>
+<li><a href="https://documentation.ubuntu.com/canonical-kubernetes/latest/">https://documentation.ubuntu.com/canonical-kubernetes/latest/</a></li>
+<li><a href="https://ubuntu.com/blog/try-canonical-kubernetes-beta">https://ubuntu.com/blog/try-canonical-kubernetes-beta</a></li>
+<li><a href="https://www.reddit.com/r/kubernetes/comments/1bhbwvc/the_new_canonical_kubernetes/">https://www.reddit.com/r/kubernetes/comments/1bhbwvc/the_new_canonical_kubernetes/</a></li>
+</ul>
+<h2 id="network-root-and-boot">Network root and boot</h2>
+<ul>
+<li><a href="https://help.ubuntu.com/community/DisklessUbuntuHowto">https://help.ubuntu.com/community/DisklessUbuntuHowto</a></li>
+<li><a href="https://askubuntu.com/questions/1160035/how-to-create-a-nfs-root-for-ubuntu">https://askubuntu.com/questions/1160035/how-to-create-a-nfs-root-for-ubuntu</a></li>
+<li><a href="https://askubuntu.com/questions/1212390/how-would-i-run-my-system-solely-in-a-ramdisk-after-logging-in-or-optionally-on">https://askubuntu.com/questions/1212390/how-would-i-run-my-system-solely-in-a-ramdisk-after-logging-in-or-optionally-on</a></li>
+<li><a href="https://ubuntuforums.org/showthread.php?t=1967260">https://ubuntuforums.org/showthread.php?t=1967260</a></li>
+<li><a href="https://askubuntu.com/questions/152868/how-do-i-make-a-ram-disk">https://askubuntu.com/questions/152868/how-do-i-make-a-ram-disk</a></li>
+<li><a href="https://www.kernel.org/doc/html/v5.16/admin-guide/nfs/nfsroot.html">https://www.kernel.org/doc/html/v5.16/admin-guide/nfs/nfsroot.html</a></li>
+<li><a href="https://ubuntu.com/server/docs/network-file-system-nfs">https://ubuntu.com/server/docs/network-file-system-nfs</a></li>
+<li><a href="https://help.ubuntu.com/community/Installation/Netboot">https://help.ubuntu.com/community/Installation/Netboot</a></li>
+<li><a href="https://ubuntu.com/server/docs/how-to-netboot-the-server-installer-on-amd64">https://ubuntu.com/server/docs/how-to-netboot-the-server-installer-on-amd64</a></li>
+</ul>
+<h2 id="network-configuration">Network configuration</h2>
+<ul>
+<li><a href="https://ubuntu.com/server/docs/configuring-networks">https://ubuntu.com/server/docs/configuring-networks</a></li>
+<li><a href="https://netplan.readthedocs.io/en/stable/netplan-tutorial/">https://netplan.readthedocs.io/en/stable/netplan-tutorial/</a></li>
+<li><a href="https://netplan.readthedocs.io/en/stable/">https://netplan.readthedocs.io/en/stable/</a></li>
+<li><a href="https://seanblanchfield.com/2023/05/bridge-networking-in-lxd">https://seanblanchfield.com/2023/05/bridge-networking-in-lxd</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_forwards/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_forwards/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/">https://documentation.ubuntu.com/lxd/en/latest/reference/network_bridge/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_create/</a></li>
+<li><a href="https://documentation.ubuntu.com/lxd/en/latest/howto/network_configure/">https://documentation.ubuntu.com/lxd/en/latest/howto/network_configure/</a></li>
+<li><a href="https://ubuntu.com/blog/converting-eth0-to-br0-and-getting-all-your-lxc-or-lxd-onto-your-lan">https://ubuntu.com/blog/converting-eth0-to-br0-and-getting-all-your-lxc-or-lxd-onto-your-lan</a></li>
+<li><a href="https://stackoverflow.com/questions/65722807/my-persistentvolumeclaim-wont-bind-to-nfs-persistentvolume-what-am-i-doing-w">https://stackoverflow.com/questions/65722807/my-persistentvolumeclaim-wont-bind-to-nfs-persistentvolume-what-am-i-doing-w</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../referencesApplication/" title="Application references"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../referencesIoT/" title="Edge and IoT References">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../referencesApplication/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../referencesIoT/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

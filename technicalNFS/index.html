@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalNFS/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>NFS storage - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "NFS storage";
+        var mkdocs_page_input_path = "technicalNFS.md";
+        var mkdocs_page_url = "/podzone/technicalNFS/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">NFS storage</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#nfs-server">NFS Server</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#client-test-os-level">Client test (OS level)</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#kubernetes-client">Kubernetes client</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-provisioning">Dynamic Provisioning</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#csi-driver-for-static-provisioning">CSI Driver for static provisioning</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#flux-install">flux install</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#issue">Issue</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">NFS storage</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="nfs-storage">NFS storage</h1>
+<p>This section covers the setup and use of NFS volumes from a kubernetes cluster. Firstly an nfs server is set up, tested from a client, and then configured for ue in a kubernetes manifest.</p>
+<h2 id="nfs-server">NFS Server</h2>
+<p>To prepare the NFS server for use, using the exported directory <code>/Data01/nfs</code> as an example:</p>
+<ul>
+<li><code>apt install nfs-kernel-server</code></li>
+<li><code>mkdir /Data01/nfs</code></li>
+<li><code>chmod go+w /Data01/nfs</code></li>
+<li><code>chown -R nobody:nogroup /Data01/nfs</code></li>
+<li>Add entry to /etc/exports: <code>/Data01/nfs *(rw,sync,no_subtree_check)</code></li>
+<li><code>exportfs -a</code></li>
+</ul>
+<h2 id="client-test-os-level">Client test (OS level)</h2>
+<p>To test the NFS server, set up a client machine similar to a kubernetes node (assuming the dataserver has IP address 192.168.1.26):</p>
+<ul>
+<li>Install client driver: <code>apt install nfs-common</code></li>
+<li>/etc/fstab: <code>192.168.1.26:/Data01/nfs /mnt/Data01-nfs nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
+<li>Mount all: <code>mount -a</code></li>
+<li>To examine the mounted volume, use <code>df -H</code>, which for the setup above would be something like: <code>*192.168.1.26:/Data01/nfs  2.1T  118G  1.8T   7% /mnt/Data01-nfs*</code></li>
+</ul>
+<h2 id="kubernetes-client">Kubernetes client</h2>
+<h3 id="dynamic-provisioning">Dynamic Provisioning</h3>
+<p>Static provisioning is discussed below, but I could only get success with dynamic provisioning.</p>
+<p>Dynamic Provisioning for NFS only requires the nfs-common package on k8s nodes: <code>sudo apt install nfs-common -y</code></p>
+<p>The following manifest snippet illustrates usage:</p>
+<pre><code class="language-yaml">apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+...
+  template:
+...
+    spec:
+...
+      containers:
+        volumeMounts:
+        - mountPath: /web
+          name: radiovolume
+          subPath: icecastweb
+      initContainers:
+...
+        volumeMounts:
+        - mountPath: /mnt
+          name: radiovolume
+          subPath: icecastweb
+      volumes:
+      - name: radiovolume
+        nfs:
+          path: /Data02/musoclub
+          server: 192.168.1.26
+</code></pre>
+<h2 id="csi-driver-for-static-provisioning">CSI Driver for static provisioning</h2>
+<p>An NFS CSI driver was first attempted, but application had showstopper issues.</p>
+<ul>
+<li>k8s nodes: use ansible to <code>sudo apt install nfs-common</code></li>
+<li>k8s cluster: use flux to install <code>csi-driver-nfs</code> helm chart</li>
+<li><code>helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</code></li>
+<li><code>microk8s helm3 repo update</code></li>
+<li><code>helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
+<li><code>chmod -R 777 /srv/nfs</code></li>
+<li><code>chown -R nobody:nogroup /srv/nfs</code></li>
+<li>Add volumes into /etc/exports, e.g <code>/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)</code></li>
+</ul>
+<h3 id="flux-install">flux install</h3>
+<ul>
+<li>helm chart source: <a href="https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts">https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</a></li>
+<li>helm chart: <code>csi-driver-nfs</code></li>
+<li>For <code>--set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code>, create a configmap</li>
+</ul>
+<h3 id="issue">Issue</h3>
+<ul>
+<li>Pod describe reports: <code>Warning  FailedMount  3m32s (x448 over 14h)  kubelet  MountVolume.SetUp failed for volume "pvc-1c0b7728-5ebd-4bb0-85ba-0f0877ab9080" : rpc error: code = Internal desc = mkdir /var/snap: read-only file system</code></li>
+<li>Attempting dynamic provisioning...</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial">https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial</a></li>
+<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
+<li><a href="https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31">https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31</a></li>
+<li><a href="https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/">https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/</a></li>
+<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
+<li><a href="https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html">https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">https://kubernetes.io/docs/concepts/storage/persistent-volumes/</a></li>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/">https://kubernetes.io/docs/concepts/storage/volumes/</a></li>
+<li><a href="https://ubuntu.com/server/docs/service-nfs">https://ubuntu.com/server/docs/service-nfs</a></li>
+<li><a href="https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29">https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29</a></li>
+<li><a href="https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner">https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner</a></li>
+<li><a href="https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md">https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md</a></li>
+<li><a href="https://microk8s.io/docs/addon-nfs">https://microk8s.io/docs/addon-nfs</a></li>
+<li><a href="https://microk8s.io/docs/how-to-nfs">https://microk8s.io/docs/how-to-nfs</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalIngress/" title="Ingress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalNetwork/" title="Network Topology">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalIngress/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalNetwork/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalNetwork/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Network Topology - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Network Topology";
+        var mkdocs_page_input_path = "technicalNetwork.md";
+        var mkdocs_page_url = "/podzone/technicalNetwork/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Network Topology</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#northern">Northern</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#enterprise-hardware-networking">Enterprise hardware networking</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#physical-network-components-and-interconnectivity">Physical network components and interconnectivity</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#sagecom-router">Sagecom router</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#linksys-wi-fi-6-router">Linksys wi-fi 6 router</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#physical-network-topology">Physical Network Topology</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#southern">Southern</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">Network Topology</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="network-topology">Network Topology</h1>
+<p>This page describes the networking portion of the end to end solution. Physical network components and interconnectivity,
+and https request routing for the northern and southern zones are described. At the time of refactoring of this document,
+the southern zone is shut down, and will remain so for at least two months. Northern zone is up and running and taking production
+traffic, but is failing some tests indicating a router upgrade. Therefore more detail will captured for the Northern zone,
+and when the southern zone is re-constructed, will be supplemented.
+Physical network topologies do not include client devices not included in solution scope.</p>
+<h2 id="northern">Northern</h2>
+<h3 id="enterprise-hardware-networking">Enterprise hardware networking</h3>
+<ul>
+<li>Dell R720 Networking:  0FM487 Broadcom 5720 Quad Port 1GbE</li>
+<li>Ethernet devices on hypervisor host: eno1 (192.168.1.84/24) [pluto]; eno2 (192.168.1.85/24); en03; eno4</li>
+<li>Two bridge devices created: lxdbr0, lxdbr1</li>
+<li>VM Image template includes a device connected to each bridge: enp5s0, enp6s0</li>
+<li>Issued Bridge IP addresses: 10.81.249.177/24, 10.81.249.114/24, 10.81.249.15/24, 10.81.249.59/24 (maas)</li>
+<li>Port forward template: <code>lxc network forward port add [&lt;remote&gt;:]&lt;network&gt; &lt;listen_address&gt; &lt;protocol&gt; &lt;listen_port(s)&gt; &lt;target_address&gt; [&lt;target_port(s)&gt;] [flags]</code></li>
+<li>Create a forward template: <code>lxc network forward create &lt;network_name&gt; [&lt;listen_address&gt;] [--allocate=ipv{4,6}] [configuration_options...]</code></li>
+<li>Maas GUI: Port: 5240; IP: 10.81.249.59</li>
+<li>Create a forward for maas: <code>lxc network forward create lxdbr0 192.168.1.84</code></li>
+<li>Port forward traffic on <a href="http://pluto:5240">http://pluto:5240</a> to maas: <code>lxc network forward port add lxdbr0 192.168.1.84 tcp 5240 10.81.249.59 5240</code></li>
+</ul>
+<h3 id="physical-network-components-and-interconnectivity">Physical network components and interconnectivity</h3>
+<ul>
+<li>Static IP required, because of cgnat: This was issued efficiently over the phone, at the additional cost of £8 pm.</li>
+<li>The Sagecom router issued by the ISP has configuration management and stability issues</li>
+<li>The ISP is now issuing Linksys <code>wi-fi 6</code> routers, so upgrade should be investigated</li>
+</ul>
+<h3 id="sagecom-router">Sagecom router</h3>
+<ul>
+<li>port forwarding or dmz config changes require a gateway restart - network downtime</li>
+<li>port forwarding config breaks (port scan shows no open ports) every few days</li>
+<li>no logs appear in the router log available via the router gui</li>
+</ul>
+<h3 id="linksys-wi-fi-6-router">Linksys <code>wi-fi 6</code> router</h3>
+<ul>
+<li>3 gigabit ethernet ports</li>
+<li>wifi 6</li>
+<li>Previous experience with Linksys routers suggests improved config management and stability. Review comments support this.</li>
+</ul>
+<h3 id="physical-network-topology">Physical Network Topology</h3>
+<div class="mermaid">---
+title: northern.podzone.net Network Topology
+---
+graph TD
+
+ISP --&gt; ont
+ont --&gt; router
+router --&gt; dmz
+router ---&gt; switch1 ---&gt; switch2
+
+
+switch1 --&gt; k8s01
+switch1 --&gt; k8s02
+switch1 --&gt; k8s03
+switch1 --&gt; k8s04
+switch1 --&gt; k8s05
+switch1 --&gt; k8s06
+switch2 --&gt; k8s07
+switch2 --&gt; k8s08
+switch2 --&gt; k8s09
+switch2 --&gt; k8s10
+
+
+ont[[Toob ONT]]
+router[[Sagecom Router]]
+switch1[[TP-Link 8 port]]
+switch2[[Tenda 8 port]]
+dmz{{rudolfensis}}
+k8s01{{habilis}}
+k8s02{{antecessor}}
+k8s03{{naledi}}
+k8s04{{neanderthal}}
+k8s05{{erectus}}
+k8s06{{floresiensis}}
+k8s07{{norham01}}
+k8s08{{norham02}}
+k8s09{{norham03}}
+k8s10{{norham04}}
+</div>
+<h2 id="southern">Southern</h2>
+<p>Southern zone hardware</p>
+<div class="mermaid">---
+title: southern.podzone.net Network Topology
+---
+graph TD
+
+ISP --- ont
+ont --- router
+router ---|100MB| switch1
+
+switch1 &lt;--&gt;|1GB| k8s1
+switch1 &lt;--&gt;|1GB| k8s2
+switch1 &lt;--&gt;|1GB| k8s3
+switch1 &lt;--&gt;|1GB| k8s4
+
+ont[[Daisan H665 GPON ONT]]
+router[[TP-LINK EC120-F5 Router]]
+switch1[[TP-Link TL-SG1008D]]
+k8s1{{denisova}}
+k8s2{{james}}
+k8s3{{rudolfensis}}
+k8s4{{ergaster}}
+</div>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://www.toob.co.uk/blog/ipv4-ipv6-and-cgnat-explained/">https://www.toob.co.uk/blog/ipv4-ipv6-and-cgnat-explained/</a></li>
+<li><a href="https://forums.thinkbroadband.com/otherisp/4675486-toob-fttp-in-southampton.html">https://forums.thinkbroadband.com/otherisp/4675486-toob-fttp-in-southampton.html</a></li>
+<li><a href="https://diygardening.co.uk/off-topic/toob-review/#:~:text=Static%20ip%20Address%20Cost&amp;text=%C2%A325%20per%20month%20for,you%20may%20wish%20to%20read.">https://diygardening.co.uk/off-topic/toob-review/#:~:text=Static%20ip%20Address%20Cost&amp;text=%C2%A325%20per%20month%20for,you%20may%20wish%20to%20read.</a></li>
+<li><a href="https://www.reddit.com/r/Southampton/comments/110it34/port_forwarding_on_toob/">https://www.reddit.com/r/Southampton/comments/110it34/port_forwarding_on_toob/</a></li>
+<li><a href="https://www.toob.co.uk/linksys-router/">https://www.toob.co.uk/linksys-router/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Wi-Fi_6">https://en.wikipedia.org/wiki/Wi-Fi_6</a></li>
+<li><a href="https://www.ispreview.co.uk/talk/threads/new-linksys-router-on-toob.40622/">https://www.ispreview.co.uk/talk/threads/new-linksys-router-on-toob.40622/</a></li>
+<li><a href="https://ubuntu.com/blog/data-centre-networking-what-is-ovn">https://ubuntu.com/blog/data-centre-networking-what-is-ovn</a></li>
+<li><a href="https://github.com/canonical/microovn">https://github.com/canonical/microovn</a></li>
+<li><a href="https://www.ovn.org/en/">https://www.ovn.org/en/</a></li>
+<li><a href="https://thesaitech.wordpress.com/2019/02/15/a-comparative-study-of-openstack-networking-architectures/">https://thesaitech.wordpress.com/2019/02/15/a-comparative-study-of-openstack-networking-architectures/</a></li>
+<li></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalNFS/" title="NFS storage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalProxy/" title="Reverse proxy">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalNFS/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalProxy/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script><script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

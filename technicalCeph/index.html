@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalCeph/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Persistent data - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Persistent data";
+        var mkdocs_page_input_path = "technicalCeph.md";
+        var mkdocs_page_url = "/podzone/technicalCeph/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Persistent data</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-microceph">Installing microceph</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-ceph-dashboard">Installing the ceph dashboard</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-microk8s-to-the-ceph-cluster">Connecting microk8s to the ceph cluster</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#some-ceph-cli-commands">Some ceph CLI commands</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ceph-references-for-fs">Ceph References for FS</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">Persistent data</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="persistent-data">Persistent data</h1>
+<p>Original cluster external storage used an nfs server, which represents a single point of failure, and is replaced with a Ceph cluster. In addition, there are unsolved issues with postgres and Opensearch using NFS as a storage class, specifically failing on chown operations.</p>
+<p>We use the Canonical MicroSeph distribution of Ceph, and build a cluster using the hosts <code>sigiriya</code>, <code>james</code>, and <code>bukit</code>.</p>
+<p>Before starting, check that the ubuntu installations have allocate sufficient space for the root filesystem. I found that only 100G of a 2TB drive was assigned to the root logical volume, which caused ceph cluster failure because the OS disk was above 80%.</p>
+<h2 id="preparation">Preparation</h2>
+<p>To resize root partition to use all of the available space:</p>
+<ul>
+<li>To display volume information: `sudo vgdisplay``</li>
+<li>To extend the logical volume for the root partition: <code>lvextend -l +100%FREE /dev/mapper/ubuntu--vg-ubuntu--lv</code></li>
+<li>To resize the root partition: <code>resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</code></li>
+</ul>
+<h2 id="installing-microceph">Installing microceph</h2>
+<ul>
+<li>On all hosts in the cluster, install MicroCeph: <code>sudo snap install microceph</code></li>
+<li>On Sigiriya (the master), bootstrap: <code>sudo microceph cluster bootstrap</code></li>
+<li>To prep to add james: <code>sudo microceph cluster add james</code></li>
+<li>This provides a key to be used on James, where we run: <code>sudo microceph cluster join &lt;token&gt;</code></li>
+<li>Similarly, to add bukit, on Sigiriya, run: - <code>sudo microceph cluster add bukit</code></li>
+<li>On Bukit <code>sudo microceph cluster join &lt;token&gt;</code></li>
+<li>Next create (where using loopback volumes) and add disks</li>
+<li>To create a loopback disk:</li>
+</ul>
+<pre><code class="language-bash">  #!/bin/bash
+  loop_file="$(sudo mktemp -p /mnt XXXX.img)"
+  sudo truncate -s 60G "${loop_file}"
+  loop_dev="$(sudo losetup --show -f "${loop_file}")"
+  minor="${loop_dev##/dev/loop}"
+  sudo mknod -m 0660 "/dev/sdib" b 7 "${minor}"
+</code></pre>
+<ul>
+<li>Add a disk to each node in the cluster: <code>sudo microceph disk add --wipe "/dev/sdXX"</code></li>
+</ul>
+<p>Additional basic setups, for test cluster:</p>
+<ul>
+<li><code>sudo microceph.ceph config set global osd_pool_default_size 2</code></li>
+<li><code>sudo microceph.ceph config set mgr mgr_standby_modules false</code></li>
+<li><code>sudo microceph.ceph config set osd osd_crush_chooseleaf_type 0</code></li>
+</ul>
+<h3 id="installing-the-ceph-dashboard">Installing the ceph dashboard</h3>
+<ul>
+<li>To expose the dashboard over https, use the prod k8s Certificate Manager to get a certificate from LetsEncrypt, and create secret <code>ceph-cert</code></li>
+<li>To extract it from k8s:</li>
+<li><code>kubectl get secret ceph-cert -o json | jq -r '.data.["tls.key"]' | base64 -d &gt;ceph.key</code></li>
+<li><code>kubectl get secret ceph-cert -o json | jq -r '.data.["tls.crt"]' | base64 -d &gt;ceph.crt</code></li>
+<li>To enable ceph dashboard: <code>sudo ceph mgr module enable dashboard</code></li>
+<li><code>sudo ceph dashboard set-ssl-certificate -i - &lt; /home/colleymj/ceph/ceph.crt</code></li>
+<li><code>sudo ceph dashboard set-ssl-certificate-key -i - &lt; /home/colleymj/ceph/ceph.key</code></li>
+<li>Add a user: <code>echo &lt;&gt; |sudo ceph dashboard ac-user-create colleymj -i - administrator</code></li>
+<li>Get endpoint dashboard ULR: <code>sudo ceph mgr services</code></li>
+<li>If there is an issue with the standard port: <code>sudo ceph config set mgr mgr/dashboard/ssl_server_port 8081</code></li>
+<li>Or the host: <code>ceph config set mgr mgr/dashboard/server_addr 192.168.0.6</code></li>
+</ul>
+<h2 id="connecting-microk8s-to-the-ceph-cluster">Connecting microk8s to the ceph cluster</h2>
+<ul>
+<li>NOTE: A single node k8s cluster required 4GB RAM and 4 CPUs, else did not complete installation</li>
+<li>NOTE: "Before enabling the rook-ceph addon on a strictly confined MicroK8s, make sure the rbd kernel module is loaded with <code>sudo modprobe rbd</code>." :</li>
+<li>Configure microk8s cluster:<code>sudo microk8s enable rook-ceph</code></li>
+<li>We can now connect the k8s cluster to external storage</li>
+<li>We need ceph.conf, and ceph.keyring to attach, which can be found in the microceph snap directory: <code>/var/snap/microceph/current/conf</code></li>
+<li>Using config and key: <code>sudo microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool southcluster_rbd</code></li>
+</ul>
+<h2 id="some-ceph-cli-commands">Some ceph CLI commands</h2>
+<ul>
+<li><code>sudo microceph status</code></li>
+<li><code>sudo microceph cluster config get cluster_network</code></li>
+<li><code>sudo microceph cluster config list</code></li>
+<li><code>sudo microceph cluster list</code></li>
+<li><code>sudo microceph disk list</code></li>
+<li><code>sudo microceph.ceph status</code></li>
+</ul>
+<h2 id="ceph-references-for-fs">Ceph References for FS</h2>
+<ul>
+<li><a href="https://docs.ceph.com/en/quincy/cephfs/createfs/">https://docs.ceph.com/en/quincy/cephfs/createfs/</a></li>
+<li><a href="https://github.com/rook/rook/blob/master/deploy/examples/filesystem.yaml">https://github.com/rook/rook/blob/master/deploy/examples/filesystem.yaml</a></li>
+<li><a href="https://rook.io/docs/rook/latest/CRDs/Cluster/external-cluster/">https://rook.io/docs/rook/latest/CRDs/Cluster/external-cluster/</a></li>
+<li><a href="https://rook.io/docs/rook/latest-release/Getting-Started/example-configurations/#shared-filesystem">https://rook.io/docs/rook/latest-release/Getting-Started/example-configurations/#shared-filesystem</a></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalDataCentre/" title="Data Centre"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalIngress/" title="Ingress">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalDataCentre/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalIngress/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

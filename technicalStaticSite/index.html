@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalStaticSite/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Helm Charts - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Helm Charts";
+        var mkdocs_page_input_path = "technicalStaticSite.md";
+        var mkdocs_page_url = "/podzone/technicalStaticSite/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Helm Charts</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#static-site">static-site</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#helm-chart-description">Helm Chart description</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardened-apache-web-server-with-git-sync-and-letsencrypt-certificate">Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#publishing-and-use-of-the-helm-chart">Publishing and use of the helm chart</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#apache-hardening">Apache Hardening</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#approach">Approach</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#to_do">To_Do</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Workload</li>
+<li class="breadcrumb-item active">Helm Charts</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="helm-charts">Helm Charts</h1>
+<p>Kubernetes object specifications can be applied to the cluster manually using <code>kubectl</code>. However, as these objects increase in number, an abstraction above that of Kubernetes objects is useful, if not necessary. This is where helm plays a role, allowing sets of objects to be managed collectively, and provides a mechanism to externalise key aspects of configuration. This is achieved with a templating language, leaving the key configuration items isolated and aggregated. This in turn, together with a configuration value overriding facility, allows for the same package to be re-used with only the key configuration items requiring further management.</p>
+<h2 id="static-site">static-site</h2>
+<p>The kubernetes objects required for a static site have been refactored into a dedicated github repo: <a href="https://github.com/MoTTTT/static-site.git">https://github.com/MoTTTT/static-site.git</a></p>
+<p>The helm chart has been published on <a href="https://cloudsmith.com">Cloudsmith</a>. It is available here: <a href="https://cloudsmith.io/~q-solutions/repos/static-site/packages/">https://cloudsmith.io/~q-solutions/repos/static-site/packages/</a>.</p>
+<p>If anyone else has a similar requirement or use-case, then it would save a bit of work. I hope so, and welcome feedback.</p>
+<h2 id="helm-chart-description">Helm Chart description</h2>
+<h3 id="hardened-apache-web-server-with-git-sync-and-letsencrypt-certificate">Hardened Apache Web Server with git-sync, and LetsEncrypt certificate</h3>
+<p>The Helm Chart contains the following resources:</p>
+<ul>
+<li>clusterissuer.yaml: This sets up a config for the certificate requests. Set the <code>issuer</code> definition in values.yaml</li>
+<li>certificate.yaml: This sets up a certificate for the site. Set the <code>certificate</code> definition in values.yaml</li>
+<li>configmap.yaml: This loads a minimal <code>httpd.conf</code> file, with security hardening appropriate for a static site</li>
+<li>deployment.yaml: This spins up Apache, with a git-sync-sidecar, and uses the <code>httpd.conf</code> configmap</li>
+<li>service.yaml: This is a cluster internal endpoint that load balances requests to the pods in the deployment.</li>
+<li>ingress.yaml: This sets up an external endpoint, and routes requests to the Service. Set the <code>ingres</code> definition in values.yaml</li>
+<li>serviceaccount.yaml: Service Account for the deployment</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>L2 load balancer (I am using metallb). The IP address specified needs to be noted for port forwarding</li>
+<li>Ingress (I am using <a href="https://kubernetes.github.io/ingress-nginx">https://kubernetes.github.io/ingress-nginx</a>)</li>
+<li>Certificate Manager (I use the microk8s add-on package <code>microk8s enable cert-manager</code>)</li>
+<li>WAN port forwarding to the metallb IP address is required for certificates to be issued.</li>
+</ul>
+<h2 id="publishing-and-use-of-the-helm-chart">Publishing and use of the helm chart</h2>
+<p>The helm chart is packaged using helm, and kindly hosted on Cloudsmith.</p>
+<ul>
+<li>To package the helm chart: <code>helm package ./static-site</code></li>
+<li>To upload to CloudSmith: <code>cloudsmith push helm q-solutions/static-site static-site-0.1.X.tgz</code></li>
+</ul>
+<p>The package is now available as: <a href="https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/">https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/</a>.</p>
+<p>The default chart deploys the <a href="https://musings.thruhere.net">https://musings.thruhere.net</a> site, and is deployed as release <code>musings-01</code> as follows:</p>
+<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
+</code></pre>
+<p>Using a values file overriding details like dns name, and source git repo, the second static site is deployed as release <code>podzone-01</code>:</p>
+<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
+</code></pre>
+<p>The valuespodzone.yaml file looks like this:</p>
+<pre><code class="language-yaml"># Override defaults from qapps for podzone site.
+# Values for podzone
+certificate:
+  name: podzone-cert
+  dnsName: docs.podzone.net
+gitsyncimage:
+  args:
+    - --repo=https://github.com/MoTTTT/podzone.git
+    - --depth=1
+    - --period=240s
+    - --max-failures=10
+    - --link=current
+    - --root=/git-apache
+    - --verbose=9
+ingress:
+  className: "nginx"
+  hosts:
+  - host: docs.podzone.net
+    paths:
+      - path: /
+        pathType: ImplementationSpecific
+  tls:
+    - secretName: podzone-cert
+      hosts:
+        - docs.podzone.net
+test:
+  url: "https://docs.podzone.net/index.html"
+</code></pre>
+<h2 id="apache-hardening">Apache Hardening</h2>
+<p>The Apache server is a very capable and feature complete web server, serving or fronting over 10% of web and application resource installations. The default Apache configuration accommodates a broad set of web server use-cases, providing web server administrators considerable flexibility, and also the responsibility of first line defence. During initial testing, it was evident from request logs that some viewers were hostile. This was evident from the <code>.git</code> directory interest, and the expressed hope that a vulnerable wordpress site had been found.</p>
+<p>The default configuration therefore represents an unnecessarily large attack surface. The specific requirements for the applications is narrow in scope. There is no need for directory listings. Nor are there any legitimate POST requests. This would be the case for most static sites, especially considering the typical microservice architecture, where api deployments can be distinct from the front-end functionality.</p>
+<p>One of the reasons to share the final configuration is the possibility of improvement through feedback.</p>
+<h3 id="approach">Approach</h3>
+<ul>
+<li>Extract default httpd.conf</li>
+<li>Disable unused modules</li>
+<li>Set minimum privileges on document root - no directory listings.</li>
+<li>Disable POST requests</li>
+<li>Apply best-practice hardening configurations (more about this can be found in references).</li>
+</ul>
+<p>The final configuration file is as follows:</p>
+<pre><code class="language-conf"># httpd.conf for static-site
+
+# Modules critical for simple static site use-case
+LoadModule mpm_event_module modules/mod_mpm_event.so
+LoadModule access_compat_module modules/mod_access_compat.so
+LoadModule reqtimeout_module modules/mod_reqtimeout.so
+LoadModule mime_module modules/mod_mime.so
+LoadModule log_config_module modules/mod_log_config.so
+LoadModule headers_module modules/mod_headers.so
+LoadModule unixd_module modules/mod_unixd.so
+LoadModule dir_module modules/mod_dir.so
+LoadModule authz_core_module modules/mod_authz_core.so
+
+# Generic settings for qapps apache server component
+ServerRoot "/usr/local/apache2"
+Listen 80
+ServerAdmin martinjcolley@gmail.com
+&lt;IfModule unixd_module&gt;
+    User www-data
+    Group www-data
+&lt;/IfModule&gt;
+
+# Document root set up to accommodate "current/site" content root provided by volume mapped git-sync directory
+# Only request types required for static site access are allowed
+# Indexes not generated where index.html file does not exist
+DocumentRoot "/usr/local/apache2/htdocs/current/site"
+&lt;Directory "/usr/local/apache2/htdocs/current/site"&gt;
+    Options -Indexes -Includes +FollowSymLinks
+    AllowOverride None
+    Require all granted
+    &lt;LimitExcept GET HEAD&gt;
+        deny from all
+    &lt;/LimitExcept&gt;
+&lt;/Directory&gt;
+
+# Hardening:
+# Prevent server detail leakages
+# Set headers for best practice security
+# Enable request time-out to prevent slow request denial of service
+ServerTokens Prod
+ServerSignature Off
+FileETag None
+TraceEnable off
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-XSS-Protection "1; mode=block"
+Timeout 60
+&lt;IfModule dir_module&gt;
+    DirectoryIndex index.html
+&lt;/IfModule&gt;
+&lt;Files ".ht*"&gt;
+    Require all denied
+&lt;/Files&gt;
+&lt;Directory /&gt;
+    AllowOverride none
+    Require all denied
+&lt;/Directory&gt;
+&lt;IfModule headers_module&gt;
+    RequestHeader unset Proxy early
+&lt;/IfModule&gt;
+
+# Logging configuration
+ErrorLog /proc/self/fd/2
+LogLevel warn
+&lt;IfModule log_config_module&gt;
+    LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %&gt;s %b" common
+    &lt;IfModule logio_module&gt;
+      LogFormat "%h %l %u %t \"%r\" %&gt;s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+    &lt;/IfModule&gt;
+    CustomLog /proc/self/fd/1 common
+&lt;/IfModule&gt;
+
+# Support for compression
+&lt;IfModule mime_module&gt;
+    TypesConfig conf/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+&lt;/IfModule&gt;
+</code></pre>
+<h2 id="to_do">To_Do</h2>
+<ul>
+<li>The static-site V0.1.1 solution has a broader dependency: updating of Name Server entries for the site domains. Currently the installation has the support of a DynDns updater running on an unrelated host on the network. Adding an operator to handle this on the cluster, one for each site is required.</li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalSiteStructure/" title="Podzone Sites"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalFlux/" title="Flux">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalSiteStructure/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalFlux/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

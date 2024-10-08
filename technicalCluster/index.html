@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalCluster/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Implementation Notes - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Implementation Notes";
+        var mkdocs_page_input_path = "technicalCluster.md";
+        var mkdocs_page_url = "/podzone/technicalCluster/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Implementation Notes</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#decisions">Decisions</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#network">Network</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster-installation-and-configuration">Cluster installation and configuration</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ceph-configuration">Ceph configuration</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#rolling-maintenance">Rolling maintenance</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-substrate-maintenance">Cluster substrate maintenance</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#libretime-helm-chart-implications">Libretime Helm Chart implications</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-unattended-updates">Ubuntu unattended-updates</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#os-installation">OS Installation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">Implementation Notes</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="implementation-notes">Implementation Notes</h1>
+<h2 id="decisions">Decisions</h2>
+<ul>
+<li>Microk8s Kubernetes distribution</li>
+<li>Build tools (kubectl, calicoctl, ansible etc) on dolmen workstation</li>
+<li>k8s IOT Edge on anasazi RPi</li>
+<li>Implement ceph distributed storage - Migrate from nfs on sigiriya</li>
+<li>Secure ingress host based routing</li>
+</ul>
+<h2 id="network">Network</h2>
+<ul>
+<li>Fibre router: Static IPs for control plane and worker nodes</li>
+<li>Fibre router: (As-is) Dynamic DNS for <code>qsolutions.endoftheinternet.org</code></li>
+<li>Fibre router: Port forwarding: 443 to k8s L2 load-balancer (As-is goes to dolmen)</li>
+<li>Fibre router: Restrict DHCP IP allocation range for clients to <code>192.168.0.2 - 192.168.0.120</code></li>
+<li>MetalLB: IP address range: <code>192.168.0.131-192.168.0.140</code></li>
+<li>DynDns: Update IP address using ddclient</li>
+<li>To dev, test and debug ingress, add: qapps.does-it.net</li>
+</ul>
+<h2 id="cluster-installation-and-configuration">Cluster installation and configuration</h2>
+<p>On each node, run <code>sudo snap install microk8s --channel=1.30/stable --classic</code></p>
+<p>On the master node, run <code>sudo microk8s add-node</code> (once for each of the other node), and run the resulting join command on the other node.
+This can be automated with ansible.</p>
+<p>Then, on any node, run:</p>
+<ul>
+<li><code>sudo microk8s enable metrics-server</code></li>
+<li><code>sudo microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
+<li><code>sudo microk8s connect-external-ceph</code>; Run this on the same node that microceph running.</li>
+<li><code>sudo microk8s enable metallb</code></li>
+<li><code>sudo microk8s enable cert-manager</code></li>
+</ul>
+<p>The following has been migrated to flex, together with cluster infrastructure components:</p>
+<ul>
+<li><code>sudo microk8s helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace</code></li>
+<li>NOTE: This gives <code>ingressClassName: nginx</code></li>
+</ul>
+<h2 id="infrastructure-test-musings-over-https-with-git-sync">Infrastructure Test: musings over https with git-sync</h2>
+<p>An installation of static-site, with default configuration (musings):</p>
+<p>NOTE: WAN port forwarding to the metallb IP address is required for certificates to be issued.</p>
+<pre><code class="language-bash">helm  install musings-01 --debug  --namespace musings --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/'
+</code></pre>
+<p>This install tests the following cluster capabilities:</p>
+<ul>
+<li>L2 load balancer</li>
+<li>Ingress</li>
+<li>Certificate Manager</li>
+</ul>
+<p>To install podzone docs:</p>
+<pre><code class="language-bash">helm  install podzone-01 --debug  --namespace podzone --create-namespace static-site --repo 'https://dl.cloudsmith.io/public/q-solutions/static-site/helm/charts/' --values valuespodzone.yaml
+</code></pre>
+<h2 id="ceph-configuration">Ceph configuration</h2>
+<ul>
+<li><code>microk8s enable rook-ceph</code>; See technicalCeph.md for more details</li>
+<li><code>microk8s connect-external-ceph --ceph-conf ceph.conf --keyring ceph.keyring --rbd-pool microk8s_rbd</code></li>
+</ul>
+<h2 id="rolling-maintenance">Rolling maintenance</h2>
+<p>In order to upgrade the nodes of the cluster, take one node out of service at a time.</p>
+<ul>
+<li>Take a node out of service: <code>kubectl drain --ignore-daemonsets --delete-emptydir-data &lt;node name&gt;</code></li>
+<li><code>--delete-emptydir-data</code> is required if use is made of local storage.</li>
+<li>To bring the node back in to the cluster: <code>kubectl uncordon &lt;node name&gt;</code></li>
+</ul>
+<h3 id="cluster-substrate-maintenance">Cluster substrate maintenance</h3>
+<p><strong>Cluster substrate</strong> here refers to kubernetes distribution installation, in this case Canonical's <em>MicroK8s</em>, including any add-ons. <code>Canonical: Practically, as soon as the admin enables an addon he is expected to own its maintenance. We are offering new versions of the addon enable/disable scripts and in order to get them the admin would need to microk8s addons repo update &lt;repo&gt;</code> Reference: <a href="https://github.com/canonical/microk8s-core-addons/issues/255">https://github.com/canonical/microk8s-core-addons/issues/255</a>.</p>
+<h2 id="libretime-helm-chart-implications">Libretime Helm Chart implications</h2>
+<p>The following section is copied from Helm chart documentation, at <a href="https://github.com/MoTTTT/libretime-helm/blob/main/AnalysisNotes.md">https://github.com/MoTTTT/libretime-helm/blob/main/AnalysisNotes.md</a>, and should be read in the context of the libretime workload.</p>
+<p>The <strong>Cluster Substrate</strong> is an environmental dependency for the repeatable functioning of the libretime helm chart. Testing of the chart has been done on the following environment:</p>
+<ul>
+<li>Minimum server configuration: Single node k8s "cluster".</li>
+<li>Operating system: Ubuntu 22.04 minimised.</li>
+<li>Kubernetes storage volumes: MicroCeph. Used for the postgres database in the libretime use-case.</li>
+<li>NFS storage for media input, media storage, and database backups.</li>
+<li>Microk8s {channel 1.30/stable, channel 1.30/stable}, with the following add-ons enabled and configured:</li>
+<li><code>metrics-server</code>: For exposing cpu and ram usage metrics.</li>
+<li><code>cert-manager</code>: For providing https certificates to the cluster.</li>
+<li><code>metallb</code>: A cluster load balancer for traffic from the Internet, from a port forwarded on the Internet gateway.</li>
+<li><code>rook-ceph</code>: For supporting ceph storage to the cluster.</li>
+<li><code>connect-external-ceph</code>: This is a microk8s command that can be run once the <em>rook-ceph</em> add-on is enabled, to enable the consumption of the external Microceph volume for the database.</li>
+<li><code>ingress-nginx</code>: For supporting cluster level listeners for Internet traffic.</li>
+</ul>
+<h3 id="repeatable-automated-build-from-bare-metal-on-a-unit-scale">Repeatable automated build from Bare Metal on a unit scale</h3>
+<p>The choice of repeatability of deployment from <em>Bare Metal</em> is driven by the interest in self-hosted solutions. With the growing acceptance of Kubernetes as a generalised computing substrate, coupled with support in the Kubernetes ecosystem for GitOps, there is opportunity for abstracting entire solutions into a single set of files, in a naturally change-controlled way.</p>
+<p>If the cluster is bootstrapped with a flex repo after a clean Microk8s install, all the above configuration can be managed using GitOps. For the dev environment build, the public repo at <a href="https://github.com/MoTTTT/podzonedev-gitops.git">https://github.com/MoTTTT/podzonedev-gitops.git</a> can be cloned and adjusted for local off cluster infrastructure dependencies before bootstrapping a cluster with flex.</p>
+<p>The notion of bootstrapping the cluster for GitOps before any add-ons or configuration is attractive. So the candidate gitops repo can be cloned to provide the minimum configuration repeatable install from bare metal on a unit scale, that configures the environment, and then deploys the radio chart.</p>
+<p>Scaling out involves joining nodes to the cluster using microk8s CLI, but a design goal is for a single node cluster to work for the purposes of ensuring an efficient, repeatable development, quality assurance, or production environment.</p>
+<h2 id="ubuntu-unattended-updates">Ubuntu unattended-updates</h2>
+<p>Most of the time the unattended-updates feature in Ubuntu works well without evidence or artefacts.</p>
+<p>However, over the course of two phases of a project, microk8s nodes became broken to the extent that five out of ten nodes were not starting up, and off the network.</p>
+<p>Initial assumptions indicating SATA SSD failure (hardware tests failing, over-interpretation of M.2 module led colouring, etc), followed by motherboard failure (unable to boot a freshly installed OS on a new SSD) were wrong. False negatives due to DisplayPort behaviour over-interpretation added to the inaccuracy of these assumptions.</p>
+<p>With the assistance of the HP T630 BIOS diagnostics, unit level issues were eliminated, as were SSD and RAM. This also exposed DisplayPort inconsistent behaviour. Even cold start did not give consistent DisplayPort behaviour introduced during a failed boot.</p>
+<p>In any case the issue was identified to be apparent in a specific linux kernel that had been introduced during unattended-updates.</p>
+<h3 id="specifying-linux-kernel-version-on-ubuntu-2204-server-minimised-installation">Specifying linux kernel version on Ubuntu 22.04 Server minimised installation</h3>
+<ul>
+<li>To access the grub boot menu, press right-shift at power up.</li>
+<li>You can at this stage try the current kernel in recovery mode, or a previous kernel.</li>
+<li>Note that a previous kernel will not be an option on a fresh install, even from an old Ubuntu Server 22.04 USB drive, if the machine was on the network during install.</li>
+<li>Note also that selecting <code>no</code> to using the latest installer, and also cancelling the update at the end of the installation only leaves the newest kernel in place.</li>
+<li>However, if the kernel does boot in recovery mode of the only kernel, a known-good kernel for your hardware can be installed (together with the matching headers package).</li>
+<li>Once you have a kernel that works (in all modes) installed, you can set grub up to boot to the last selected mode as follows:</li>
+<li>Set the following in <code>/etc/default/grub</code></li>
+</ul>
+<pre><code>GRUB_DEFAULT=saved
+GRUB_SAVEDEFAULT=true
+</code></pre>
+<ul>
+<li>On a minimised install, you may need to install an editor, or use sed and echo to achieve these changes.</li>
+<li>Reload grub: <code>sudo update-grub</code></li>
+<li>Reboot with grub menu, select preferred kernel, allow boot to finish, and then reboot as normal to test.</li>
+</ul>
+<h2 id="os-installation">OS Installation</h2>
+<ul>
+<li>USB Installer: Ubuntu Server Minimized 22.04.03</li>
+<li>Use MoTTTT GitHub account to pull authorized_keys</li>
+<li>Set time-zone: <code>sudo timedatectl set-timezone Europe/London</code></li>
+</ul>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalTroubleshooting/" title="Radio Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalDataCentre/" title="Data Centre">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalTroubleshooting/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalDataCentre/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

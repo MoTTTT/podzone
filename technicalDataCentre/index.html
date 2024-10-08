@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalDataCentre/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Data Centre - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Data Centre";
+        var mkdocs_page_input_path = "technicalDataCentre.md";
+        var mkdocs_page_url = "/podzone/technicalDataCentre/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Data Centre</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#network-architecture">Network Architecture</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#fibre-networking">Fibre networking</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dhcp-and-ip-allocation">DHCP and IP allocation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#platform-configuration">Platform configuration</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#netplan">NetPlan</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#lxd">lxd</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#maas">maas</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#unit-configuration">Unit configuration</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#proxy">Proxy</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#for-proxy-on-naledi">For proxy on naledi</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#for-proxy-on-rudolfensis">For proxy on rudolfensis</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#router">Router</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster-registry">Cluster registry</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cilium-ebpf-based-dataplane">Cilium eBPF-based dataplane</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#enterprise-hardware-management-ipmi">Enterprise Hardware Management: IPMI</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#config-method-automation-options">Config Method automation options</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox">ProxMox</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#proxmox-configuration">ProxMox configuration</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox-ansible">ProxMox ansible</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox-cloudinit">Proxmox cloudinit</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#notes-from-new-build-on-mercury">Notes from new build on Mercury</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references-and-notes-from-build-on-saturn">References and notes from build on Saturn</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cluster-management">Cluster management</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-management-crossplane">Cluster management: Crossplane</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#storage">Storage</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#storage-kubernetes-storage-class">Storage: Kubernetes storage class</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#storage-file-server">Storage: File Server</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vpn">VPN</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tools-for-storage-ingress-observability-and-gitops">Tools for  storage, ingress, observability and gitops.</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#manually-created-vms-and-lxd-containers">Manually created VMs and LXD containers</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#server-lan-ip-address-management">Server LAN IP Address management</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ranges">Ranges</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#assignments">Assignments</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prod-installation-infrastructure">Prod Installation: Infrastructure</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prod-installation-kubernetes-vms">Prod Installation: Kubernetes VMs</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prod-installation-application-vms-and-lxc-containers">Prod Installation: Application VMs and LXC containers</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#prod-installation-workstations">Prod Installation: Workstations</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-unused-moons">List of unused moons</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">Data Centre</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="data-centre">Data Centre</h1>
+<p>Management considerations when scale and scope are encountered in technical implementation.</p>
+<h2 id="network-architecture">Network Architecture</h2>
+<h3 id="fibre-networking">Fibre networking</h3>
+<ul>
+<li><a href="https://www.omnitron-systems.com/blog/sfp-vs-sfp-what-s-the-difference">https://www.omnitron-systems.com/blog/sfp-vs-sfp-what-s-the-difference</a></li>
+<li><a href="https://pve.proxmox.com/wiki/ISCSI_Multipath">https://pve.proxmox.com/wiki/ISCSI_Multipath</a></li>
+<li><a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi">https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi</a></li>
+<li><a href="https://www.seagate.com/gb/en/manuals/lyve-mobile-rackmount-receiver/iscsi-network-setup-linux-ubuntu-debian/">https://www.seagate.com/gb/en/manuals/lyve-mobile-rackmount-receiver/iscsi-network-setup-linux-ubuntu-debian/</a></li>
+<li></li>
+</ul>
+<h3 id="dhcp-and-ip-allocation">DHCP and IP allocation</h3>
+<ul>
+<li>Toob Network: 192.168.1.0/24</li>
+<li>PodZone IPs: 192.168.2.0/24</li>
+</ul>
+<div class="mermaid">---
+title: PodZone Request routing
+---
+graph TD
+
+Internet -- 145.40.190.159  --&gt; router[toob-11641\n192.168.1.1]
+router -- PF: :80 :443\nPF: :8000 :8001 :8002 --&gt; t360-03[192.168.1.151\nnaledi\n192.168.2.1]
+
+t360-03 -- RP: proxmox.muso.club --&gt; HV
+t360-03 -- RP: nextcloud.muso.club --&gt; VC-02
+t360-03 -- RP: console.muso.club\nRP: broadcast.muso.club --&gt; LB-01
+t360-03 -- PF: :8000 :8001 :8002 --&gt; LB-01
+N1 -- nfs --&gt; VM-01
+N2 -- nfs --&gt; VM-01
+N3 -- nfs --&gt; VM-01
+
+  subgraph  R720-01[R720 saturn 192.168.2.51]
+    subgraph HV[HyperVisor\nproxmox\n:8006]
+    end
+    subgraph VC-02[Container\ndione\n192.168.2.82]
+    end
+    subgraph VM-01[VM\ntarvos\n192.168.2.81]
+    end
+    subgraph k8s cluster
+      subgraph N1[node\ntitan\n192.168.2.70]
+      end    
+      subgraph N2[node\neuropa\n192.168.2.61]
+      end    
+      subgraph N3[node\nganymede\n192.168.2.61]
+      end    
+      subgraph LB-01[LB\nmetallb\n192.168.2.61]
+      end    
+    end
+  end
+</div>
+<h2 id="platform-configuration">Platform configuration</h2>
+<h2 id="netplan">NetPlan</h2>
+<ul>
+<li>Modify <code>/etc/netplan/00-installer-config.yaml</code> for static IPs. See yaml below.</li>
+<li>Generate configuration: <code>sudo netplan generate</code></li>
+<li>Apply configuration: <code>sudo netplan apply</code></li>
+</ul>
+<pre><code class="language-yaml"># /etc/netplan/00-installer-config.yaml
+# Netplan for pluto
+network:
+  ethernets:
+    eno1:
+      addresses:
+        - 192.168.2.1/24
+      nameservers:
+        addresses: 
+          - 8.8.8.8
+      routes:
+        - to: default
+          via: 192.168.2.10
+    eno2:
+      addresses:
+        - 192.168.2.2/24
+    eno3:
+      addresses:
+        - 192.168.2.3/24
+    eno4:
+      addresses:
+        - 192.168.2.4/24
+  version: 2
+</code></pre>
+<h2 id="lxd">lxd</h2>
+<ul>
+<li>lxd installed standard on ubuntu server 22.04</li>
+<li>Initialise: <code>lxd init</code></li>
+</ul>
+<h2 id="maas">maas</h2>
+<ul>
+<li><code>sudo snap install --channel=3.5 maas</code></li>
+<li><code>sudo snap install maas-test-db</code></li>
+<li><code>sudo systemctl disable --now systemd-timesyncd</code></li>
+<li><code>sudo maas init region+rack --database-uri maas-test-db:///</code></li>
+<li><code>sudo maas createadmin --username=colleymj --email=martinjcolley@gmail.com</code></li>
+<li>Access GUI, set NS to <code>8.8.8.8</code>, and proxy to <code>http://192.168.1.145:3128</code></li>
+</ul>
+<h2 id="unit-configuration">Unit configuration</h2>
+<ul>
+<li>Bare metal management: maas</li>
+<li>VM Management: LXD</li>
+<li>OS install: PXE</li>
+<li>Snap install: cloud-init</li>
+<li>Set time-zone: <code>sudo timedatectl set-timezone Europe/London</code></li>
+<li>For dynamic nfs provisioning: <code>sudo apt install nfs-common</code></li>
+</ul>
+<h3 id="proxy">Proxy</h3>
+<ul>
+<li>At scale, artefacts from the internet typically used in a unit build can be cached with obvious benefit. I addition, when evaluating software, uninstallation to get a known good state for re-install is very efficient when cached apt, vm and snap packages are used.</li>
+<li>In the podnet norham installation, rudolfensis - <code>192.168.1.145:3128</code> - is used for the caching proxy.</li>
+<li>Install: <code>sudo apt-get install squid</code></li>
+<li>Unit config: Add entries in <code>/etc/environment</code>, and <code>/etc/bash.bashrc</code></li>
+</ul>
+<h3 id="for-proxy-on-naledi">For proxy on naledi</h3>
+<p>For <code>/etc/environment</code>:</p>
+<pre><code class="language-bash">https_proxy=http://192.168.2.1:3128
+http_proxy=http://192.168.2.1:3128
+ftp_proxy=ftp://192.168.2.1:3128
+no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost
+</code></pre>
+<p>For <code>/etc/bash.bashrc</code>:</p>
+<pre><code class="language-bash">export https_proxy=http://192.168.2.1:3128
+export http_proxy=http://192.168.2.1:3128
+export ftp_proxy=ftp://192.168.2.1:3128
+export no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost
+</code></pre>
+<ul>
+<li>In <code>/etc/apt/apt.conf</code>:</li>
+</ul>
+<pre><code class="language-conf">Acquire::http::proxy  "http://192.168.2.1:3128/";
+Acquire::ftp::proxy "ftp://192.168.2.1:3128/";
+Acquire::https::proxy "http://192.168.2.1:3128/";
+</code></pre>
+<ul>
+<li>Snap:</li>
+</ul>
+<pre><code class="language-bash">snap set system proxy.http="http://192.168.2.1:3128"
+snap set system proxy.https="http://192.168.2.1:3128"
+</code></pre>
+<h3 id="for-proxy-on-rudolfensis">For proxy on rudolfensis</h3>
+<pre><code class="language-bash">export https_proxy=http://192.168.1.145:3128
+export http_proxy=http://192.168.1.145:3128
+export ftp_proxy=ftp://192.168.1.145:3128
+</code></pre>
+<ul>
+<li>Unit config: Add entries in <code>/etc/apt/apt.conf</code>:</li>
+</ul>
+<pre><code class="language-bash">Acquire::http::proxy  "http://192.168.1.145:3128/";
+Acquire::ftp::proxy "ftp://192.168.1.145:3128/";
+Acquire::https::proxy "http://192.168.1.145:3128/";
+</code></pre>
+<ul>
+<li>Snap:</li>
+</ul>
+<pre><code class="language-bash">snap set system proxy.http="http://192.168.1.145:3128"
+snap set system proxy.https="http://192.168.1.145:3128"
+</code></pre>
+<h2 id="router">Router</h2>
+<ul>
+<li>Strategy: Add a dedicated t630, using wifi as 'WAN' interface, and enp1s0 as LAN NAT gateway.</li>
+<li>Strategy: Use port forwarding to access specific services on LAN from WAN.</li>
+<li>Use t630 <code>antecessor</code>, install Ubuntu server using wi-fi connection</li>
+<li>Netplan: Set up <code>enp1s0</code> with static IP <code>192.168.2.10</code></li>
+<li>Clients: Set <code>192.168.2.10</code> as gateway</li>
+<li>Enable IP forwarding in the kernel: uncomment <code>#net.ipv4.ip_forward=1</code> in <code>/etc/sysctl.conf</code></li>
+<li>To test: <code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</code>, which is lost on system restart</li>
+<li>Support persistent IP tables: <code>apt install iptables-persistent</code></li>
+<li>NAT: <code>iptables -t nat -A POSTROUTING -s 192.168.2.0/24 -o wlp2s0 -j MASQUERADE</code></li>
+<li>ProxMox: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8006 -j DNAT --to-destination 192.168.2.51:8006</code></li>
+<li>Icecast: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8000 -j DNAT --to-destination 192.168.2.61:8000</code></li>
+<li>Libretime 1: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8001 -j DNAT --to-destination 192.168.2.61:8001</code></li>
+<li>Libretime 2: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8002 -j DNAT --to-destination 192.168.2.61:8002</code></li>
+<li>k8s cluster: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 16443 -j DNAT --to-destination 192.168.2.70:16443</code></li>
+<li>Check the rules: <code>iptables -t nat -nvL</code></li>
+<li>Save the rules: <code>iptables-save &gt; /etc/iptables/rules.v4</code></li>
+<li>List rules, with line numbers: <code>iptables -t nat -nvL --line-numbers</code></li>
+</ul>
+<h2 id="cluster-registry">Cluster registry</h2>
+<ul>
+<li>Spegel stateless cluster local OCI registry mirror: <a href="https://github.com/spegel-org/spegel">https://github.com/spegel-org/spegel</a></li>
+</ul>
+<h2 id="cilium-ebpf-based-dataplane">Cilium eBPF-based dataplane</h2>
+<ul>
+<li><a href="https://github.com/cilium/cilium">https://github.com/cilium/cilium</a></li>
+</ul>
+<h2 id="enterprise-hardware-management-ipmi">Enterprise Hardware Management: IPMI</h2>
+<ul>
+<li>Fan control: <code>sudo ipmitool raw 0x30 0x30 0x01 0x00</code></li>
+<li>Set fan speed: <code>sudo ipmitool raw 0x30 0x30 0x02 0xff 0x14</code></li>
+</ul>
+<h2 id="config-method-automation-options">Config Method automation options</h2>
+<ul>
+<li>Use cloud config to install git and ansible</li>
+<li>Use cloud init ansible package to pull config from git</li>
+<li>Create repo <a href="https://github.com/MoTTTT/podnode.git">https://github.com/MoTTTT/podnode.git</a></li>
+<li>Create ansible playbook <code>podnode.yaml</code></li>
+</ul>
+<pre><code class="language-yaml">#cloud-config
+ansible:
+  package_name: ansible-core
+  install_method: distro
+  pull:
+    url: https://github.com/MoTTTT/podnode.git
+    playbook_name: podnode.yaml
+</code></pre>
+<h2 id="proxmox">ProxMox</h2>
+<h3 id="proxmox-configuration">ProxMox configuration</h3>
+<ul>
+<li>Configure <code>no-subscription</code> repositories</li>
+<li>Update templates" <code>pveam update</code></li>
+</ul>
+<h2 id="proxmox-ansible">ProxMox ansible</h2>
+<ul>
+<li>Token: <code>d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac</code></li>
+</ul>
+<h2 id="proxmox-cloudinit">Proxmox cloudinit</h2>
+<h3 id="notes-from-new-build-on-mercury">Notes from new build on Mercury</h3>
+<pre><code class="language-bash">wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qemu-img resize noble-server-cloudimg-amd64.img 40G
+
+qm create 8001 --name "ubuntu-2404-cloudinit-template" --ostype l26 \
+    --memory 8126 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 2 --cores 2 \
+    --vga serial0 --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+
+qm importdisk 8001 noble-server-cloudimg-amd64.img local-lvm
+# "If your disk storage is not on SSDs, add ,discard=on"
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1
+qm set 8001 --boot order=virtio0
+# Add vendor.yaml, network.yaml, etc to /mnt/pve/cephfs/snippets
+qm set 8001 --cicustom "vendor=cephfs:snippets/vendor.yaml"
+qm set 8001 --tags ubuntu-template,24.04,cloudinit
+qm set 8001 --ciuser colleymj
+qm set 8001 --cipassword &lt;&gt;
+qm set 8001 --sshkeys ~/.ssh/authorized_keys
+qm template 8001
+</code></pre>
+<ul>
+<li>cloud-config: vendor.yaml</li>
+</ul>
+<pre><code class="language-yaml">runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - echo "https_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "http_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "ftp_proxy=ftp://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" &gt;&gt; /etc/environment
+    - echo "export https_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export http_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export ftp_proxy=ftp://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" &gt;&gt; /etc/bash.bashrc
+    - echo Acquire::http::proxy  "http://192.168.3.1:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - echo Acquire::ftp::proxy "ftp://192.168.2.3:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - echo Acquire::https::proxy "http://192.168.3.1:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - snap set system proxy.http="http://192.168.3.1:3128"
+    - snap set system proxy.https="http://192.168.3.1:3128"
+    - reboot
+</code></pre>
+<h3 id="references-and-notes-from-build-on-saturn">References and notes from build on Saturn</h3>
+<ul>
+<li><a href="https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs">https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs</a></li>
+<li>
+<p><a href="https://www.reddit.com/r/Proxmox/comments/12emrrc/i_made_a_guide_for_setting_up_a_ubuntu_cloudinit/">https://www.reddit.com/r/Proxmox/comments/12emrrc/i_made_a_guide_for_setting_up_a_ubuntu_cloudinit/</a></p>
+</li>
+<li>
+<p><code>wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img</code></p>
+</li>
+<li><code>qemu-img resize jammy-server-cloudimg-amd64.img 60G</code></li>
+</ul>
+<pre><code class="language-bash">qm create 8001 --name "ubuntu-2204-cloudinit-template" --ostype l26 \
+    --memory 1024 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 1 --cores 1 \
+    --vga serial0 --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+</code></pre>
+<p>qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on
+qm set 8001 --boot order=virtio0
+qm set 8001 --ide2 local-lvm:cloudinit</p>
+<pre><code class="language-bash">cat &lt;&lt; EOF | tee /var/lib/vz/snippets/vendor.yaml
+#cloud-config
+runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - reboot
+# Taken from https://forum.proxmox.com/threads/combining-custom-cloud-init-with-auto-generated.59008/page-3#post-428772
+EOF
+</code></pre>
+<ul>
+<li><code>qm set 8001 --cicustom "vendor=local:snippets/vendor.yaml"</code></li>
+<li><code>qm set 8001 --tags ubuntu-template,22.04,cloudinit</code></li>
+<li><code>qm set 8001 --ciuser colleymj</code></li>
+<li><code>qm set 8001 --cipassword &lt;&gt;</code></li>
+<li><code>qm set 8001 --sshkeys ~/.ssh/authorized_keys</code></li>
+<li><code>qm template 8001</code></li>
+</ul>
+<h2 id="cluster-management">Cluster management</h2>
+<ul>
+<li><a href="https://github.com/onedr0p/cluster-template">https://github.com/onedr0p/cluster-template</a></li>
+<li><a href="https://github.com/stakater/Reloader">https://github.com/stakater/Reloader</a></li>
+<li><a href="https://github.com/weaveworks/weave-gitops">https://github.com/weaveworks/weave-gitops</a></li>
+</ul>
+<h3 id="cluster-management-crossplane">Cluster management: Crossplane</h3>
+<ul>
+<li><a href="https://github.com/dougsong/provider-proxmoxve">https://github.com/dougsong/provider-proxmoxve</a></li>
+<li><a href="https://www.reddit.com/r/devops/comments/19aw230/argocd_and_crossplane_in_ubuntu_which_k8s_to_use/">https://www.reddit.com/r/devops/comments/19aw230/argocd_and_crossplane_in_ubuntu_which_k8s_to_use/</a></li>
+<li><a href="https://blog.upbound.io/crossplane-development-setup">https://blog.upbound.io/crossplane-development-setup</a></li>
+<li><a href="https://github.com/canonical/microk8s/issues/825">https://github.com/canonical/microk8s/issues/825</a></li>
+</ul>
+<h2 id="storage">Storage</h2>
+<h3 id="storage-kubernetes-storage-class">Storage: Kubernetes storage class</h3>
+<ul>
+<li>ProxMox managed MicroCeph 7630s</li>
+<li>Stateful persistent Dynamically provisioned storage volumes for Kubernetes: <a href="https://github.com/openebs/openebs">https://github.com/openebs/openebs</a></li>
+<li><a href="https://spdk.io/doc/blob.html">https://spdk.io/doc/blob.html</a></li>
+</ul>
+<h3 id="storage-file-server">Storage: File Server</h3>
+<ul>
+<li>Deployed to LXC container <strong>enceladus</strong></li>
+<li>WebDAV (CGI): <a href="https://192.168.2.83">https://192.168.2.83</a></li>
+<li>Webmin: <a href="https://192.168.2.83:12321">https://192.168.2.83:12321</a></li>
+<li>SMB/CIFS: &lt;\192.168.2.83 (ports 139/445)&gt;</li>
+<li>FTP/FTPS: &lt;root@192.168.2.83 (port 21)&gt;</li>
+<li>SSH/SFTP: &lt;root@192.168.2.83 (port 22)&gt;</li>
+</ul>
+<h3 id="vpn">VPN</h3>
+<ul>
+<li>OpenVPN:    server port 1194 (UDP)</li>
+<li>Web:        https://192.168.2.80</li>
+<li>Web shell:  https://192.168.2.80:12320</li>
+<li>Webmin:     https://192.168.2.80:12321</li>
+<li>
+<p>SSH/SFTP:   root@192.168.2.80 (port 22)</p>
+</li>
+<li>
+<p><a href="https://www.turnkeylinux.org/openvpn">https://www.turnkeylinux.org/openvpn</a></p>
+</li>
+</ul>
+<h2 id="tools-for-storage-ingress-observability-and-gitops">Tools for  storage, ingress, observability and gitops.</h2>
+<ul>
+<li>metallb</li>
+<li>ingress-nginx</li>
+<li>external-dns <a href="https://github.com/kubernetes-sigs/external-dns">https://github.com/kubernetes-sigs/external-dns</a>; <a href="https://coredns.io/">https://coredns.io/</a></li>
+</ul>
+<h2 id="manually-created-vms-and-lxd-containers">Manually created VMs and LXD containers</h2>
+<ul>
+<li>Next entry in <a href="https://science.nasa.gov/saturn/moons/">https://science.nasa.gov/saturn/moons/</a></li>
+</ul>
+<h2 id="server-lan-ip-address-management">Server LAN IP Address management</h2>
+<h2 id="ranges">Ranges</h2>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Allocation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.0X</td>
+<td>t630 Gateway, proxy</td>
+</tr>
+<tr>
+<td>192.168.2.4X</td>
+<td>Rx70 iDRAC Port</td>
+</tr>
+<tr>
+<td>192.168.2.5X</td>
+<td>R7X0 Main Ports</td>
+</tr>
+<tr>
+<td>192.168.2.6X</td>
+<td>k8s Cluster LBRs</td>
+</tr>
+<tr>
+<td>192.168.2.7X</td>
+<td>Prod k8s nodes</td>
+</tr>
+<tr>
+<td>192.168.2.8X</td>
+<td>Appliances</td>
+</tr>
+<tr>
+<td>192.168.2.9X</td>
+<td>R7X0 iDRAC USB NIC</td>
+</tr>
+<tr>
+<td>192.168.2.10X</td>
+<td>t630 nodes</td>
+</tr>
+<tr>
+<td>192.168.2.20X</td>
+<td>Workstations</td>
+</tr>
+</tbody>
+</table>
+<h2 id="assignments">Assignments</h2>
+<h2 id="prod-installation-infrastructure">Prod Installation: Infrastructure</h2>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>hostname</th>
+<th>Machine</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.1</td>
+<td>naledi</td>
+<td>t630</td>
+<td>Gateway, proxy</td>
+</tr>
+<tr>
+<td>192.168.2.50</td>
+<td>pluto</td>
+<td>R720</td>
+<td>Hypervisor</td>
+</tr>
+<tr>
+<td>192.168.2.51</td>
+<td>saturn</td>
+<td>R720</td>
+<td>Hypervisor</td>
+</tr>
+<tr>
+<td>192.168.2.52</td>
+<td>mercury</td>
+<td>R720</td>
+<td>Hypervisor</td>
+</tr>
+<tr>
+<td>192.168.2.53</td>
+<td>venus</td>
+<td>R730</td>
+<td>Hypervisor</td>
+</tr>
+<tr>
+<td>192.168.2.101</td>
+<td>norham01</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td>192.168.2.102</td>
+<td>norham02</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td>192.168.2.103</td>
+<td>norham03</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td>192.168.2.104</td>
+<td>norham04</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td>192.168.2.105</td>
+<td>erectus</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+<tr>
+<td>192.168.2.106</td>
+<td>floresiensis</td>
+<td>t630</td>
+<td>Storage</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prod-installation-kubernetes-vms">Prod Installation: Kubernetes VMs</h2>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>hostname</th>
+<th>Machine</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.70</td>
+<td>titan</td>
+<td>VM: saturn</td>
+<td>kubernetes node</td>
+</tr>
+<tr>
+<td>192.168.2.71</td>
+<td>europa</td>
+<td>VM: saturn</td>
+<td>kubernetes node</td>
+</tr>
+<tr>
+<td>192.168.2.72</td>
+<td>ganymede</td>
+<td>VM: saturn</td>
+<td>kubernetes node</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prod-installation-application-vms-and-lxc-containers">Prod Installation: Application VMs and LXC containers</h2>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>hostname</th>
+<th>Machine</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.80</td>
+<td>mimas</td>
+<td>CT: venus</td>
+<td>OpenVPN</td>
+</tr>
+<tr>
+<td>192.168.2.81</td>
+<td>tarvos</td>
+<td>VM: saturn</td>
+<td>NFS - deprecate</td>
+</tr>
+<tr>
+<td>192.168.2.82</td>
+<td>dione</td>
+<td>CT: saturn</td>
+<td>NextCloud</td>
+</tr>
+<tr>
+<td>192.168.2.83</td>
+<td>enceladus</td>
+<td>VM: saturn</td>
+<td>File Server</td>
+</tr>
+<tr>
+<td>192.168.2.84</td>
+<td>tethys</td>
+<td>VM: saturn</td>
+<td>Prometheus</td>
+</tr>
+</tbody>
+</table>
+<h2 id="prod-installation-workstations">Prod Installation: Workstations</h2>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>hostname</th>
+<th>Machine</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.2.200</td>
+<td>dolmen</td>
+<td>Macbook Pro</td>
+<td>Management</td>
+</tr>
+</tbody>
+</table>
+<h2 id="list-of-unused-moons">List of unused moons</h2>
+<pre><code class="language-list">Mimas
+Enceladus
+Tethys
+Dione
+Rhea
+Titan
+Hyperion
+Iapetus
+Phoebe
+Janus
+Epimetheus
+Helene
+Telesto
+Calypso
+Atlas
+Prometheus
+Pandora
+Pan
+Ymir
+Paaliaq
+Tarvos
+Ijiraq
+</code></pre>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalCluster/" title="Implementation Notes"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalCeph/" title="Persistent data">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalCluster/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalCeph/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script><script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

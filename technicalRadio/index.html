@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalRadio/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Radio implementations - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Radio implementations";
+        var mkdocs_page_input_path = "technicalRadio.md";
+        var mkdocs_page_url = "/podzone/technicalRadio/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Radio implementations</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#radio-software-options-and-selection">Radio software options and selection</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#options">Options</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#selection">Selection</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-results-and-issues-to-resolve">Testing results and issues to resolve</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-high-level-design">Architecture: High Level Design</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#2-dj-schedule-playlists-of-uploaded-content">2: DJ - Schedule playlists of uploaded content</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#3-radio-stream-in-for-broadcast-from-a-dj-installation">3: Radio - Stream in for broadcast from a DJ installation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#4-listener-view-radio-station-web-page-with-embedded-playback-and-schedule">4: Listener - View Radio Station web page with embedded playback and schedule</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-browser-audio-player">Default browser audio player</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#radio-station-widget">Radio station widget</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wordpress-widget">WordPress widget</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#styling-the-audio-player-element-using-js-html-and-css">Styling the audio player element using js, html, and css</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#libretime-api">Libretime API</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#baseline-libretime-artefact-extraction">Baseline libretime artefact extraction</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-implementation">Technical Implementation</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pov-prep-and-fixes-from-poc">POV Prep, and fixes from POC</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#post-installation-configuration">Post installation configuration</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#libretime">Libretime</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#wordpress">Wordpress</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#track-ingestion">Track Ingestion</a>
+<ul>
+<li class="toctree-l4"><a class="reference internal" href="#ingestion-notes">Ingestion notes</a>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#bulk-track-upload">Bulk track upload</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#backup-and-restore">Backup and Restore</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#automation">Automation</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#station-database">Station Database</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#media">Media</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#technical-architecture">Technical Architecture</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#integration">Integration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#request-routing">Request routing</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#icecast-config-for-webstreams">Icecast config for webstreams</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pov-urls">POV URLS</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#poc-urls">POC URLS</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#podzone-qsolutions-helm-chart">PodZone / QSolutions Helm chart</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#nfs-preparation">NFS Preparation</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Radio</li>
+<li class="breadcrumb-item active">Radio implementations</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="radio-implementations">Radio implementations</h1>
+<p>Muso Club and ThruHere are used as base domains for QA/Production and POC/Dev environments respectively.</p>
+<h2 id="radio-software-options-and-selection">Radio software options and selection</h2>
+<h3 id="options">Options</h3>
+<ul>
+<li>Libretime: API based, remote controllable: <a href="https://libretime.org/">https://libretime.org/</a></li>
+<li>Airtime: SaaS Cloud Subscription: <a href="https://www.sourcefabric.org/software/airtime">https://www.sourcefabric.org/software/airtime</a></li>
+<li>Rivendell: In Studio, GUI app oriented: <a href="https://www.rivendellaudio.org/">https://www.rivendellaudio.org/</a></li>
+<li>XFB: GUI oriented, remote access in Beta: <a href="https://github.com/netpack/XFB">https://github.com/netpack/XFB</a></li>
+<li>OpenBroadcaster: appliance oriented : <a href="https://openbroadcaster.com/products/raspberry-pi-pyrate/">https://openbroadcaster.com/products/raspberry-pi-pyrate/</a></li>
+<li>Knobs: No movement for 4 years: <a href="https://github.com/krisnova/knobs">https://github.com/krisnova/knobs</a></li>
+</ul>
+<h3 id="selection">Selection</h3>
+<p>Libretime <a href="https://libretime.org/">https://libretime.org/</a> for reasons:</p>
+<ul>
+<li>Specific Open Source Licence</li>
+<li>Active development community</li>
+<li>Governance and COC</li>
+<li>Stable and familiar components {postgres, rabbitmq, nginx}</li>
+<li>API Based</li>
+<li>Docker images available</li>
+<li>Helm chart available as baseline</li>
+</ul>
+<h2 id="testing-results-and-issues-to-resolve">Testing results and issues to resolve</h2>
+<ul>
+<li>Icecast log destinations</li>
+<li>Refactor chart vs flux inventories: Move library scan to flux</li>
+<li>Icecast xsl artefacts</li>
+</ul>
+<h2 id="architecture-high-level-design">Architecture: High Level Design</h2>
+<p>For traceability, from requirements, we have the following MVP Themes</p>
+<ol>
+<li>Icecast - Stream audio tracks from network file storage during a scheduled session</li>
+<li>DJ - Schedule playlists of uploaded content for use in scheduled sessions</li>
+<li>Radio - Stream in from icecast source for broadcast from a DJ installation during scheduled sessions</li>
+<li>Listener - View Radio Station web page with embedded playback and listen to scheduled audio</li>
+</ol>
+<p>These are to be implemented, using the LibreTime platform, as described in the following sections.</p>
+<h3 id="1-icecast-stream-audio-tracks-from-network-file-storage">1: Icecast - Stream audio tracks from network file storage</h3>
+<p>Original content for featured artists are loaded onto the dataserver, on Data02, and streamed from the icecast instance on dataserver on a dedicated mount point per track. This results in a local URL that can be configured as a "Webstream" in Libretime. The Webstream can be added directly to a scheduled session, or added to a playlist, for use in a scheduled session.</p>
+<div class="mermaid">---
+title: Icecast - Stream audio tracks from network file storage
+---
+
+graph TD
+
+subgraph dataserver
+  subgraph Data02
+    /webcast/Artist/Track.mp3
+  end
+  subgraph icecast
+    subgraph mounts
+      /Artist/Track.mp3
+    end
+  end
+end
+subgraph "radio.muso.club"
+  subgraph Webstream
+    T3[Artist Track]
+  end
+  T4[scheduled session]
+end
+/webcast/Artist/Track.mp3 --&gt; /Artist/Track.mp3 --&gt; T3 --&gt; T4 --&gt; https://radio.muso.club/main
+</div>
+<p>The diagram depicts an icecast instance with icecast.paths.webroot set to <em>/Data02/webcast</em></p>
+<h3 id="2-dj-schedule-playlists-of-uploaded-content">2: DJ - Schedule playlists of uploaded content</h3>
+<p>Prerequisites:</p>
+<ul>
+<li>Admin: Create User on the radio console, with the role of DJ.</li>
+<li>Admin: Create Session on the radio console, and assign it to the created DJ.</li>
+</ul>
+<p>Process:</p>
+<ul>
+<li>DJ selects "Upload" on radio console, and adds music or voice tracks</li>
+<li>DJ selects "Calendar", clicks on session, selects "Schedule Tracks"</li>
+<li>DJ drags tracks from track list from panel on the left, to the session slot in the right hand panel.</li>
+</ul>
+<p>When the session starts, the selected tracks will be streamed in order.</p>
+<h3 id="3-radio-stream-in-for-broadcast-from-a-dj-installation">3: Radio - Stream in for broadcast from a DJ installation</h3>
+<p>A DJ (or live audio stream) to connect to the station, using dedicated credentials, to the main mount point, during sessions scheduled for the DJ in the radio schedule. A number of Icecast clients have been tested successfully, illustrated as examples of the stream source.</p>
+<div class="mermaid">---
+title: Radio - Stream in for broadcast from a DJ installation
+---
+graph LR
+source1(Mixxx) -- user1:password1 --&gt; station[muso.club:8002]
+station --&gt; libretime
+libretime[playout] --&gt; https://broadcast.muso.club/main
+source2(BUTT) -- user2:password2 --&gt; station
+source3(iziCast) -- user3:password3 --&gt; station
+actor1(Program Manager) -- Create a DJ user--&gt; console.muso.club
+actor1(Program Manager) -- schedule a session\n for the DJ --&gt; console.muso.club
+console.muso.club --&gt; libretime
+</div>
+<h3 id="4-listener-view-radio-station-web-page-with-embedded-playback-and-schedule">4: Listener - View Radio Station web page with embedded playback and schedule</h3>
+<p>A Listener is the Actor using the radio broadcast service. The streaming protocol chosen is MP3 to support the broadest range of devices.</p>
+<div class="mermaid">---
+title: View Radio Station web page with embedded playback and schedule
+---
+graph LR
+browser(listener) &lt;--&gt; https://radio.muso.club
+subgraph https://radio.muso.club
+    w1(LibreTime widget)
+    w2(WordPress audio block)
+    w3(WordPress widget)
+end
+browser(listener) &lt;--&gt; https://broadcast.muso.club/main
+</div>
+<h4 id="default-browser-audio-player">Default browser audio player</h4>
+<p>If the radio station broadcast URL <a href="https://broadcast.muso.club/main">https://broadcast.muso.club/main</a> is opened in a browser, the default behaviour is to display an audio player and start playing the broadcasted mp3 stream. This can be embedded in a website, or linked to from a QR code.</p>
+<h4 id="radio-station-widget">Radio station widget</h4>
+<p>LibreTime has an embeddable player that can be displayed on a web page in an iFrame. For <a href="mailto:Radio@Muso.Club">Radio@Muso.Club</a>, the following can be added to a custom HTML block:</p>
+<pre><code class="language-html">&lt;iframe 
+  frameborder="0"
+  width="280"
+  height="216"
+  src="https://console.muso.club/embed/player?stream=auto&amp;title=Now Playing"
+&gt;&lt;/iframe&gt;
+</code></pre>
+<h3 id="wordpress-widget">WordPress widget</h3>
+<p>The standard audio block for WordPress displays a simple audio player. This can be used to build a player widget that suites the web site.</p>
+<h3 id="styling-the-audio-player-element-using-js-html-and-css">Styling the audio player element using js, html, and css</h3>
+<ul>
+<li>Reference: <a href="https://blog.shahednasser.com/how-to-style-an-audio-element/">https://blog.shahednasser.com/how-to-style-an-audio-element/</a></li>
+</ul>
+<h3 id="libretime-api">Libretime API</h3>
+<p>As documented in <a href="https://libretime.org/docs/user-manual/playout-history/">https://libretime.org/docs/user-manual/playout-history/</a>, the following API URLs return publicly accessible radio information, if enabled:</p>
+<ul>
+<li><a href="https://console.muso.club/api/live-info/?callback">https://console.muso.club/api/live-info/?callback</a></li>
+<li><a href="https://console.muso.club/api/week-info/?callback">https://console.muso.club/api/week-info/?callback</a></li>
+</ul>
+<p>In general, for authenticated APIs, the URL is of the form <a href="https://console.muso.club/api/api-action/format/json/api_key/XXXXXX">https://console.muso.club/api/api-action/format/json/api_key/XXXXXX</a></p>
+<p>Valid API actions:</p>
+<ul>
+<li>on-air-light - return true if the station is on air</li>
+<li>status - get the status of LibreTime components and resource usage</li>
+<li>version - returns the version of LibreTime installed</li>
+<li>get-files-without-silan-value - list files for which silence detection hasn't yet been performed</li>
+<li>get-stream-setting - gets the settings of LibreTime output streams</li>
+<li>get-stream-parameters - gets the parameters of LibreTime output streams</li>
+</ul>
+<p>Tested:</p>
+<ul>
+<li><a href="https://console.muso.club/api/on-air-light/?callback">https://console.muso.club/api/on-air-light/?callback</a></li>
+<li><a href="https://console.muso.club/api/status/?callback">https://console.muso.club/api/status/?callback</a> : Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+<li><a href="https://console.muso.club/api/version/?callback">https://console.muso.club/api/version/?callback</a> : Returns json with <em>airtime_version</em> and <em>api_version</em>.</li>
+<li><a href="https://console.muso.club/api/get-stream-setting/?callback">https://console.muso.club/api/get-stream-setting/?callback</a> : Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+<li><a href="https://console.muso.club/api/get-stream-parameters?callback">https://console.muso.club/api/get-stream-parameters?callback</a>: Returns HTTP status code <em>200 OK</em>, with ContentLength=0.</li>
+</ul>
+<p>For test purposes, expose the api service to localhost with a k8s port forward on port 9001</p>
+<p>A version 2 API is also available. API documentation for the installation is available on the following URL: <a href="https://console.muso.club/api/v2/schema/swagger-ui">https://console.muso.club/api/v2/schema/swagger-ui</a></p>
+<h4 id="baseline-libretime-artefact-extraction">Baseline libretime artefact extraction</h4>
+<pre><code class="language-bash">curl -X 'GET' \
+  'https://console.thruhere.net/api/v2/playlists' \
+  -H 'accept: application/json' \
+  -H 'Authorization: Basic YWRtaW46YWRtaW4='
+</code></pre>
+<h2 id="technical-implementation">Technical Implementation</h2>
+<ul>
+<li>Build a custom LibreTime chart, to match infrastructure ingress and storage class, and db StatefulSet.</li>
+<li>Create Flux apps/radio.muso.club kustomization with LibreTime source, and override values.</li>
+<li>Create Flux infrastructure/ingress-nginx kustomization to add TCP ports</li>
+<li>Create Flux apps/www.radio.muso.club kustomization with WordPress source, and override values.</li>
+</ul>
+<h2 id="pov-prep-and-fixes-from-poc">POV Prep, and fixes from POC</h2>
+<ul>
+<li>Domain purchased for POV: muso.club</li>
+<li>Build libretime chart, revised to remove non http ingress</li>
+<li>Deploy to norham cluster, using flux, with values override</li>
+<li>Configure ingress-nginx: deploy as chart, with values file for TCP ingress</li>
+<li>Configure db <em>StatefulSet</em> instead of <em>Deployment</em></li>
+</ul>
+<h2 id="post-installation-configuration">Post installation configuration</h2>
+<h3 id="libretime">Libretime</h3>
+<ul>
+<li>log in as admin:admin</li>
+<li>Set admin password</li>
+<li>Set Station logo, Name and Description</li>
+<li>Get player and schedule widget html for web site home page</li>
+<li>NOTE: Do not set Settings-&gt;Streams-&gt;Live Broadcast-&gt;Auto Switch Off/On until understood.</li>
+</ul>
+<h3 id="wordpress">Wordpress</h3>
+<ul>
+<li>log in as musoclub</li>
+<li>install and run Wordpress importer with latest export</li>
+<li>add image files to library</li>
+<li>edit pages and posts to replace missing images</li>
+<li>edit page header libretime player widget (if necessary)</li>
+<li>edit main page libretime schedule widget (if necessary)</li>
+</ul>
+<h3 id="track-ingestion">Track Ingestion</h3>
+<ul>
+<li>Host: dataserver</li>
+<li>Access controlled Samba on local network for workstation access.</li>
+<li>Samba writeable raw library directory: <code>/Data01/cdcollection</code></li>
+<li>Samba writeable ingestion directory: <code>/Data02/library-in</code></li>
+<li>Process: copy albums from <code>/Data01/cdcollection</code> to <code>/Data02/library-in</code></li>
+<li>Batch process, with clean-up, to <code>/Data02/library</code></li>
+<li>NFS access to <code>/Data02/library</code> for station batch upload</li>
+<li>NFS access to <code>/Data02/radio</code> for station media <code>/srv/libretime</code></li>
+<li>To be backed backed up in sync with station DB: <code>/srv/libretime</code></li>
+</ul>
+<h4 id="ingestion-notes">Ingestion notes</h4>
+<p><strong>Clean-up tool: Beets</strong></p>
+<p>Process:</p>
+<ul>
+<li>Use fre:ac for cd to <code>/cdcollection/</code></li>
+<li><code>ffmpeg -i filename.mpg</code> for metadata view</li>
+<li>Copy batches of directories from <code>/cdcollection/</code> to <code>/library-in/</code></li>
+<li>Run <code>beet import .</code> in <code>/library-in/</code>, and follow interactive process</li>
+<li>Images and other non-music files cleaned up periodically from /library-in</li>
+</ul>
+<p>Results:</p>
+<ul>
+<li>/cdcollection: 17G</li>
+<li>library: 15G</li>
+<li>library-fallout: 323M</li>
+</ul>
+<p>Beet config:</p>
+<pre><code class="language-conf">directory: /Data02/library/
+library: /Data02/librarydb/musiclibrary.db
+import:
+    move: yes
+</code></pre>
+<p>Fallout:</p>
+<pre><code class="language-ls">63M ./various artists - the bossa nova exciting jazz samba rhythms vol.1
+4.8M    ./1982 - beyond the realms of dub_dub me crazy pt.2
+48M ./Beasty Boys - Hello Nasty
+8.3M    ./aphex twin
+60M ./blade runner - soundtrack
+32M ./caves of kiev
+110M    ./electronica
+323M    .
+</code></pre>
+<h4 id="bulk-track-upload">Bulk track upload</h4>
+<ul>
+<li>Add <code>sudo -u libretime libretime-api bulk_import --path PATH_THE_DIRECTORY_TO_SCAN</code> to libretime startup</li>
+<li>Path: dataserver</li>
+</ul>
+<h2 id="backup-and-restore">Backup and Restore</h2>
+<h3 id="automation">Automation</h3>
+<ul>
+<li>Create k8s CronJob <code>postgres-backup</code> in <code>radio</code> namespace</li>
+<li>Use <code>postgres:16.2</code> image</li>
+<li>Add nfs export from Dataserver for <code>/Data02/backups</code> for k8s <code>backup-storage</code> volume</li>
+<li>Run pg_dump, store to nfs <code>backup-storage</code> volume mounted on <code>/mnt</code></li>
+<li>Run once daily at midnight <code>schedule: "0 0 * * *"</code></li>
+</ul>
+<h3 id="station-database">Station Database</h3>
+<ul>
+<li>[X] Reference: <a href="https://libretime.org/docs/admin-manual/backup/">https://libretime.org/docs/admin-manual/backup/</a></li>
+<li>[X] DB front-end Adminer: <a href="https://db.muso.club/current/site?pgsql=postgres&amp;username=libretime&amp;db=libretime">https://db.muso.club/current/site?pgsql=postgres&amp;username=libretime&amp;db=libretime</a></li>
+<li>[X] Password: available by base64 decoding <code>radio/postgres-secret.data.POSTGRES_PASSWORD</code></li>
+<li>[X] Test export of station db run at 1am on 30th May - <code>libretime.sql.gz</code> - is 14.2MB.</li>
+<li>[ ] Test export after at least a few day's station run to get a picture of data growth.</li>
+<li>[ ] Test import into new station</li>
+<li>[ ] Test import to override current station</li>
+</ul>
+<h3 id="media">Media</h3>
+<ul>
+<li>[ ] Libretime container NFS datastore: nfs://dataserver/Data02/radio</li>
+<li>[ ] Station Library</li>
+</ul>
+<h2 id="technical-architecture">Technical Architecture</h2>
+<h3 id="integration">Integration</h3>
+<div class="mermaid">---
+title: muso.club Integration
+---
+graph LR
+subgraph Dataserver
+    nfs-service2[(/DATA2/radio/)]
+end
+subgraph Norham Cluster
+  subgraph  Libretime
+    WebGUI
+    Schedule
+    Users
+    Library
+    Input
+    Broadcast
+  end
+  WebSite
+end
+http://console.muso.club --&gt; WebGUI
+http://radio.muso.club --&gt; WebSite
+Input --&gt; Broadcast
+Library --&gt; Dataserver
+WebGUI --- Library
+WebGUI --- Schedule
+WebGUI --- Users
+Dataserver --&gt; Input
+client1{{DJ}} -- muso.club:8002 ----&gt; Input
+client2{{Master}} -- muso.club:8001 ----&gt; Input
+Library --&gt; Schedule --&gt; Input
+Broadcast --&gt; WebSite
+browser1{{Station User}} --&gt; http://console.muso.club
+browser2{{Listener Widget}} --&gt; http://radio.muso.club
+</div>
+<h3 id="request-routing">Request routing</h3>
+<div class="mermaid">---
+title: jam.radio.fm Request routing
+---
+graph LR
+
+Internet -- *.muso.club  --&gt; router
+router -- 80\n443 --&gt; dmz
+router -- 8001\n8002 --&gt; metallb3
+dmz -- 192.168.1.221 --&gt; metallb3
+metallb3 --&gt; k8s07
+metallb3 --&gt; k8s08
+metallb3 --&gt; k8s09
+metallb3 --&gt; k8s10
+metallb3[[norham]]
+router[[Router]]
+dmz{{rudolfensis}}
+k8s07{{norham01}}
+k8s08{{norham02}}
+k8s09{{norham03}}
+k8s10{{norham04}}
+</div>
+<h2 id="icecast-config-for-webstreams">Icecast config for webstreams</h2>
+<p>The following are available <strong>on the local network</strong>. The base URL is <a href="http://192.168.1.26:8000">http://192.168.1.26:8000</a>, so for the mount example below, the URL is <a href="http://192.168.1.26:8000/Artist/Track.mp3">http://192.168.1.26:8000/Artist/Track.mp3</a>.</p>
+<pre><code class="language-xml">&lt;mount type="normal"&gt;
+    &lt;mount-name&gt;/Artist/Track.mp3&lt;/mount-name&gt;
+    &lt;type&gt;application/mp3&lt;/type&gt;
+    &lt;fallback-mount&gt;/Artist/Track.mp3&lt;/fallback-mount&gt;
+&lt;/mount&gt;
+</code></pre>
+<p>This configuration is applied to the icecast instance on <em>dataserver</em>.</p>
+<h2 id="pov-urls">POV URLS</h2>
+<ul>
+<li>Wordpress site: <a href="https://radio.muso.club">https://radio.muso.club</a></li>
+<li>Radio Station console: <a href="https://console.muso.club">https://console.muso.club</a></li>
+<li>Icecast Server console: <a href="https://broadcast.muso.club">https://broadcast.muso.club</a></li>
+<li>DJ Ingress: muso.club:8001</li>
+<li>Master Ingress: muso.club:8002</li>
+</ul>
+<h2 id="poc-urls">POC URLS</h2>
+<ul>
+<li>Wordpress site: <a href="https://www.radio.thruhere.net">https://www.radio.thruhere.net</a></li>
+<li>Radio Station console: <a href="https://console.thruhere.net">https://console.thruhere.net</a></li>
+<li>Icecast Server console: <a href="https://radio.thruhere.net">https://radio.thruhere.net</a></li>
+<li>DJ Ingress: <a href="https://dj.radio.thruhere.net/">https://dj.radio.thruhere.net/</a></li>
+<li>Master Ingress: <a href="https://master.radio.thruhere.net/">https://master.radio.thruhere.net/</a></li>
+</ul>
+<h3 id="applying-ingress-modifications-for-playout-tcp-ports">Applying Ingress modifications for playout TCP ports</h3>
+<p>To support non-HTTP TCP listener ports on the cluster, the cluster ingress-nginx installation is moved from a helm install at cluster build time, to a gitops installation. The following ingress-nginx chart values setting are used:</p>
+<pre><code class="language-conf">## ingress-nginx helm chart values to add support for radio ingress 
+controller:
+  configAnnotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 20m
+  service:
+    ports:
+      djinput: 8001
+      masterinput: 8002
+tcp:
+  8001: "radio/liquidsoap:8001"
+  8002: "radio/liquidsoap:8002"
+</code></pre>
+<p>Here, there are two additional listener ports being added to the ingress-nginx controller, and corresponding entries added to a tcp-services configmap, as documented here: <a href="https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md">https://github.com/kubernetes/ingress-nginx/blob/main/docs/user-guide/exposing-tcp-udp-services.md</a>.</p>
+<p>Using a gitops installation for ingress-nginx also allows the file upload limit to be increased from the default easily, which is required by Libretime as well as WordPress.</p>
+<h2 id="podzone-qsolutions-helm-chart">PodZone / QSolutions Helm chart</h2>
+<ul>
+<li>Based on clone of <a href="https://github.com/unbelauscht/libretime-helm">https://github.com/unbelauscht/libretime-helm</a></li>
+<li>Source: https://github.com/MoTTTT/libretime-helm</li>
+<li>Published on: <a href="https://artifacthub.io/packages/helm/podzone-charts/libretime">https://artifacthub.io/packages/helm/podzone-charts/libretime</a></li>
+<li>Security report: <a href="https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report">https://artifacthub.io/packages/helm/podzone-charts/libretime?modal=security-report</a>:</li>
+</ul>
+<pre><code class="language-text">WARNING: This package has high severity fixable vulnerabilities older than 2 years old that haven't been addressed yet.
+</code></pre>
+<h2 id="nfs-preparation">NFS Preparation</h2>
+<ul>
+<li>NFS server: dataserver</li>
+<li>Allocation to instance, e.g. <code>thruhere</code> on /Data02</li>
+<li>NFS Export: Icecast log; /Data02/thruhere/icecast-log</li>
+<li>NFS Export: Icecast web; /Data02/thruhere/icecast-web</li>
+<li>NFS Export: Library; /Data02/thruhere/icecast-web</li>
+<li>NFS Export: Libretime; /Data02/thruhere/icecast-web</li>
+</ul>
+<pre><code class="language-bash">root@dataserver:/Data02/radio# 
+root@dataserver:/Data02# mkdir /Data02/thruhere
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-log
+root@dataserver:/Data02# mkdir /Data02/thruhere/icecast-web
+root@dataserver:/Data02# mkdir /Data02/thruhere/library
+root@dataserver:/Data02# mkdir /Data02/thruhere/libretime
+root@dataserver:/Data02# chown -R nobody:nogroup /Data02/thruhere
+root@dataserver:/Data02# chmod -R og+w /Data02/thruhere
+root@dataserver:/Data02# ls -alr /Data02/thruhere/
+</code></pre>
+<pre><code class="language-text">drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 libretime
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 library
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:49 icecast-web
+drwxrwxrwx  2 nobody nogroup 4096 Jun 18 12:48 icecast-log
+drwxr-xr-x 12 root   root    4096 Jun 18 12:48 ..
+drwxrwxrwx  6 nobody nogroup 4096 Jun 18 12:49 .
+</code></pre>
+</div>
+</div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../requirementRadio/" title="Radio Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../referencesRadio/" title="Radio References">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../requirementRadio/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../referencesRadio/" style="color: #fcfcfc">Next »</a></span>
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script><script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

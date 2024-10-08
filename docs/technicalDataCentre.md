@@ -239,7 +239,59 @@ ansible:
 
 ## Proxmox cloudinit
 
-References
+### Notes from new build on Mercury
+
+```bash
+wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qemu-img resize noble-server-cloudimg-amd64.img 40G
+
+qm create 8001 --name "ubuntu-2404-cloudinit-template" --ostype l26 \
+    --memory 8126 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 2 --cores 2 \
+    --vga serial0 --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+
+qm importdisk 8001 noble-server-cloudimg-amd64.img local-lvm
+# "If your disk storage is not on SSDs, add ,discard=on"
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1
+qm set 8001 --boot order=virtio0
+# Add vendor.yaml, network.yaml, etc to /mnt/pve/cephfs/snippets
+qm set 8001 --cicustom "vendor=cephfs:snippets/vendor.yaml"
+qm set 8001 --tags ubuntu-template,24.04,cloudinit
+qm set 8001 --ciuser colleymj
+qm set 8001 --cipassword <>
+qm set 8001 --sshkeys ~/.ssh/authorized_keys
+qm template 8001
+```
+
+
+
+- cloud-config: vendor.yaml
+
+```yaml
+runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - echo "https_proxy=http://192.168.3.1:3128" >> /etc/environment
+    - echo "http_proxy=http://192.168.3.1:3128" >> /etc/environment
+    - echo "ftp_proxy=ftp://192.168.3.1:3128" >> /etc/environment
+    - echo "no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" >> /etc/environment
+    - echo "export https_proxy=http://192.168.3.1:3128" >> /etc/bash.bashrc
+    - echo "export http_proxy=http://192.168.3.1:3128" >> /etc/bash.bashrc
+    - echo "export ftp_proxy=ftp://192.168.3.1:3128" >> /etc/bash.bashrc
+    - echo "export no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" >> /etc/bash.bashrc
+    - echo Acquire::http::proxy  "http://192.168.3.1:3128/"; >> /etc/apt/apt.conf
+    - echo Acquire::ftp::proxy "ftp://192.168.2.3:3128/"; >> /etc/apt/apt.conf
+    - echo Acquire::https::proxy "http://192.168.3.1:3128/"; >> /etc/apt/apt.conf
+    - snap set system proxy.http="http://192.168.3.1:3128"
+    - snap set system proxy.https="http://192.168.3.1:3128"
+    - reboot
+```
+
+### References and notes from build on Saturn
 
 - <https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs>
 - <https://www.reddit.com/r/Proxmox/comments/12emrrc/i_made_a_guide_for_setting_up_a_ubuntu_cloudinit/>
@@ -257,10 +309,10 @@ qm create 8001 --name "ubuntu-2204-cloudinit-template" --ostype l26 \
     --net0 virtio,bridge=vmbr0
 ```
 
-- `qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm`
-- `qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on`
-- `qm set 8001 --boot order=virtio0`
-- `qm set 8001 --ide2 local-lvm:cloudinit`
+qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on
+qm set 8001 --boot order=virtio0
+qm set 8001 --ide2 local-lvm:cloudinit
 
 ```bash
 cat << EOF | tee /var/lib/vz/snippets/vendor.yaml

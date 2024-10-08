@@ -6,10 +6,11 @@
 
 - Pluto: Dell PowerEdge R720 2x Intel Xeon E5-2650 V1 @2.00GHz 8x8GB RAM, No HDD. {£51}
 - Saturn: Dell DR6000 2x E5-2695 V2 2.6Ghz No RAM DDR3 H710 1100W. {£59}
-- Mars: DELL PowerEdge R720 2 X Xeon E5-2650 V2 2x 1TB SAS {£70}
 - Mercury: Dell PowerEdge R720 16x SFF Storage Rack Server 2x Xeon CPU No RAM 2x 600gb Hdd {£88}
 - Venus: Dell PowerEdge R730 Xeon 2 x E5-2698 V3, 160GB RAM, H730 Mini {£104}
-- Neptune: Dell PowerEdge R720 Rack Mount Server (Xeon 5677, 24GB RAM, 6 Caddies, No HDDs) {£52}
+- Mars: DELL PowerEdge R720 2 X Xeon E5-2650 V2 2x 1TB SAS {£70}
+
+- Neptune: Dell PowerEdge R720 {actually an R710} Rack Mount Server (Xeon 5677, 24GB RAM, 6 Caddies, No HDDs) {£52} - Attempting return
 
 ### Disks and caddies
 

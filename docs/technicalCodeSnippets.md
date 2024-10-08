@@ -152,7 +152,7 @@ Acquire::http::proxy "https://192.168.1.145:3128/";
 ## ansible
 
 - `ansible southcluster -i inventory.yaml -m command -a "free -m"`
-- To accept new ssh keys: `- ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml`
+- To accept new ssh keys: `ANSIBLE_HOST_KEY_CHECKING=false ansible all -m ping -i inventory.yaml`
 - `ansible-playbook -i inventory.yaml playbook.yaml`
 - `ansible-inventory -i inventory.yaml --list`
 - `ansible devcluster -m ping -i inventory.yaml`

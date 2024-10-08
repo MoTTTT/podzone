@@ -7,6 +7,7 @@ site_author: Martin Colley
 plugins:
     - search
     - mermaid2
+    - swagger-ui-tag
 
 theme: readthedocs
 
@@ -52,6 +53,7 @@ nav:
     - technicalTools.md
     - technicalPrometheus.md
     - technicalWireguard.md
+    - technicalMkDocs.md
   - 'Inventory':
     - inventoryServers.md
     - inventoryHosts.md

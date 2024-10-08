@@ -3,8 +3,24 @@
 As cluster build-out has progressed, devices and their resource configuration have evolved:
 
 - The original development environments comprised equipment on hand.
-- The next set of hardware selected for kubernetes and ceph cluster build-out are Thin Clients, with 4 CPUs; 25GB RAM; 128 + 256 GB SSD each. Fourteen of these were put into service.
-- The current set of hardware, for hyper-converged infrastructure are 2U rack servers, with varying configurations, with up to 48 CPUs, 256 GB RAM, and 4.8TB SAS Storage. There are currently six of these in various stages of procurement and provisioning.
+- The next set of hardware selected for kubernetes and ceph clusters are Thin Clients, with 4 CPUs; 25GB RAM; 128 + 256 GB SSD each. Fourteen of these were put into service.
+- The current set of hardware, for hyper-converged infrastructure are 2U rack servers, with up to 48 CPUs, 256 GB RAM, and 4.8TB SAS Storage. There are currently six of these in various stages of procurement and provisioning.
+
+## Rack servers
+
+| Hostname | Machine | Threads | RAM    | RAM Config |  SAS installed          | IP Address   | Function     |
+|----------|---------|---------|--------|------------|-------------------------|--------------|--------------|
+| Pluto    | R720    | 32      |        |            | 8 X 2.5"                | 192.168.2.50 | Production 1 |
+| Mars     | R720    | 32      | 64 GB  |            |                         | 192.168.2.54 | Production 2 |
+| Saturn   | DR6000  | 48      | 128 GB |            | 2 X 2.5"; 12 X 3.5"     | 192.168.2.51 | DevOps       |
+| Venus    | R730    | 64      | 160 GB |            | 8 X 2.5"                | 192.168.2.53 | Development  |
+| Neptune  | R710    | 8       | 24 GB  |            |                         | 192.168.2.55 | Return       |
+
+### Deployed
+
+| Hostname | Machine | Threads | RAM    | RAM Config |  SAS installed          | IP Address   | Client           |
+|----------|---------|---------|--------|------------|-------------------------|--------------|------------------|
+| Mercury  | R720    | 32      | 112 GB | 14 X 8 GB  | 4 X 147 GB + 4 X 600 GB | 192.168.3.52 | littlecanton.one |
 
 ## Cluster nodes
 

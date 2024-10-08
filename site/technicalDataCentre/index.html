@@ -147,6 +147,12 @@
 <li class="toctree-l2"><a class="reference internal" href="#proxmox-ansible">ProxMox ansible</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#proxmox-cloudinit">Proxmox cloudinit</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#notes-from-new-build-on-mercury">Notes from new build on Mercury</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#references-and-notes-from-build-on-saturn">References and notes from build on Saturn</a>
+</li>
+</ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cluster-management">Cluster management</a>
 <ul>
@@ -206,6 +212,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Inventory</span></p>
@@ -472,7 +480,53 @@ ansible:
 <li>Token: <code>d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac</code></li>
 </ul>
 <h2 id="proxmox-cloudinit">Proxmox cloudinit</h2>
-<p>References</p>
+<h3 id="notes-from-new-build-on-mercury">Notes from new build on Mercury</h3>
+<pre><code class="language-bash">wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+qemu-img resize noble-server-cloudimg-amd64.img 40G
+
+qm create 8001 --name "ubuntu-2404-cloudinit-template" --ostype l26 \
+    --memory 8126 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 2 --cores 2 \
+    --vga serial0 --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+
+qm importdisk 8001 noble-server-cloudimg-amd64.img local-lvm
+# "If your disk storage is not on SSDs, add ,discard=on"
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1
+qm set 8001 --boot order=virtio0
+# Add vendor.yaml, network.yaml, etc to /mnt/pve/cephfs/snippets
+qm set 8001 --cicustom "vendor=cephfs:snippets/vendor.yaml"
+qm set 8001 --tags ubuntu-template,24.04,cloudinit
+qm set 8001 --ciuser colleymj
+qm set 8001 --cipassword &lt;&gt;
+qm set 8001 --sshkeys ~/.ssh/authorized_keys
+qm template 8001
+</code></pre>
+<ul>
+<li>cloud-config: vendor.yaml</li>
+</ul>
+<pre><code class="language-yaml">runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - echo "https_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "http_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "ftp_proxy=ftp://192.168.3.1:3128" &gt;&gt; /etc/environment
+    - echo "no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" &gt;&gt; /etc/environment
+    - echo "export https_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export http_proxy=http://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export ftp_proxy=ftp://192.168.3.1:3128" &gt;&gt; /etc/bash.bashrc
+    - echo "export no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost" &gt;&gt; /etc/bash.bashrc
+    - echo Acquire::http::proxy  "http://192.168.3.1:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - echo Acquire::ftp::proxy "ftp://192.168.2.3:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - echo Acquire::https::proxy "http://192.168.3.1:3128/"; &gt;&gt; /etc/apt/apt.conf
+    - snap set system proxy.http="http://192.168.3.1:3128"
+    - snap set system proxy.https="http://192.168.3.1:3128"
+    - reboot
+</code></pre>
+<h3 id="references-and-notes-from-build-on-saturn">References and notes from build on Saturn</h3>
 <ul>
 <li><a href="https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs">https://github.com/UntouchedWagons/Ubuntu-CloudInit-Docs</a></li>
 <li>
@@ -491,12 +545,10 @@ ansible:
     --vga serial0 --serial0 socket  \
     --net0 virtio,bridge=vmbr0
 </code></pre>
-<ul>
-<li><code>qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm</code></li>
-<li><code>qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on</code></li>
-<li><code>qm set 8001 --boot order=virtio0</code></li>
-<li><code>qm set 8001 --ide2 local-lvm:cloudinit</code></li>
-</ul>
+<p>qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm
+qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on
+qm set 8001 --boot order=virtio0
+qm set 8001 --ide2 local-lvm:cloudinit</p>
 <pre><code class="language-bash">cat &lt;&lt; EOF | tee /var/lib/vz/snippets/vendor.yaml
 #cloud-config
 runcmd:
@@ -846,5 +898,42 @@ Ijiraq
         });
     </script>
 <script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script></body>
+mermaid.initialize({});</script><script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
 </html>

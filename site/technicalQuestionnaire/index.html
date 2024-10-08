@@ -1,488 +1,483 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+
+<html class="writer-html5" lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Martin Colley" /><link rel="canonical" href="https://musings.thruhere.net/podzone/technicalQuestionnaire/" />
-      <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Personality Questionnaire - Podzone</title>
-    <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
-    
-      <script>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalQuestionnaire/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Personality Questionnaire - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
         // Current page data
         var mkdocs_page_name = "Personality Questionnaire";
         var mkdocs_page_input_path = "technicalQuestionnaire.md";
         var mkdocs_page_url = "/podzone/technicalQuestionnaire/";
       </script>
-    
-    <!--[if lt IE 9]>
+<!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-      <script>hljs.highlightAll();</script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
 </head>
-
 <body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> Podzone
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
         </a><div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
-  </form>
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
 </div>
-      </div>
-
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Radio</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Requirements</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Analysis</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Workload</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Troubleshooting</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Substrate</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Tools</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Inventory</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
-                  </li>
-              </ul>
-              <p class="caption"><span class="caption-text">References</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
-                  </li>
-              </ul>
-      </div>
-    </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
-          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">Podzone</a>
-        
-      </nav>
-      <div class="wy-nav-content">
-        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Personality Questionnaire</li>
-    <li class="wy-breadcrumbs-aside">
-    </li>
-  </ul>
-  <hr/>
 </div>
-          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
-            <div class="section" itemprop="articleBody">
-              
-                <h1 id="personality-questionnaire">Personality Questionnaire</h1>
-<pre><code class="language-xml">&lt;form action=&quot;/action_page.php&quot;&gt;
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Personality Questionnaire</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="personality-questionnaire">Personality Questionnaire</h1>
+<pre><code class="language-xml">&lt;form action="/action_page.php"&gt;
   &lt;fieldset&gt;
     &lt;legend&gt;Personal Details:&lt;/legend&gt;
-    &lt;label for=&quot;fname&quot;&gt;First name&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;fname&quot; name=&quot;fname&quot;&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label for=&quot;lname&quot;&gt;Last name&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;lname&quot; name=&quot;lname&quot;&gt;&lt;br&gt;&lt;br&gt;
-    &lt;label for=&quot;email&quot;&gt;Email&lt;/label&gt;
-    &lt;input type=&quot;email&quot; id=&quot;email&quot; name=&quot;email&quot;&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label for="fname"&gt;First name&lt;/label&gt;
+    &lt;input type="text" id="fname" name="fname"&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label for="lname"&gt;Last name&lt;/label&gt;
+    &lt;input type="text" id="lname" name="lname"&gt;&lt;br&gt;&lt;br&gt;
+    &lt;label for="email"&gt;Email&lt;/label&gt;
+    &lt;input type="email" id="email" name="email"&gt;&lt;br&gt;&lt;br&gt;
 
   &lt;/fieldset&gt;
   &lt;fieldset&gt;
     &lt;legend&gt;Activity&lt;/legend&gt;
     &lt;section&gt;
-        &lt;label&gt;&lt;input name=&quot;Q01&quot; type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q01&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q01" type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q01"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design Bridges, Dams or Roads&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q02&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q02&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q02"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q02"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Capture Data into a computer&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q03&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q03&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q03"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q03"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Advertise and sell products for companies&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q04&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q04&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q04"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q04"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Plan weddings and other social events&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q05&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q05&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q05"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q05"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Assist communities to improve their basic facilities&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q06&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q06&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q06"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q06"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Give facials and massages to clients&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q07&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q07&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q07"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q07"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Offer religious sermons&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q08&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q08&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q08"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q08"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Make animated films&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q09&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q09&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q09"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q09"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Build or fix airplanes&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q10&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q10&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q10"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q10"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Set up new computers in offices&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q11&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q11&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q11"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q11"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Answer phone calls in a call centre&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q12&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q12&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q12"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q12"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work as an air host/ess&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q13&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q13&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q13"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q13"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Produce Wine or Beer&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q14&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q14&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q14"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q14"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Style and Colour Hair&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q15&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q15&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q15"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q15"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Offer counselling to drug addicts&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q16&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q16&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q16"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q16"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Teach Music&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q17&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q17&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q17"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q17"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Record and Mix Music&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q18&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q18&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q18"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q18"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work as a help desk analyst – provide support to computer users&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q19&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q19&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q19"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q19"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Compile monthly financial statements&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q20&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q20&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q20"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q20"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Run a fleet of taxis&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q21&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q21&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q21"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q21"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a Nature Reserve&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q22&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q22&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q22"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q22"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Take care of sick people&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q23&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q23&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q23"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q23"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Interview people for jobs&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q24&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q24&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q24"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q24"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Present a television or radio show&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q25&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q25&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q25"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q25"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Do underwater mechanical repairs&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q26&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q26&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q26"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q26"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Train computer courses&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q27&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q27&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q27"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q27"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Act as a personal assistant or secretary&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q28&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q28&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q28"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q28"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a hotel or restaurant&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q29&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q29&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q29"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q29"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design area maps&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q30&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q30&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q30"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q30"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Treat or nurse sick animals&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q31&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q31&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q31"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q31"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Teach primary or high school learners&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q32&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q32&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q32"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q32"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Perform as a Dancer&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q33&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q33&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q33"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q33"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design or build electronic equipment (dvd players, cell phones)&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q34&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q34&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q34"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q34"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design Internet web sites&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q35&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q35&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q35"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q35"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Write business letters&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q36&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q36&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q36"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q36"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Act as a Tourist Guide&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q37&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q37&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q37"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q37"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Plan the lay-out for new towns&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q38&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q38&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q38"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q38"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Advise people on healthy eating habits&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q39&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q39&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q39"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q39"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Train communication skills to business people&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q40&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q40&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q40"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q40"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Act in films, advertisements or theatre productions&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q41&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q41&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q41"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q41"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Install and maintain electrical cables in buildings&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q42&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q42&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q42"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q42"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Maintain computer networks&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q43&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q43&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q43"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q43"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Buy stock (goods) for a business&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q44&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q44&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q44"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q44"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work in a surf or diving school&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q45&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q45&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q45"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q45"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Grow vegetables or fruit trees&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q46&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q46&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q46"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q46"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Provide emergency medical care (ambulance services)&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q47&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q47&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q47"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q47"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Run a political campaign&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q48&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q48&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q48"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q48"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Play music in a band or orchestra&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q49&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q49&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q49"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q49"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Repair motor vehicles&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q50&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q50&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q50"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q50"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Write computer programs&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q51&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q51&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q51"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q51"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Own a tax consulting business&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q52&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q52&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q52"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q52"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work as a waiter or bartender&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q53&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q53&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q53"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q53"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design gardens and landscapes&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q54&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q54&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q54"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q54"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Diagnose and treat sick people&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q55&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q55&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q55"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q55"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Use play therapy to help children overcome problems&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q56&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q56&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q56"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q56"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Draw and Paint&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q57&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q57&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q57"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q57"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Weld metals together&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q58&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q58&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q58"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q58"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design computer systems to meet business needs&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q59&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q59&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q59"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q59"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Audit financial records&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q60&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q60&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q60"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q60"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design travel plans for tourists&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q61&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q61&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q61"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q61"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Study weather patterns&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q62&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q62&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q62"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q62"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Assist injured people with exercises&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q63&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q63&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q63"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q63"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a pre-school (crèche)&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q64&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q64&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q64"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q64"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Write articles for magazines or newspapers&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q65&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q65&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q65"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q65"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work at a gold mine&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q66&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q66&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q66"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q66"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design computer software&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q67&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q67&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q67"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q67"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Record and analyse financial transactions&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q68&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q68&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q68"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q68"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a guest house or guest farm&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q69&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q69&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q69"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q69"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Study the stars and universe&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q70&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q70&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q70"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q70"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Diagnose and treat dental (teeth) problems&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q71&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q71&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q71"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q71"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Help people deal with personal problems&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q72&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q72&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q72"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q72"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Write text for advertisements&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q73&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q73&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q73"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q73"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Make machine parts&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q74&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q74&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q74"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q74"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Fix computer equipment&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q75&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q75&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q75"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q75"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a business office&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q76&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q76&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q76"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q76"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Work as a chef/ cook&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q77&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q77&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q77"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q77"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a farm&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q78&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q78&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q78"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q78"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Help people with speech or hearing problems&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q79&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q79&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q79"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q79"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Offer legal advice and support to other people&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q80&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q80&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q80"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q80"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Do translations or interpreting&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q81&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q81&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q81"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q81"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Build and develop properties&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q82&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q82&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q82"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q82"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Develop and design computer games&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q83&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q83&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q83"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q83"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Invest money on the stock market&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q84&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q84&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q84"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q84"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a catering firm&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q85&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q85&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q85"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q85"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Protect coastal/ marine areas&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q86&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q86&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q86"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q86"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Research possible cures for diseases&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q87&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q87&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q87"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q87"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Investigate crime in the community&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q88&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q88&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q88"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q88"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design advertising logo for companies or products&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q89&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q89&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q89"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q89"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Design buildings and furniture&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q90&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q90&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q90"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q90"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Sell computer equipment&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q91&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q91&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q91"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q91"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Advise people on good investment opportunities&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q92&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q92&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q92"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q92"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Offer adventure tours for young people&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q93&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q93&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q93"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q93"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Manage a garden center (nursery)&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q94&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q94&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q94"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q94"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Mix and prescribe medicines in a pharmacy&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q95&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q95&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q95"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q95"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Provide HIV/Aids Counseling in the community&lt;/div&gt;
-        &lt;label&gt;&lt;input name=&quot;Q96&quot;  type=&quot;radio&quot; value=&quot;false&quot; /&gt;No&lt;/label&gt;
-        &lt;label&gt;&lt;input name=&quot;Q96&quot;  type=&quot;radio&quot; value=&quot;true&quot; /&gt;Yes&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q96"  type="radio" value="false" /&gt;No&lt;/label&gt;
+        &lt;label&gt;&lt;input name="Q96"  type="radio" value="true" /&gt;Yes&lt;/label&gt;
         &lt;div&gt;Use make-up for special effects on stage and screen&lt;/div&gt;
-        &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;
+        &lt;input type="submit" value="Submit"&gt;
     &lt;/section&gt;
     &lt;/fieldset&gt;
 &lt;/form&gt;
@@ -513,154 +508,180 @@ input {vertical-align: top;}
     CONTACT varchar(100),
     PRIMARY KEY (ID));
 
-DROP TABLE IF EXISTS &quot;CUSTOMER&quot;;
-CREATE TABLE &quot;norma&quot;.&quot;customer&quot; (
-    &quot;id&quot; integer NOT NULL PRIMARY K,
-    &quot;name&quot; character varying(20) NOT NULL,
-    &quot;surname&quot; character varying(20) NOT NULL,
-    &quot;email&quot; character varying(20) NOT NULL
+DROP TABLE IF EXISTS "CUSTOMER";
+CREATE TABLE "norma"."customer" (
+    "id" integer NOT NULL PRIMARY K,
+    "name" character varying(20) NOT NULL,
+    "surname" character varying(20) NOT NULL,
+    "email" character varying(20) NOT NULL
 ) WITH (oids = false);
 
 
-DROP TABLE IF EXISTS &quot;interest_answers&quot;;
-CREATE TABLE &quot;norma&quot;.&quot;interest_answers&quot; (
-    &quot;id&quot; integer NOT NULL,
-    &quot;customer&quot; integer NOT NULL,
-    &quot;Q01&quot; boolean NOT NULL,
-    &quot;Q02&quot; boolean NOT NULL,
-    &quot;Q03&quot; boolean NOT NULL,
-    &quot;Q04&quot; boolean NOT NULL,
-    &quot;Q05&quot; boolean NOT NULL,
-    &quot;Q06&quot; boolean NOT NULL,
-    &quot;Q07&quot; boolean NOT NULL,
-    &quot;Q08&quot; boolean NOT NULL,
-    &quot;Q09&quot; boolean NOT NULL,
-    &quot;Q10&quot; boolean NOT NULL,
-    &quot;Q11&quot; boolean NOT NULL,
-    &quot;Q12&quot; boolean NOT NULL,
-    &quot;Q13&quot; boolean NOT NULL,
-    &quot;Q14&quot; boolean NOT NULL,
-    &quot;Q15&quot; boolean NOT NULL,
-    &quot;Q16&quot; boolean NOT NULL,
-    &quot;Q17&quot; boolean NOT NULL,
-    &quot;Q18&quot; boolean NOT NULL,
-    &quot;Q19&quot; boolean NOT NULL,
-    &quot;Q20&quot; boolean NOT NULL,
-    &quot;Q21&quot; boolean NOT NULL,
-    &quot;Q22&quot; boolean NOT NULL,
-    &quot;Q23&quot; boolean NOT NULL,
-    &quot;Q24&quot; boolean NOT NULL,
-    &quot;Q25&quot; boolean NOT NULL,
-    &quot;Q26&quot; boolean NOT NULL,
-    &quot;Q27&quot; boolean NOT NULL,
-    &quot;Q28&quot; boolean NOT NULL,
-    &quot;Q29&quot; boolean NOT NULL,
-    &quot;Q30&quot; boolean NOT NULL,
-    &quot;Q31&quot; boolean NOT NULL,
-    &quot;Q32&quot; boolean NOT NULL,
-    &quot;Q33&quot; boolean NOT NULL,
-    &quot;Q34&quot; boolean NOT NULL,
-    &quot;Q35&quot; boolean NOT NULL,
-    &quot;Q36&quot; boolean NOT NULL,
-    &quot;Q37&quot; boolean NOT NULL,
-    &quot;Q38&quot; boolean NOT NULL,
-    &quot;Q39&quot; boolean NOT NULL,
-    &quot;Q40&quot; boolean NOT NULL,
-    &quot;Q41&quot; boolean NOT NULL,
-    &quot;Q42&quot; boolean NOT NULL,
-    &quot;Q43&quot; boolean NOT NULL,
-    &quot;Q44&quot; boolean NOT NULL,
-    &quot;Q45&quot; boolean NOT NULL,
-    &quot;Q46&quot; boolean NOT NULL,
-    &quot;Q47&quot; boolean NOT NULL,
-    &quot;Q48&quot; boolean NOT NULL,
-    &quot;Q49&quot; boolean NOT NULL,
-    &quot;Q50&quot; boolean NOT NULL,
-    &quot;Q51&quot; boolean NOT NULL,
-    &quot;Q52&quot; boolean NOT NULL,
-    &quot;Q53&quot; boolean NOT NULL,
-    &quot;Q54&quot; boolean NOT NULL,
-    &quot;Q55&quot; boolean NOT NULL,
-    &quot;Q56&quot; boolean NOT NULL,
-    &quot;Q57&quot; boolean NOT NULL,
-    &quot;Q58&quot; boolean NOT NULL,
-    &quot;Q59&quot; boolean NOT NULL,
-    &quot;Q60&quot; boolean NOT NULL,
-    &quot;Q61&quot; boolean NOT NULL,
-    &quot;Q62&quot; boolean NOT NULL,
-    &quot;Q63&quot; boolean NOT NULL,
-    &quot;Q64&quot; boolean NOT NULL,
-    &quot;Q65&quot; boolean NOT NULL,
-    &quot;Q66&quot; boolean NOT NULL,
-    &quot;Q67&quot; boolean NOT NULL,
-    &quot;Q68&quot; boolean NOT NULL,
-    &quot;Q69&quot; boolean NOT NULL,
-    &quot;Q70&quot; boolean NOT NULL,
-    &quot;Q71&quot; boolean NOT NULL,
-    &quot;Q72&quot; boolean NOT NULL,
-    &quot;Q73&quot; boolean NOT NULL,
-    &quot;Q74&quot; boolean NOT NULL,
-    &quot;Q75&quot; boolean NOT NULL,
-    &quot;Q76&quot; boolean NOT NULL,
-    &quot;Q77&quot; boolean NOT NULL,
-    &quot;Q78&quot; boolean NOT NULL,
-    &quot;Q79&quot; boolean NOT NULL,
-    &quot;Q80&quot; boolean NOT NULL,
-    &quot;Q81&quot; boolean NOT NULL,
-    &quot;Q82&quot; boolean NOT NULL,
-    &quot;Q83&quot; boolean NOT NULL,
-    &quot;Q84&quot; boolean NOT NULL,
-    &quot;Q85&quot; boolean NOT NULL,
-    &quot;Q86&quot; boolean NOT NULL,
-    &quot;Q87&quot; boolean NOT NULL,
-    &quot;Q88&quot; boolean NOT NULL,
-    &quot;Q89&quot; boolean NOT NULL,
-    &quot;Q90&quot; boolean NOT NULL,
-    &quot;Q91&quot; boolean NOT NULL,
-    &quot;Q92&quot; boolean NOT NULL,
-    &quot;Q93&quot; boolean NOT NULL,
-    &quot;Q94&quot; boolean NOT NULL,
-    &quot;Q95&quot; boolean NOT NULL,
-    &quot;Q96&quot; boolean NOT NULL
+DROP TABLE IF EXISTS "interest_answers";
+CREATE TABLE "norma"."interest_answers" (
+    "id" integer NOT NULL,
+    "customer" integer NOT NULL,
+    "Q01" boolean NOT NULL,
+    "Q02" boolean NOT NULL,
+    "Q03" boolean NOT NULL,
+    "Q04" boolean NOT NULL,
+    "Q05" boolean NOT NULL,
+    "Q06" boolean NOT NULL,
+    "Q07" boolean NOT NULL,
+    "Q08" boolean NOT NULL,
+    "Q09" boolean NOT NULL,
+    "Q10" boolean NOT NULL,
+    "Q11" boolean NOT NULL,
+    "Q12" boolean NOT NULL,
+    "Q13" boolean NOT NULL,
+    "Q14" boolean NOT NULL,
+    "Q15" boolean NOT NULL,
+    "Q16" boolean NOT NULL,
+    "Q17" boolean NOT NULL,
+    "Q18" boolean NOT NULL,
+    "Q19" boolean NOT NULL,
+    "Q20" boolean NOT NULL,
+    "Q21" boolean NOT NULL,
+    "Q22" boolean NOT NULL,
+    "Q23" boolean NOT NULL,
+    "Q24" boolean NOT NULL,
+    "Q25" boolean NOT NULL,
+    "Q26" boolean NOT NULL,
+    "Q27" boolean NOT NULL,
+    "Q28" boolean NOT NULL,
+    "Q29" boolean NOT NULL,
+    "Q30" boolean NOT NULL,
+    "Q31" boolean NOT NULL,
+    "Q32" boolean NOT NULL,
+    "Q33" boolean NOT NULL,
+    "Q34" boolean NOT NULL,
+    "Q35" boolean NOT NULL,
+    "Q36" boolean NOT NULL,
+    "Q37" boolean NOT NULL,
+    "Q38" boolean NOT NULL,
+    "Q39" boolean NOT NULL,
+    "Q40" boolean NOT NULL,
+    "Q41" boolean NOT NULL,
+    "Q42" boolean NOT NULL,
+    "Q43" boolean NOT NULL,
+    "Q44" boolean NOT NULL,
+    "Q45" boolean NOT NULL,
+    "Q46" boolean NOT NULL,
+    "Q47" boolean NOT NULL,
+    "Q48" boolean NOT NULL,
+    "Q49" boolean NOT NULL,
+    "Q50" boolean NOT NULL,
+    "Q51" boolean NOT NULL,
+    "Q52" boolean NOT NULL,
+    "Q53" boolean NOT NULL,
+    "Q54" boolean NOT NULL,
+    "Q55" boolean NOT NULL,
+    "Q56" boolean NOT NULL,
+    "Q57" boolean NOT NULL,
+    "Q58" boolean NOT NULL,
+    "Q59" boolean NOT NULL,
+    "Q60" boolean NOT NULL,
+    "Q61" boolean NOT NULL,
+    "Q62" boolean NOT NULL,
+    "Q63" boolean NOT NULL,
+    "Q64" boolean NOT NULL,
+    "Q65" boolean NOT NULL,
+    "Q66" boolean NOT NULL,
+    "Q67" boolean NOT NULL,
+    "Q68" boolean NOT NULL,
+    "Q69" boolean NOT NULL,
+    "Q70" boolean NOT NULL,
+    "Q71" boolean NOT NULL,
+    "Q72" boolean NOT NULL,
+    "Q73" boolean NOT NULL,
+    "Q74" boolean NOT NULL,
+    "Q75" boolean NOT NULL,
+    "Q76" boolean NOT NULL,
+    "Q77" boolean NOT NULL,
+    "Q78" boolean NOT NULL,
+    "Q79" boolean NOT NULL,
+    "Q80" boolean NOT NULL,
+    "Q81" boolean NOT NULL,
+    "Q82" boolean NOT NULL,
+    "Q83" boolean NOT NULL,
+    "Q84" boolean NOT NULL,
+    "Q85" boolean NOT NULL,
+    "Q86" boolean NOT NULL,
+    "Q87" boolean NOT NULL,
+    "Q88" boolean NOT NULL,
+    "Q89" boolean NOT NULL,
+    "Q90" boolean NOT NULL,
+    "Q91" boolean NOT NULL,
+    "Q92" boolean NOT NULL,
+    "Q93" boolean NOT NULL,
+    "Q94" boolean NOT NULL,
+    "Q95" boolean NOT NULL,
+    "Q96" boolean NOT NULL
 ) WITH (oids = false);
 </code></pre>
-              
-            </div>
-          </div><footer>
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-  </div>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
 
   Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-          
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="Versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
-    
-    
-    
-  </span>
 </div>
-    <script src="../js/jquery-3.6.0.min.js"></script>
-    <script>var base_url = "..";</script>
-    <script src="../js/theme_extra.js"></script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/main.js"></script>
-    <script>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
         jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-
-</body>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
 </html>

@@ -35,26 +35,63 @@
 </div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<p class="caption"><span class="caption-text">Radio</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
-</li>
-</ul>
 <p class="caption"><span class="caption-text">Requirements</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">ProjectTech</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#domain-registration-and-email-mailboxes">Domain registration, and email mailboxes</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-build">Infrastructure build</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#infrastructure-costing">Infrastructure costing</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#hostnames-for-littlecantonone">Hostnames for littlecanton.one</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#other-hardware">Other hardware</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#habilis">habilis</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#habilis-installations">habilis: Installations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#habilis-configuration">habilis: Configuration</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#habilis-other-services">habilis: Other services</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#host-configurations">host configurations</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#proxmox">ProxMox</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application-build-out">Application build-out</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#k8s-cluster-storage-options">k8s: Cluster storage options</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#iscsi">iSCSI</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSecurity/">Security</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
@@ -76,6 +113,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Workload</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
@@ -153,6 +192,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
 </ul>
 </div>
 </div>
@@ -166,6 +207,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Requirements</li>
 <li class="breadcrumb-item active">ProjectTech</li>
 <li class="wy-breadcrumbs-aside">
 </li>
@@ -430,6 +472,10 @@ EOF
 </ul>
 </div>
 </div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../requirementRadio/" title="Radio Requirements"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalSecurity/" title="Security">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
 <hr/>
 <div role="contentinfo">
 <!-- Copyright etc -->
@@ -443,6 +489,8 @@ EOF
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../requirementRadio/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalSecurity/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>

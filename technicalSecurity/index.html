@@ -35,15 +35,6 @@
 </div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<p class="caption"><span class="caption-text">Radio</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
-</li>
-</ul>
 <p class="caption"><span class="caption-text">Requirements</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
@@ -52,9 +43,51 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProjectTech/">ProjectTech</a>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Security</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#tasks">Tasks</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cors">CORS</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#disabling-browser-cors-security-failures">Disabling browser CORS security failures:</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#waf">WAF</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#before-adjustments-bladon-cluster">Before Adjustments: Bladon cluster</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#after-adjustments">After adjustments</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#before-adjustments-github">Before Adjustments: GitHub</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#libmodsecurity">LibModSecurity</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#headers">Headers</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-a-sha256-key-for-an-embedded-script">Generating a sha256 key for an embedded script</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-cdn-hosted-js-and-css-libraries">Adding CDN hosted js and css libraries</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#static-site">static-site</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox-hardening">Proxmox hardening</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
@@ -76,6 +109,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Workload</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
@@ -153,6 +188,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
 </ul>
 </div>
 </div>
@@ -166,6 +203,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item">Analysis</li>
 <li class="breadcrumb-item active">Security</li>
 <li class="wy-breadcrumbs-aside">
 </li>
@@ -359,6 +397,10 @@ Header always set Content-Security-Policy "default-src 'self';"
 </ul>
 </div>
 </div><footer>
+<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
+<a class="btn btn-neutral float-left" href="../technicalProjectTech/" title="ProjectTech"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalConsumerCloud/" title="Consumer Cloud">Next <span class="icon icon-circle-arrow-right"></span></a>
+</div>
 <hr/>
 <div role="contentinfo">
 <!-- Copyright etc -->
@@ -372,6 +414,8 @@ Header always set Content-Security-Policy "default-src 'self';"
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
+<span><a href="../technicalProjectTech/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalConsumerCloud/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>

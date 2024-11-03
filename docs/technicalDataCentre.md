@@ -111,6 +111,14 @@ network:
 - Set time-zone: `sudo timedatectl set-timezone Europe/London`
 - For dynamic nfs provisioning: `sudo apt install nfs-common`
 
+## Gateway configuration
+
+Tool installation:
+
+- `sudo snap install kubectl --classic`
+- `sudo snap install k9s`
+- 
+
 ### Proxy
 
 - At scale, artefacts from the internet typically used in a unit build can be cached with obvious benefit. I addition, when evaluating software, uninstallation to get a known good state for re-install is very efficient when cached apt, vm and snap packages are used.
@@ -239,6 +247,47 @@ ansible:
 
 ## Proxmox cloudinit
 
+### Mercury try 2
+
+```
+wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+
+qemu-img resize jammy-server-cloudimg-amd64.img 90G
+
+sudo qm create 8001 --name "cloudinit-template" --ostype l26 \
+    --memory 16384 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 2 --cores 2 \
+    --vga virtio --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+
+sudo qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm
+sudo qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on
+sudo qm set 8001 --boot order=virtio0
+sudo qm set 8001 --scsi1 local-lvm:cloudinit
+
+cat << EOF | sudo tee /var/lib/vz/snippets/vendor.yaml
+#cloud-config
+runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - reboot
+# Taken from https://forum.proxmox.com/threads/combining-custom-cloud-init-with-auto-generated.59008/page-3#post-428772
+EOF
+
+sudo qm set 8001 --cicustom "vendor=local:snippets/vendor.yaml"
+sudo qm set 8001 --tags ubuntu-template,22.04,cloudinit
+sudo qm set 8001 --ciuser colleymj
+sudo qm set 8001 --cipassword $(openssl passwd -6 $CLEARTEXT_PASSWORD)
+sudo qm set 8001 --sshkeys ~/.ssh/authorized_keys
+sudo qm set 8001 --ipconfig0 ip=dhcp
+
+
+
+```
+
 ### Notes from new build on Mercury
 
 ```bash
@@ -266,6 +315,9 @@ qm set 8001 --sshkeys ~/.ssh/authorized_keys
 qm template 8001
 ```
 
+qm set 8001 --ide2 local-lvm:cloudinit
+
+qm set 8001 --boot order=scsi0
 
 
 - cloud-config: vendor.yaml
@@ -441,6 +493,8 @@ EOF
 | Address       | hostname   | Machine     | Purpose         |
 |---------------|------------|-------------|-----------------|
 | 192.168.2.200 | dolmen     | Macbook Pro | Management      |
+
+
 
 ## List of unused moons
 

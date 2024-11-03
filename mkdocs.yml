@@ -12,15 +12,14 @@ plugins:
 theme: readthedocs
 
 nav:
-  - 'Radio':
-    - requirementRadio.md
-    - technicalRadio.md
-    - referencesRadio.md
   - 'Requirements':
     - requirementIntroduction.md
     - requirementBackground.md
     - requirementBusinessBrief.md
+    - requirementRadio.md
+    - technicalProjectTech.md
   - 'Analysis':
+    - technicalSecurity.md
     - technicalConsumerCloud.md
     - technicalExternalServices.md
     - inventorySite.md
@@ -31,6 +30,7 @@ nav:
     - technicalSound.md
     - technicalHardware.md
   - 'Workload':
+    - technicalRadio.md
     - technicalSiteStructure.md
     - technicalStaticSite.md
     - technicalFlux.md
@@ -67,3 +67,4 @@ nav:
     - referencesResearch.md
     - referencesReserve.md
     - referencesTroubleshooting.md
+    - referencesRadio.md

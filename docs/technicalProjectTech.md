@@ -59,6 +59,9 @@
 192.168.3.23  bixi        # t630 proxmox
 192.168.3.24  pulao       # t630 jump
 192.168.3.10  jiaotu      # R720 proxmox
+192.168.3.80  tarvos      # Talos k8s node on jiato
+192.168.3.81  paaliaq     # Talos k8s node
+192.168.3.82  ymir        # Talos k8s node
 # 192.168.3.    taotie    # Unassigned
 # 192.168.3.    qiuniu    # Unassigned
 # 192.168.3.    yazi      # Unassigned
@@ -97,6 +100,7 @@
 - [X] Persist: `sudo iptables-save > /etc/iptables/rules.v4`
 - [ ] Reverse proxy
 - [ ] Configure certbot: `sudo certbot --apache`
+- [ ] Certbot add hosts: `certbot --expand -d home.littlecanton.one,dev.littlecanton.one`
 
 ### habilis: Other services
 
@@ -145,10 +149,12 @@ EOF
 
 ### Application build-out
 
-- [ ] k8s cluster
+- [ ] git repo: <https://github.com/MoTTTT/LittlecantonK8S.git>
+- [ ] k8s cluster 3 X VM for k8s nodes, install microk8s, join cluster, install microk8s add-ons
+  - [ ] flux bootstrap: `flux bootstrap github --context=microk8s --owner=MoTTTT --repository=LittlecantonK8S.git --branch=main --personal --path=clusters/littlecantonprod --token-auth=true`
 - [ ] NextCloud container, with disks assigned
 - [ ] NextCloud: <https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html>
-
+- 
 
 ## k8s: Cluster storage options
 

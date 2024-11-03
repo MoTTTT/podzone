@@ -35,15 +35,6 @@
 </div>
 </div>
 <div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
-<p class="caption"><span class="caption-text">Radio</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
-</li>
-</ul>
 <p class="caption"><span class="caption-text">Requirements</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
@@ -52,9 +43,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProjectTech/">ProjectTech</a>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSecurity/">Security</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
@@ -76,6 +73,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Workload</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
@@ -119,6 +118,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#maas">maas</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#unit-configuration">Unit configuration</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gateway-configuration">Gateway configuration</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#proxy">Proxy</a>
 </li>
@@ -148,6 +149,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#proxmox-cloudinit">Proxmox cloudinit</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#mercury-try-2">Mercury try 2</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#notes-from-new-build-on-mercury">Notes from new build on Mercury</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#references-and-notes-from-build-on-saturn">References and notes from build on Saturn</a>
@@ -242,6 +245,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
 </li>
 </ul>
 </div>
@@ -370,6 +375,13 @@ network:
 <li>Set time-zone: <code>sudo timedatectl set-timezone Europe/London</code></li>
 <li>For dynamic nfs provisioning: <code>sudo apt install nfs-common</code></li>
 </ul>
+<h2 id="gateway-configuration">Gateway configuration</h2>
+<p>Tool installation:</p>
+<ul>
+<li><code>sudo snap install kubectl --classic</code></li>
+<li><code>sudo snap install k9s</code></li>
+<li></li>
+</ul>
 <h3 id="proxy">Proxy</h3>
 <ul>
 <li>At scale, artefacts from the internet typically used in a unit build can be cached with obvious benefit. I addition, when evaluating software, uninstallation to get a known good state for re-install is very efficient when cached apt, vm and snap packages are used.</li>
@@ -480,6 +492,44 @@ ansible:
 <li>Token: <code>d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac</code></li>
 </ul>
 <h2 id="proxmox-cloudinit">Proxmox cloudinit</h2>
+<h3 id="mercury-try-2">Mercury try 2</h3>
+<pre><code>wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+
+qemu-img resize jammy-server-cloudimg-amd64.img 90G
+
+sudo qm create 8001 --name "cloudinit-template" --ostype l26 \
+    --memory 16384 \
+    --agent 1 \
+    --bios ovmf --machine q35 --efidisk0 local-lvm:0,pre-enrolled-keys=0 \
+    --cpu host --socket 2 --cores 2 \
+    --vga virtio --serial0 socket  \
+    --net0 virtio,bridge=vmbr0
+
+sudo qm importdisk 8001 jammy-server-cloudimg-amd64.img local-lvm
+sudo qm set 8001 --scsihw virtio-scsi-pci --virtio0 local-lvm:vm-8001-disk-1,discard=on
+sudo qm set 8001 --boot order=virtio0
+sudo qm set 8001 --scsi1 local-lvm:cloudinit
+
+cat &lt;&lt; EOF | sudo tee /var/lib/vz/snippets/vendor.yaml
+#cloud-config
+runcmd:
+    - apt update
+    - apt install -y qemu-guest-agent
+    - systemctl start qemu-guest-agent
+    - reboot
+# Taken from https://forum.proxmox.com/threads/combining-custom-cloud-init-with-auto-generated.59008/page-3#post-428772
+EOF
+
+sudo qm set 8001 --cicustom "vendor=local:snippets/vendor.yaml"
+sudo qm set 8001 --tags ubuntu-template,22.04,cloudinit
+sudo qm set 8001 --ciuser colleymj
+sudo qm set 8001 --cipassword $(openssl passwd -6 $CLEARTEXT_PASSWORD)
+sudo qm set 8001 --sshkeys ~/.ssh/authorized_keys
+sudo qm set 8001 --ipconfig0 ip=dhcp
+
+
+
+</code></pre>
 <h3 id="notes-from-new-build-on-mercury">Notes from new build on Mercury</h3>
 <pre><code class="language-bash">wget -q https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
 qemu-img resize noble-server-cloudimg-amd64.img 40G
@@ -504,6 +554,8 @@ qm set 8001 --cipassword &lt;&gt;
 qm set 8001 --sshkeys ~/.ssh/authorized_keys
 qm template 8001
 </code></pre>
+<p>qm set 8001 --ide2 local-lvm:cloudinit</p>
+<p>qm set 8001 --boot order=scsi0</p>
 <ul>
 <li>cloud-config: vendor.yaml</li>
 </ul>

@@ -103,7 +103,7 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 ### Certlist 2024/10/02
 
 ```bash
-certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,home.littlecanton.one
+certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,home.littlecanton.one,dev.littlecanton.one,apidocumentation.info
 ```
 
 

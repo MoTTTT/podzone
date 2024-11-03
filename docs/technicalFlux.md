@@ -23,6 +23,7 @@ flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-
 ## Notes
 
 - Mac OS flux Installation: `brew install fluxcd/tap/flux`
+- Unix install `curl -s https://fluxcd.io/install.sh | sudo bash`
 - Create a GITHUB token, and export username and token: `export GITHUB_TOKEN=<token>`; `export GITHUB_USER=MoTTTT`
 - Check flux and cluster: `flux check --pre`
 - Bootstrap: `flux bootstrap github --context=prod --owner=MoTTTT --repository=admin --branch=main --personal --path=clusters/prod --token-auth=true`

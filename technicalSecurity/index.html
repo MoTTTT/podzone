@@ -21,6 +21,14 @@
     <![endif]-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SY1HLECK2G"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-SY1HLECK2G");
+      </script>
 </head>
 <body class="wy-body-for-nav" role="document">
 <div class="wy-grid-for-nav">
@@ -82,7 +90,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#static-site">static-site</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#proxmox-hardening">Proxmox hardening</a>
+<li class="toctree-l2"><a class="reference internal" href="#proxmox-cluster-substrate-hypervisor">Proxmox (Cluster substrate hypervisor)</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
 </li>
@@ -362,10 +370,8 @@ Header always append X-Frame-Options SAMEORIGIN
 Header always set Content-Security-Policy "default-src 'self';"
 </code></pre>
 <p>NOTE: Select between <em>X-XSS-Protection</em> and <em>Content-Security-Policy</em></p>
-<h2 id="proxmox-hardening">Proxmox hardening</h2>
-<ul>
-<li><a href="https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07">https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07</a></li>
-</ul>
+<h2 id="proxmox-cluster-substrate-hypervisor">Proxmox (Cluster substrate hypervisor)</h2>
+<p>Hardening reference: - <a href="https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07">https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07</a></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://medium.com/@maheshwar.ramkrushna/implementing-missing-security-headers-in-apache-web-server-9923acb044f1">https://medium.com/@maheshwar.ramkrushna/implementing-missing-security-headers-in-apache-web-server-9923acb044f1</a></li>

@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalProjectTech/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalTallos/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>ProjectTech - Podzone</title>
+<title>Tallos - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "ProjectTech";
-        var mkdocs_page_input_path = "technicalProjectTech.md";
-        var mkdocs_page_url = "/podzone/technicalProjectTech/";
+        var mkdocs_page_name = "Tallos";
+        var mkdocs_page_input_path = "technicalTallos.md";
+        var mkdocs_page_url = "/podzone/technicalTallos/";
       </script>
 <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -166,7 +166,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item active">ProjectTech</li>
+<li class="breadcrumb-item active">Tallos</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -174,259 +174,73 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="projecttech">ProjectTech</h1>
-<h2 id="domain-registration-and-email-mailboxes">Domain registration, and email mailboxes</h2>
+<h1 id="tallos">Tallos</h1>
+<h2 id="prep">Prep</h2>
 <ul>
-<li>Using PorkBun as registrar</li>
-<li>Domain purchased: <code>littlecanton.one</code></li>
-<li>Email hosting: <code>contact@littlecanton.one</code></li>
-<li>Email hosting: <code>reservations@littlecanton.one</code></li>
-<li>Total costs: £1.57 (1 yr domain) + £24 (1 yr X 2 email addresses) = £25.57</li>
+<li>On unix, need to first install brew dependencies: <code>sudo apt-get install build-essential procps curl file git</code></li>
+<li>Then need to install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
+<li>Then talosctl: <code>/home/linuxbrew/.linuxbrew/bin/brew install siderolabs/tap/talosctl</code></li>
+<li>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl</code></li>
+<li>MacOS: Install Talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
 </ul>
-<h2 id="infrastructure-build">Infrastructure build</h2>
+<h2 id="proxmox-using-cloud-init">Proxmox using cloud init</h2>
 <ul>
-<li>Rack server - mercury: Dell PowerEdge R720, 32 threads, 112GB RAM, 4.8TB Storage</li>
-<li>4 X t630 - norham01-norham04: 4 CPU; 24GB RAM; 128GB + 128GB Storage: £200</li>
-<li>1 X t630 - habilis: 4 CPU; 24GB RAM; 128GB Storage; M.2 WiFi module: £70</li>
-<li>Build habilis: Ubuntu serve, set up as gateway to ethernet port, squid proxy, reverse-proxy port forwarding</li>
-<li>Build rack server and remainder of t730s: Install hypervisor</li>
-<li>Create ceph cluster on ProxMox t630s, add disks, add a ceph monitor on mercury</li>
-<li>Build VMs for k8s cluster</li>
-<li>Build out k8s cluster, and connect to distributed storage</li>
-<li>Bootstrap k8s cluster with flux</li>
-<li>Deploy Radio Station, WordPress instances and content server to k8s cluster</li>
-<li>Build LXC NextCloud appliance</li>
-<li>Build LXC Network file server</li>
-<li>Build VM or LXC for Project Management software</li>
+<li>192.168.3.81  paaliaq</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Hostname</th>
-<th>Machine</th>
-<th>Threads</th>
-<th>RAM</th>
-<th>Storage</th>
-<th>Role</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jiaotu</td>
-<td>R720</td>
-<td>32</td>
-<td>64 GB</td>
-<td>4.8TB</td>
-<td>ProxMox VM and LXC host</td>
-</tr>
-<tr>
-<td>habilis</td>
-<td>t730</td>
-<td>4</td>
-<td>24 GB</td>
-<td>128 GB</td>
-<td>Gateway</td>
-</tr>
-<tr>
-<td>norham01-4</td>
-<td>t730</td>
-<td>4</td>
-<td>24 GB</td>
-<td>128 GB</td>
-<td>ProxMox Ceph node</td>
-</tr>
-</tbody>
-</table>
-<h3 id="infrastructure-costing">Infrastructure costing</h3>
-<table>
-<thead>
-<tr>
-<th>Host</th>
-<th>Component</th>
-<th>Unit Cost</th>
-<th>Quantity</th>
-<th>Total</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>jiaotu</td>
-<td>R720</td>
-<td>£ 88</td>
-<td>1</td>
-<td>£ 88</td>
-<td>2x Xeon CPU No RAM 2x 600gb Hdd</td>
-</tr>
-<tr>
-<td>jiaotu</td>
-<td>RAM</td>
-<td>£ 6</td>
-<td>14</td>
-<td>£ 84</td>
-<td>14 X 8 GB DDR3 Server RAM</td>
-</tr>
-<tr>
-<td>jiaotu</td>
-<td>Caddies</td>
-<td>£ 5</td>
-<td>6</td>
-<td>£ 30</td>
-<td>6 X SFF SAS HDD caddies</td>
-</tr>
-<tr>
-<td>jiaotu</td>
-<td>Drive 147GB</td>
-<td>£ 8</td>
-<td>4</td>
-<td>£ 32</td>
-<td>4 X 147GB SAS HDD</td>
-</tr>
-<tr>
-<td>jiaotu</td>
-<td>Drive 600GB</td>
-<td>£ 10</td>
-<td>2</td>
-<td>£ 20</td>
-<td>2 X 600GB SAS HDD</td>
-</tr>
-<tr>
-<td>jiaotu</td>
-<td>Total</td>
-<td></td>
-<td></td>
-<td>£254</td>
-<td>112GB RAM, 4.8TB Storage</td>
-</tr>
-<tr>
-<td>norham0X</td>
-<td>t630</td>
-<td>£ 50</td>
-<td>4</td>
-<td>£200</td>
-<td>24GB RAM; 128GB + 128GB Storage</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Multiplug</li>
-<li>Network cables</li>
-</ul>
-<h2 id="hostnames-for-littlecantonone">Hostnames for littlecanton.one</h2>
-<ul>
-<li>Hostnames mercury and habilis assigned, ProxMox t630s need names to replace norhamXX</li>
-<li>Theme: Nine sons of the Dragon: <a href="https://en.wikipedia.org/wiki/Nine_sons_of_the_dragon">https://en.wikipedia.org/wiki/Nine_sons_of_the_dragon</a></li>
-<li>Converted to nearest UK keyboard characters, and assigned IPs</li>
-</ul>
-<pre><code class="language-hosts"># /etc/hosts file for littlecanton.one network
-192.168.3.1   bian        # t630 gateway
-192.168.3.21  chaofeng    # t630 proxmox
-192.168.3.22  chiwen      # t630 proxmox
-192.168.3.23  bixi        # t630 proxmox
-192.168.3.24  pulao       # t630 jump
-192.168.3.10  jiaotu      # R720 proxmox
-192.168.3.80  tarvos      # Talos k8s node on jiato
-192.168.3.81  paaliaq     # Talos k8s node
-192.168.3.82  ymir        # Talos k8s node
-# 192.168.3.    taotie    # Unassigned
-# 192.168.3.    qiuniu    # Unassigned
-# 192.168.3.    yazi      # Unassigned
-# 192.168.3.    suanni    # Unassigned
+<pre><code class="language-bash">export CONTROL_PLANE_IP=192.168.3.81
+# /home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
+talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
+
+mkdir -p iso
+mv _out/controlplane.yaml iso/user-data
+echo "local-hostname: controlplane-1" &gt; iso/meta-data
+cat &gt; iso/network-config &lt;&lt; EOF
+version: 1
+config:
+   - type: physical
+     name: eth0
+     mac_address: "52:54:00:12:34:00"
+     subnets:
+        - type: static
+          address: 192.168.3.81
+          netmask: 255.255.255.0
+          gateway: 192.168.3.1
+EOF
+cd iso &amp;&amp; mkisofs -output cidata.iso -V cidata -r -J user-data meta-data network-config
 </code></pre>
-<h3 id="other-hardware">Other hardware</h3>
-<ul>
-<li>[X] Network switch</li>
-<li>[X] Network cabling</li>
-<li>[X] Multiplug</li>
-<li>[X] Kettle plug leads</li>
-<li>[X] 2TB nVME M.4 SSDs</li>
-<li>[X] PCIe nVME M.4 SSD adapter</li>
-</ul>
-<h2 id="habilis">habilis</h2>
-<h3 id="habilis-installations">habilis: Installations</h3>
-<ul>
-<li>[X] OS: Ubuntu server 22.04; Connect to router via wifi; set static IP on ethernet to <code>192.168.3.1/24</code></li>
-<li>[X] Install Internet Proxy: <code>sudo apt-get install squid</code></li>
-<li>[X] Ip Forwarding: uncomment <code>#net.ipv4.ip_forward=1</code> in <code>/etc/sysctl.conf</code></li>
-<li>[X] Persistence for iptables rules: <code>sudo apt install iptables-persistent</code></li>
-<li>[X] Reverse-proxy: <code>sudo apt install apache2</code></li>
-<li>[X] Reverse-proxy modules: <code>sudo a2enmod ssl proxy proxy_html proxy_http proxy_wstunnel rewrite</code></li>
-<li>[X] Let's encryt certbot: <code>sudo snap install --classic certbot</code></li>
-<li>[X] kubectl: <code>sudo snap install kubectl --classic</code></li>
-<li>[X] k9s: <code>sudo snap install k9s</code>; link binary <code>sudo ln -s /snap/k9s/current/bin/k9s /usr/bin/k9s</code></li>
-</ul>
-<h3 id="habilis-configuration">habilis: Configuration</h3>
-<ul>
-<li>[X] IP Tables: NAT for gateway; <code>sudo iptables -t nat -A POSTROUTING -s 192.168.3.0/24 -o wlp2s0 -j MASQUERADE</code></li>
-<li>[X] Port forwarding for ProxMox: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 8006 -j DNAT --to-destination 192.168.2.10:8006</code></li>
-<li>[X] Port forwarding for IceCast:</li>
-<li>[X] View: <code>sudo iptables -t nat -nvL --line-numbers</code></li>
-<li>[X] Persist: <code>sudo iptables-save &gt; /etc/iptables/rules.v4</code></li>
-<li>[ ] Reverse proxy</li>
-<li>[ ] Configure certbot: <code>sudo certbot --apache</code></li>
-<li>[ ] Certbot add hosts: <code>certbot --expand -d home.littlecanton.one,dev.littlecanton.one</code></li>
-</ul>
-<h3 id="habilis-other-services">habilis: Other services</h3>
-<ul>
-<li>[ ] VPN <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-22-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-22-04</a></li>
-<li>[ ] CA: <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-on-ubuntu-22-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-on-ubuntu-22-04</a></li>
-<li>[ ] Mail Server: <a href="https://mailinabox.email/">https://mailinabox.email/</a></li>
-</ul>
-<h2 id="host-configurations">host configurations</h2>
-<ul>
-<li><code>setproxy.sh</code></li>
-</ul>
-<pre><code class="language-bash">#!/bin/bash
-# setproxy.sh
+<p>Set static IP address, add kernel parameter:</p>
+<p>ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf></autoconf></device></host></netmask></gw-ip></srv-ip></client-ip></p>
+<p>ip=192.168.3.80:8.8.8.8:192.168.3.1:255.255.255.0:tarvos:eth0:
+ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:</p>
+<pre><code class="language-txt">Your image schematic ID is: dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586
+customization:
+    systemExtensions:
+        officialExtensions:
+            - siderolabs/iscsi-tools
+            - siderolabs/qemu-guest-agent
+First Boot
+Options for the initial boot of Talos Linux on Nocloud:
 
-cat &lt;&lt;EOF &gt; /etc/environment
-https_proxy=http://192.168.3.1:3128
-http_proxy=http://192.168.3.1:3128
-ftp_proxy=ftp://192.168.3.1:3128
-no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost
-EOF
+Disk Image
+https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.raw.xz
+ISO
+https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.iso
+PXE boot (iPXE script)
+https://pxe.factory.talos.dev/pxe/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64
+Initial Install
+For the initial Talos Linux install (doesn't apply to disk image boot) put the following installer image to the machine configuration:
+factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
 
-cat &lt;&lt;EOF &gt;&gt; /etc/bash.bashrc
-export https_proxy=http://192.168.3.1:3128
-export http_proxy=http://192.168.3.1:3128
-export ftp_proxy=ftp://192.168.3.1:3128
-export no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16,.svc,localhost
-EOF
+Talos Linux Upgrade
+Use the following image to upgrade Talos Linux on the machine:
+factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
 
-cat &lt;&lt;EOF &gt;&gt; /etc/apt/apt.conf
-Acquire::http::proxy  "http://192.168.3.1:3128/";
-Acquire::ftp::proxy "ftp://192.168.3.1:3128/";
-Acquire::https::proxy "http://192.168.3.1:3128/";
-EOF
 </code></pre>
-<h3 id="proxmox">ProxMox</h3>
 <ul>
-<li>[ ] ProxMox install</li>
-<li>[ ] Post installation scripts: <a href="https://tteck.github.io/Proxmox/">https://tteck.github.io/Proxmox/</a></li>
-<li>[ ] Proxmox configure</li>
-<li>[ ] Link nodes</li>
-<li>[ ] Install ceph - via ProxMox gui</li>
-<li>[ ] Assign disks to ceph</li>
-</ul>
-<h3 id="application-build-out">Application build-out</h3>
-<ul>
-<li>[ ] git repo: <a href="https://github.com/MoTTTT/LittlecantonK8S.git">https://github.com/MoTTTT/LittlecantonK8S.git</a></li>
-<li>[ ] k8s cluster 3 X VM for k8s nodes, install microk8s, join cluster, install microk8s add-ons</li>
-<li>[ ] flux bootstrap: <code>flux bootstrap github --context=microk8s --owner=MoTTTT --repository=LittlecantonK8S.git --branch=main --personal --path=clusters/littlecantonprod --token-auth=true</code></li>
-<li>[ ] NextCloud container, with disks assigned</li>
-<li>[ ] NextCloud: <a href="https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html">https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html</a></li>
-<li></li>
-</ul>
-<h2 id="k8s-cluster-storage-options">k8s: Cluster storage options</h2>
-<ul>
-<li>[ ] Ceph</li>
-<li>[ ] OpenEBS: <a href="https://openebs.io/">https://openebs.io/</a></li>
-<li>[ ] LongHorn: <a href="https://longhorn.io/">https://longhorn.io/</a></li>
-</ul>
-<h3 id="iscsi">iSCSI</h3>
-<ul>
-<li>[ ] Cluster storage: <a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi">https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi</a></li>
-<li>[ ] Cluster storage: <a href="https://pve.proxmox.com/wiki/ISCSI_Multipath">https://pve.proxmox.com/wiki/ISCSI_Multipath</a></li>
+<li><a href="https://www.talos.dev/v1.8/introduction/prodnotes/">https://www.talos.dev/v1.8/introduction/prodnotes/</a></li>
+<li><a href="https://factory.talos.dev/?arch=amd64&amp;cmdline-set=true&amp;extensions=-&amp;extensions=siderolabs%2Fiscsi-tools&amp;extensions=siderolabs%2Fqemu-guest-agent&amp;platform=nocloud&amp;target=cloud&amp;version=1.8.2">https://factory.talos.dev/?arch=amd64&amp;cmdline-set=true&amp;extensions=-&amp;extensions=siderolabs%2Fiscsi-tools&amp;extensions=siderolabs%2Fqemu-guest-agent&amp;platform=nocloud&amp;target=cloud&amp;version=1.8.2</a></li>
+<li><a href="https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/proxmox/">https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/proxmox/</a></li>
+<li><a href="https://www.talos.dev/v1.8/talos-guides/install/cloud-platforms/nocloud/">https://www.talos.dev/v1.8/talos-guides/install/cloud-platforms/nocloud/</a></li>
 </ul>
 </div>
 </div><footer>

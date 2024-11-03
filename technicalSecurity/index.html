@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalSecurity/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Security - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Security";
+        var mkdocs_page_input_path = "technicalSecurity.md";
+        var mkdocs_page_url = "/podzone/technicalSecurity/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Radio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Security</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="security">Security</h1>
+<h2 id="tasks">Tasks</h2>
+<ul>
+<li>[X] Hardening at static-site to be applied also at gateway reverse-proxy</li>
+<li>[X] Additional headers for best practice security at gateway, and next static-site release</li>
+<li>[X] Install WAF: ModSecurity on gateway</li>
+<li>[X] Configure WAF</li>
+<li>[ ] Install OWASP rule-set: Need to be ready with exclusions for existing workload </li>
+</ul>
+<h2 id="cors">CORS</h2>
+<p>API and Swagger UI are deployed on different hosts. Apache (OHS) configuration addition:</p>
+<pre><code class="language-conf">&lt;IfModule mod_headers.c&gt;
+  Header set Access-Control-Allow-Origin "*"
+&lt;/IfModule&gt;
+</code></pre>
+<p>Browser still refuses Swagger UI calls to API.</p>
+<h3 id="disabling-browser-cors-security-failures">Disabling browser CORS security failures:</h3>
+<p>For Brave, on MacOS:</p>
+<p><code>open -n -a /Applications/Brave\ Browser.app/Contents/MacOS/Brave\ Browser --args --user-data-dir="/tmp/brave_dev_sess_1" --disable-web-security</code></p>
+<p>For Chrome, on MacOS:</p>
+<p><code>open /Applications/Google\ Chrome.app --args --user-data-dir="/var/tmp/Chrome dev session" --disable-web-security</code></p>
+<h2 id="waf">WAF</h2>
+<ul>
+<li>SQL Injection Test: <code>https://apidocumentation.info/?id=3 or 'a'='a'</code></li>
+<li><a href="https://sitecheck.sucuri.net/results/https/apidocumentation.info">https://sitecheck.sucuri.net/results/https/apidocumentation.info</a></li>
+</ul>
+<h3 id="before-adjustments-bladon-cluster">Before Adjustments: Bladon cluster</h3>
+<ul>
+<li><code>https://apidocumentation.info/?id=3%20or%20%27a%27=%27a%27</code>: Same page returned as without parameter. Status 304 unmodified, instead of 200.</li>
+<li>Securicheck Before:</li>
+</ul>
+<p><img alt="alt text" src="../img/SecuricheckBefore01.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore02.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore03.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore04.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore05.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore06.png"/>
+<img alt="alt text" src="../img/SecuricheckBefore07.png"/></p>
+<h3 id="after-adjustments">After adjustments</h3>
+<ul>
+<li><code>https://apidocumentation.info/?id=3 or 'a'='a'</code>: 403 Forbidden - so WAF active.</li>
+<li>NOTE: WAF disabled, as other apps (specifically Nextcloud) need specific configurations to work.</li>
+</ul>
+<p><img alt="alt text" src="../img/SecuricheckAfter01.png"/>
+<img alt="alt text" src="../img/SecuricheckAfter04.png"/>
+<img alt="alt text" src="../img/SecuricheckAfter05.png"/></p>
+<h3 id="before-adjustments-github">Before Adjustments: GitHub</h3>
+<p>Adjust DNS to Github:</p>
+<p><img alt="alt text" src="../img/SecuricheckGithub01.png"/></p>
+<p>Results:</p>
+<p><img alt="alt text" src="../img/SecuricheckGithub02.png"/>
+<img alt="alt text" src="../img/SecuricheckGithub03.png"/>
+<img alt="alt text" src="../img/SecuricheckGithub04.png"/></p>
+<h2 id="libmodsecurity">LibModSecurity</h2>
+<ul>
+<li><code>sudo apt install libapache2-mod-security2</code></li>
+<li><code>sudo a2enmod security2</code></li>
+<li><code>sudo a2enmod headers</code></li>
+</ul>
+<h2 id="headers">Headers</h2>
+<ol>
+<li>Hardening at static-site to be applied also at gateway reverse-proxy</li>
+</ol>
+<pre><code class="language-conf">ServerSignature Off
+ServerTokens Prod
+Header set X-Content-Type-Options nosniff
+# Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header always set Content-Security-Policy "default-src 'self';"
+</code></pre>
+<ul>
+<li><code>apachectl configtest</code></li>
+<li><code>sudo systemctl restart apache2.service</code></li>
+</ul>
+<p>Breaks Swagger UI. URLs blocked:</p>
+<ul>
+<li><a href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js">https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js</a></li>
+<li>
+<p>https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css</p>
+</li>
+<li>
+<p>Reason, exception: <a href="https://gist.github.com/m-lukas/5bbf98e0dbade2d9f9428956512bdd31">https://gist.github.com/m-lukas/5bbf98e0dbade2d9f9428956512bdd31</a></p>
+</li>
+<li>Swagger-UI Issue: <a href="https://github.com/swagger-api/swagger-ui/issues/7540">https://github.com/swagger-api/swagger-ui/issues/7540</a></li>
+</ul>
+<p>No set of headers was found to work:</p>
+<pre><code class="language-conf">#Header always set Content-Security-Policy "default-src 'self';"
+#Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css; frame-ancestors 'none'"
+#Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js 'sha256-Vc0+zXX2dXmJfUC7ZTsM4pK30Mvqh8nEp/S/X069w4o='; style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css; frame-ancestors 'none'"
+#Header always set Content-Security-Policy "default-src 'self' https://cdnjs.cloudflare.com unsafe-inline;"
+#Header always set Content-Security-Policy "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/; style-src 'self' https://cdnjs.cloudflare.com/; frame-ancestors 'none'"
+#Header always set Content-Security-Policy  "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ unsafe-inline; style-src 'self' https://cdnjs.cloudflare.com/; frame-ancestors 'none'"
+#Header always set Content-Security-Policy  "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ unsafe-inline; style-src 'self' https://cdnjs.cloudflare.com/"
+#Header always set Content-Security-Policy  "default-src 'self'; script-src 'self' https://cdnjs.cloudflare.com/ unsafe-inline data:; style-src 'self' https://cdnjs.cloudflare.com/"
+#Header always set Content-Security-Policy  "default-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com/ unsafe-inline; style-src 'self' https://cdnjs.cloudflare.com/"
+#Header always set Content-Security-Policy  "default-src 'self' data:; script-src 'self' data: https://cdnjs.cloudflare.com/ unsafe-inline; style-src 'self'  data: https://cdnjs.cloudflare.com/"
+#Header always set Content-Security-Policy  "default-src 'self' data:; script-src 'self'  data: https://cdnjs.cloudflare.com/ unsafe-inline unsafe-eval; style-src 'self'  data: https://cdnjs.cloudflare.com/"
+</code></pre>
+<h3 id="generating-a-sha256-key-for-an-embedded-script">Generating a sha256 key for an embedded script</h3>
+<p>One of the options for Content-Security-Policy is to allow only embedded scripts with sha-keys declared in the security policy, the alternative being the 'unsafe-inline' option, allowing all embedded scripts to be served. Unfortunately the generated files using the mkdocs theme, and swagger-ui have many such scripts, and they potentially change on each build. This would require make adding security exceptions at build time...</p>
+<p>In any case, for example, the key for the following <em>script</em> section of a generated html files is 'sha256-Vc0+zXX2dXmJfUC7ZTsM4pK30Mvqh8nEp/S/X069w4o=', illustrating the method:</p>
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; script.html
+html
+    window.onload = function () {
+      window.ui = SwaggerUIBundle({
+.
+.
+.
+      }
+    }
+EOF
+</code></pre>
+<ul>
+<li>The key is created as follows: <code>openssl sha256 -binary script.html | openssl base64</code></li>
+</ul>
+<h3 id="adding-cdn-hosted-js-and-css-libraries">Adding CDN hosted js and css libraries</h3>
+<p>Adding <em>script-src</em> and <em>style-src</em> exceptions to the policy:</p>
+<pre><code class="language-conf">Header always set Content-Security-Policy  "default-src 'self' data:; script-src 'self' https://cdnjs.cloudflare.com/ unsafe-inline; style-src 'self' https://cdnjs.cloudflare.com/"
+</code></pre>
+<h2 id="static-site">static-site</h2>
+<p>Static-site is a helm Chart with an hardened Apache server set up specifically (and only) to serve static http sites. It also has git-sync set up to pull changes from a repo, and support for ssl certificate management.</p>
+<p>Hardening includes the following:</p>
+<ul>
+<li>Only request types required for static site access are allowed</li>
+<li>Indexes not generated where index.html file does not exist</li>
+<li>Prevent server detail leakages</li>
+<li>Enable request time-out to prevent slow request denial of service</li>
+<li>Set headers for best practice security:</li>
+</ul>
+<pre><code class="language-conf">ServerTokens Prod
+ServerSignature Off
+FileETag None
+TraceEnable off
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+Header always append X-Frame-Options SAMEORIGIN
+Header set X-XSS-Protection "1; mode=block"
+Timeout 60
+</code></pre>
+<ul>
+<li>Full httpd.conf: <a href="https://github.com/MoTTTT/static-site/blob/main/static-site/files/httpd.conf">https://github.com/MoTTTT/static-site/blob/main/static-site/files/httpd.conf</a></li>
+</ul>
+<p>For reference, Gateway headers:</p>
+<pre><code class="language-conf">ServerSignature Off
+ServerTokens Prod
+Header set X-Content-Type-Options nosniff
+# Header set X-XSS-Protection "1; mode=block"
+Header always append X-Frame-Options SAMEORIGIN
+Header always set Content-Security-Policy "default-src 'self';"
+</code></pre>
+<p>NOTE: Select between <em>X-XSS-Protection</em> and <em>Content-Security-Policy</em></p>
+<h2 id="proxmox-hardening">Proxmox hardening</h2>
+<ul>
+<li><a href="https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07">https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://medium.com/@maheshwar.ramkrushna/implementing-missing-security-headers-in-apache-web-server-9923acb044f1">https://medium.com/@maheshwar.ramkrushna/implementing-missing-security-headers-in-apache-web-server-9923acb044f1</a></li>
+<li><a href="https://github.com/MoTTTT/static-site">https://github.com/MoTTTT/static-site</a></li>
+<li><a href="https://www.openappsec.io/post/top-10-free-wafs-web-application-firewalls-for-2024">https://www.openappsec.io/post/top-10-free-wafs-web-application-firewalls-for-2024</a></li>
+<li><a href="https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07">https://gist.github.com/opentaq/a2084965616897d0d3b2cf832273ce07</a></li>
+<li><a href="https://swagger.io/docs/open-source-tools/swagger-ui/usage/cors/">https://swagger.io/docs/open-source-tools/swagger-ui/usage/cors/</a></li>
+<li><a href="https://www.openappsec.io/post/top-10-free-wafs-web-application-firewalls-for-2024">https://www.openappsec.io/post/top-10-free-wafs-web-application-firewalls-for-2024</a></li>
+<li><a href="https://docs.openappsec.io/getting-started/start-with-linux">https://docs.openappsec.io/getting-started/start-with-linux</a></li>
+<li><a href="https://coraza.io/docs/tutorials/introduction/">https://coraza.io/docs/tutorials/introduction/</a></li>
+<li><a href="https://www.zenarmor.com/docs/network-security-tutorials/best-open-source-web-application-firewalls">https://www.zenarmor.com/docs/network-security-tutorials/best-open-source-web-application-firewalls</a></li>
+<li><a href="https://medium.com/codelogicx/securing-apache-server-using-modsecurity-oswaf-d29664179a05">https://medium.com/codelogicx/securing-apache-server-using-modsecurity-oswaf-d29664179a05</a></li>
+<li><a href="https://github.com/owasp-modsecurity/ModSecurity">https://github.com/owasp-modsecurity/ModSecurity</a></li>
+<li><a href="https://www.linuxbabe.com/security/modsecurity-apache-debian-ubuntu">https://www.linuxbabe.com/security/modsecurity-apache-debian-ubuntu</a></li>
+<li><a href="https://apisix.apache.org/blog/2024/10/22/apisix-integrates-with-open-appsec/">https://apisix.apache.org/blog/2024/10/22/apisix-integrates-with-open-appsec/</a></li>
+<li><a href="https://docs.openappsec.io/getting-started/start-with-docker">https://docs.openappsec.io/getting-started/start-with-docker</a></li>
+<li>
+<p><a href="https://github.com/highlightjs/highlight.js/wiki/security">https://github.com/highlightjs/highlight.js/wiki/security</a></p>
+</li>
+<li>
+<p><a href="https://blog.sucuri.net/2023/12/what-is-content-security-policy.html">https://blog.sucuri.net/2023/12/what-is-content-security-policy.html</a></p>
+</li>
+<li><a href="https://stackoverflow.com/questions/9090577/what-is-the-http-header-x-xss-protection">https://stackoverflow.com/questions/9090577/what-is-the-http-header-x-xss-protection</a></li>
+<li><a href="https://gist.github.com/m-lukas/5bbf98e0dbade2d9f9428956512bdd31">https://gist.github.com/m-lukas/5bbf98e0dbade2d9f9428956512bdd31</a></li>
+<li><a href="https://cdnjs.cloudflare.com/">https://cdnjs.cloudflare.com/</a></li>
+<li><a href="https://content-security-policy.com/">https://content-security-policy.com/</a></li>
+<li><a href="https://pypi.org/project/mkdocs-swagger-ui-tag/">https://pypi.org/project/mkdocs-swagger-ui-tag/</a></li>
+<li><a href="https://github.com/swagger-api/swagger-ui/issues/7540">https://github.com/swagger-api/swagger-ui/issues/7540</a></li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

@@ -127,11 +127,7 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#generating-swagger-ui">Generating Swagger UI</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#example-implementation">Example implementation:</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#embedded-resource-result">Embedded resource result</a>
-</li>
-</ul>
+<li class="toctree-l2"><a class="reference internal" href="#example-implementation">Example implementation</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
 </li>
@@ -191,7 +187,7 @@
 <h2 id="generating-swagger-ui">Generating Swagger UI</h2>
 <ul>
 <li>Install plugin: <code>pip3 install mkdocs-swagger-ui-tag</code></li>
-<li>Declare Plugin in <code>mkdocs.yml</code>:</li>
+<li>Declare Plugin in <code>mkdocs.yml</code></li>
 </ul>
 <pre><code class="language-yaml">- plugins:
    - swagger-ui-tag
@@ -200,16 +196,17 @@
 <li>Invoke this in an .md markdown document using the form: <code>&lt;swagger-ui src="SWAGGER_URI"/&gt;</code></li>
 </ul>
 <p>For example: <code>&lt;swagger-ui src="https://petstore.swagger.io/v2/swagger.json"/&gt;</code></p>
-<h2 id="example-implementation">Example implementation:</h2>
+<h2 id="example-implementation">Example implementation</h2>
 <ul>
 <li>URL: <code>https://gateway.telkom.co.za/cons-po/swagger_docs/apiSpecification.json</code></li>
 <li>Embedded resource invocation: <code>&lt;swagger-ui src="swagger.json"/&gt;</code></li>
 </ul>
-<h3 id="embedded-resource-result">Embedded resource result</h3>
-<p><iframe class="swagger-ui-iframe" frameborder="0" id="b5def5c7" src="swagger-b5def5c7.html" style="overflow:hidden;width:100%;" width="100%"></iframe></p>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://github.com/blueswen/mkdocs-swagger-ui-tag">https://github.com/blueswen/mkdocs-swagger-ui-tag</a></li>
+<li><a href="https://squidfunk.github.io/mkdocs-material/publishing-your-site/">https://squidfunk.github.io/mkdocs-material/publishing-your-site/</a></li>
+<li><a href="https://github.com/marketplace/actions/deploy-mkdocs">https://github.com/marketplace/actions/deploy-mkdocs</a></li>
+<li><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site">https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site</a></li>
 </ul>
 </div>
 </div><footer>
@@ -260,7 +257,7 @@
                 iframe_id_list.push(iframes[i].getAttribute("id"))
             }
         
-            let ticking = false;
+            let ticking = true;
             
             document.addEventListener('scroll', function(e) {
                 if (!ticking) {

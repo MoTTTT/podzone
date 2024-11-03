@@ -9,7 +9,10 @@ plugins:
     - mermaid2
     - swagger-ui-tag
 
-theme: readthedocs
+theme:
+  name: readthedocs
+  analytics:
+    gtag: G-SY1HLECK2G
 
 nav:
   - 'Requirements':

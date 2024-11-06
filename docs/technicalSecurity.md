@@ -20,6 +20,10 @@ API and Swagger UI are deployed on different hosts. Apache (OHS) configuration a
 
 Browser still refuses Swagger UI calls to API.
 
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
+- <https://portswigger.net/web-security/cors/access-control-allow-origin>
+- <https://portswigger.net/web-security/cors>
+
 ### Disabling browser CORS security failures:
 
 For Brave, on MacOS:

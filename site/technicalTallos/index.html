@@ -105,7 +105,9 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Implementation Notes</a>
+<li class="toctree-l1"><a class="" href="../technicalTalos.md">None</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
 </li>
@@ -185,12 +187,85 @@
 <div class="section" itemprop="articleBody">
 <h1 id="tallos">Tallos</h1>
 <h2 id="prep">Prep</h2>
+<h3 id="infrastructure">Infrastructure</h3>
+<ul>
+<li>100 GB root Disk (Assuming 6 k8s nodes maximum)</li>
+<li>8 CPU</li>
+<li>16GB RAM</li>
+</ul>
+<h2 id="talosctl-client-configuration">Talosctl client configuration</h2>
+<h3 id="unix">unix</h3>
 <ul>
 <li>On unix, need to first install brew dependencies: <code>sudo apt-get install build-essential procps curl file git</code></li>
 <li>Then need to install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
-<li>Then talosctl: <code>/home/linuxbrew/.linuxbrew/bin/brew install siderolabs/tap/talosctl</code></li>
-<li>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl</code></li>
-<li>MacOS: Install Talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
+<li>Add brew to path: <code>alias brew="/home/linuxbrew/.linuxbrew/Homebrew/bin/brew"</code></li>
+<li>Then talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
+<li><code>alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl"</code></li>
+<li>
+<p>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl</code></p>
+</li>
+<li>
+<p><code>alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'</code></p>
+</li>
+</ul>
+<h3 id="macos">MacOS</h3>
+<ul>
+<li>Brew installed</li>
+<li>Install Talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<h2 id="-sample-httpsgithubcomadampetrovichome-opsblobmainkubernetesbootstraptalostalconfigyaml">- Sample <a href="https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml">https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml</a></h2>
+<h3 id="configuration-process-try-2">Configuration Process try #2</h3>
+<ul>
+<li><code>talosctl gen config k8s01 https://192.168.3.81:6443</code></li>
+<li><code>talosctl apply-config -n 192.168.3.81 --file controlplane-paaliaq.yaml --insecure</code></li>
+<li><code>talosctl bootstrap --nodes 192.168.3.81</code></li>
+<li><code>talosctl -n 192.168.3.81 containers</code></li>
+<li><code>talosctl gen config --name 192.168.3.81 --role controlplane --insecure</code></li>
+<li><code>talosctl apply-config -n 192.168.3.80 --file controlplane-tarvos.yaml --insecure</code></li>
+<li><code>talosctl apply-config -n 192.168.3.82 --file controlplane-ymir.yaml --insecure</code></li>
+<li><code>talosctl kubeconfig --nodes 192.168.3.81 --endpoints 192.168.3.81</code></li>
+</ul>
+<h3 id="configuration_1">Configuration</h3>
+<ul>
+<li><code>talosctl gen config k8s01 https://192.168.3.81:6443</code></li>
+<li>Test: <code>talosctl -n 192.168.3.81 disks --insecure</code></li>
+</ul>
+<h3 id="bootstrap">Bootstrap</h3>
+<ul>
+<li>
+<p><code>alias talosctl="talosctl --talosconfig=~/.talos/talosconfig"</code></p>
+</li>
+<li>
+<p><code>talosctl gen secrets -o secrets.yaml</code></p>
+</li>
+<li>
+<p><code>talosctl gen config --with-secrets secrets.yaml k8s01 192.168.3.81</code></p>
+</li>
+<li>
+<p><code>talosctl bootstrap --nodes 192.168.3.81 --endpoints 192.168.3.81 --talosconfig=./talosconfig</code></p>
+</li>
+</ul>
+<h2 id="networking">Networking</h2>
+<p>Use PXE for boot, with metadata service for per machine (MAC Address) configuration.</p>
+<pre><code class="language-bash">talos.config=https://metadata.service/talos/config?mac=${mac}
+</code></pre>
+<ul>
+<li>KaaS GitOps: <a href="https://github.com/kubebn/talos-proxmox-kaas">https://github.com/kubebn/talos-proxmox-kaas</a></li>
+<li>PXE: <a href="https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/">https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/</a></li>
+<li>For API access from lan: <a href="https://github.com/muzahid-c/iptables-loadbalancer">https://github.com/muzahid-c/iptables-loadbalancer</a></li>
+<li><a href="https://scalingo.com/blog/iptables">https://scalingo.com/blog/iptables</a></li>
+<li>Flannel installs by default</li>
+<li>Options: <a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
+<li><a href="https://github.com/cilium/cilium">https://github.com/cilium/cilium</a></li>
+</ul>
+<h2 id="cluster-components">Cluster components</h2>
+<ul>
+<li><a href="https://github.com/adampetrovic/home-ops/tree/main">https://github.com/adampetrovic/home-ops/tree/main</a></li>
+<li><a href="https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos">https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos</a></li>
+<li><a href="https://blog.devops.dev/talos-os-raspberry-fc5f327b7026">https://blog.devops.dev/talos-os-raspberry-fc5f327b7026</a></li>
+<li><a href="https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/">https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/</a></li>
+<li></li>
 </ul>
 <h2 id="proxmox-using-cloud-init">Proxmox using cloud init</h2>
 <ul>
@@ -220,7 +295,8 @@ cd iso &amp;&amp; mkisofs -output cidata.iso -V cidata -r -J user-data meta-data
 <p>Set static IP address, add kernel parameter:</p>
 <p>ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf></autoconf></device></host></netmask></gw-ip></srv-ip></client-ip></p>
 <p>ip=192.168.3.80:8.8.8.8:192.168.3.1:255.255.255.0:tarvos:eth0:
-ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:</p>
+ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:
+ip=192.168.3.82:8.8.8.8:192.168.3.1:255.255.255.0:ymir:eth0:</p>
 <pre><code class="language-txt">Your image schematic ID is: dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586
 customization:
     systemExtensions:
@@ -243,13 +319,18 @@ factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c3
 Talos Linux Upgrade
 Use the following image to upgrade Talos Linux on the machine:
 factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
-
 </code></pre>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://www.talos.dev/v1.8/introduction/prodnotes/">https://www.talos.dev/v1.8/introduction/prodnotes/</a></li>
 <li><a href="https://factory.talos.dev/?arch=amd64&amp;cmdline-set=true&amp;extensions=-&amp;extensions=siderolabs%2Fiscsi-tools&amp;extensions=siderolabs%2Fqemu-guest-agent&amp;platform=nocloud&amp;target=cloud&amp;version=1.8.2">https://factory.talos.dev/?arch=amd64&amp;cmdline-set=true&amp;extensions=-&amp;extensions=siderolabs%2Fiscsi-tools&amp;extensions=siderolabs%2Fqemu-guest-agent&amp;platform=nocloud&amp;target=cloud&amp;version=1.8.2</a></li>
 <li><a href="https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/proxmox/">https://www.talos.dev/v1.8/talos-guides/install/virtualized-platforms/proxmox/</a></li>
 <li><a href="https://www.talos.dev/v1.8/talos-guides/install/cloud-platforms/nocloud/">https://www.talos.dev/v1.8/talos-guides/install/cloud-platforms/nocloud/</a></li>
+<li><a href="https://blog.devops.dev/talos-os-raspberry-fc5f327b7026">https://blog.devops.dev/talos-os-raspberry-fc5f327b7026</a></li>
+<li><a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
+<li><a href="https://cilium.io/">https://cilium.io/</a></li>
+<li><a href="https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos">https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos</a></li>
+<li></li>
 </ul>
 </div>
 </div><footer>

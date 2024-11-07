@@ -1,4 +1,4 @@
-# Tallos
+# Talos
 
 ## Prep
 
@@ -29,9 +29,12 @@
 ## Configuration
 
 - Sample <https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml>
-- 
 
-### Configuration Process try #2
+### Configuration Process run #3
+
+
+
+### Configuration Process run #2
 
 - `talosctl gen config k8s01 https://192.168.3.81:6443`
 - `talosctl apply-config -n 192.168.3.81 --file controlplane-paaliaq.yaml --insecure`
@@ -42,7 +45,7 @@
 - `talosctl apply-config -n 192.168.3.82 --file controlplane-ymir.yaml --insecure`
 - `talosctl kubeconfig --nodes 192.168.3.81 --endpoints 192.168.3.81`
 
-### Configuration
+### Configuration process run #1
 
 - `talosctl gen config k8s01 https://192.168.3.81:6443`
 - Test: `talosctl -n 192.168.3.81 disks --insecure`
@@ -78,7 +81,6 @@ talos.config=https://metadata.service/talos/config?mac=${mac}
 - <https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos>
 - <https://blog.devops.dev/talos-os-raspberry-fc5f327b7026>
 - <https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/>
-- 
 
 ## Proxmox using cloud init
 
@@ -109,12 +111,11 @@ cd iso && mkisofs -output cidata.iso -V cidata -r -J user-data meta-data network
 
 Set static IP address, add kernel parameter:
 
-ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf>
+`ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf>`
 
 ip=192.168.3.80:8.8.8.8:192.168.3.1:255.255.255.0:tarvos:eth0:
 ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:
 ip=192.168.3.82:8.8.8.8:192.168.3.1:255.255.255.0:ymir:eth0:
-
 
 ```txt
 Your image schematic ID is: dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586
@@ -151,4 +152,3 @@ factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c3
 - <https://www.civo.com/blog/calico-vs-flannel-vs-cilium>
 - <https://cilium.io/>
 - <https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos>
-- 

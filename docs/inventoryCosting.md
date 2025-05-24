@@ -12,6 +12,21 @@
 
 - Neptune: Dell PowerEdge R720 {actually an R710} Rack Mount Server (Xeon 5677, 24GB RAM, 6 Caddies, No HDDs) {£52} - Attempting return
 
+### Refurbishing
+
+- Reference: `https://www.serversite.co.za/blog/what-is-a-refurbished-server/`
+- SA Prices: `https://www.serverbasket.net/za/p/dell-poweredge-r720/`
+- R10k4 Basic: 20, 64, 600
+- R15k6 Standard: 20, 256, 600 + 4800
+- R28k9 Reliable: 20, 384, 960 + 3600
+- R36k2 Powerful: 24, 512, 960 + 5760
+
+### Shipping
+
+- Shipping weight: up to 31kg
+- Shipping from UK to SA: `Cape Town (CPT)	£250 (Up to 42kg)	£5.90 per kg`
+- `31kg X £5.90 / kg = £182.9 == R4 173,50
+
 ### Disks and caddies
 
 - 4x SEAGATE CONSTELLATION 3TB ES.3 ST3000NM0023 3.5" 6G SAS HDD {£16.00}

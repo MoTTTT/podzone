@@ -8,21 +8,51 @@
 - Email hosting: `reservations@littlecanton.one`
 - Total costs: £1.57 (1 yr domain) + £24 (1 yr X 2 email addresses) = £25.57
 
-## Infrastructure build
+### Hosts
 
-- Rack server - mercury: Dell PowerEdge R720, 32 threads, 112GB RAM, 4.8TB Storage
-- 4 X t630 - norham01-norham04: 4 CPU; 24GB RAM; 128GB + 128GB Storage: £200
-- 1 X t630 - habilis: 4 CPU; 24GB RAM; 128GB Storage; M.2 WiFi module: £70
-- Build habilis: Ubuntu serve, set up as gateway to ethernet port, squid proxy, reverse-proxy port forwarding
-- Build rack server and remainder of t730s: Install hypervisor
-- Create ceph cluster on ProxMox t630s, add disks, add a ceph monitor on mercury
-- Build VMs for k8s cluster
-- Build out k8s cluster, and connect to distributed storage
-- Bootstrap k8s cluster with flux
-- Deploy Radio Station, WordPress instances and content server to k8s cluster
-- Build LXC NextCloud appliance
-- Build LXC Network file server
-- Build VM or LXC for Project Management software
+- littlecanton.one: Wordpress site
+- dev.littlecanton.one: Dev Wordpress site
+- home.littlecanton.one: Nextcloud
+- content.littlecanton.one: Web collateral
+- radiodb.littlecanton.one: Radio db
+- console.littlecanton.one: Libretime GUI
+- broadcast.littlecanton.one: Icecast server
+
+
+
+### Cluster Infrastructure
+
+- [X] ProxMox install, post installation scripts, talos image and snippets
+- [X] 3 X Talos VMs for Control Plane {4; 16; 100;}
+- [X] 3 X Talos VMs for Workers {4; 16; 100;}
+- [X] ingres-nginx
+- [X] metallb
+- [X] cert-manager
+- [X] OpenEBS
+
+### Application build-out
+
+- [X] Git repo: <https://github.com/MoTTTT/mercury.git>
+- [X] k8s Cluster Control plane: 3X talos: {4; 16; 100;}
+- [X] k8s Cluster Workers: 3X talos: {4; 16; 100;}
+- [X] flux bootstrap to <https://github.com/MoTTTT/mercury.git>
+- [X] NextCloud container, with disks assigned
+- [ ] Backup: <https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html>
+
+## Infrastructure Specification
+
+- [X] Rack server - mercury: Dell PowerEdge R720, 32 threads, 112GB RAM, 4.8TB Storage
+- [X] 4 X t630 - norham01-norham04: 4 CPU; 24GB RAM; 128GB + 128GB Storage: £200
+- [X] 1 X t630 - habilis: 4 CPU; 24GB RAM; 128GB Storage; M.2 WiFi module: £70
+- [X] Build habilis: Ubuntu serve, set up as gateway to ethernet port, squid proxy, reverse-proxy port forwarding
+- [X] Build rack server and remainder of t730s: Install hypervisor
+- [X] Build VMs for k8s cluster
+- [X] Build out k8s cluster, and connect to distributed storage
+- [X] Bootstrap k8s cluster with flux
+- [ ] Deploy Radio Station, WordPress instances and content server to k8s cluster
+- [X] Build LXC NextCloud appliance
+- [ ] Build LXC Network file server
+- [ ] Build VM or LXC for Project Management software
 
 | Hostname   | Machine | Threads | RAM    | Storage | Role                     |
 |------------|---------|---------|--------|---------|--------------------------|
@@ -59,13 +89,17 @@
 192.168.3.23  bixi        # t630 proxmox
 192.168.3.24  pulao       # t630 jump
 192.168.3.10  jiaotu      # R720 proxmox
-192.168.3.80  tarvos      # Talos k8s node on jiato
-192.168.3.81  paaliaq     # Talos k8s node
-192.168.3.82  ymir        # Talos k8s node
 # 192.168.3.    taotie    # Unassigned
 # 192.168.3.    qiuniu    # Unassigned
 # 192.168.3.    yazi      # Unassigned
 # 192.168.3.    suanni    # Unassigned
+192.168.3.80  k8s01       # Talos k8s control plane node
+192.168.3.81  k8s02       # Talos k8s control plane node
+192.168.3.82  k8s03       # Talos k8s control plane node
+192.168.3.90  k8sw01      # Talos k8s worker node
+192.168.3.91  k8sw02      # Talos k8s worker node
+192.168.3.92  k8sw03      # Talos k8s worker node
+
 ```
 
 ### Other hardware
@@ -102,12 +136,6 @@
 - [ ] Configure certbot: `sudo certbot --apache`
 - [ ] Certbot add hosts: `certbot --expand -d home.littlecanton.one,dev.littlecanton.one`
 
-### habilis: Other services
-
-- [ ] VPN <https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-22-04>
-- [ ] CA: <https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-on-ubuntu-22-04>
-- [ ] Mail Server: <https://mailinabox.email/>
-
 ## host configurations
 
 - `setproxy.sh`
@@ -137,34 +165,6 @@ Acquire::https::proxy "http://192.168.3.1:3128/";
 EOF
 ```
 
+## References
 
-### ProxMox
-
-- [ ] ProxMox install
-- [ ] Post installation scripts: <https://tteck.github.io/Proxmox/>
-- [ ] Proxmox configure
-- [ ] Link nodes
-- [ ] Install ceph - via ProxMox gui
-- [ ] Assign disks to ceph
-
-### Application build-out
-
-- [ ] git repo: <https://github.com/MoTTTT/LittlecantonK8S.git>
-- [ ] k8s cluster 3 X VM for k8s nodes, install microk8s, join cluster, install microk8s add-ons
-  - [ ] flux bootstrap: `flux bootstrap github --context=microk8s --owner=MoTTTT --repository=LittlecantonK8S.git --branch=main --personal --path=clusters/littlecantonprod --token-auth=true`
-- [ ] NextCloud container, with disks assigned
-- [ ] NextCloud: <https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html>
-- 
-
-## k8s: Cluster storage options
-
-- [ ] Ceph
-- [ ] OpenEBS: <https://openebs.io/>
-- [ ] LongHorn: <https://longhorn.io/>
-
-
-### iSCSI
-
-- [ ] Cluster storage: <https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi>
-- [ ] Cluster storage: <https://pve.proxmox.com/wiki/ISCSI_Multipath>
-
+- <https://www.analyticsmania.com/post/google-tag-manager-tutorial-for-beginners/>

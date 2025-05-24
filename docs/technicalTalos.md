@@ -2,10 +2,13 @@
 
 ## Prep
 
-### Infrastructure
+- Server: Mars with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk
+- Server: Mercury with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk
 
-- 100 GB root Disk (Assuming 6 k8s nodes maximum)
-- 8 CPU
+### Test node infrastructure allocation
+
+- 100 GB root Disk
+- 4 CPU
 - 16GB RAM
 
 ## Talosctl client configuration
@@ -16,10 +19,9 @@
 - Then need to install brew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 - Add brew to path: `alias brew="/home/linuxbrew/.linuxbrew/Homebrew/bin/brew"`
 - Then talosctl: `brew install siderolabs/tap/talosctl`
-- `alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl"`
-- Then you can use (or link to): `/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl`
-
-- `alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'`
+- `alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl"`
+- Then you can use (or link to): `/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.9.1/bin/talosctl`
+- `alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'`
 
 ### MacOS
 
@@ -28,38 +30,156 @@
 
 ## Configuration
 
-- Sample <https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml>
+### Cluster02
 
-### Configuration Process run #3
+Manually editing controlplane.yaml and worker.yaml files.
+
+- Generate cluster config: `talosctl gen config cluster02 https://192.168.4.210:6443`
+- Check the storage device to use: `talosctl -n 192.168.4.210 disks --insecure`
+- Edit controlplane.yaml and worker.yaml files. Set IP address and storage devices.
+- `talosctl apply-config --insecure --nodes 192.168.4.210 --file controlplane.yaml`
+- `talosctl apply-config --insecure --nodes 192.168.4.211 --file worker.yaml`
+- `talosctl --talosconfig=./talosconfig --nodes 192.168.4.211 -e 192.168.4.210 version`
+- `talosctl bootstrap --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig`
+- `talosctl kubeconfig --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig`
+- `talosctl --nodes 192.168.4.210 --endpoints 192.168.4.210 health --talosconfig=./talosconfig`
+- `talosctl --nodes 192.168.4.211 --endpoints 192.168.4.210 dashboard --talosconfig=./talosconfig`
+
+### Cluster03
+
+Using patches, with talos image supporting:
+
+- QEMU guest agent
+- DRDB, required for LinStore
+
+```yaml
+customization:
+    systemExtensions:
+        officialExtensions:
+            - siderolabs/drbd
+            - siderolabs/qemu-guest-agent
+```
+
+- `talosctl gen config cluster03 https://192.168.4.216:6443 --config-patch @patch.yaml`
+- `talosctl apply-config --insecure --nodes 192.168.4.216 --file controlplane.yaml`
+
+```yaml
+machine:
+  install:
+    disk: /dev/vda
+  kernel:
+    modules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
+  env:
+    https_proxy: http://192.168.4.1:3128/
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  allowSchedulingOnControlPlanes: true
+```
+
+### Configuration on Mars
+
+- ProxMox: Load image into local-lvm: <https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.2/nocloud-amd64.iso>
+- Proxmox: Create VMs, with 4 CPU, 16 GB RAM, and 100 GB Disk, using talos nocloud-amd64.iso
+- ProxMox: Add CloudInit drive, and set IP addresses *{192.168.4.100,192.168.4.101,192.168.4.103}*
+- Generate cluster config: `talosctl gen config mars01 https://192.168.4.100:6443 --output-dir mars01`
+- Modify generated `controlplane.yaml` file, and place in /var/lib/vz/snippets/controlplane.yaml (ensure that local-lvm supports snippets)
+- Control plane: add config to CloudInit drive: `qm set $VMID --cicustom user=local:snippets/controlplane.yaml`
+- Worker: config to CloudInit drive: `qm set $VMID --cicustom user=local:snippets/worker.yaml`
+- Bootstrap cluster: `talosctl bootstrap -n 192.168.4.100`
+- Get kubectl config: `talosctl kubeconfig -n 192.168.4.100 --endpoints 192.168.4.100`
+- Create git repo *Mars*, token with admin privileges, export as GITHUB_TOKEN, with GITHUB_USER
+- Bootstrap gitops: `flux bootstrap github --context=admin@mars01 --owner=MoTTTT --repository=mars --branch=main --personal --path=clusters/mars01 --token-auth=true`
+- Add supporting infrastructure manifests in Mars repo: MetalLB; ingres-nginx; cert-manager;
+- Add application manifests in Mars repo
+- Get disk info: `talosctl -n 192.168.4.100,192.168.4.101,192.168.4.103 disks`
+
+### controlplane.yaml deviations
+
+- cilium
+
+```yaml
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  allowSchedulingOnControlPlanes: true
+```
+
+- proxy
+
+```yaml
+machine:
+    env:
+        https_proxy: http://192.168.3.1:3128/
+```
+
+talosctl gen config talos-nocloud https://192.168.30:6443 --config-patch @patch.yaml
 
 
+### Installing OpenEBS (mercury)
 
-### Configuration Process run #2
+- talosctl -e 192.168.3.80 -n 192.168.3.80 patch mc -p @openebs-patch.yaml
+- OpenEBS patch: openebs-patch.yaml
 
-- `talosctl gen config k8s01 https://192.168.3.81:6443`
-- `talosctl apply-config -n 192.168.3.81 --file controlplane-paaliaq.yaml --insecure`
-- `talosctl bootstrap --nodes 192.168.3.81`
-- `talosctl -n 192.168.3.81 containers`
-- `talosctl gen config --name 192.168.3.81 --role controlplane --insecure`
-- `talosctl apply-config -n 192.168.3.80 --file controlplane-tarvos.yaml --insecure`
-- `talosctl apply-config -n 192.168.3.82 --file controlplane-ymir.yaml --insecure`
-- `talosctl kubeconfig --nodes 192.168.3.81 --endpoints 192.168.3.81`
+```yaml
+machine:
+    sysctls:
+        vm.nr_hugepages: "1024"
+    nodeLabels:
+        openebs.io/engine: mayastor
+    kubelet:
+        extraMounts:
+            - destination: /var/local/openebs-openebs/
+              type: bind
+              source: /var/local/openebs-openebs/
+              options:
+                  - rbind
+                  - rshared
+                  - rw
+```
 
-### Configuration process run #1
+- Installation - without flux
 
-- `talosctl gen config k8s01 https://192.168.3.81:6443`
-- Test: `talosctl -n 192.168.3.81 disks --insecure`
+```bash
+helm repo add openebs https://openebs.github.io/openebs
+helm repo update
+helm upgrade --install openebs \
+  --create-namespace \
+  --namespace openebs \
+  --set engines.local.lvm.enabled=false \
+  --set engines.local.zfs.enabled=false \
+  --set mayastor.csi.node.initContainers.enabled=false \
+  openebs/openebs
+```
 
-### Bootstrap
+- Namespace labels
 
-- `alias talosctl="talosctl --talosconfig=~/.talos/talosconfig"`
+```yaml
+pod-security.kubernetes.io/audit: privileged
+pod-security.kubernetes.io/enforce: privileged
+pod-security.kubernetes.io/warn: privileged
+```
 
-- `talosctl gen secrets -o secrets.yaml`
-- `talosctl gen config --with-secrets secrets.yaml k8s01 192.168.3.81`
+- Storage class openebs-hostpath: replicated across all nodes
+- Storage class openebs-single-replica: hostpath PVCs that are not replicated
 
-- `talosctl bootstrap --nodes 192.168.3.81 --endpoints 192.168.3.81 --talosconfig=./talosconfig`
+### Issues
+
+- `path /var/local/openebs-openebs/localpv-hostpath/etcd/ does not exist`
 
 ## Networking
+
+- Flannel installs by default
 
 Use PXE for boot, with metadata service for per machine (MAC Address) configuration.
 
@@ -67,80 +187,12 @@ Use PXE for boot, with metadata service for per machine (MAC Address) configurat
 talos.config=https://metadata.service/talos/config?mac=${mac}
 ```
 
-- KaaS GitOps: <https://github.com/kubebn/talos-proxmox-kaas>
-- PXE: <https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/>
-- For API access from lan: <https://github.com/muzahid-c/iptables-loadbalancer>
-- <https://scalingo.com/blog/iptables>
-- Flannel installs by default
-- Options: <https://www.civo.com/blog/calico-vs-flannel-vs-cilium>
-- <https://github.com/cilium/cilium>
-
 ## Cluster components
 
 - <https://github.com/adampetrovic/home-ops/tree/main>
 - <https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos>
 - <https://blog.devops.dev/talos-os-raspberry-fc5f327b7026>
 - <https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/>
-
-## Proxmox using cloud init
-
-- 192.168.3.81  paaliaq
-
-```bash
-export CONTROL_PLANE_IP=192.168.3.81
-# /home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
-talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
-
-mkdir -p iso
-mv _out/controlplane.yaml iso/user-data
-echo "local-hostname: controlplane-1" > iso/meta-data
-cat > iso/network-config << EOF
-version: 1
-config:
-   - type: physical
-     name: eth0
-     mac_address: "52:54:00:12:34:00"
-     subnets:
-        - type: static
-          address: 192.168.3.81
-          netmask: 255.255.255.0
-          gateway: 192.168.3.1
-EOF
-cd iso && mkisofs -output cidata.iso -V cidata -r -J user-data meta-data network-config
-```
-
-Set static IP address, add kernel parameter:
-
-`ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf>`
-
-ip=192.168.3.80:8.8.8.8:192.168.3.1:255.255.255.0:tarvos:eth0:
-ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:
-ip=192.168.3.82:8.8.8.8:192.168.3.1:255.255.255.0:ymir:eth0:
-
-```txt
-Your image schematic ID is: dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586
-customization:
-    systemExtensions:
-        officialExtensions:
-            - siderolabs/iscsi-tools
-            - siderolabs/qemu-guest-agent
-First Boot
-Options for the initial boot of Talos Linux on Nocloud:
-
-Disk Image
-https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.raw.xz
-ISO
-https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.iso
-PXE boot (iPXE script)
-https://pxe.factory.talos.dev/pxe/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64
-Initial Install
-For the initial Talos Linux install (doesn't apply to disk image boot) put the following installer image to the machine configuration:
-factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
-
-Talos Linux Upgrade
-Use the following image to upgrade Talos Linux on the machine:
-factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
-```
 
 ## References
 
@@ -152,3 +204,8 @@ factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c3
 - <https://www.civo.com/blog/calico-vs-flannel-vs-cilium>
 - <https://cilium.io/>
 - <https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos>
+- <https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml>
+- KaaS GitOps: <https://github.com/kubebn/talos-proxmox-kaas>
+- PXE: <https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/>
+- Options: <https://www.civo.com/blog/calico-vs-flannel-vs-cilium>
+- <https://github.com/cilium/cilium>

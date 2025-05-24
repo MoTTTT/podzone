@@ -57,13 +57,7 @@ k8s10{{norham04}}
 
 - Install: `sudo apt install apache2`
 - Create a `VirtualHost` file in `/etc/apache2/sites-available`
-- Enable ssl: `sudo a2enmod ssl`
-- Enable proxy: `sudo a2enmod proxy`
-- Enable proxy_html: `sudo a2enmod proxy_html`
-- Enable proxy_http: `sudo a2enmod proxy_http`
-- Enable websocket proxy: `sudo a2enmod proxy_wstunnel`
-- sudo a2enmod proxy rewrite proxy_http proxy_wstunnel
-- sudo a2enmod rewrite  
+- Enable modules: `sudo a2enmod ssl proxy rewrite proxy_html proxy_http proxy_wstunnel`
 - Install certbot: `sudo snap install --classic certbot`
 - Configure certbot for apache: `sudo certbot --apache`
 - Create a `VirtualHost` file in `/etc/apache2/sites-available`, e.g. `proxmox.conf`
@@ -100,12 +94,30 @@ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 </VirtualHost>
 ```
 
-### Certlist 2024/10/02
+### Naledi
 
 ```bash
-certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,home.littlecanton.one,dev.littlecanton.one,apidocumentation.info
+certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,littlecanton.one,dev.littlecanton.one,home.littlecanton.one,content.littlecanton.one,radiodb.littlecanton.one,console.littlecanton.one,broadcast.littlecanton.one
 ```
 
+### Habilis
+
+```bash
+certbot --expand -d littlecanton.one,dev.littlecanton.one,home.littlecanton.one,content.littlecanton.one,radiodb.littlecanton.one,console.littlecanton.one,broadcast.littlecanton.one
+```
+
+```
+  ServerName littlecanton.one
+  ServerAlias dev.littlecanton.one
+  ServerAlias home.littlecanton.one
+  ServerAlias content.littlecanton.one
+  ServerAlias radiodb.littlecanton.one
+  ServerAlias console.littlecanton.one
+  ServerAlias broadcast.littlecanton.one
+```
+
+- Note: apidocumentation.info served from Norham
+- Note: dialplus44.com,www.dialplus44.com address managed by Charles
 
 ### Naledi certbot
 

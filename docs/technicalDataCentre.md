@@ -2,6 +2,19 @@
 
 Management considerations when scale and scope are encountered in technical implementation.
 
+## Hardware
+
+Dell PowerEdge range:
+
+- R2x0: 1U Basic rack server, single CPU, single PSU, dual NI
+- R3x0: Similar to Rx20 but adds support for dual hot-swap PSU
+- R4x0: 1U medium capacity compute, adds dual CPUs, newer gens add quad NIC
+- R5x0: 2U and similar power to R4x0, but adds more storage and PCIe expansion slots
+- R6x0: 1U high density compute, similar to R4x0 but adds support for higher power CPUs and more RAM slots
+- R7x0: 2U and similar power to the R6x0, and like the R5x0 adds support for more storage and PCIe expansion
+- R8x0: 2U, adds support for quad CPUs, has similar PCIe expansion to the R7x0
+- R9x0: 4U, the big kahuna, quad CPU, double the RAM slots of the R8x0, even more PCIe expansion
+
 ## Network Architecture
 
 ### Fibre networking
@@ -203,6 +216,7 @@ snap set system proxy.https="http://192.168.1.145:3128"
 - Check the rules: `iptables -t nat -nvL`
 - Save the rules: `iptables-save > /etc/iptables/rules.v4`
 - List rules, with line numbers: `iptables -t nat -nvL --line-numbers`
+- To delete an entry: `iptables -t nat -D POSTROUTING <line number>`
 
 ## Cluster registry
 
@@ -246,6 +260,20 @@ ansible:
 - Token: `d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac`
 
 ## Proxmox cloudinit
+
+### Mars attempt 1
+
+jammy-server-cloudimg-amd64.img
+
+https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img
+
+rename image 
+
+
+vm 103 - 105, ip .110 - .112
+
+qm set 103 --cicustom user=local:snippets/microk8s.yml
+
 
 ### Mercury try 2
 

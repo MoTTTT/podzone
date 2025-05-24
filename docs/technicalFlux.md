@@ -20,6 +20,10 @@ When the bootstrap process concludes, the GIT repo will contain the flux-system 
 flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-gitops --branch=main --personal --path=clusters/megalith --token-auth=true
 ```
 
+## Troubleshooting
+
+- <https://fluxcd.io/flux/cheatsheets/troubleshooting/>
+
 ## Notes
 
 - Mac OS flux Installation: `brew install fluxcd/tap/flux`

@@ -117,6 +117,7 @@ Acquire::http::proxy "https://192.168.1.145:3128/";
 
 ## helm
 
+- `curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"`
 - `helm repo add truecharts https://charts.truecharts.org/`
 - `helm pull [chart URL | repo/chartname] [...] [flags]`
 - `helm package static-site`

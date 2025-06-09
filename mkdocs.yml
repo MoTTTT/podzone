@@ -45,6 +45,8 @@ nav:
     - technicalTroubleshooting.md
   - 'Substrate':
     - technicalTalos.md
+    - technicalLinstor.md
+    - technicalKubespray.md
     - technicalCluster.md
     - technicalDataCentre.md
     - technicalCeph.md

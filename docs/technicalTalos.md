@@ -4,6 +4,7 @@
 
 - Server: Mars with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk
 - Server: Mercury with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk
+- Server: Venus: Proxmox on R730 with 64 CPUs; 160GB RAM; 1.6 TB zfs pool
 
 ### Test node infrastructure allocation
 
@@ -29,6 +30,37 @@
 - Install Talosctl: `brew install siderolabs/tap/talosctl`
 
 ## Configuration
+
+## Cluster08
+
+Using CreateVMDefinitions.sh process template files to:
+
+- Generate terraform vm definitions, provider definition, and talos installation media
+- Generate Cilium manifests and appends them to talos patch file
+- Generate createCluster.sh, which generates (patched) talos configs and apply then to the machines in the cluster
+- createCluster.sh also generates command snippets for talos bootstrap, kube config, flux bootstrap, dashboard access etc
+
+VM dimensions
+
+- 4 CPU
+- 8 GB RAM
+- 20 GB Disk
+
+### Cluster05
+
+- `talosctl gen config cluster05 https://192.168.4.114:6443 --config-patch @patch.yaml`
+- `talosctl apply-config --insecure --nodes 192.168.4.114 --file controlplane.yaml`
+- `talosctl apply-config --insecure --nodes 192.168.4.115 --file worker.yaml`
+- `talosctl bootstrap --nodes 192.168.4.114 --endpoints 192.168.4.114 --talosconfig=./talosconfig`
+- `talosctl kubeconfig --nodes 192.168.4.114 --endpoints 192.168.4.114 --talosconfig=./talosconfig`
+- `kubectl apply -f cilium.yaml`
+- `kubectl apply --server-side -k "https://github.com/piraeusdatastore/piraeus-operator/config/default?ref=v2.8.1"`
+- Create Github token, export as GITHUB_TOKEN, with GITHUB_USER
+- `flux bootstrap github --context=admin@cluster05 --owner=MoTTTT --repository=venus --branch=main --personal --path=clusters/cluster05 --token-auth=true`
+
+To create flux resource for piraeus:
+
+flux create source git piraeus --url=https://github.com/piraeusdatastore/piraeus-operator/config/default --tag="v2.8.1"
 
 ### Cluster02
 
@@ -67,6 +99,7 @@ customization:
 machine:
   install:
     disk: /dev/vda
+    image: ?????
   kernel:
     modules:
       - name: drbd

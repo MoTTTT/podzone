@@ -6,13 +6,13 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalTalos/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Tallos - Podzone</title>
+<title>Talos - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Tallos";
+        var mkdocs_page_name = "Talos";
         var mkdocs_page_input_path = "technicalTalos.md";
         var mkdocs_page_url = "/podzone/technicalTalos/";
       </script>
@@ -105,11 +105,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Tallos</a>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Talos</a>
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#prep">Prep</a>
 <ul>
-<li class="toctree-l3"><a class="reference internal" href="#infrastructure">Infrastructure</a>
+<li class="toctree-l3"><a class="reference internal" href="#test-node-infrastructure-allocation">Test node infrastructure allocation</a>
 </li>
 </ul>
 </li>
@@ -123,13 +123,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#-sample-httpsgithubcomadampetrovichome-opsblobmainkubernetesbootstraptalostalconfigyaml">- Sample https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml</a>
+<li class="toctree-l2"><a class="reference internal" href="#cluster08">Cluster08</a>
 <ul>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-process-try-2">Configuration Process try #2</a>
+<li class="toctree-l3"><a class="reference internal" href="#cluster05">Cluster05</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration_1">Configuration</a>
+<li class="toctree-l3"><a class="reference internal" href="#cluster02">Cluster02</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#bootstrap">Bootstrap</a>
+<li class="toctree-l3"><a class="reference internal" href="#cluster03">Cluster03</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#configuration-on-mars">Configuration on Mars</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#controlplaneyaml-deviations">controlplane.yaml deviations</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-openebs-mercury">Installing OpenEBS (mercury)</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a>
 </li>
 </ul>
 </li>
@@ -137,11 +145,13 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cluster-components">Cluster components</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#proxmox-using-cloud-init">Proxmox using cloud init</a>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#references">References</a>
 </li>
 </ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -214,7 +224,7 @@
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
 <li class="breadcrumb-item">Substrate</li>
-<li class="breadcrumb-item active">Tallos</li>
+<li class="breadcrumb-item active">Talos</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -222,12 +232,17 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="tallos">Tallos</h1>
+<h1 id="talos">Talos</h1>
 <h2 id="prep">Prep</h2>
-<h3 id="infrastructure">Infrastructure</h3>
 <ul>
-<li>100 GB root Disk (Assuming 6 k8s nodes maximum)</li>
-<li>8 CPU</li>
+<li>Server: Mars with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
+<li>Server: Mercury with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
+<li>Server: Venus: Proxmox on R730 with 64 CPUs; 160GB RAM; 1.6 TB zfs pool</li>
+</ul>
+<h3 id="test-node-infrastructure-allocation">Test node infrastructure allocation</h3>
+<ul>
+<li>100 GB root Disk</li>
+<li>4 CPU</li>
 <li>16GB RAM</li>
 </ul>
 <h2 id="talosctl-client-configuration">Talosctl client configuration</h2>
@@ -237,13 +252,9 @@
 <li>Then need to install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
 <li>Add brew to path: <code>alias brew="/home/linuxbrew/.linuxbrew/Homebrew/bin/brew"</code></li>
 <li>Then talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
-<li><code>alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl"</code></li>
-<li>
-<p>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl</code></p>
-</li>
-<li>
-<p><code>alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.8.2/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'</code></p>
-</li>
+<li><code>alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl"</code></li>
+<li>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.9.1/bin/talosctl</code></li>
+<li><code>alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'</code></li>
 </ul>
 <h3 id="macos">MacOS</h3>
 <ul>
@@ -251,112 +262,183 @@
 <li>Install Talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
 </ul>
 <h2 id="configuration">Configuration</h2>
-<h2 id="-sample-httpsgithubcomadampetrovichome-opsblobmainkubernetesbootstraptalostalconfigyaml">- Sample <a href="https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml">https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml</a></h2>
-<h3 id="configuration-process-try-2">Configuration Process try #2</h3>
+<h2 id="cluster08">Cluster08</h2>
+<p>Using CreateVMDefinitions.sh process template files to:</p>
 <ul>
-<li><code>talosctl gen config k8s01 https://192.168.3.81:6443</code></li>
-<li><code>talosctl apply-config -n 192.168.3.81 --file controlplane-paaliaq.yaml --insecure</code></li>
-<li><code>talosctl bootstrap --nodes 192.168.3.81</code></li>
-<li><code>talosctl -n 192.168.3.81 containers</code></li>
-<li><code>talosctl gen config --name 192.168.3.81 --role controlplane --insecure</code></li>
-<li><code>talosctl apply-config -n 192.168.3.80 --file controlplane-tarvos.yaml --insecure</code></li>
-<li><code>talosctl apply-config -n 192.168.3.82 --file controlplane-ymir.yaml --insecure</code></li>
-<li><code>talosctl kubeconfig --nodes 192.168.3.81 --endpoints 192.168.3.81</code></li>
+<li>Generate terraform vm definitions, provider definition, and talos installation media</li>
+<li>Generate Cilium manifests and appends them to talos patch file</li>
+<li>Generate createCluster.sh, which generates (patched) talos configs and apply then to the machines in the cluster</li>
+<li>createCluster.sh also generates command snippets for talos bootstrap, kube config, flux bootstrap, dashboard access etc</li>
 </ul>
-<h3 id="configuration_1">Configuration</h3>
+<p>VM dimensions</p>
 <ul>
-<li><code>talosctl gen config k8s01 https://192.168.3.81:6443</code></li>
-<li>Test: <code>talosctl -n 192.168.3.81 disks --insecure</code></li>
+<li>4 CPU</li>
+<li>8 GB RAM</li>
+<li>20 GB Disk</li>
 </ul>
-<h3 id="bootstrap">Bootstrap</h3>
+<h3 id="cluster05">Cluster05</h3>
 <ul>
-<li>
-<p><code>alias talosctl="talosctl --talosconfig=~/.talos/talosconfig"</code></p>
-</li>
-<li>
-<p><code>talosctl gen secrets -o secrets.yaml</code></p>
-</li>
-<li>
-<p><code>talosctl gen config --with-secrets secrets.yaml k8s01 192.168.3.81</code></p>
-</li>
-<li>
-<p><code>talosctl bootstrap --nodes 192.168.3.81 --endpoints 192.168.3.81 --talosconfig=./talosconfig</code></p>
-</li>
+<li><code>talosctl gen config cluster05 https://192.168.4.114:6443 --config-patch @patch.yaml</code></li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.114 --file controlplane.yaml</code></li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.115 --file worker.yaml</code></li>
+<li><code>talosctl bootstrap --nodes 192.168.4.114 --endpoints 192.168.4.114 --talosconfig=./talosconfig</code></li>
+<li><code>talosctl kubeconfig --nodes 192.168.4.114 --endpoints 192.168.4.114 --talosconfig=./talosconfig</code></li>
+<li><code>kubectl apply -f cilium.yaml</code></li>
+<li><code>kubectl apply --server-side -k "https://github.com/piraeusdatastore/piraeus-operator/config/default?ref=v2.8.1"</code></li>
+<li>Create Github token, export as GITHUB_TOKEN, with GITHUB_USER</li>
+<li><code>flux bootstrap github --context=admin@cluster05 --owner=MoTTTT --repository=venus --branch=main --personal --path=clusters/cluster05 --token-auth=true</code></li>
+</ul>
+<p>To create flux resource for piraeus:</p>
+<p>flux create source git piraeus --url=https://github.com/piraeusdatastore/piraeus-operator/config/default --tag="v2.8.1"</p>
+<h3 id="cluster02">Cluster02</h3>
+<p>Manually editing controlplane.yaml and worker.yaml files.</p>
+<ul>
+<li>Generate cluster config: <code>talosctl gen config cluster02 https://192.168.4.210:6443</code></li>
+<li>Check the storage device to use: <code>talosctl -n 192.168.4.210 disks --insecure</code></li>
+<li>Edit controlplane.yaml and worker.yaml files. Set IP address and storage devices.</li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.210 --file controlplane.yaml</code></li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.211 --file worker.yaml</code></li>
+<li><code>talosctl --talosconfig=./talosconfig --nodes 192.168.4.211 -e 192.168.4.210 version</code></li>
+<li><code>talosctl bootstrap --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
+<li><code>talosctl kubeconfig --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
+<li><code>talosctl --nodes 192.168.4.210 --endpoints 192.168.4.210 health --talosconfig=./talosconfig</code></li>
+<li><code>talosctl --nodes 192.168.4.211 --endpoints 192.168.4.210 dashboard --talosconfig=./talosconfig</code></li>
+</ul>
+<h3 id="cluster03">Cluster03</h3>
+<p>Using patches, with talos image supporting:</p>
+<ul>
+<li>QEMU guest agent</li>
+<li>DRDB, required for LinStore</li>
+</ul>
+<pre><code class="language-yaml">customization:
+    systemExtensions:
+        officialExtensions:
+            - siderolabs/drbd
+            - siderolabs/qemu-guest-agent
+</code></pre>
+<ul>
+<li><code>talosctl gen config cluster03 https://192.168.4.216:6443 --config-patch @patch.yaml</code></li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.216 --file controlplane.yaml</code></li>
+</ul>
+<pre><code class="language-yaml">machine:
+  install:
+    disk: /dev/vda
+    image: ?????
+  kernel:
+    modules:
+      - name: drbd
+        parameters:
+          - usermode_helper=disabled
+      - name: drbd_transport_tcp
+  env:
+    https_proxy: http://192.168.4.1:3128/
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  allowSchedulingOnControlPlanes: true
+</code></pre>
+<h3 id="configuration-on-mars">Configuration on Mars</h3>
+<ul>
+<li>ProxMox: Load image into local-lvm: <a href="https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.2/nocloud-amd64.iso">https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.2/nocloud-amd64.iso</a></li>
+<li>Proxmox: Create VMs, with 4 CPU, 16 GB RAM, and 100 GB Disk, using talos nocloud-amd64.iso</li>
+<li>ProxMox: Add CloudInit drive, and set IP addresses <em>{192.168.4.100,192.168.4.101,192.168.4.103}</em></li>
+<li>Generate cluster config: <code>talosctl gen config mars01 https://192.168.4.100:6443 --output-dir mars01</code></li>
+<li>Modify generated <code>controlplane.yaml</code> file, and place in /var/lib/vz/snippets/controlplane.yaml (ensure that local-lvm supports snippets)</li>
+<li>Control plane: add config to CloudInit drive: <code>qm set $VMID --cicustom user=local:snippets/controlplane.yaml</code></li>
+<li>Worker: config to CloudInit drive: <code>qm set $VMID --cicustom user=local:snippets/worker.yaml</code></li>
+<li>Bootstrap cluster: <code>talosctl bootstrap -n 192.168.4.100</code></li>
+<li>Get kubectl config: <code>talosctl kubeconfig -n 192.168.4.100 --endpoints 192.168.4.100</code></li>
+<li>Create git repo <em>Mars</em>, token with admin privileges, export as GITHUB_TOKEN, with GITHUB_USER</li>
+<li>Bootstrap gitops: <code>flux bootstrap github --context=admin@mars01 --owner=MoTTTT --repository=mars --branch=main --personal --path=clusters/mars01 --token-auth=true</code></li>
+<li>Add supporting infrastructure manifests in Mars repo: MetalLB; ingres-nginx; cert-manager;</li>
+<li>Add application manifests in Mars repo</li>
+<li>Get disk info: <code>talosctl -n 192.168.4.100,192.168.4.101,192.168.4.103 disks</code></li>
+</ul>
+<h3 id="controlplaneyaml-deviations">controlplane.yaml deviations</h3>
+<ul>
+<li>cilium</li>
+</ul>
+<pre><code class="language-yaml">cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  allowSchedulingOnControlPlanes: true
+</code></pre>
+<ul>
+<li>proxy</li>
+</ul>
+<pre><code class="language-yaml">machine:
+    env:
+        https_proxy: http://192.168.3.1:3128/
+</code></pre>
+<p>talosctl gen config talos-nocloud https://192.168.30:6443 --config-patch @patch.yaml</p>
+<h3 id="installing-openebs-mercury">Installing OpenEBS (mercury)</h3>
+<ul>
+<li>talosctl -e 192.168.3.80 -n 192.168.3.80 patch mc -p @openebs-patch.yaml</li>
+<li>OpenEBS patch: openebs-patch.yaml</li>
+</ul>
+<pre><code class="language-yaml">machine:
+    sysctls:
+        vm.nr_hugepages: "1024"
+    nodeLabels:
+        openebs.io/engine: mayastor
+    kubelet:
+        extraMounts:
+            - destination: /var/local/openebs-openebs/
+              type: bind
+              source: /var/local/openebs-openebs/
+              options:
+                  - rbind
+                  - rshared
+                  - rw
+</code></pre>
+<ul>
+<li>Installation - without flux</li>
+</ul>
+<pre><code class="language-bash">helm repo add openebs https://openebs.github.io/openebs
+helm repo update
+helm upgrade --install openebs \
+  --create-namespace \
+  --namespace openebs \
+  --set engines.local.lvm.enabled=false \
+  --set engines.local.zfs.enabled=false \
+  --set mayastor.csi.node.initContainers.enabled=false \
+  openebs/openebs
+</code></pre>
+<ul>
+<li>Namespace labels</li>
+</ul>
+<pre><code class="language-yaml">pod-security.kubernetes.io/audit: privileged
+pod-security.kubernetes.io/enforce: privileged
+pod-security.kubernetes.io/warn: privileged
+</code></pre>
+<ul>
+<li>Storage class openebs-hostpath: replicated across all nodes</li>
+<li>Storage class openebs-single-replica: hostpath PVCs that are not replicated</li>
+</ul>
+<h3 id="issues">Issues</h3>
+<ul>
+<li><code>path /var/local/openebs-openebs/localpv-hostpath/etcd/ does not exist</code></li>
 </ul>
 <h2 id="networking">Networking</h2>
+<ul>
+<li>Flannel installs by default</li>
+</ul>
 <p>Use PXE for boot, with metadata service for per machine (MAC Address) configuration.</p>
 <pre><code class="language-bash">talos.config=https://metadata.service/talos/config?mac=${mac}
 </code></pre>
-<ul>
-<li>KaaS GitOps: <a href="https://github.com/kubebn/talos-proxmox-kaas">https://github.com/kubebn/talos-proxmox-kaas</a></li>
-<li>PXE: <a href="https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/">https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/</a></li>
-<li>For API access from lan: <a href="https://github.com/muzahid-c/iptables-loadbalancer">https://github.com/muzahid-c/iptables-loadbalancer</a></li>
-<li><a href="https://scalingo.com/blog/iptables">https://scalingo.com/blog/iptables</a></li>
-<li>Flannel installs by default</li>
-<li>Options: <a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
-<li><a href="https://github.com/cilium/cilium">https://github.com/cilium/cilium</a></li>
-</ul>
 <h2 id="cluster-components">Cluster components</h2>
 <ul>
 <li><a href="https://github.com/adampetrovic/home-ops/tree/main">https://github.com/adampetrovic/home-ops/tree/main</a></li>
 <li><a href="https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos">https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos</a></li>
 <li><a href="https://blog.devops.dev/talos-os-raspberry-fc5f327b7026">https://blog.devops.dev/talos-os-raspberry-fc5f327b7026</a></li>
 <li><a href="https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/">https://kevinholditch.co.uk/2023/10/21/creating-a-kubernetes-cluster-using-talos-linux-on-xen-orchestra/</a></li>
-<li></li>
 </ul>
-<h2 id="proxmox-using-cloud-init">Proxmox using cloud init</h2>
-<ul>
-<li>192.168.3.81  paaliaq</li>
-</ul>
-<pre><code class="language-bash">export CONTROL_PLANE_IP=192.168.3.81
-# /home/linuxbrew/.linuxbrew/Cellar/talosctl/1.8.2/bin/talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
-talosctl gen config talos-nocloud https://$CONTROL_PLANE_IP:6443 --output-dir _out
-
-mkdir -p iso
-mv _out/controlplane.yaml iso/user-data
-echo "local-hostname: controlplane-1" &gt; iso/meta-data
-cat &gt; iso/network-config &lt;&lt; EOF
-version: 1
-config:
-   - type: physical
-     name: eth0
-     mac_address: "52:54:00:12:34:00"
-     subnets:
-        - type: static
-          address: 192.168.3.81
-          netmask: 255.255.255.0
-          gateway: 192.168.3.1
-EOF
-cd iso &amp;&amp; mkisofs -output cidata.iso -V cidata -r -J user-data meta-data network-config
-</code></pre>
-<p>Set static IP address, add kernel parameter:</p>
-<p>ip=<client-ip>:<srv-ip>:<gw-ip>:<netmask>:<host>:<device>:<autoconf></autoconf></device></host></netmask></gw-ip></srv-ip></client-ip></p>
-<p>ip=192.168.3.80:8.8.8.8:192.168.3.1:255.255.255.0:tarvos:eth0:
-ip=192.168.3.81:8.8.8.8:192.168.3.1:255.255.255.0:paaliaq:eth0:
-ip=192.168.3.82:8.8.8.8:192.168.3.1:255.255.255.0:ymir:eth0:</p>
-<pre><code class="language-txt">Your image schematic ID is: dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586
-customization:
-    systemExtensions:
-        officialExtensions:
-            - siderolabs/iscsi-tools
-            - siderolabs/qemu-guest-agent
-First Boot
-Options for the initial boot of Talos Linux on Nocloud:
-
-Disk Image
-https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.raw.xz
-ISO
-https://factory.talos.dev/image/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64.iso
-PXE boot (iPXE script)
-https://pxe.factory.talos.dev/pxe/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586/v1.8.2/nocloud-amd64
-Initial Install
-For the initial Talos Linux install (doesn't apply to disk image boot) put the following installer image to the machine configuration:
-factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
-
-Talos Linux Upgrade
-Use the following image to upgrade Talos Linux on the machine:
-factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c36f6e95fc8586:v1.8.2
-</code></pre>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://www.talos.dev/v1.8/introduction/prodnotes/">https://www.talos.dev/v1.8/introduction/prodnotes/</a></li>
@@ -367,13 +449,17 @@ factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c3
 <li><a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
 <li><a href="https://cilium.io/">https://cilium.io/</a></li>
 <li><a href="https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos">https://www.cloudraft.io/blog/making-kubernetes-simple-with-talos</a></li>
-<li></li>
+<li><a href="https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml">https://github.com/adampetrovic/home-ops/blob/main/kubernetes/bootstrap/talos/talconfig.yaml</a></li>
+<li>KaaS GitOps: <a href="https://github.com/kubebn/talos-proxmox-kaas">https://github.com/kubebn/talos-proxmox-kaas</a></li>
+<li>PXE: <a href="https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/">https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/</a></li>
+<li>Options: <a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
+<li><a href="https://github.com/cilium/cilium">https://github.com/cilium/cilium</a></li>
 </ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
 <a class="btn btn-neutral float-left" href="../technicalTroubleshooting/" title="Radio Troubleshooting"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalCluster/" title="Microk8s">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-right" href="../technicalLinstor/" title="Linstor">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
@@ -389,7 +475,7 @@ factory.talos.dev/installer/dc7b152cb3ea99b821fcb7340ce7168313ce393d663740b791c3
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
 <span><a href="../technicalTroubleshooting/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalCluster/" style="color: #fcfcfc">Next »</a></span>
+<span><a href="../technicalLinstor/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>

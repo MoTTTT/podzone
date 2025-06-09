@@ -93,6 +93,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#dev-environment-bootstrap">dev environment bootstrap</a>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#resources-created-by-flux">Resources created by flux</a>
@@ -115,7 +117,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Tallos</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -210,6 +216,10 @@
 <h2 id="dev-environment-bootstrap">dev environment bootstrap</h2>
 <pre><code class="language-sh">flux bootstrap github --context=microk8s --owner=MoTTTT --repository=podzonedev-gitops --branch=main --personal --path=clusters/megalith --token-auth=true
 </code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<ul>
+<li><a href="https://fluxcd.io/flux/cheatsheets/troubleshooting/">https://fluxcd.io/flux/cheatsheets/troubleshooting/</a></li>
+</ul>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>Mac OS flux Installation: <code>brew install fluxcd/tap/flux</code></li>

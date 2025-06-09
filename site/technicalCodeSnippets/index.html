@@ -105,7 +105,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Tallos</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -295,6 +299,7 @@ Acquire::http::proxy "https://192.168.1.145:3128/";
 </ul>
 <h2 id="helm">helm</h2>
 <ul>
+<li><code>curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"</code></li>
 <li><code>helm repo add truecharts https://charts.truecharts.org/</code></li>
 <li><code>helm pull [chart URL | repo/chartname] [...] [flags]</code></li>
 <li><code>helm package static-site</code></li>

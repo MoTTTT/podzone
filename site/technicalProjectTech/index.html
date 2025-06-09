@@ -56,8 +56,16 @@
 <li class="toctree-l1 current"><a class="reference internal current" href="./">ProjectTech</a>
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#domain-registration-and-email-mailboxes">Domain registration, and email mailboxes</a>
+<ul>
+<li class="toctree-l3"><a class="reference internal" href="#hosts">Hosts</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#infrastructure-build">Infrastructure build</a>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-infrastructure">Cluster Infrastructure</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#application-build-out">Application build-out</a>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-specification">Infrastructure Specification</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#infrastructure-costing">Infrastructure costing</a>
 </li>
@@ -75,23 +83,11 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#habilis-configuration">habilis: Configuration</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#habilis-other-services">habilis: Other services</a>
-</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#host-configurations">host configurations</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#proxmox">ProxMox</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#application-build-out">Application build-out</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#k8s-cluster-storage-options">k8s: Cluster storage options</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#iscsi">iSCSI</a>
-</li>
-</ul>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
 </li>
 </ul>
 </li>
@@ -145,7 +141,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Tallos</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -235,21 +235,49 @@
 <li>Email hosting: <code>reservations@littlecanton.one</code></li>
 <li>Total costs: £1.57 (1 yr domain) + £24 (1 yr X 2 email addresses) = £25.57</li>
 </ul>
-<h2 id="infrastructure-build">Infrastructure build</h2>
+<h3 id="hosts">Hosts</h3>
 <ul>
-<li>Rack server - mercury: Dell PowerEdge R720, 32 threads, 112GB RAM, 4.8TB Storage</li>
-<li>4 X t630 - norham01-norham04: 4 CPU; 24GB RAM; 128GB + 128GB Storage: £200</li>
-<li>1 X t630 - habilis: 4 CPU; 24GB RAM; 128GB Storage; M.2 WiFi module: £70</li>
-<li>Build habilis: Ubuntu serve, set up as gateway to ethernet port, squid proxy, reverse-proxy port forwarding</li>
-<li>Build rack server and remainder of t730s: Install hypervisor</li>
-<li>Create ceph cluster on ProxMox t630s, add disks, add a ceph monitor on mercury</li>
-<li>Build VMs for k8s cluster</li>
-<li>Build out k8s cluster, and connect to distributed storage</li>
-<li>Bootstrap k8s cluster with flux</li>
-<li>Deploy Radio Station, WordPress instances and content server to k8s cluster</li>
-<li>Build LXC NextCloud appliance</li>
-<li>Build LXC Network file server</li>
-<li>Build VM or LXC for Project Management software</li>
+<li>littlecanton.one: Wordpress site</li>
+<li>dev.littlecanton.one: Dev Wordpress site</li>
+<li>home.littlecanton.one: Nextcloud</li>
+<li>content.littlecanton.one: Web collateral</li>
+<li>radiodb.littlecanton.one: Radio db</li>
+<li>console.littlecanton.one: Libretime GUI</li>
+<li>broadcast.littlecanton.one: Icecast server</li>
+</ul>
+<h3 id="cluster-infrastructure">Cluster Infrastructure</h3>
+<ul>
+<li>[X] ProxMox install, post installation scripts, talos image and snippets</li>
+<li>[X] 3 X Talos VMs for Control Plane {4; 16; 100;}</li>
+<li>[X] 3 X Talos VMs for Workers {4; 16; 100;}</li>
+<li>[X] ingres-nginx</li>
+<li>[X] metallb</li>
+<li>[X] cert-manager</li>
+<li>[X] OpenEBS</li>
+</ul>
+<h3 id="application-build-out">Application build-out</h3>
+<ul>
+<li>[X] Git repo: <a href="https://github.com/MoTTTT/mercury.git">https://github.com/MoTTTT/mercury.git</a></li>
+<li>[X] k8s Cluster Control plane: 3X talos: {4; 16; 100;}</li>
+<li>[X] k8s Cluster Workers: 3X talos: {4; 16; 100;}</li>
+<li>[X] flux bootstrap to <a href="https://github.com/MoTTTT/mercury.git">https://github.com/MoTTTT/mercury.git</a></li>
+<li>[X] NextCloud container, with disks assigned</li>
+<li>[ ] Backup: <a href="https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html">https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html</a></li>
+</ul>
+<h2 id="infrastructure-specification">Infrastructure Specification</h2>
+<ul>
+<li>[X] Rack server - mercury: Dell PowerEdge R720, 32 threads, 112GB RAM, 4.8TB Storage</li>
+<li>[X] 4 X t630 - norham01-norham04: 4 CPU; 24GB RAM; 128GB + 128GB Storage: £200</li>
+<li>[X] 1 X t630 - habilis: 4 CPU; 24GB RAM; 128GB Storage; M.2 WiFi module: £70</li>
+<li>[X] Build habilis: Ubuntu serve, set up as gateway to ethernet port, squid proxy, reverse-proxy port forwarding</li>
+<li>[X] Build rack server and remainder of t730s: Install hypervisor</li>
+<li>[X] Build VMs for k8s cluster</li>
+<li>[X] Build out k8s cluster, and connect to distributed storage</li>
+<li>[X] Bootstrap k8s cluster with flux</li>
+<li>[ ] Deploy Radio Station, WordPress instances and content server to k8s cluster</li>
+<li>[X] Build LXC NextCloud appliance</li>
+<li>[ ] Build LXC Network file server</li>
+<li>[ ] Build VM or LXC for Project Management software</li>
 </ul>
 <table>
 <thead>
@@ -377,13 +405,17 @@
 192.168.3.23  bixi        # t630 proxmox
 192.168.3.24  pulao       # t630 jump
 192.168.3.10  jiaotu      # R720 proxmox
-192.168.3.80  tarvos      # Talos k8s node on jiato
-192.168.3.81  paaliaq     # Talos k8s node
-192.168.3.82  ymir        # Talos k8s node
 # 192.168.3.    taotie    # Unassigned
 # 192.168.3.    qiuniu    # Unassigned
 # 192.168.3.    yazi      # Unassigned
 # 192.168.3.    suanni    # Unassigned
+192.168.3.80  k8s01       # Talos k8s control plane node
+192.168.3.81  k8s02       # Talos k8s control plane node
+192.168.3.82  k8s03       # Talos k8s control plane node
+192.168.3.90  k8sw01      # Talos k8s worker node
+192.168.3.91  k8sw02      # Talos k8s worker node
+192.168.3.92  k8sw03      # Talos k8s worker node
+
 </code></pre>
 <h3 id="other-hardware">Other hardware</h3>
 <ul>
@@ -418,12 +450,6 @@
 <li>[ ] Configure certbot: <code>sudo certbot --apache</code></li>
 <li>[ ] Certbot add hosts: <code>certbot --expand -d home.littlecanton.one,dev.littlecanton.one</code></li>
 </ul>
-<h3 id="habilis-other-services">habilis: Other services</h3>
-<ul>
-<li>[ ] VPN <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-22-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-an-openvpn-server-on-ubuntu-22-04</a></li>
-<li>[ ] CA: <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-on-ubuntu-22-04">https://www.digitalocean.com/community/tutorials/how-to-set-up-and-configure-a-certificate-authority-on-ubuntu-22-04</a></li>
-<li>[ ] Mail Server: <a href="https://mailinabox.email/">https://mailinabox.email/</a></li>
-</ul>
 <h2 id="host-configurations">host configurations</h2>
 <ul>
 <li><code>setproxy.sh</code></li>
@@ -451,34 +477,9 @@ Acquire::ftp::proxy "ftp://192.168.3.1:3128/";
 Acquire::https::proxy "http://192.168.3.1:3128/";
 EOF
 </code></pre>
-<h3 id="proxmox">ProxMox</h3>
+<h2 id="references">References</h2>
 <ul>
-<li>[ ] ProxMox install</li>
-<li>[ ] Post installation scripts: <a href="https://tteck.github.io/Proxmox/">https://tteck.github.io/Proxmox/</a></li>
-<li>[ ] Proxmox configure</li>
-<li>[ ] Link nodes</li>
-<li>[ ] Install ceph - via ProxMox gui</li>
-<li>[ ] Assign disks to ceph</li>
-</ul>
-<h3 id="application-build-out">Application build-out</h3>
-<ul>
-<li>[ ] git repo: <a href="https://github.com/MoTTTT/LittlecantonK8S.git">https://github.com/MoTTTT/LittlecantonK8S.git</a></li>
-<li>[ ] k8s cluster 3 X VM for k8s nodes, install microk8s, join cluster, install microk8s add-ons</li>
-<li>[ ] flux bootstrap: <code>flux bootstrap github --context=microk8s --owner=MoTTTT --repository=LittlecantonK8S.git --branch=main --personal --path=clusters/littlecantonprod --token-auth=true</code></li>
-<li>[ ] NextCloud container, with disks assigned</li>
-<li>[ ] NextCloud: <a href="https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html">https://docs.nextcloud.com/server/latest/admin_manual/maintenance/backup.html</a></li>
-<li></li>
-</ul>
-<h2 id="k8s-cluster-storage-options">k8s: Cluster storage options</h2>
-<ul>
-<li>[ ] Ceph</li>
-<li>[ ] OpenEBS: <a href="https://openebs.io/">https://openebs.io/</a></li>
-<li>[ ] LongHorn: <a href="https://longhorn.io/">https://longhorn.io/</a></li>
-</ul>
-<h3 id="iscsi">iSCSI</h3>
-<ul>
-<li>[ ] Cluster storage: <a href="https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi">https://pve.proxmox.com/pve-docs/pve-admin-guide.html#storage_open_iscsi</a></li>
-<li>[ ] Cluster storage: <a href="https://pve.proxmox.com/wiki/ISCSI_Multipath">https://pve.proxmox.com/wiki/ISCSI_Multipath</a></li>
+<li><a href="https://www.analyticsmania.com/post/google-tag-manager-tutorial-for-beginners/">https://www.analyticsmania.com/post/google-tag-manager-tutorial-for-beginners/</a></li>
 </ul>
 </div>
 </div><footer>

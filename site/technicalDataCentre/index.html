@@ -105,12 +105,18 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Tallos</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
 <li class="toctree-l1 current"><a class="reference internal current" href="./">Data Centre</a>
 <ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#network-architecture">Network Architecture</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#fibre-networking">Fibre networking</a>
@@ -159,6 +165,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#proxmox-cloudinit">Proxmox cloudinit</a>
 <ul>
+<li class="toctree-l3"><a class="reference internal" href="#mars-attempt-1">Mars attempt 1</a>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#mercury-try-2">Mercury try 2</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#notes-from-new-build-on-mercury">Notes from new build on Mercury</a>
@@ -282,6 +290,18 @@
 <div class="section" itemprop="articleBody">
 <h1 id="data-centre">Data Centre</h1>
 <p>Management considerations when scale and scope are encountered in technical implementation.</p>
+<h2 id="hardware">Hardware</h2>
+<p>Dell PowerEdge range:</p>
+<ul>
+<li>R2x0: 1U Basic rack server, single CPU, single PSU, dual NI</li>
+<li>R3x0: Similar to Rx20 but adds support for dual hot-swap PSU</li>
+<li>R4x0: 1U medium capacity compute, adds dual CPUs, newer gens add quad NIC</li>
+<li>R5x0: 2U and similar power to R4x0, but adds more storage and PCIe expansion slots</li>
+<li>R6x0: 1U high density compute, similar to R4x0 but adds support for higher power CPUs and more RAM slots</li>
+<li>R7x0: 2U and similar power to the R6x0, and like the R5x0 adds support for more storage and PCIe expansion</li>
+<li>R8x0: 2U, adds support for quad CPUs, has similar PCIe expansion to the R7x0</li>
+<li>R9x0: 4U, the big kahuna, quad CPU, double the RAM slots of the R8x0, even more PCIe expansion</li>
+</ul>
 <h2 id="network-architecture">Network Architecture</h2>
 <h3 id="fibre-networking">Fibre networking</h3>
 <ul>
@@ -462,6 +482,7 @@ snap set system proxy.https="http://192.168.1.145:3128"
 <li>Check the rules: <code>iptables -t nat -nvL</code></li>
 <li>Save the rules: <code>iptables-save &gt; /etc/iptables/rules.v4</code></li>
 <li>List rules, with line numbers: <code>iptables -t nat -nvL --line-numbers</code></li>
+<li>To delete an entry: <code>iptables -t nat -D POSTROUTING &lt;line number&gt;</code></li>
 </ul>
 <h2 id="cluster-registry">Cluster registry</h2>
 <ul>
@@ -502,6 +523,12 @@ ansible:
 <li>Token: <code>d8d9e43c-fcdf-4dfd-83d3-1b2cdcb528ac</code></li>
 </ul>
 <h2 id="proxmox-cloudinit">Proxmox cloudinit</h2>
+<h3 id="mars-attempt-1">Mars attempt 1</h3>
+<p>jammy-server-cloudimg-amd64.img</p>
+<p>https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img</p>
+<p>rename image </p>
+<p>vm 103 - 105, ip .110 - .112</p>
+<p>qm set 103 --cicustom user=local:snippets/microk8s.yml</p>
 <h3 id="mercury-try-2">Mercury try 2</h3>
 <pre><code>wget -q https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
 

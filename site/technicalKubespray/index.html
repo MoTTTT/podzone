@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalKubernetes/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalKubespray/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Kubernetes - Podzone</title>
+<title>Kubespray - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Kubernetes";
-        var mkdocs_page_input_path = "technicalKubernetes.md";
-        var mkdocs_page_url = "/podzone/technicalKubernetes/";
+        var mkdocs_page_name = "Kubespray";
+        var mkdocs_page_input_path = "technicalKubespray.md";
+        var mkdocs_page_url = "/podzone/technicalKubespray/";
       </script>
 <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -57,7 +57,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSecurity/">Security</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
@@ -72,29 +72,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#technology-trajectory">Technology Trajectory</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#promise-theory">Promise theory</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustering">Clustering</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustered-resources">Clustered Resources</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
-</li>
-</ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
 </li>
@@ -126,12 +104,18 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
+<li class="toctree-l1 current"><a class="reference internal current" href="./">Kubespray</a>
+<ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="#ansible">Ansible</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
+</li>
+</ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -203,8 +187,8 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item">Analysis</li>
-<li class="breadcrumb-item active">Kubernetes</li>
+<li class="breadcrumb-item">Substrate</li>
+<li class="breadcrumb-item active">Kubespray</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -212,160 +196,92 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="kubernetes">Kubernetes</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Kubernetes is an Open Source system that provides functionality to manage the lifecycle of containerised computing loads. It can achieve this over a clustered infrastructure, providing high availability, and scaling.</p>
-<h3 id="definitions">Definitions</h3>
+<h1 id="kubespray">Kubespray</h1>
+<p>sudo apt-get update &amp;&amp; sudo apt-get install -y gnupg software-properties-common
+wget -O- https://apt.releases.hashicorp.com/gpg | \
+gpg --dearmor | \
+sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg &gt; /dev/null
+gpg --no-default-keyring \
+--keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg \
+--fingerprint
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
+https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
+sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update
+sudo apt-get install terraform</p>
+<p>terraform -install-autocomplete</p>
 <ul>
-<li><code>Kubernetes</code>: A <em>container</em> <em>orchestration</em> system.</li>
-<li><code>Container</code>: Software packaging for a computing application, allowing it to be run in an <em>isolated environment</em> in a <em>standard</em> way.</li>
-<li><code>Isolated environment</code>: Operating System features are used to separate an application from its environment and other computing workloads. Workload isolation provides security and resource governance.</li>
-<li><code>Orchestration</code>: Automating software deployment, scaling, and management.</li>
+<li>qm set 9001 --net0 virtio,bridge=vmbr0 --ipconfig0 ip=192.168.4.100/24,gw=192.169.4.1</li>
+<li>qm set 9001 --net1 virtio,bridge=vmbr1 --ipconfig1 ip=10.0.1.2/24,gw=10.0.1.1</li>
 </ul>
-<h3 id="technology-trajectory">Technology Trajectory</h3>
-<p>Kubernetes was developed within Google, and was donated as a seed technology to the Cloud Native Computing Foundation (CNCF).</p>
-<p>A range of interrelated systems and standards underpin and extend Kubernetes that promote compatibility, providing consistency and reliability.</p>
-<p>The CNCF has a large eco-system of technologies that complement and rely on kubernetes.</p>
-<h2 id="concepts">Concepts</h2>
-<h3 id="promise-theory">Promise theory</h3>
-<ul>
-<li>The design of kubernetes relies on the <strong>Promise Theory</strong> analysis methodology.</li>
-<li>Promise Theory in kubernetes allows a resource to be modelled as voluntarily and autonomously co-operating with other resources in the kubernetes system</li>
-<li>The use of declarative specification follows in the form of the publishing of a <strong>Promise</strong> to the kubernetes system in the form of a resource definition</li>
-<li>Resource definitions are loaded via the kubernetes API</li>
-<li>The kubernetes API is used to interact with the kubernetes system, and the objects deployed in the system.</li>
-</ul>
-<h3 id="clustering">Clustering</h3>
-<p>Clustering provides a layer of abstraction for computing resources, spanning virtual or physical machines.</p>
-<p>In a single machine instance the processes and applications interact with the machine's operating system apis.</p>
-<p>In a cluster the processes and applications interact with the cluster system's apis.</p>
-<div class="mermaid">---
-title: Example of Computing resources of a machine instance
----
-graph LR
+<pre><code class="language-yaml">k8s_control_plane = [
+  {
+    "ip0" = "10.0.1.10"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-cp-01"
+    "vcpus" = 4
+  },
+  {
+    "ip0" = "10.0.1.11"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-cp-02"
+    "vcpus" = 4
+  },
+  {
+    "ip0" = "10.0.1.12"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-cp-03"
+    "vcpus" = 4
+  },
+]
+k8s_worker = [
+  {
+    "ip0" = "10.0.1.20"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-worker-01"
+    "vcpus" = 4
+  },
+  {
+    "ip0" = "10.0.1.21"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-worker-02"
+    "vcpus" = 4
+  },
+  {
+    "ip0" = "10.0.1.22"
+    "memory" = 8192
+    "name" = "vm-k8s-dev01-bladon-01-worker-03"
+    "vcpus" = 4
+  },
+]
+kubespray_host = [
+  {
+    "ip0" = "10.0.1.5"
+    "memory" = 2048
+    "name" = "vm-k8s-dev01-bladon-01-kubespray-01"
+    "vcpus" = 2
+  },
+]
 
-OS1[Operating System APIs] --&gt; OS2[Machine Resources]
-
-subgraph OS2[Machine Resources]
-  subgraph  RAM
-    subgraph 16 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 4 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</div>
-<h3 id="clustered-resources">Clustered Resources</h3>
-<div class="mermaid">---
-title: Computing resources of a machine cluster
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph Machine 1
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 2
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 3
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-end
-</div>
-<div class="mermaid">---
-title: Abstracted Resources
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph  RAM
-    subgraph 48 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 12 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</div>
+</code></pre>
+<h2 id="ansible">Ansible</h2>
+<pre><code class="language-bash">VENVDIR=kubespray-venv
+KUBESPRAYDIR=kubespray
+python3 -m venv $VENVDIR
+source $VENVDIR/bin/activate
+cd $KUBESPRAYDIR
+pip install -U -r requirements.txt
+</code></pre>
 <h2 id="references">References</h2>
 <ul>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation">https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Promise_theory">https://en.wikipedia.org/wiki/Promise_theory</a></p>
-</li>
+<li><a href="https://kubernetes.io/docs/setup/best-practices/cluster-large/">https://kubernetes.io/docs/setup/best-practices/cluster-large/</a></li>
+<li><a href="https://kubespray.io/#/docs/ansible/ansible?id=installing-ansible">https://kubespray.io/#/docs/ansible/ansible?id=installing-ansible</a></li>
 </ul>
 </div>
 </div><footer>
 <div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../inventoryCosting/" title="Costing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalSound/" title="Sound Engineering">Next <span class="icon icon-circle-arrow-right"></span></a>
+<a class="btn btn-neutral float-left" href="../technicalLinstor/" title="Linstor"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+<a class="btn btn-neutral float-right" href="../technicalCluster/" title="Microk8s">Next <span class="icon icon-circle-arrow-right"></span></a>
 </div>
 <hr/>
 <div role="contentinfo">
@@ -380,8 +296,8 @@ end
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../inventoryCosting/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalSound/" style="color: #fcfcfc">Next »</a></span>
+<span><a href="../technicalLinstor/" style="color: #fcfcfc">« Previous</a></span>
+<span><a href="../technicalCluster/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>
@@ -394,8 +310,7 @@ end
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script><script>
+<script>
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
                 if (iFrameID) {

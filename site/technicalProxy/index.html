@@ -105,7 +105,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Tallos</a>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
 </li>
@@ -129,7 +133,9 @@
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#sample-virtual-host-config">Sample virtual host config</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#certlist-20241002">Certlist 2024/10/02</a>
+<li class="toctree-l3"><a class="reference internal" href="#naledi">Naledi</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#habilis">Habilis</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#naledi-certbot">Naledi certbot</a>
 </li>
@@ -272,13 +278,7 @@ k8s10{{norham04}}
 <ul>
 <li>Install: <code>sudo apt install apache2</code></li>
 <li>Create a <code>VirtualHost</code> file in <code>/etc/apache2/sites-available</code></li>
-<li>Enable ssl: <code>sudo a2enmod ssl</code></li>
-<li>Enable proxy: <code>sudo a2enmod proxy</code></li>
-<li>Enable proxy_html: <code>sudo a2enmod proxy_html</code></li>
-<li>Enable proxy_http: <code>sudo a2enmod proxy_http</code></li>
-<li>Enable websocket proxy: <code>sudo a2enmod proxy_wstunnel</code></li>
-<li>sudo a2enmod proxy rewrite proxy_http proxy_wstunnel</li>
-<li>sudo a2enmod rewrite  </li>
+<li>Enable modules: <code>sudo a2enmod ssl proxy rewrite proxy_html proxy_http proxy_wstunnel</code></li>
 <li>Install certbot: <code>sudo snap install --classic certbot</code></li>
 <li>Configure certbot for apache: <code>sudo certbot --apache</code></li>
 <li>Create a <code>VirtualHost</code> file in <code>/etc/apache2/sites-available</code>, e.g. <code>proxmox.conf</code></li>
@@ -312,9 +312,24 @@ RewriteCond %{SERVER_NAME} =proxmox.muso.club
 RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
 &lt;/VirtualHost&gt;
 </code></pre>
-<h3 id="certlist-20241002">Certlist 2024/10/02</h3>
-<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,home.littlecanton.one,dev.littlecanton.one,apidocumentation.info
+<h3 id="naledi">Naledi</h3>
+<pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,content.podzone.net,nextcloud.muso.club,proxmox.muso.club,vpn.muso.club,littlecanton.one,dev.littlecanton.one,home.littlecanton.one,content.littlecanton.one,radiodb.littlecanton.one,console.littlecanton.one,broadcast.littlecanton.one
 </code></pre>
+<h3 id="habilis">Habilis</h3>
+<pre><code class="language-bash">certbot --expand -d littlecanton.one,dev.littlecanton.one,home.littlecanton.one,content.littlecanton.one,radiodb.littlecanton.one,console.littlecanton.one,broadcast.littlecanton.one
+</code></pre>
+<pre><code>  ServerName littlecanton.one
+  ServerAlias dev.littlecanton.one
+  ServerAlias home.littlecanton.one
+  ServerAlias content.littlecanton.one
+  ServerAlias radiodb.littlecanton.one
+  ServerAlias console.littlecanton.one
+  ServerAlias broadcast.littlecanton.one
+</code></pre>
+<ul>
+<li>Note: apidocumentation.info served from Norham</li>
+<li>Note: dialplus44.com,www.dialplus44.com address managed by Charles</li>
+</ul>
 <h3 id="naledi-certbot">Naledi certbot</h3>
 <pre><code class="language-bash">certbot --expand -d docs.podzone.net,musings.thruhere.net,uk2day.online,www.uk2day.online,muso.club,db.muso.club,console.muso.club,broadcast.muso.club,radio.muso.club,www.muso.club,radio.thruhere.net,norma.blog.podzone.org,content.podzone.net,dialplus44.com,www.dialplus44.com,nextcloud.muso.club,proxmox.muso.club
 </code></pre>

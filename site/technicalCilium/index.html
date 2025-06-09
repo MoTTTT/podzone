@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalKubernetes/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalCilium/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>Kubernetes - Podzone</title>
+<title>Cilium - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "Kubernetes";
-        var mkdocs_page_input_path = "technicalKubernetes.md";
-        var mkdocs_page_url = "/podzone/technicalKubernetes/";
+        var mkdocs_page_name = "Cilium";
+        var mkdocs_page_input_path = "technicalCilium.md";
+        var mkdocs_page_url = "/podzone/technicalCilium/";
       </script>
 <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -57,7 +57,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Analysis</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSecurity/">Security</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
@@ -72,29 +72,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Kubernetes</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#definitions">Definitions</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#technology-trajectory">Technology Trajectory</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#concepts">Concepts</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#promise-theory">Promise theory</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustering">Clustering</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#clustered-resources">Clustered Resources</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
-</li>
-</ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
 </li>
@@ -203,8 +181,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item">Analysis</li>
-<li class="breadcrumb-item active">Kubernetes</li>
+<li class="breadcrumb-item active">Cilium</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -212,161 +189,153 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="kubernetes">Kubernetes</h1>
-<h2 id="introduction">Introduction</h2>
-<p>Kubernetes is an Open Source system that provides functionality to manage the lifecycle of containerised computing loads. It can achieve this over a clustered infrastructure, providing high availability, and scaling.</p>
-<h3 id="definitions">Definitions</h3>
+<h1 id="cilium">Cilium</h1>
+<h2 id="build-on-talos-on-venus">Build on talos on venus</h2>
+<h2 id="cilium-install">Cilium install</h2>
 <ul>
-<li><code>Kubernetes</code>: A <em>container</em> <em>orchestration</em> system.</li>
-<li><code>Container</code>: Software packaging for a computing application, allowing it to be run in an <em>isolated environment</em> in a <em>standard</em> way.</li>
-<li><code>Isolated environment</code>: Operating System features are used to separate an application from its environment and other computing workloads. Workload isolation provides security and resource governance.</li>
-<li><code>Orchestration</code>: Automating software deployment, scaling, and management.</li>
+<li><code>helm repo add cilium https://helm.cilium.io/</code></li>
+<li><code>helm repo update</code></li>
 </ul>
-<h3 id="technology-trajectory">Technology Trajectory</h3>
-<p>Kubernetes was developed within Google, and was donated as a seed technology to the Cloud Native Computing Foundation (CNCF).</p>
-<p>A range of interrelated systems and standards underpin and extend Kubernetes that promote compatibility, providing consistency and reliability.</p>
-<p>The CNCF has a large eco-system of technologies that complement and rely on kubernetes.</p>
-<h2 id="concepts">Concepts</h2>
-<h3 id="promise-theory">Promise theory</h3>
+<pre><code class="language-bash">helm template \
+    cilium \
+    cilium/cilium \
+    --version 1.17.4 \
+    --set hubble.relay.enabled=true \
+    --set hubble.ui.enabled=true \
+    --set ingressController.enabled=true \
+    --set ingressController.loadbalancerMode=shared \
+    --set ingressController.default=true \
+    --set l2announcements.enabled=true \
+    --set l2announcements.leaseDuration=3s \
+    --set l2announcements.leaseRenewDeadline=1s \
+    --set l2announcements.leaseRetryPeriod=200ms \
+    --set loadBalancerIPs.enable=true \
+    --set gatewayAPI.enabled=true \
+    --set loadBalancer.l7.backend=envoy \
+    --namespace kube-system \
+    --set ipam.mode=kubernetes \
+    --set kubeProxyReplacement=true \
+    --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
+    --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
+    --set cgroup.autoMount.enabled=false \
+    --set cgroup.hostRoot=/sys/fs/cgroup \
+    --set k8sServiceHost=localhost \
+    --set k8sServicePort=7445 &gt; cilium.yaml
+</code></pre>
+<p>This enables:</p>
 <ul>
-<li>The design of kubernetes relies on the <strong>Promise Theory</strong> analysis methodology.</li>
-<li>Promise Theory in kubernetes allows a resource to be modelled as voluntarily and autonomously co-operating with other resources in the kubernetes system</li>
-<li>The use of declarative specification follows in the form of the publishing of a <strong>Promise</strong> to the kubernetes system in the form of a resource definition</li>
-<li>Resource definitions are loaded via the kubernetes API</li>
-<li>The kubernetes API is used to interact with the kubernetes system, and the objects deployed in the system.</li>
+<li>hubble, and hubble ui</li>
+<li>ingres controller, set to shared loadbalancer</li>
+<li>l2 announcements on loadbalancer IPs</li>
+<li>gateway api</li>
 </ul>
-<h3 id="clustering">Clustering</h3>
-<p>Clustering provides a layer of abstraction for computing resources, spanning virtual or physical machines.</p>
-<p>In a single machine instance the processes and applications interact with the machine's operating system apis.</p>
-<p>In a cluster the processes and applications interact with the cluster system's apis.</p>
-<div class="mermaid">---
-title: Example of Computing resources of a machine instance
----
-graph LR
+<p>Add IP pool:</p>
+<pre><code class="language-yaml">apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "ip-pool"
+spec:
+  blocks:
+  - start: "192.168.4.90"
+    stop: "192.168.4.90"
+</code></pre>
+<p>Add L2 announcement policy:</p>
+<pre><code class="language-yaml">apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: l2policy
+spec:
+  loadBalancerIPs: true
+</code></pre>
+<h2 id="initial-installation">Initial installation</h2>
+<ul>
+<li>Install on talos</li>
+<li>Generate cilium manifest:</li>
+<li>For L2 announcements, and cilium ingress controller, set:</li>
+<li>externalIPs.enabled=true</li>
+<li>l2announcements.enabled=true</li>
+<li>ingressController.enabled=true</li>
+<li>ingressController.loadbalancerMode=shared</li>
+<li>kubeProxyReplacement=true</li>
+<li>l7Proxy=true</li>
+<li>ingressController.default=true</li>
+<li>envoyConfig.enabled=true</li>
+<li>loadBalancer.l7.backend=envoy</li>
+<li>ingressController.default=true</li>
+</ul>
+<pre><code class="language-bash">helm template \
+    cilium \
+    cilium/cilium \
+    --version 1.16.5 \
+    --namespace kube-system \
+    --set ipam.mode=kubernetes \
+    --set kubeProxyReplacement=true \
+    --set externalIPs.enabled=true \
+    --set l2announcements.enabled=true \
+    --set ingressController.enabled=true \
+    --set ingressController.loadbalancerMode=shared \
+    --set l7Proxy=true \
+    --set ingressController.default=true \
+    --set envoyConfig.enabled=true \
+    --set loadBalancer.l7.backend=envoy \
+    --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
+    --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
+    --set cgroup.autoMount.enabled=false \
+    --set cgroup.hostRoot=/sys/fs/cgroup \
+    --set k8sServiceHost=localhost \
+    --set k8sServicePort=7445 &gt; cilium.yaml
 
-OS1[Operating System APIs] --&gt; OS2[Machine Resources]
-
-subgraph OS2[Machine Resources]
-  subgraph  RAM
-    subgraph 16 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 4 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</div>
-<h3 id="clustered-resources">Clustered Resources</h3>
-<div class="mermaid">---
-title: Computing resources of a machine cluster
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph Machine 1
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 2
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-  subgraph Machine 3
-    subgraph  RAM
-      subgraph 16 GB
-      end
-    end
-    subgraph  CPU
-      subgraph 4 Cores
-      end
-    end
-    subgraph  Disk
-      subgraph 125 GB
-      end
-    end
-    subgraph  Network
-      subgraph 1 GB Ethernet
-      end
-    end
-  end
-end
-</div>
-<div class="mermaid">---
-title: Abstracted Resources
----
-graph LR
-OS1[Cluster APIs] --&gt; OS2[Cluster Resources]
-subgraph OS2[Cluster Resources]
-  subgraph  RAM
-    subgraph 48 GB
-    end
-  end
-  subgraph  CPU
-    subgraph 12 Cores
-    end
-  end
-  subgraph  Disk
-    subgraph 125 GB
-    end
-  end
-  subgraph  Network
-    subgraph 1 GB Ethernet
-    end
-  end
-end
-</div>
+kubectl apply -f cilium.yaml
+</code></pre>
+<ul>
+<li>Create patch template with {proxy,disable cni, disable proxy, asocp, stub for cilium manifest}</li>
+<li>controlplane-patch-template.yaml:</li>
+</ul>
+<pre><code class="language-yaml">machine:
+  env:
+    https_proxy: http://192.168.3.1:3128/
+cluster:
+  clusterName: mercury01
+  allowSchedulingOnControlPlanes: true
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
+  inlineManifests:
+    - name: cilium
+      contents: |
+</code></pre>
+<ul>
+<li>Create a patch stub: <code>cp controlplane-patch-template.yaml patch.yaml</code></li>
+<li>Add cilium manifest (with indentation): <code>sed -e 's/^/        /' cilium.yaml &gt;&gt; patch.yaml</code></li>
+<li>Apply patch: <code>talosctl gen config talos-nocloud https://192.168.3.80:6443 --config-patch @patch.yaml</code></li>
+<li>Place generated controlplane.yaml in <code>/var/lib/vz/snippets</code></li>
+<li>Place generated <code>talosconfig</code> in <code>~/.talos</code> as <code>config</code> to bootstrap</li>
+</ul>
+<h2 id="usage-on-proxmox">Usage on Proxmox</h2>
+<ul>
+<li>Create 3 X VM {100,4,16}</li>
+<li>Add cloudinit drive</li>
+<li>Set cloudinit IP address</li>
+<li>Place generated controlplane.yaml in <code>/var/lib/vz/snippets</code></li>
+<li>To set cloudinit file up for VM 1000: <code>qm set 1000 --cicustom user=local:snippets/controlplane.yaml</code></li>
+<li>To bootstrap cluster: <code>talosctl bootstrap -n 192.168.3.80 -e 192.168.3.80</code></li>
+<li>To get kubectl config for the cluster: <code>talosctl kubeconfig -n 192.168.3.80 -e 192.168.3.80</code></li>
+</ul>
 <h2 id="references">References</h2>
 <ul>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation">https://en.wikipedia.org/wiki/Cloud_Native_Computing_Foundation</a></p>
-</li>
-<li>
-<p><a href="https://en.wikipedia.org/wiki/Promise_theory">https://en.wikipedia.org/wiki/Promise_theory</a></p>
-</li>
+<li><a href="https://docs.cilium.io/en/latest/network/servicemesh/tls-termination/">https://docs.cilium.io/en/latest/network/servicemesh/tls-termination/</a></li>
+<li><a href="https://cilium.io/use-cases/gateway-api/">https://cilium.io/use-cases/gateway-api/</a></li>
+<li><a href="https://docs.cilium.io/en/stable/network/lb-ipam/">https://docs.cilium.io/en/stable/network/lb-ipam/</a></li>
+<li><a href="https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/">https://isovalent.com/blog/post/migrating-from-metallb-to-cilium/</a></li>
+<li><a href="https://docs.cilium.io/en/stable/network/servicemesh/ingress/">https://docs.cilium.io/en/stable/network/servicemesh/ingress/</a></li>
+<li><a href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a></li>
+<li><a href="https://docs.cilium.io/en/v1.14/network/servicemesh/gateway-api/gateway-api/">https://docs.cilium.io/en/v1.14/network/servicemesh/gateway-api/gateway-api/</a></li>
+<li><a href="https://itnext.io/cilium-gateway-api-cert-manager-and-lets-encrypt-updates-cc730818cb17">https://itnext.io/cilium-gateway-api-cert-manager-and-lets-encrypt-updates-cc730818cb17</a></li>
 </ul>
 </div>
 </div><footer>
-<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../inventoryCosting/" title="Costing"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalSound/" title="Sound Engineering">Next <span class="icon icon-circle-arrow-right"></span></a>
-</div>
 <hr/>
 <div role="contentinfo">
 <!-- Copyright etc -->
@@ -380,8 +349,6 @@ end
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../inventoryCosting/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalSound/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>
@@ -394,8 +361,7 @@ end
             SphinxRtdTheme.Navigation.enable(true);
         });
     </script>
-<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
-mermaid.initialize({});</script><script>
+<script>
             window.update_swagger_ui_iframe_height = function (id) {
                 var iFrameID = document.getElementById(id);
                 if (iFrameID) {

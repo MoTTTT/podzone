@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+
+<html class="writer-html5" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalProxmox/" rel="canonical"/>
+<link href="../img/favicon.ico" rel="shortcut icon"/>
+<title>Proxmox Hypervisor - Podzone</title>
+<link href="../css/theme.css" rel="stylesheet"/>
+<link href="../css/theme_extra.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
+<script>
+        // Current page data
+        var mkdocs_page_name = "Proxmox Hypervisor";
+        var mkdocs_page_input_path = "technicalProxmox.md";
+        var mkdocs_page_url = "/podzone/technicalProxmox/";
+      </script>
+<!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-SY1HLECK2G"></script>
+<script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "G-SY1HLECK2G");
+      </script>
+</head>
+<body class="wy-body-for-nav" role="document">
+<div class="wy-grid-for-nav">
+<nav class="wy-nav-side stickynav" data-toggle="wy-nav-shift">
+<div class="wy-side-scroll">
+<div class="wy-side-nav-search">
+<a class="icon icon-home" href=".."> Podzone
+        </a><div role="search">
+<form action="../search.html" class="wy-form" id="rtd-search-form" method="get">
+<input aria-label="Search docs" name="q" placeholder="Search docs" title="Type search term here" type="text"/>
+</form>
+</div>
+</div>
+<div aria-label="Navigation menu" class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation">
+<p class="caption"><span class="caption-text">Requirements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../requirementIntroduction/">Introduction</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBackground/">Background</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementBusinessBrief/">QApps Business Brief</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirementRadio/">Radio Requirements</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProjectTech/">ProjectTech</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Analysis</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSecurity/">Security</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalConsumerCloud/">Consumer Cloud</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalExternalServices/">External Services</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventorySite/">Site Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist1/">Task List: southern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTasklist2/">Task List: northern.podzone.net</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryCosting/">Costing</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubernetes/">Kubernetes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSound/">Sound Engineering</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalHardware/">Hardware planning</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Workload</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRadio/">Radio implementations</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalSiteStructure/">Podzone Sites</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalStaticSite/">Helm Charts</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalFlux/">Flux</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWordpress/">Installing Wordpress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalApplication/">Application Build</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIoT/">Rust on the uNode embedded controller development board</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalRedmine/">Redmine</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Troubleshooting</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTroubleshooting/">Radio Troubleshooting</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Substrate</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalKubespray/">Kubespray</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCluster/">Microk8s</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalDataCentre/">Data Centre</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalCeph/">Persistent data</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalProxy/">Reverse proxy</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalIssues/">Issues</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tools</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalTools/">Tools</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalPrometheus/">Prometheus Implementation Notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalWireguard/">Wireguard installation notes</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../technicalMkDocs/">mkdocs</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Inventory</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryServers/">Server Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryHosts/">Hosts Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryIoT/">IoT (Internet of Things) devices</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryVm/">Virtual Machine Inventory</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inventoryWorkstation/">Workstation config</a>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencesApplication/">Application references</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesHardware/">Hardware References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesIoT/">Edge and IoT References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesResearch/">Research References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesReserve/">Reserve References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesTroubleshooting/">Troubleshooting References</a>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../referencesRadio/">Radio References</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="wy-nav-content-wrap" data-toggle="wy-nav-shift">
+<nav aria-label="Mobile navigation menu" class="wy-nav-top" role="navigation">
+<i class="fa fa-bars" data-toggle="wy-nav-top"></i>
+<a href="..">Podzone</a>
+</nav>
+<div class="wy-nav-content">
+<div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
+<ul class="wy-breadcrumbs">
+<li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
+<li class="breadcrumb-item active">Proxmox Hypervisor</li>
+<li class="wy-breadcrumbs-aside">
+</li>
+</ul>
+<hr/>
+</div>
+<div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
+<div class="section" itemprop="articleBody">
+<h1 id="proxmox-hypervisor">Proxmox Hypervisor</h1>
+<h2 id="network-architecture">Network Architecture</h2>
+<div class="mermaid">---
+title: venus.podzone.net
+---
+graph TD
+Internet  -- :80 :443 --&gt; router -- :80 :443 --&gt; gateway
+workstation --&gt; gateway --&gt; proxmoxAPI
+
+gateway --&gt; lbr
+lbr --&gt; k81-cp-01
+lbr --&gt; k81-cp-02
+lbr --&gt; k81-cp-03
+
+gateway --&gt; bastion1
+bastion1 &lt;--&gt; vmbr1
+k81-cp-01 &lt;--&gt; vmbr1  ---&gt; squid
+k81-cp-02 &lt;--&gt; vmbr1 ---&gt; squid
+k81-cp-03 &lt;--&gt; vmbr1 ---&gt; squid
+squid --&gt; gateway
+</div>
+<ul>
+<li>IP Tables Load Balancer: <a href="https://github.com/muzahid-c/iptables-loadbalancer">https://github.com/muzahid-c/iptables-loadbalancer</a></li>
+</ul>
+<h2 id="cloud-init">Cloud init</h2>
+<ul>
+<li><a href="https://austinsnerdythings.com/2021/08/30/how-to-create-a-proxmox-ubuntu-cloud-init-image/">https://austinsnerdythings.com/2021/08/30/how-to-create-a-proxmox-ubuntu-cloud-init-image/</a></li>
+</ul>
+<h2 id="terraform">Terraform</h2>
+<ul>
+<li>Chosen approach: <a href="https://github.com/rgl/terraform-proxmox-talos/tree/main">https://github.com/rgl/terraform-proxmox-talos/tree/main</a></li>
+<li>Docs: <a href="https://developer.hashicorp.com/terraform/tutorials">https://developer.hashicorp.com/terraform/tutorials</a></li>
+<li>Using terraform with proxmox: <a href="https://austinsnerdythings.com/2021/09/01/how-to-deploy-vms-in-proxmox-with-terraform/">https://austinsnerdythings.com/2021/09/01/how-to-deploy-vms-in-proxmox-with-terraform/</a></li>
+<li>Using terraform with proxmox: <a href="https://tcude.net/using-terraform-with-proxmox/">https://tcude.net/using-terraform-with-proxmox/</a></li>
+<li>Proxmox Provider: <a href="https://registry.terraform.io/providers/bpg/proxmox/latest/docs/guides/clone-vm">https://registry.terraform.io/providers/bpg/proxmox/latest/docs/guides/clone-vm</a></li>
+<li>Proxmox Provider: <a href="https://registry.terraform.io/providers/Telmate/proxmox/latest/docs">https://registry.terraform.io/providers/Telmate/proxmox/latest/docs</a></li>
+<li>Tallos Provider: <a href="https://github.com/siderolabs/terraform-provider-talos/blob/main/docs/index.md">https://github.com/siderolabs/terraform-provider-talos/blob/main/docs/index.md</a></li>
+</ul>
+<p>BGP provider:</p>
+<pre><code class="language-yaml">provider "proxmox" {
+  endpoint = "https://10.0.0.2:8006/"
+
+  # TODO: use terraform variable or remove the line, and use PROXMOX_VE_USERNAME environment variable
+  username = "root@pam"
+  # TODO: use terraform variable or remove the line, and use PROXMOX_VE_PASSWORD environment variable
+  password = "the-password-set-during-installation-of-proxmox-ve"
+
+  # because self-signed TLS certificate is in use
+  insecure = true
+  # uncomment (unless on Windows...)
+  # tmp_dir  = "/var/tmp"
+
+  ssh {
+    agent = true
+    # TODO: uncomment and configure if using api_token instead of password
+    # username = "root"
+  }
+}
+</code></pre>
+<ul>
+<li>VM Template:</li>
+</ul>
+<pre><code class="language-yaml">resource "proxmox_virtual_environment_vm" "ubuntu_template" {
+  name      = "ubuntu-template"
+  node_name = "pve"
+  template = true
+  started  = false
+  machine     = "q35"
+  bios        = "ovmf"
+  description = "Managed by Terraform"
+  cpu {
+    cores = 2
+  }
+  memory {
+    dedicated = 2048
+  }
+  efi_disk {
+    datastore_id = "local"
+    type         = "4m"
+  }
+  disk {
+    datastore_id = "local-lvm"
+    file_id      = proxmox_virtual_environment_download_file.ubuntu_cloud_image.id
+    interface    = "virtio0"
+    iothread     = true
+    discard      = "on"
+    size         = 20
+  }
+  initialization {
+    ip_config {
+      ipv4 {
+        address = "dhcp"
+      }
+    }
+    user_data_file_id = proxmox_virtual_environment_file.user_data_cloud_config.id
+  }
+  network_device {
+    bridge = "vmbr0"
+  }
+}
+
+resource "proxmox_virtual_environment_download_file" "ubuntu_cloud_image" {
+  content_type = "iso"
+  datastore_id = "local"
+  node_name    = "pve"
+  url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img"
+}
+</code></pre>
+<p>Clone MV from template:</p>
+<pre><code class="language-yaml">resource "proxmox_virtual_environment_vm" "ubuntu_clone" {
+  name      = "ubuntu-clone"
+  node_name = "pve"
+  clone {
+    vm_id = proxmox_virtual_environment_vm.ubuntu_template.id
+  }
+  agent {
+    enabled = true
+  }
+  memory {
+    dedicated = 768
+  }
+  initialization {
+    dns {
+      servers = ["1.1.1.1"]
+    }
+    ip_config {
+      ipv4 {
+        address = "dhcp"
+      }
+    }
+  }
+}
+output "vm_ipv4_address" {
+  value = proxmox_virtual_environment_vm.ubuntu_clone.ipv4_addresses[1][0]
+}
+</code></pre>
+<h3 id="tallos">Tallos</h3>
+<ul>
+<li>Terraform provider: <a href="https://registry.terraform.io/providers/siderolabs/talos/latest/docs">https://registry.terraform.io/providers/siderolabs/talos/latest/docs</a></li>
+<li>Tallos Boostrap: <a href="https://github.com/siderolabs/terraform-provider-talos/blob/main/docs/resources/machine_bootstrap.md">https://github.com/siderolabs/terraform-provider-talos/blob/main/docs/resources/machine_bootstrap.md</a></li>
+</ul>
+<h3 id="authentication-authorisation">Authentication / Authorisation</h3>
+<p>Configure a user on proxmox:</p>
+<pre><code class="language-bash">pveum role add terraform-role -privs "VM.Allocate VM.Clone VM.Config.CDROM VM.Config.CPU VM.Config.Cloudinit VM.Config.Disk VM.Config.HWType VM.Config.Memory VM.Config.Network VM.Config.Options VM.Monitor VM.Audit VM.PowerMgmt Datastore.AllocateSpace Datastore.Audit"
+pveum user add terraform@pve
+pveum aclmod / -user terraform@pve -role terraform-role
+pveum user token add terraform@pve terraform-token --privsep=0
+</code></pre>
+<p>Response:</p>
+<pre><code class="language-txt">┌──────────────┬──────────────────────────────────────┐
+│ key          │ value                                │
+╞══════════════╪══════════════════════════════════════╡
+│ full-tokenid │ terraform@pve!provider               │
+├──────────────┼──────────────────────────────────────┤
+│ info         │ {"privsep":"0"}                      │
+├──────────────┼──────────────────────────────────────┤
+│ value        │ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx │
+└──────────────┴──────────────────────────────────────┘
+</code></pre>
+<p>To use the token, export credentials for use by the provider:</p>
+<pre><code class="language-sh">export PM_USER="terraform-prov@pve"
+export PM_PASS="password"
+</code></pre>
+<h2 id="provisioning">Provisioning</h2>
+<ul>
+<li><a href="https://github.com/christensenjairus/ClusterCreator">https://github.com/christensenjairus/ClusterCreator</a></li>
+<li><a href="https://cyber-engine.com/blog/2024/06/25/k8s-on-proxmox-using-clustercreator/">https://cyber-engine.com/blog/2024/06/25/k8s-on-proxmox-using-clustercreator/</a></li>
+<li><a href="https://github.com/DushanthaS/kubernetes-the-hard-way-on-proxmox">https://github.com/DushanthaS/kubernetes-the-hard-way-on-proxmox</a></li>
+<li><a href="https://github.com/siderolabs/image-factory">https://github.com/siderolabs/image-factory</a></li>
+</ul>
+<h2 id="monitoring">Monitoring</h2>
+<ul>
+<li><a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack">https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack</a></li>
+<li><a href="https://github.com/prometheus-operator/kube-prometheus">https://github.com/prometheus-operator/kube-prometheus</a></li>
+<li>Network Monitoring: <a href="https://docs.cilium.io/en/stable/overview/intro/">https://docs.cilium.io/en/stable/overview/intro/</a></li>
+<li>Kubernetes Document Generation: <a href="https://github.com/philippemerle/KubeDiagrams">https://github.com/philippemerle/KubeDiagrams</a></li>
+<li>Document Generation: <a href="https://www.graphviz.org/">https://www.graphviz.org/</a></li>
+</ul>
+<h3 id="monitoring-hardware">Monitoring hardware</h3>
+<ul>
+<li>IPMI Tool suite: <a href="https://www.gnu.org/software/freeipmi/">https://www.gnu.org/software/freeipmi/</a></li>
+<li>Dell idrac exporter: <a href="https://github.com/galexrt/dellhw_exporter">https://github.com/galexrt/dellhw_exporter</a></li>
+<li>Dell Redfish idrac exporter: <a href="https://github.com/mrlhansen/idrac_exporter">https://github.com/mrlhansen/idrac_exporter</a></li>
+<li>Redfish idrac exporter: <a href="https://github.com/jenningsloy318/redfish_exporter">https://github.com/jenningsloy318/redfish_exporter</a></li>
+<li>Prometheus ipmi exporter: <a href="https://github.com/prometheus-community/ipmi_exporter">https://github.com/prometheus-community/ipmi_exporter</a></li>
+<li>SNMP Exporter: <a href="https://github.com/prometheus/snmp_exporter">https://github.com/prometheus/snmp_exporter</a></li>
+<li>Helm chart for SNMP Exporter: <a href="https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-snmp-exporter">https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-snmp-exporter</a></li>
+<li>Node-Exporter ipmitool collector: <a href="https://github.com/prometheus-community/node-exporter-textfile-collector-scripts/blob/master/ipmitool">https://github.com/prometheus-community/node-exporter-textfile-collector-scripts/blob/master/ipmitool</a></li>
+<li>Grafana Dashboard for idrac: <a href="https://grafana.com/grafana/dashboards/13177-ipmi-for-prometheus/">https://grafana.com/grafana/dashboards/13177-ipmi-for-prometheus/</a></li>
+</ul>
+<h2 id="cloudinit">Cloudinit</h2>
+<ul>
+<li>Creating template files: <a href="https://github.com/trfore/proxmox-template-scripts?tab=readme-ov-file">https://github.com/trfore/proxmox-template-scripts?tab=readme-ov-file</a></li>
+</ul>
+<h2 id="storage">Storage</h2>
+<ul>
+<li><a href="https://github.com/LINBIT/linstor-server">https://github.com/LINBIT/linstor-server</a></li>
+<li><a href="https://linbit.com/drbd/">https://linbit.com/drbd/</a></li>
+<li><a href="https://github.com/piraeusdatastore/piraeus-operator">https://github.com/piraeusdatastore/piraeus-operator</a></li>
+<li><a href="https://syncthing.net/">https://syncthing.net/</a></li>
+<li><a href="https://github.com/sergelogvinov/proxmox-csi-plugin">https://github.com/sergelogvinov/proxmox-csi-plugin</a></li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu/">https://blog.stonegarden.dev/articles/2024/08/talos-proxmox-tofu/</a></li>
+<li><a href="https://github.com/rgl/terraform-proxmox-talos">https://github.com/rgl/terraform-proxmox-talos</a></li>
+<li><a href="https://olav.ninja/talos-cluster-on-proxmox-with-terraform">https://olav.ninja/talos-cluster-on-proxmox-with-terraform</a></li>
+<li><a href="https://github.com/kubernetes-sigs/kubespray">https://github.com/kubernetes-sigs/kubespray</a></li>
+<li><a href="https://kubespray.io/">https://kubespray.io/</a></li>
+<li><a href="https://blog.andreasm.io/2024/01/15/proxmox-with-opentofu-kubespray-and-kubernetes/">https://blog.andreasm.io/2024/01/15/proxmox-with-opentofu-kubespray-and-kubernetes/</a></li>
+<li><a href="https://medium.com/@abhigyan.dwivedi_58961/creating-a-kvm-kubernetes-cluster-with-vagrant-kubespray-and-ansible-a-idiot-resistant-guide-2f3727ce7039">https://medium.com/@abhigyan.dwivedi_58961/creating-a-kvm-kubernetes-cluster-with-vagrant-kubespray-and-ansible-a-idiot-resistant-guide-2f3727ce7039</a></li>
+</ul>
+</div>
+</div><footer>
+<hr/>
+<div role="contentinfo">
+<!-- Copyright etc -->
+</div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+</div>
+</div>
+</section>
+</div>
+<div aria-label="Versions" class="rst-versions" role="note">
+<span class="rst-current-version" data-toggle="rst-current-version">
+</span>
+</div>
+<script src="../js/jquery-3.6.0.min.js"></script>
+<script>var base_url = "..";</script>
+<script src="../js/theme_extra.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../search/main.js"></script>
+<script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+<script type="module">import mermaid from "https://unpkg.com/mermaid@10.4.0/dist/mermaid.esm.min.mjs";
+mermaid.initialize({});</script><script>
+            window.update_swagger_ui_iframe_height = function (id) {
+                var iFrameID = document.getElementById(id);
+                if (iFrameID) {
+                    full_height = (iFrameID.contentWindow.document.body.scrollHeight + 80) + "px";
+                    iFrameID.height = full_height;
+                    iFrameID.style.height = full_height;
+                }
+            }
+        
+            let iframe_id_list = []
+            var iframes = document.getElementsByClassName("swagger-ui-iframe");
+            for (var i = 0; i < iframes.length; i++) { 
+                iframe_id_list.push(iframes[i].getAttribute("id"))
+            }
+        
+            let ticking = true;
+            
+            document.addEventListener('scroll', function(e) {
+                if (!ticking) {
+                    window.requestAnimationFrame(()=> {
+                        let half_vh = window.innerHeight/2;
+                        for(var i = 0; i < iframe_id_list.length; i++) {
+                            let element = document.getElementById(iframe_id_list[i])
+                            if(element==null){
+                                return
+                            }
+                            let diff = element.getBoundingClientRect().top
+                            if(element.contentWindow.update_top_val){
+                                element.contentWindow.update_top_val(half_vh - diff)
+                            }
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+        </script></body>
+</html>

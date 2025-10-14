@@ -2,6 +2,16 @@
 
 This section covers the setup and use of NFS volumes from a kubernetes cluster. Firstly an nfs server is set up, tested from a client, and then configured for ue in a kubernetes manifest.
 
+
+## Routing through a bastion
+
+- NFS server on 192.168.4.3 internal network
+- NFS volumes: `/nfs/nfspool01, /nfs/nfspool02`
+- For transport: `iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 2049 -j DNAT --to-destination 192.168.4.3:2049`
+- For portmap: `iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 111 -j DNAT --to-destination 192.168.4.3:111`
+- For client test, in /etc/fstab: `192.168.4.3:/nfs/nfspool01 /mnt/nfs-vm-venus nfs rsize=8192,wsize=8192,timeo=14,intr`
+- For client test, in /etc/fstab: `192.168.4.3:/nfs/nfspool02 /mnt/nfs-vm-venus nfs rsize=8192,wsize=8192,timeo=14,intr`
+
 ## NFS Server
 
 To prepare the NFS server for use, using the exported directory `/Data01/nfs` as an example:

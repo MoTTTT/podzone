@@ -105,43 +105,59 @@
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal current" href="./">Talos</a>
+<li class="toctree-l1 current"><a class="reference internal current" href="#">Talos</a>
 <ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#prep">Prep</a>
+<li class="toctree-l2"><a class="reference internal" href="#log-visibility">Log Visibility</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#talos-system-level-interrogation">Talos system level interrogation</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#aggregating-logs">Aggregating logs</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#generation-2-configuration">Generation  2 Configuration</a>
 <ul>
-<li class="toctree-l3"><a class="reference internal" href="#test-node-infrastructure-allocation">Test node infrastructure allocation</a>
+<li class="toctree-l3"><a class="reference internal" href="#backlog">Backlog</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster08-changes">Cluster08 changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster07-changes">Cluster07 changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster06-changes">Cluster06 changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster05-changes">Cluster05 changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster04-changes">Cluster04 changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster03-changes">Cluster03 Changes</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster02-changes">Cluster02 Changes</a>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#talosctl-client-configuration">Talosctl client configuration</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#unix">unix</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#macos">MacOS</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+<li class="toctree-l2"><a class="reference internal" href="#generation-01">Generation 01</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cluster08">Cluster08</a>
 <ul>
 <li class="toctree-l3"><a class="reference internal" href="#cluster05">Cluster05</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#cluster02">Cluster02</a>
-</li>
 <li class="toctree-l3"><a class="reference internal" href="#cluster03">Cluster03</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-on-mars">Configuration on Mars</a>
+<li class="toctree-l3"><a class="reference internal" href="#cluster02">Cluster02</a>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#generation-0-configuration-on-mars">Generation 0: Configuration on Mars</a>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#controlplaneyaml-deviations">controlplane.yaml deviations</a>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#installing-openebs-mercury">Installing OpenEBS (mercury)</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#issues">Issues</a>
-</li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#lab-environments">Lab environments</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#talosctl-client-configuration">Talosctl client configuration</a>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#networking">Networking</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#talos-internet-proxy-support">Talos internet proxy support</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#serving-manifests-and-images-locally">Serving manifests and images locally</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#cluster-components">Cluster components</a>
 </li>
@@ -233,35 +249,105 @@
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
 <h1 id="talos">Talos</h1>
-<h2 id="prep">Prep</h2>
+<h2 id="log-visibility">Log Visibility</h2>
+<h2 id="talos-system-level-interrogation">Talos system level interrogation</h2>
 <ul>
-<li>Server: Mars with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
-<li>Server: Mercury with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
-<li>Server: Venus: Proxmox on R730 with 64 CPUs; 160GB RAM; 1.6 TB zfs pool</li>
+<li>System logs and status logs: <code>talosctl -n 192.168.4.121 dmesg</code>, <code>talosctl -n 192.168.4.121 services</code>, <code>talosctl -n 192.168.4.121 logs machined</code></li>
+<li>Container list: <code>talosctl -n 192.168.4.121 containers -k</code></li>
+<li>Container logs: <code>talosctl -n 192.168.4.121 logs -k kube-system/cilium-cxrpb:cilium-agent:904e8a41ccff</code></li>
 </ul>
-<h3 id="test-node-infrastructure-allocation">Test node infrastructure allocation</h3>
+<h2 id="aggregating-logs">Aggregating logs</h2>
 <ul>
-<li>100 GB root Disk</li>
-<li>4 CPU</li>
-<li>16GB RAM</li>
+<li>Using opensearch for search index, and opensearch-dashboard for visibility</li>
+<li>Using fluentbit for log collection</li>
 </ul>
-<h2 id="talosctl-client-configuration">Talosctl client configuration</h2>
-<h3 id="unix">unix</h3>
+<h2 id="generation-2-configuration">Generation  2 Configuration</h2>
+<h3 id="backlog">Backlog</h3>
 <ul>
-<li>On unix, need to first install brew dependencies: <code>sudo apt-get install build-essential procps curl file git</code></li>
-<li>Then need to install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
-<li>Add brew to path: <code>alias brew="/home/linuxbrew/.linuxbrew/Homebrew/bin/brew"</code></li>
-<li>Then talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
-<li><code>alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl"</code></li>
-<li>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.9.1/bin/talosctl</code></li>
-<li><code>alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'</code></li>
+<li>[ ] Move Loadbalancer manifest to cluster config</li>
+<li>[ ] Log visibility: Send service and kernel logs to fluentbit: Set fluentbit service up as a NodePort</li>
+<li>[ ] Managed secrets: <code>talosctl gen secrets --from-controlplane-config controlplane.yaml -o secrets.yaml</code></li>
+<li>[ ] Observability: tracing with Jaeger</li>
+<li>[ ] Observability / Security: Falco (Security monitoring)</li>
+<li>[ ] Security: Kyverno (Policy as code)</li>
+<li>[ ] Security: Keycloak</li>
+<li>[ ] OpenTelemetry</li>
+<li>[ ] Evaluate TALM: <code>https://github.com/cozystack/talm</code></li>
+<li>[ ] Evaluate authentik</li>
+<li>[ ] Automated provisioning: <code>https://cozystack.io/</code></li>
+<li>[ ] Switch to Gateway API: <a href="https://medium.com/@martin.hodges/why-do-i-need-an-api-gateway-on-a-kubernetes-cluster-c70f15da836c">https://medium.com/@martin.hodges/why-do-i-need-an-api-gateway-on-a-kubernetes-cluster-c70f15da836c</a></li>
+<li>[ ] Split out storage network: <code>https://cozystack.io/docs/operations/storage/dedicated-network/</code></li>
+<li>[ ] Refactor ingresses with URL prefixes</li>
+<li>[ ] Security SSO: Oauth2-proxy</li>
+<li>[ ] SOPS with age <a href="https://fluxcd.io/flux/guides/mozilla-sops/#encrypting-secrets-using-age">https://fluxcd.io/flux/guides/mozilla-sops/#encrypting-secrets-using-age</a>; <a href="https://pkg.go.dev/filippo.io/age">https://pkg.go.dev/filippo.io/age</a></li>
+<li>[ ] Investigate kubewall <a href="https://github.com/kubewall/kubewall">https://github.com/kubewall/kubewall</a></li>
+<li>[ ] Investigate Kubeshark: Network traffic analyser <a href="https://github.com/kubeshark/kubeshark">https://github.com/kubeshark/kubeshark</a></li>
+<li>[ ] Investigate Pixie <a href="https://px.dev/">https://px.dev/</a></li>
+<li>[ ] Investigate Jaeger <a href="https://github.com/jaegertracing/jaeger-operator">https://github.com/jaegertracing/jaeger-operator</a></li>
+<li>[ ] Investigate OpenTelemetry: <a href="https://opentelemetry.io/">https://opentelemetry.io/</a>; <a href="https://github.com/open-telemetry/opentelemetry-operator">https://github.com/open-telemetry/opentelemetry-operator</a></li>
+<li>[ ] Investigate Kubeflow (AI Tool ecosystem): <a href="https://www.kubeflow.org/">https://www.kubeflow.org/</a></li>
+<li>[ ] Investigate: For VMs in k8s, see kubevirt</li>
+<li>[ ] Investigate: For flux git access secret <a href="https://fluxcd.io/flux/cmd/flux_create_secret_git/">https://fluxcd.io/flux/cmd/flux_create_secret_git/</a></li>
 </ul>
-<h3 id="macos">MacOS</h3>
+<h3 id="cluster08-changes">Cluster08 changes</h3>
 <ul>
-<li>Brew installed</li>
-<li>Install Talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
+<li>[X] Template for <code>clusterctl generate cluster</code>: <code>clusterctl generate yaml  --from cluster-template.yaml &gt; cluster08.yaml</code></li>
+<li>[ ] Gateway API for Hubble: <a href="https://blog.grosdouli.dev/blog/cilium-gateway-api-cert-manager-let's-encrypt">https://blog.grosdouli.dev/blog/cilium-gateway-api-cert-manager-let's-encrypt</a></li>
 </ul>
-<h2 id="configuration">Configuration</h2>
+<h3 id="cluster07-changes">Cluster07 changes</h3>
+<ul>
+<li>[X] Cluster API: clusterctl for provisioning (cluster api operator rolled back)</li>
+<li>[X] Final talos config {VIP, mirror registry (harbor), drbd, sysctls, certSANs, cilium, talos-cloud-controller-manager}</li>
+<li>[X] Move extraManifests to local httpd {kubelet-serving-cert-approver, metrics-server, piraeus-operator, gateway-api, cilium}</li>
+<li>[X] Reintroduce support for cilium, drdb</li>
+<li>[ ] Fix mv naming (what was this?)</li>
+</ul>
+<h3 id="cluster06-changes">Cluster06 changes</h3>
+<ul>
+<li>[X] Switch to Cluster API for provisioning, with simplified talos config</li>
+</ul>
+<h3 id="cluster05-changes">Cluster05 changes</h3>
+<ul>
+<li>[X] Use TALM for talos configuration: Cancelled</li>
+<li>[X] Reduce disk to 40 GB: Reduce storage startup time?: {8 CPU; 16 GB RAM; 40 GB Disk}</li>
+</ul>
+<h3 id="cluster04-changes">Cluster04 changes</h3>
+<ul>
+<li>[X] Dependency: Harbor</li>
+<li>[X] Configure machine.registry (Harbour) as docker caching repository</li>
+<li>[X] Workload: Prometheus and Grafana</li>
+<li>[X] Cache Talos startup image on bastion server: <code>https://factory.talos.dev/image/ed7716909fb764e0c322ab43dd20918e30cf8ffa3914ba3fa229afec9efe4d84/v1.10.2/nocloud-amd64.iso</code></li>
+<li>[X] Helm chart dependsOn: Fix for dashboards index creation failure</li>
+<li>[X] Split Opensearch roles</li>
+<li>[X] Distribute ingresses</li>
+<li>[X] Add worker node</li>
+<li>[X] Workload: Keycloak</li>
+</ul>
+<h3 id="cluster03-changes">Cluster03 Changes</h3>
+<ul>
+<li>[X] Workload: Radio station (ingress, nfs, storageclass)</li>
+<li>[X] Dependency: NFS</li>
+<li>[X] Add log visibility: Machine definition pre-requisites</li>
+<li>[X] Increase boot size to accommodate linstore pool usage</li>
+<li>[X] VM dimensions {8 CPU; 16 GB RAM; 80 GB Disk}</li>
+</ul>
+<h3 id="cluster02-changes">Cluster02 Changes</h3>
+<ul>
+<li>[X] Workload: OpenSearch with Dashboard</li>
+<li>[X] Workload: fluentbit {collect logs from kubernetes containers}</li>
+<li>[X] Move affinity controller installation to after linstor is stable</li>
+<li>[X] Fix: Shared ingress</li>
+<li>[X] Adjust resource allocations</li>
+<li>[X] Abstraction of controlplane and worker resource dimensions</li>
+<li>[X] Abstraction of Talos version</li>
+<li>[X] Kustomization patch for Ingres load balancer IP Pool</li>
+<li>[X] Support for internet proxy:</li>
+<li>[X] VM dimensions {8 CPU; 16 GB RAM; 40 GB Disk}</li>
+</ul>
+<h2 id="generation-01">Generation 01</h2>
+<ul>
+<li>VM dimensions {4 CPU; 8 GB RAM; 20 GB Disk</li>
+</ul>
 <h2 id="cluster08">Cluster08</h2>
 <p>Using CreateVMDefinitions.sh process template files to:</p>
 <ul>
@@ -290,20 +376,6 @@
 </ul>
 <p>To create flux resource for piraeus:</p>
 <p>flux create source git piraeus --url=https://github.com/piraeusdatastore/piraeus-operator/config/default --tag="v2.8.1"</p>
-<h3 id="cluster02">Cluster02</h3>
-<p>Manually editing controlplane.yaml and worker.yaml files.</p>
-<ul>
-<li>Generate cluster config: <code>talosctl gen config cluster02 https://192.168.4.210:6443</code></li>
-<li>Check the storage device to use: <code>talosctl -n 192.168.4.210 disks --insecure</code></li>
-<li>Edit controlplane.yaml and worker.yaml files. Set IP address and storage devices.</li>
-<li><code>talosctl apply-config --insecure --nodes 192.168.4.210 --file controlplane.yaml</code></li>
-<li><code>talosctl apply-config --insecure --nodes 192.168.4.211 --file worker.yaml</code></li>
-<li><code>talosctl --talosconfig=./talosconfig --nodes 192.168.4.211 -e 192.168.4.210 version</code></li>
-<li><code>talosctl bootstrap --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
-<li><code>talosctl kubeconfig --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
-<li><code>talosctl --nodes 192.168.4.210 --endpoints 192.168.4.210 health --talosconfig=./talosconfig</code></li>
-<li><code>talosctl --nodes 192.168.4.211 --endpoints 192.168.4.210 dashboard --talosconfig=./talosconfig</code></li>
-</ul>
 <h3 id="cluster03">Cluster03</h3>
 <p>Using patches, with talos image supporting:</p>
 <ul>
@@ -340,7 +412,21 @@ cluster:
     disabled: true
   allowSchedulingOnControlPlanes: true
 </code></pre>
-<h3 id="configuration-on-mars">Configuration on Mars</h3>
+<h3 id="cluster02">Cluster02</h3>
+<p>Manually editing controlplane.yaml and worker.yaml files.</p>
+<ul>
+<li>Generate cluster config: <code>talosctl gen config cluster02 https://192.168.4.210:6443</code></li>
+<li>Check the storage device to use: <code>talosctl -n 192.168.4.210 disks --insecure</code></li>
+<li>Edit controlplane.yaml and worker.yaml files. Set IP address and storage devices.</li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.210 --file controlplane.yaml</code></li>
+<li><code>talosctl apply-config --insecure --nodes 192.168.4.211 --file worker.yaml</code></li>
+<li><code>talosctl --talosconfig=./talosconfig --nodes 192.168.4.211 -e 192.168.4.210 version</code></li>
+<li><code>talosctl bootstrap --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
+<li><code>talosctl kubeconfig --nodes 192.168.4.210 --endpoints 192.168.4.210 --talosconfig=./talosconfig</code></li>
+<li><code>talosctl --nodes 192.168.4.210 --endpoints 192.168.4.210 health --talosconfig=./talosconfig</code></li>
+<li><code>talosctl --nodes 192.168.4.211 --endpoints 192.168.4.210 dashboard --talosconfig=./talosconfig</code></li>
+</ul>
+<h3 id="generation-0-configuration-on-mars">Generation 0: Configuration on Mars</h3>
 <ul>
 <li>ProxMox: Load image into local-lvm: <a href="https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.2/nocloud-amd64.iso">https://factory.talos.dev/image/ce4c980550dd2ab1b17bbf2b08801c7eb59418eafe8f279833297925d67c7515/v1.8.2/nocloud-amd64.iso</a></li>
 <li>Proxmox: Create VMs, with 4 CPU, 16 GB RAM, and 100 GB Disk, using talos nocloud-amd64.iso</li>
@@ -377,61 +463,70 @@ cluster:
         https_proxy: http://192.168.3.1:3128/
 </code></pre>
 <p>talosctl gen config talos-nocloud https://192.168.30:6443 --config-patch @patch.yaml</p>
-<h3 id="installing-openebs-mercury">Installing OpenEBS (mercury)</h3>
+<h2 id="lab-environments">Lab environments</h2>
 <ul>
-<li>talosctl -e 192.168.3.80 -n 192.168.3.80 patch mc -p @openebs-patch.yaml</li>
-<li>OpenEBS patch: openebs-patch.yaml</li>
+<li>Server: Mars with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
+<li>Server: Mercury with 32 CPU; 220 GB RAM; 2 X 1TB, 4 X 600GB Disk</li>
+<li>Server: Venus: Proxmox on R730 with 64 CPUs; 160GB RAM; 1.6 TB zfs pool</li>
 </ul>
-<pre><code class="language-yaml">machine:
-    sysctls:
-        vm.nr_hugepages: "1024"
-    nodeLabels:
-        openebs.io/engine: mayastor
-    kubelet:
-        extraMounts:
-            - destination: /var/local/openebs-openebs/
-              type: bind
-              source: /var/local/openebs-openebs/
-              options:
-                  - rbind
-                  - rshared
-                  - rw
-</code></pre>
+<h2 id="talosctl-client-configuration">Talosctl client configuration</h2>
 <ul>
-<li>Installation - without flux</li>
-</ul>
-<pre><code class="language-bash">helm repo add openebs https://openebs.github.io/openebs
-helm repo update
-helm upgrade --install openebs \
-  --create-namespace \
-  --namespace openebs \
-  --set engines.local.lvm.enabled=false \
-  --set engines.local.zfs.enabled=false \
-  --set mayastor.csi.node.initContainers.enabled=false \
-  openebs/openebs
-</code></pre>
-<ul>
-<li>Namespace labels</li>
-</ul>
-<pre><code class="language-yaml">pod-security.kubernetes.io/audit: privileged
-pod-security.kubernetes.io/enforce: privileged
-pod-security.kubernetes.io/warn: privileged
-</code></pre>
-<ul>
-<li>Storage class openebs-hostpath: replicated across all nodes</li>
-<li>Storage class openebs-single-replica: hostpath PVCs that are not replicated</li>
-</ul>
-<h3 id="issues">Issues</h3>
-<ul>
-<li><code>path /var/local/openebs-openebs/localpv-hostpath/etcd/ does not exist</code></li>
+<li>Mac: <code>brew install siderolabs/tap/talosctl</code></li>
+<li>On unix, need to first install brew dependencies: <code>sudo apt-get install build-essential procps curl file git</code></li>
+<li>Then need to install brew: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</code></li>
+<li>Add brew to path: <code>alias brew="/home/linuxbrew/.linuxbrew/Homebrew/bin/brew"</code></li>
+<li>Then talosctl: <code>brew install siderolabs/tap/talosctl</code></li>
+<li><code>alias talosctl="/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl"</code></li>
+<li>Then you can use (or link to): <code>/home/linuxbrew/.linuxbrew/Cellar/talosctl/1.9.1/bin/talosctl</code></li>
+<li><code>alias talosctl='/home/linuxbrew/.linuxbrew/Homebrew/Cellar/talosctl/1.9.1/bin/talosctl --talosconfig=/home/colleymj/.talos/talosconfig'</code></li>
 </ul>
 <h2 id="networking">Networking</h2>
 <ul>
 <li>Flannel installs by default</li>
+<li>For enterprise CNI features, installing Cilium</li>
+<li>PXE Boot:</li>
 </ul>
 <p>Use PXE for boot, with metadata service for per machine (MAC Address) configuration.</p>
 <pre><code class="language-bash">talos.config=https://metadata.service/talos/config?mac=${mac}
 </code></pre>
+<h2 id="talos-internet-proxy-support">Talos internet proxy support</h2>
+<p>For initial boot, add command line arguments: <code>talos.environment=http_proxy=http://192.168.4.51:3128 talos.environment=https_proxy=http://192.168.4.51:3128</code></p>
+<p>Talos image factory specification, supporting drbd fir linode (existing), qemu-guest-agent for terraform remote control (existing), and a new squid proxy, on the cluster hardware.</p>
+<pre><code class="language-yaml">customization:
+    extraKernelArgs:
+        - talos.environment=http_proxy=http://192.168.4.51:3128
+        - talos.environment=https_proxy=http://192.168.4.51:3128
+    systemExtensions:
+        officialExtensions:
+            - siderolabs/drbd
+            - siderolabs/qemu-guest-agent
+</code></pre>
+<p>For runtime, add machine configuration to the patch:</p>
+<pre><code class="language-yaml">machine:
+  env:
+    http_proxy: http://192.168.4.51:3128
+    https_proxy: http://192.168.4.51:3128
+    no_proxy: "localhost,127.0.0.1,192.168.4/24,10.244.0.0/16,10.96.0.0/12"
+</code></pre>
+<h2 id="serving-manifests-and-images-locally">Serving manifests and images locally</h2>
+<ul>
+<li>Apache set up on a VM: <a href="http://192.168.4.5/">http://192.168.4.5/</a></li>
+</ul>
+<p>Supported manifests:</p>
+<ul>
+<li>kubelet-serving-cert-approver.yaml</li>
+<li>metrics-server.yaml</li>
+<li>piraeus-operator.yaml</li>
+<li>gateway-api.yaml</li>
+<li>cilium.yaml</li>
+</ul>
+<p>Supported images:</p>
+<ul>
+<li><a href="https://factory.talos.dev/image/TALOSIMAGEID/${local.talos.version}/nocloud-amd64.iso">https://factory.talos.dev/image/TALOSIMAGEID/${local.talos.version}/nocloud-amd64.iso</a></li>
+<li>TALOSIMAGEID: <code>ed7716909fb764e0c322ab43dd20918e30cf8ffa3914ba3fa229afec9efe4d84</code></li>
+<li>Talos version: <code>v1.10.2</code></li>
+<li><a href="http://192.168.4.5/nocloud-amd64.iso">http://192.168.4.5/nocloud-amd64.iso</a></li>
+</ul>
 <h2 id="cluster-components">Cluster components</h2>
 <ul>
 <li><a href="https://github.com/adampetrovic/home-ops/tree/main">https://github.com/adampetrovic/home-ops/tree/main</a></li>
@@ -454,6 +549,7 @@ pod-security.kubernetes.io/warn: privileged
 <li>PXE: <a href="https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/">https://www.talos.dev/v1.8/talos-guides/install/bare-metal-platforms/pxe/</a></li>
 <li>Options: <a href="https://www.civo.com/blog/calico-vs-flannel-vs-cilium">https://www.civo.com/blog/calico-vs-flannel-vs-cilium</a></li>
 <li><a href="https://github.com/cilium/cilium">https://github.com/cilium/cilium</a></li>
+<li><a href="https://github.com/cilium/cilium/blob/v1.18.1/install/kubernetes/cilium/values.yaml#L992">https://github.com/cilium/cilium/blob/v1.18.1/install/kubernetes/cilium/values.yaml#L992</a></li>
 </ul>
 </div>
 </div><footer>

@@ -1,6 +1,11 @@
 # Security
 
-## Tasks
+## Keycloak and oauth2-proxy
+
+- Generate secure cookie secret: `dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | tr -d -- '\n' | tr -- '+/' '-_' ; echo`
+- - oauth2-proxy config reference: <https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview/>
+
+## Static site hardening Tasks
 
 - [X] Hardening at static-site to be applied also at gateway reverse-proxy
 - [X] Additional headers for best practice security at gateway, and next static-site release

@@ -191,6 +191,10 @@
 <div class="section" itemprop="articleBody">
 <h1 id="cilium">Cilium</h1>
 <h2 id="build-on-talos-on-venus">Build on talos on venus</h2>
+<h2 id="issues">Issues</h2>
+<ul>
+<li>Installation of opensearch: <code>invalid: metadata.labels: Invalid value: \"opensearch-opensearch-dashboard-opensearch-dashboards-dashboards\": must be no more than 63 characters"</code></li>
+</ul>
 <h2 id="cilium-install">Cilium install</h2>
 <ul>
 <li><code>helm repo add cilium https://helm.cilium.io/</code></li>
@@ -199,9 +203,10 @@
 <pre><code class="language-bash">helm template \
     cilium \
     cilium/cilium \
-    --version 1.17.4 \
+    --version 1.18.1 \
     --set hubble.relay.enabled=true \
     --set hubble.ui.enabled=true \
+    --set hubble.ui.baseUrl=/hubble/ \
     --set ingressController.enabled=true \
     --set ingressController.loadbalancerMode=shared \
     --set ingressController.default=true \
@@ -258,37 +263,20 @@ spec:
 <li>ingressController.loadbalancerMode=shared</li>
 <li>kubeProxyReplacement=true</li>
 <li>l7Proxy=true</li>
-<li>ingressController.default=true</li>
 <li>envoyConfig.enabled=true</li>
 <li>loadBalancer.l7.backend=envoy</li>
 <li>ingressController.default=true</li>
 </ul>
-<pre><code class="language-bash">helm template \
-    cilium \
-    cilium/cilium \
-    --version 1.16.5 \
-    --namespace kube-system \
-    --set ipam.mode=kubernetes \
-    --set kubeProxyReplacement=true \
-    --set externalIPs.enabled=true \
-    --set l2announcements.enabled=true \
-    --set ingressController.enabled=true \
-    --set ingressController.loadbalancerMode=shared \
-    --set l7Proxy=true \
-    --set ingressController.default=true \
-    --set envoyConfig.enabled=true \
-    --set loadBalancer.l7.backend=envoy \
-    --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
-    --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
-    --set cgroup.autoMount.enabled=false \
-    --set cgroup.hostRoot=/sys/fs/cgroup \
-    --set k8sServiceHost=localhost \
-    --set k8sServicePort=7445 &gt; cilium.yaml
-
-kubectl apply -f cilium.yaml
-</code></pre>
+<h2 id="final-install">Final install</h2>
 <ul>
+<li>Include GatewayAPI</li>
+<li>Enable Hubble relay and UI</li>
+<li>L2 announcement lease config</li>
+<li>Enable loadBalancerIPs</li>
+<li>Add to talos controlplane-patch.yaml</li>
 <li>Create patch template with {proxy,disable cni, disable proxy, asocp, stub for cilium manifest}</li>
+<li>Add <code>hubble.ui.baseUrl=/hubble/</code></li>
+<li>Update to V1.18.1</li>
 <li>controlplane-patch-template.yaml:</li>
 </ul>
 <pre><code class="language-yaml">machine:
@@ -306,23 +294,69 @@ cluster:
     - name: cilium
       contents: |
 </code></pre>
-<ul>
-<li>Create a patch stub: <code>cp controlplane-patch-template.yaml patch.yaml</code></li>
-<li>Add cilium manifest (with indentation): <code>sed -e 's/^/        /' cilium.yaml &gt;&gt; patch.yaml</code></li>
-<li>Apply patch: <code>talosctl gen config talos-nocloud https://192.168.3.80:6443 --config-patch @patch.yaml</code></li>
-<li>Place generated controlplane.yaml in <code>/var/lib/vz/snippets</code></li>
-<li>Place generated <code>talosconfig</code> in <code>~/.talos</code> as <code>config</code> to bootstrap</li>
-</ul>
-<h2 id="usage-on-proxmox">Usage on Proxmox</h2>
-<ul>
-<li>Create 3 X VM {100,4,16}</li>
-<li>Add cloudinit drive</li>
-<li>Set cloudinit IP address</li>
-<li>Place generated controlplane.yaml in <code>/var/lib/vz/snippets</code></li>
-<li>To set cloudinit file up for VM 1000: <code>qm set 1000 --cicustom user=local:snippets/controlplane.yaml</code></li>
-<li>To bootstrap cluster: <code>talosctl bootstrap -n 192.168.3.80 -e 192.168.3.80</code></li>
-<li>To get kubectl config for the cluster: <code>talosctl kubeconfig -n 192.168.3.80 -e 192.168.3.80</code></li>
-</ul>
+<pre><code class="language-bash">helm template \
+    cilium \
+    cilium/cilium \
+    --version 1.18.1 \
+    --set hubble.relay.enabled=true \
+    --set hubble.ui.enabled=true \
+    --set hubble.ui.baseUrl=/hubble/ \
+    --set ingressController.enabled=true \
+    --set ingressController.loadbalancerMode=shared \
+    --set ingressController.default=true \
+    --set l2announcements.enabled=true \
+    --set l2announcements.leaseDuration=3s \
+    --set l2announcements.leaseRenewDeadline=1s \
+    --set l2announcements.leaseRetryPeriod=200ms \
+    --set loadBalancerIPs.enable=true \
+    --set gatewayAPI.enabled=true \
+    --set loadBalancer.l7.backend=envoy \
+    --namespace kube-system \
+    --set ipam.mode=kubernetes \
+    --set kubeProxyReplacement=true \
+    --set securityContext.capabilities.ciliumAgent="{CHOWN,KILL,NET_ADMIN,NET_RAW,IPC_LOCK,SYS_ADMIN,SYS_RESOURCE,DAC_OVERRIDE,FOWNER,SETGID,SETUID}" \
+    --set securityContext.capabilities.cleanCiliumState="{NET_ADMIN,SYS_ADMIN,SYS_RESOURCE}" \
+    --set cgroup.autoMount.enabled=false \
+    --set cgroup.hostRoot=/sys/fs/cgroup \
+    --set k8sServiceHost=localhost \
+    --set k8sServicePort=7445  | sed -e 's/^/        /' &gt;&gt; talos/controlplane-patch.yaml
+</code></pre>
+<h2 id="gateway">Gateway</h2>
+<p>Example GatewayClass and Gateway, with TLS termination using cert-manager:</p>
+<pre><code class="language-yaml">---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  name: cilium
+spec:
+  controllerName: io.cilium/gateway-controller
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: cluster08
+  namespace: kube-system
+  annotations:
+    cert-manager.io/cluster-issuer: lets-encrypt
+spec:
+  gatewayClassName: cilium
+  listeners:
+  - hostname: cluster08.podzone.cloud
+    name: cluster08-podzone-cloud-http
+    port: 80
+    protocol: HTTP
+  - hostname: cluster08.podzone.cloud
+    name: cluster08-podzone-cloud-https
+    port: 443
+    protocol: HTTPS
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - name: cluster08-secret
+    allowedRoutes:
+      namespaces:
+        from: All
+</code></pre>
 <h2 id="references">References</h2>
 <ul>
 <li><a href="https://docs.cilium.io/en/latest/network/servicemesh/tls-termination/">https://docs.cilium.io/en/latest/network/servicemesh/tls-termination/</a></li>
@@ -333,6 +367,9 @@ cluster:
 <li><a href="https://gateway-api.sigs.k8s.io/">https://gateway-api.sigs.k8s.io/</a></li>
 <li><a href="https://docs.cilium.io/en/v1.14/network/servicemesh/gateway-api/gateway-api/">https://docs.cilium.io/en/v1.14/network/servicemesh/gateway-api/gateway-api/</a></li>
 <li><a href="https://itnext.io/cilium-gateway-api-cert-manager-and-lets-encrypt-updates-cc730818cb17">https://itnext.io/cilium-gateway-api-cert-manager-and-lets-encrypt-updates-cc730818cb17</a></li>
+<li><a href="https://blog.grosdouli.dev/blog/cilium-gateway-api-cert-manager-let's-encrypt">https://blog.grosdouli.dev/blog/cilium-gateway-api-cert-manager-let's-encrypt</a></li>
+<li><a href="https://github.com/cilium/cilium/blob/v1.18.1/install/kubernetes/cilium/values.yaml#L992">https://github.com/cilium/cilium/blob/v1.18.1/install/kubernetes/cilium/values.yaml#L992</a></li>
+<li><a href="https://cert-manager.io/docs/usage/gateway/">https://cert-manager.io/docs/usage/gateway/</a></li>
 </ul>
 </div>
 </div><footer>

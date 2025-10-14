@@ -8,19 +8,13 @@ As cluster build-out has progressed, devices and their resource configuration ha
 
 ## Rack servers
 
-| Hostname | Machine | Threads | RAM    | RAM Config | Controller |  SAS installed          | IP Address   | Function     |
-|----------|---------|---------|--------|------------|------------|-------------------------|--------------|--------------|
-| Pluto    | R720    | 32      |        |            |            | 8 X 2.5"                | 192.168.2.50 | Production 1 |
-| Mars     | R720    | 32      | 64 GB  |            |            |                         | 192.168.2.54 | Production 2 |
-| Saturn   | DR6000  | 48      | 128 GB |            |            | 2 X 2.5"; 12 X 3.5"     | 192.168.2.51 | DevOps       |
-| Venus    | R730    | 64      | 160 GB |            | H730 Mini  | 8 X 2.5"                | 192.168.2.53 | Development  |
-| Neptune  | R710    | 8       | 24 GB  |            |            |                         | 192.168.2.55 | Return       |
-
-### Deployed
-
-| Hostname | Machine | Threads | RAM    | RAM Config |  SAS installed          | IP Address   | Client           |
-|----------|---------|---------|--------|------------|-------------------------|--------------|------------------|
-| Mercury  | R720    | 32      | 112 GB | 14 X 8 GB  | 4 X 147 GB + 4 X 600 GB | 192.168.3.52 | littlecanton.one |
+| Hostname | Machine | Threads | RAM        | RAM Config | Controller |  SAS installed          | IP Address   | Function     |
+|----------|---------|---------|------------|------------|------------|-------------------------|--------------|--------------|
+| Pluto    | R720    | 32      |            |            |            | 8 X 2.5"                | 192.168.2.50 | Production 1 |
+| Mars     | R720    | 32      | 384 GB     | 24 X 16GB  | H710P Mini | 12 X 600GB + 2 X 1TB    | 192.168.2.54 | Production 2 |
+| Saturn   | DR6000  | 48      | 128 GB     |            |            | 2 X 2.5"; 12 X 3.5"     | 192.168.2.51 | DevOps       |
+| Venus    | R730    | 64      | 160 GB     |            | H730 Mini  | 8 X 2.5"                | 192.168.2.53 | Home Lab.    |
+| Mercury  | R720    | 32      | 112 GB     | 14 X 8 GB  |            | 4 X 147 GB + 4 X 600 GB | 192.168.3.52 | Recovered.   |
 
 ## Cluster nodes
 

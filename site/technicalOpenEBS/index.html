@@ -4,17 +4,17 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalNFS/" rel="canonical"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Martin Colley" name="author"/><link href="https://musings.thruhere.net/podzone/technicalOpenEBS/" rel="canonical"/>
 <link href="../img/favicon.ico" rel="shortcut icon"/>
-<title>NFS storage - Podzone</title>
+<title>Open EBS Container storage and CSI - Podzone</title>
 <link href="../css/theme.css" rel="stylesheet"/>
 <link href="../css/theme_extra.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" rel="stylesheet"/>
 <script>
         // Current page data
-        var mkdocs_page_name = "NFS storage";
-        var mkdocs_page_input_path = "technicalNFS.md";
-        var mkdocs_page_url = "/podzone/technicalNFS/";
+        var mkdocs_page_name = "Open EBS Container storage and CSI";
+        var mkdocs_page_input_path = "technicalOpenEBS.md";
+        var mkdocs_page_url = "/podzone/technicalOpenEBS/";
       </script>
 <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
@@ -104,7 +104,7 @@
 </li>
 </ul>
 <p class="caption"><span class="caption-text">Substrate</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../technicalTalos/">Talos</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalLinstor/">Linstor</a>
@@ -119,31 +119,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalIngress/">Ingress</a>
 </li>
-<li class="toctree-l1 current"><a class="reference internal current" href="#">NFS storage</a>
-<ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="#routing-through-a-bastion">Routing through a bastion</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#nfs-server">NFS Server</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#client-test-os-level">Client test (OS level)</a>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#kubernetes-client">Kubernetes client</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#dynamic-provisioning">Dynamic Provisioning</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#csi-driver-for-static-provisioning">CSI Driver for static provisioning</a>
-<ul>
-<li class="toctree-l3"><a class="reference internal" href="#flux-install">flux install</a>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#issue">Issue</a>
-</li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#references">References</a>
-</li>
-</ul>
+<li class="toctree-l1"><a class="reference internal" href="../technicalNFS/">NFS storage</a>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../technicalNetwork/">Network Topology</a>
 </li>
@@ -205,8 +181,7 @@
 <div class="rst-content"><div aria-label="breadcrumbs navigation" role="navigation">
 <ul class="wy-breadcrumbs">
 <li><a aria-label="Docs" class="icon icon-home" href=".."></a></li>
-<li class="breadcrumb-item">Substrate</li>
-<li class="breadcrumb-item active">NFS storage</li>
+<li class="breadcrumb-item active">Open EBS Container storage and CSI</li>
 <li class="wy-breadcrumbs-aside">
 </li>
 </ul>
@@ -214,112 +189,54 @@
 </div>
 <div class="document" itemscope="itemscope" itemtype="http://schema.org/Article" role="main">
 <div class="section" itemprop="articleBody">
-<h1 id="nfs-storage">NFS storage</h1>
-<p>This section covers the setup and use of NFS volumes from a kubernetes cluster. Firstly an nfs server is set up, tested from a client, and then configured for ue in a kubernetes manifest.</p>
-<h2 id="routing-through-a-bastion">Routing through a bastion</h2>
+<h1 id="open-ebs-container-storage-and-csi">Open EBS Container storage and CSI</h1>
+<h2 id="installing-openebs-mercury">Installing OpenEBS (mercury)</h2>
 <ul>
-<li>NFS server on 192.168.4.3 internal network</li>
-<li>NFS volumes: <code>/nfs/nfspool01, /nfs/nfspool02</code></li>
-<li>For transport: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 2049 -j DNAT --to-destination 192.168.4.3:2049</code></li>
-<li>For portmap: <code>iptables -t nat -A PREROUTING -i wlp2s0 -p tcp --dport 111 -j DNAT --to-destination 192.168.4.3:111</code></li>
-<li>For client test, in /etc/fstab: <code>192.168.4.3:/nfs/nfspool01 /mnt/nfs-vm-venus nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
-<li>For client test, in /etc/fstab: <code>192.168.4.3:/nfs/nfspool02 /mnt/nfs-vm-venus nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
+<li>talosctl -e 192.168.3.80 -n 192.168.3.80 patch mc -p @openebs-patch.yaml</li>
+<li>OpenEBS patch: openebs-patch.yaml</li>
 </ul>
-<h2 id="nfs-server">NFS Server</h2>
-<p>To prepare the NFS server for use, using the exported directory <code>/Data01/nfs</code> as an example:</p>
-<ul>
-<li><code>apt install nfs-kernel-server</code></li>
-<li><code>mkdir /Data01/nfs</code></li>
-<li><code>chmod go+w /Data01/nfs</code></li>
-<li><code>chown -R nobody:nogroup /Data01/nfs</code></li>
-<li>Add entry to /etc/exports: <code>/Data01/nfs *(rw,sync,no_subtree_check)</code></li>
-<li><code>exportfs -a</code></li>
-</ul>
-<h2 id="client-test-os-level">Client test (OS level)</h2>
-<p>To test the NFS server, set up a client machine similar to a kubernetes node (assuming the dataserver has IP address 192.168.1.26):</p>
-<ul>
-<li>Install client driver: <code>apt install nfs-common</code></li>
-<li>/etc/fstab: <code>192.168.1.26:/Data01/nfs /mnt/Data01-nfs nfs rsize=8192,wsize=8192,timeo=14,intr</code></li>
-<li>Mount all: <code>mount -a</code></li>
-<li>To examine the mounted volume, use <code>df -H</code>, which for the setup above would be something like: <code>*192.168.1.26:/Data01/nfs  2.1T  118G  1.8T   7% /mnt/Data01-nfs*</code></li>
-</ul>
-<h2 id="kubernetes-client">Kubernetes client</h2>
-<h3 id="dynamic-provisioning">Dynamic Provisioning</h3>
-<p>Static provisioning is discussed below, but I could only get success with dynamic provisioning.</p>
-<p>Dynamic Provisioning for NFS only requires the nfs-common package on k8s nodes: <code>sudo apt install nfs-common -y</code></p>
-<p>The following manifest snippet illustrates usage:</p>
-<pre><code class="language-yaml">apiVersion: apps/v1
-kind: Deployment
-...
-spec:
-...
-  template:
-...
-    spec:
-...
-      containers:
-        volumeMounts:
-        - mountPath: /web
-          name: radiovolume
-          subPath: icecastweb
-      initContainers:
-...
-        volumeMounts:
-        - mountPath: /mnt
-          name: radiovolume
-          subPath: icecastweb
-      volumes:
-      - name: radiovolume
-        nfs:
-          path: /Data02/musoclub
-          server: 192.168.1.26
+<pre><code class="language-yaml">machine:
+    sysctls:
+        vm.nr_hugepages: "1024"
+    nodeLabels:
+        openebs.io/engine: mayastor
+    kubelet:
+        extraMounts:
+            - destination: /var/local/openebs-openebs/
+              type: bind
+              source: /var/local/openebs-openebs/
+              options:
+                  - rbind
+                  - rshared
+                  - rw
 </code></pre>
-<h2 id="csi-driver-for-static-provisioning">CSI Driver for static provisioning</h2>
-<p>An NFS CSI driver was first attempted, but application had showstopper issues.</p>
 <ul>
-<li>k8s nodes: use ansible to <code>sudo apt install nfs-common</code></li>
-<li>k8s cluster: use flux to install <code>csi-driver-nfs</code> helm chart</li>
-<li><code>helm3 repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</code></li>
-<li><code>microk8s helm3 repo update</code></li>
-<li><code>helm3 install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system --set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code></li>
-<li><code>chmod -R 777 /srv/nfs</code></li>
-<li><code>chown -R nobody:nogroup /srv/nfs</code></li>
-<li>Add volumes into /etc/exports, e.g <code>/srv/nfs      192.168.0.0/24(rw,all_squash,sync,no_subtree_check)</code></li>
+<li>Installation - without flux</li>
 </ul>
-<h3 id="flux-install">flux install</h3>
+<pre><code class="language-bash">helm repo add openebs https://openebs.github.io/openebs
+helm repo update
+helm upgrade --install openebs \
+  --create-namespace \
+  --namespace openebs \
+  --set engines.local.lvm.enabled=false \
+  --set engines.local.zfs.enabled=false \
+  --set mayastor.csi.node.initContainers.enabled=false \
+  openebs/openebs
+</code></pre>
 <ul>
-<li>helm chart source: <a href="https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts">https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts</a></li>
-<li>helm chart: <code>csi-driver-nfs</code></li>
-<li>For <code>--set kubeletDir=/var/snap/microk8s/common/var/lib/kubelet</code>, create a configmap</li>
+<li>Namespace labels</li>
 </ul>
-<h3 id="issue">Issue</h3>
+<pre><code class="language-yaml">pod-security.kubernetes.io/audit: privileged
+pod-security.kubernetes.io/enforce: privileged
+pod-security.kubernetes.io/warn: privileged
+</code></pre>
 <ul>
-<li>Pod describe reports: <code>Warning  FailedMount  3m32s (x448 over 14h)  kubelet  MountVolume.SetUp failed for volume "pvc-1c0b7728-5ebd-4bb0-85ba-0f0877ab9080" : rpc error: code = Internal desc = mkdir /var/snap: read-only file system</code></li>
-<li>Attempting dynamic provisioning...</li>
-</ul>
-<h2 id="references">References</h2>
-<ul>
-<li><a href="https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial">https://kubedemy.io/kubernetes-storage-part-1-nfs-complete-tutorial</a></li>
-<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
-<li><a href="https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31">https://discuss.kubernetes.io/t/use-nfs-for-persistent-volumes-on-microk8s/19035/31</a></li>
-<li><a href="https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/">https://akomljen.com/kubernetes-persistent-volumes-with-deployment-and-statefulset/</a></li>
-<li><a href="https://github.com/rancher/rancher/issues/4423">https://github.com/rancher/rancher/issues/4423</a></li>
-<li><a href="https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html">https://docs.mirantis.com/mke/3.7/ops/deploy-apps-k8s/persistent-storage/use-nfs-storage.html</a></li>
-<li><a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">https://kubernetes.io/docs/concepts/storage/persistent-volumes/</a></li>
-<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/">https://kubernetes.io/docs/concepts/storage/volumes/</a></li>
-<li><a href="https://ubuntu.com/server/docs/service-nfs">https://ubuntu.com/server/docs/service-nfs</a></li>
-<li><a href="https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29">https://hbayraktar.medium.com/how-to-setup-dynamic-nfs-provisioning-in-a-kubernetes-cluster-cbf433b7de29</a></li>
-<li><a href="https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner">https://github.com/kubernetes-sigs/sig-storage-lib-external-provisioner</a></li>
-<li><a href="https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md">https://github.com/kubernetes-sigs/nfs-ganesha-server-and-external-provisioner/blob/7027d6505a510673579c03db589bcb02cc8eda0b/charts/nfs-server-provisioner/README.md</a></li>
-<li><a href="https://microk8s.io/docs/addon-nfs">https://microk8s.io/docs/addon-nfs</a></li>
-<li><a href="https://microk8s.io/docs/how-to-nfs">https://microk8s.io/docs/how-to-nfs</a></li>
+<li>Storage class openebs-hostpath: replicated across all nodes</li>
+<li>Storage class openebs-single-replica: hostpath PVCs that are not replicated</li>
+<li>Issue: <code>path /var/local/openebs-openebs/localpv-hostpath/etcd/ does not exist</code></li>
 </ul>
 </div>
 </div><footer>
-<div aria-label="Footer Navigation" class="rst-footer-buttons" role="navigation">
-<a class="btn btn-neutral float-left" href="../technicalIngress/" title="Ingress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-<a class="btn btn-neutral float-right" href="../technicalNetwork/" title="Network Topology">Next <span class="icon icon-circle-arrow-right"></span></a>
-</div>
 <hr/>
 <div role="contentinfo">
 <!-- Copyright etc -->
@@ -333,8 +250,6 @@ spec:
 </div>
 <div aria-label="Versions" class="rst-versions" role="note">
 <span class="rst-current-version" data-toggle="rst-current-version">
-<span><a href="../technicalIngress/" style="color: #fcfcfc">« Previous</a></span>
-<span><a href="../technicalNetwork/" style="color: #fcfcfc">Next »</a></span>
 </span>
 </div>
 <script src="../js/jquery-3.6.0.min.js"></script>
